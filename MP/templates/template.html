@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} MiPega.cl {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Gonzalo Barra"/>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+
+    <!-- Le styles -->
+    <link href="{{STATIC_URL}}bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <link href="{{STATIC_URL}}css/estilo.css" rel="stylesheet"/>
+    <link href="{{STATIC_URL}}bootstrap/dist/css/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link href="/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    
+    <!-- modernizr -->
+    <!--<script type="text/javascript" src="js/modernizr.js"></script>-->
+    <!-- /modernizr -->
+    <!-- google map -->
+</head>
+
+<body>
+    <div id = "warning">  
+        <!--[if IE 6]>
+        <p>
+            La versión de Internet Explorer que est&aacute;s utilizando
+            no está actualizada. <br />
+            Este sitio funcionar&aacute; mejor si actualizas tu navegador.
+            <a href="http://www.microsoft.com/latam/windows/internet-explorer/">Actualizar Internet Explorer</a>
+        </p>
+        <![endif]-->
+        <noscript>
+            <p>
+                Es necesario que tengas activado Javascript en su navegador 
+                para utilizar todas las funciones de este sitio.
+                <a href="#">
+                    &iquest;C&oacute;mo activar Javascript?
+                </a>
+            </p>
+        </noscript>
+    </div><!-- #warning -->
+         
+
+    <div id="header-wrapper">
+        <div id="header" class="container">
+        </div>
+    </div><!-- #header -->
+
+    <div id="menu">
+        <div class="container">
+        </div>            
+    </div><!-- #menu -->
+
+    <div id="content-wrapper">
+        <div id="content" class="container">
+            {% block contenido %}
+            {% endblock %}
+        </div>    
+    </div><!-- #content -->
+
+    <div id="footer-wrapper">
+        <div id="footer" class="container">
+        </div>    
+    </div><!-- #footer -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{STATIC_URL}}js/jquery.js"></script>
+    <script src="{{STATIC_URL}}bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/plugins.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/script.js"></script>
+    {% block SCRIPT %}
+    
+    {% endblock %}
+</body>
+</html>
