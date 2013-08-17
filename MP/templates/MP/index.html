@@ -1,5 +1,112 @@
 {% extends 'template.html' %}
 {% block title %} Inicio | MiPega.cl {% endblock %}
 {% block contenido %}
-<p>Probando</p>
+<div class="body row">
+        
+        <div class="col-lg-6">
+            <div class="jumbotron">
+            <h1>Bienvenido a mipega</h1>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+            <p><a class="btn btn-primary btn-large" href="registro.html">¡Unete!</a></p>
+            </div>
+        </div>
+        <div class="col-lg-5 busqueda">
+            <form>
+                <fieldset>
+                    <legend>Encuentre a su trabajador!</legend>
+                    <!--<div class="form-group">                    
+                        <input type="text" class="form-control" id="inputProfesion" placeholder="Profesion...">
+                    </div>-->
+                    <div class="form-group">
+                        <p class="help-block">Cargo:</p>
+                        <input type="text" class="form-control" id="inputCargo" placeholder="Ingeniero, Tecnico alambrista...">
+                        
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Rango etario:</p>
+                        <select class="form-control">
+                            <option>Indiferente</option>
+                            <option>18-22</option>
+                            <option>22-29</option>
+                            <option>30-37</option>
+                            <option>37-44</option>
+                            <option>44+</option>
+                        </select>
+                        
+                    </div>
+                    <div class="form-group">
+                        <div class="sex-block">
+                            <p class="help-block">Sexo:</p>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                    Masculino
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                    Femenino
+                                </label>
+                            </div>                            
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                    Indiferente
+                                </label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Localidad:</p>
+                        <input type="text" class="form-control" id="inputLocalidad" placeholder="La florida, Region de Atacama...">
+                        
+                    </div>
+                    <a class="pull-right" href="#">Busqueda avanzada</a>
+                    <br><br>
+                    <button type="submit" class="btn btn-default" id="search">Buscar</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    
+    <div class="result">
+        <a id="indice" href="#"></a>
+        <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="img/avatar.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="#">Media heading</a></h4>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            </div>
+            <br>
+            <a class="pull-left" href="#">
+              <img class="media-object" src="img/avatar.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="#">Media heading</a></h4>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            </div>
+            <br>
+            <a class="pull-left" href="#">
+              <img class="media-object" src="img/avatar.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="#">Media heading</a></h4>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            </div>
+            <br>
+            <a class="pull-left" href="#">
+              <img class="media-object" src="img/avatar.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="#">Media heading</a></h4>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            </div>
+            <br>
+        </div>
+    </div>
 {% endblock %}
