@@ -16,4 +16,14 @@ def index_view(request):
 	return render_to_response('MP/index.html',context_instance=RequestContext(request))
 
 def registro_view(request):
-	return render_to_response('MP/registro.html',context_instance=RequestContext(request))
+	form_user = UserForm(request.POST or None)
+	form_socio = SocioForm(request.POST or None)
+	form_sociol = LocalidadconSocioForm(request.POST or None)
+	if request.POST and form_user.is_valid():
+		form_user.save()
+
+		return HttpResponseRedirect('/')
+
+	ctx = {'form_user':form_user, 'form_socio': form_socio, 'form_sociol': form_sociol}
+
+	return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))
