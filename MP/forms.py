@@ -26,3 +26,15 @@ class LocalidadconSocioForm(forms.ModelForm):
     class Meta:
         model = LocalidadConSocio
         fields = ('localidad',)
+
+class EstudioForm(form.ModelForm):
+    class Meta:
+        model = Estudios
+
+class ExpetienciaLaboralForm(form.ModelForm):
+    class Meta:
+        model = ExperienciaLaboral
+
+class OtrasHabilidadesForm(form.ModelForm):
+    class Meta:
+        model = OtrasHabilidades                        
