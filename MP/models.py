@@ -175,7 +175,7 @@ class Estudios(models.Model):
 	# Llaves foraneas
 	titulo      = models.ForeignKey(Titulo, verbose_name="Titulo")
 	institucion = models.ForeignKey(Institucion, verbose_name="Institucion")
-
+	socio       = models.ForeignKey(Socio, verbose_name="Socio")
 
 
 class TitulosEnInstituciones(models.Model):

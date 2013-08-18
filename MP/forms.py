@@ -27,14 +27,14 @@ class LocalidadconSocioForm(forms.ModelForm):
         model = LocalidadConSocio
         fields = ('localidad',)
 
-class EstudioForm(form.ModelForm):
+class EstudioForm(forms.ModelForm):
     class Meta:
         model = Estudios
 
-class ExpetienciaLaboralForm(form.ModelForm):
+class ExperienciaLaboralForm(forms.ModelForm):
     class Meta:
         model = ExperienciaLaboral
 
-class OtrasHabilidadesForm(form.ModelForm):
+class OtrasHabilidadesForm(forms.ModelForm):
     class Meta:
         model = OtrasHabilidades                        

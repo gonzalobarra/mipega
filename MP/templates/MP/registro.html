@@ -1,276 +1,50 @@
 {% extends 'template.html' %}
 {% block title %} Registro de usuario | MiPega.cl {% endblock %}
 {% block contenido %}
-    <div id="content">
-            <div id="wrapper">
-                <div id="steps">
-                    <form id="formElem" name="formElem" action="" method="post">
-                        <fieldset class="step">
-                            <legend>Cuenta</legend>
-                            <p>
-                                <label for="username">Rut</label>
-                                <input id="username" name="username" type="text" />
-                            </p>
-                            <p>
-                                <label for="email">Clave</label>
-                                <input id="email" name="email" type="password" AUTOCOMPLETE=OFF />
-                            </p>
-                            <p>
-                                <label for="password">Repita clave</label>
-                                <input id="password" name="password" type="password" AUTOCOMPLETE=OFF />
-                            </p>
-                        </fieldset>
-                        <fieldset class="step">
-                            <legend>Contacto</legend>
-                            <p>
-                                <label for="name">Nombre</label>
-                                <input id="name" name="name" type="text" AUTOCOMPLETE=OFF />
-                            </p>
-                            <p>
-                                <label for="country">Mail</label>
-                                <input id="country" name="country" type="text" AUTOCOMPLETE=OFF />
-                            </p>
-                            <p>
-                                <label for="phone">Telefono</label>
-                                <input id="phone" name="phone" placeholder="e.g. +351215555555" type="tel" AUTOCOMPLETE=OFF />
-                            </p>
-                            <p>
-                                <label for="website">Sitio web</label>
-                                <input id="website" name="website" placeholder="e.g. http://www.codrops.com" type="tel" AUTOCOMPLETE=OFF />
-                            </p>
-                        </fieldset>
-                        <fieldset class="step">
-                            <legend>Personal</legend>
-                            <p>
-                                <label for="cardtype">Año de nacimiento</label>
-                                <select id="cardtype" name="cardtype">
-                                    <option>1980</option>
-                                    <option>1981</option>
-                                    <option>1982</option>
-                                    <option>1983</option>
-                                    <option>1984</option>
-                                    <option>1985</option>
-                                    <option>1986</option>
-                                    <option>1987</option>
-                                    <option>1988</option>
-                                    <option>1989</option>
-                                    <option>1990</option>
-                                    <option>1991</option>
-                                    <option>1992</option>
-                                    <option>1993</option>
-                                    <option>1994</option>
-                                    <option>1995</option>
-                                    <option>1996</option>
-                                    <option>1997</option>                                    
-                                    <option>1998</option>
-                                    <option>1999</option>
-                                    <option>2000</option>
-                                    <option>2001</option>
-                                    <option>2002</option>
-                                    <option>2003</option>
-                                    <option>2004</option>
-                                    <option>2005</option>
-                                </select>
-                            </p>
-                            <p>
-                                <label for="cardnumber">Hijos?</label>
-                                <input id="cardnumber" name="cardnumber" type="number" AUTOCOMPLETE=OFF />
-                            </p>
-                            <p>                                  
-                                <label style="width: 100%;padding-right: 320px">Sexo</label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        Masculino
-                                    </label>                               
-                                    <label class="radio-label">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        Femenino
-                                    </label>                                    
-                            </p>
-                            <p>
-                                <label for="namecard">Estado Civil</label>
-                                <input id="namecard" name="namecard" type="text" AUTOCOMPLETE=OFF />
-                            </p>
-                        </fieldset>
-                        <fieldset class="step">                            
-                            <legend >Experiencia Laboral</legend>
-                            
-                                <label id="special" style="padding-right: 190px">Enseñanza escolar</label>
-                                <ul class="vertical">
-                                    <li><label class="radio-label">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        Incompleta
-                                    </label></li>                               
-                                    <li><label class="radio-label">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        Completa
-                                    </label></li>
-                                    <li><label class="radio-label">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        Completa Tecnica
-                                    </label></li>
-                                </ul>
-                                <div class="complementary">
-                                    <div id="space"></div>
-                                    <input class="escolar" placeholder="Institucion" type="text" style="width: 120px;" />
-                                    <input class="escolar" placeholder="Institucion" type="text" style="width: 120px;" />
-                                    <select id="titulo-tecnico" style="width: 100px;margin-left: 5px">
-                                        <option value="1" selected>Titulo...</option>
-                                        <option value="2">Titulo 1</option>
-                                        <option value="0">Titulo 2</option>
-                                    </select>
-                                </div>
-                            
-                            <p>
-                                <label style="width: 100%;padding-right: 320px" for="updates">Estudios superiores</label>
-                                <select class="estudios" id="updates" name="updates">
-                                    <option value="1" selected>Institucion...</option>
-                                    <option value="2">Institucion 1</option>
-                                    <option value="0">Institucion 2</option>
-                                </select>
-                                <select class="estudios" id="updates" name="updates">
-                                    <option value="1" selected>Titulo...</option>
-                                    <option value="2">Titulo 1</option>
-                                    <option value="0">Titulo 2</option>
-                                </select>
-                                <select class="estudios" id="updates" name="updates">
-                                    <option value="1" selected>Estado...</option>
-                                    <option value="2">Completa</option>
-                                    <option value="0">Incompleta</option>
-                                </select>
-                                <span class="glyphicon glyphicon-plus-sign mas-estudios" data-more="estudios"></span>
-                            </p>
-			    <p>
-                                <label style="width: 100%;padding-right: 320px" for="tagname">Experiencia laboral</label>
-                                <select id="inputRubro" name="updates">
-                                    <option value="1" selected>Rubro...</option>
-                                    <option value="2">Rubro1</option>
-                                    <option value="0">Rubro2</option>
-                                </select>
-                                <input id="inputCargo" type="text" placeholder="Cargo..."/>
-                                <select id="inputIngreso" name="cardtype">
-                                    <option>Año ingreso</option>
-                                    <option>1980</option>
-                                    <option>1981</option>
-                                    <option>1982</option>
-                                    <option>1983</option>
-                                    <option>1984</option>
-                                    <option>1985</option>
-                                    <option>1986</option>
-                                    <option>1987</option>
-                                    <option>1988</option>
-                                    <option>1989</option>
-                                    <option>1990</option>
-                                    <option>1991</option>
-                                    <option>1992</option>
-                                    <option>1993</option>
-                                    <option>1994</option>
-                                    <option>1995</option>
-                                    <option>1996</option>
-                                    <option>1997</option>                                    
-                                    <option>1998</option>
-                                    <option>1999</option>
-                                    <option>2000</option>
-                                    <option>2001</option>
-                                    <option>2002</option>
-                                    <option>2003</option>
-                                    <option>2004</option>
-                                    <option>2005</option>
-                                </select>
-                                <select id="inputIngreso" name="cardtype">
-                                    <option>Año egreso</option>
-                                    <option>1980</option>
-                                    <option>1981</option>
-                                    <option>1982</option>
-                                    <option>1983</option>
-                                    <option>1984</option>
-                                    <option>1985</option>
-                                    <option>1986</option>
-                                    <option>1987</option>
-                                    <option>1988</option>
-                                    <option>1989</option>
-                                    <option>1990</option>
-                                    <option>1991</option>
-                                    <option>1992</option>
-                                    <option>1993</option>
-                                    <option>1994</option>
-                                    <option>1995</option>
-                                    <option>1996</option>
-                                    <option>1997</option>                                    
-                                    <option>1998</option>
-                                    <option>1999</option>
-                                    <option>2000</option>
-                                    <option>2001</option>
-                                    <option>2002</option>
-                                    <option>2003</option>
-                                    <option>2004</option>
-                                    <option>2005</option>
-                                </select>
-                                <span class="glyphicon glyphicon-plus-sign mas-estudios" data-more="estudios"></span>
-                            </p>
-                            <p>
-                                <label style="width: 100%;padding-right: 320px" for="tagname">Otras habilidades</label>
-                                <select id="updates" name="updates">
-                                    <option value="1" selected>Tipo...</option>
-                                    <option value="2">Idioma</option>
-                                    <option value="0">Deporte</option>
-                                    <option value="0">Computacion</option>
-                                </select>
-                                <select id="updates" name="updates">
-                                    <option value="1" selected>Nombre...</option>
-                                    <option value="2">Nombre 1</option>
-                                    <option value="0">Nombre 2</option>
-                                </select>
-                                <select id="updates" name="updates">
-                                    <option value="1" selected>Nivel...</option>
-                                    <option value="2">Usuario</option>
-                                    <option value="0">Medio</option>
-                                    <option value="0">Avanzado</option>
-                                </select>
-                                <span class="glyphicon glyphicon-plus-sign mas-estudios" data-more="estudios"></span>
-                            </p>
-                        </fieldset>
-						<fieldset class="step">
-                            <legend>Ultimos datos</legend>
-                            <p>
-                                <label for="tagname">Localidad</label>
-                                <input id="tagname" name="tagname" type="text" AUTOCOMPLETE=OFF />
-                            </p>
-                            <p>
-                                <label for="tagname">Pretenciones de renta</label>
-                                <input id="tagname" name="tagname" type="text" AUTOCOMPLETE=OFF />
-                            </p>
-                            <p>
-                                <label for="tagname">Tipo contrato</label>
-                                <input id="tagname" name="tagname" type="text" AUTOCOMPLETE=OFF />
-                            </p>
-                            <p class="submit">
-                                <button id="registerButton" type="submit">Registrar</button>
-                            </p>
-                        </fieldset>
-                    </form>
-                </div>
-                <div id="navigation" style="display:none;">
-                    <ul>
-                        <li class="selected">
-                            <a href="#">Cuenta</a>
-                        </li>
-                        <li>
-                            <a href="#">Contacto</a>
-                        </li>
-                        <li>
-                            <a href="#">Personal</a>
-                        </li>
-                        <li>
-                            <a href="#">Experiencia</a>
-                        </li>
-						<li>
-                            <a href="#">Ultimos datos</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<div id="content">
+    <div id="wrapper">
+        <form id="formElem" name="formElem" action="" method="post">
+            {% csrf_token %}
+            <h1>Cuenta</h1>
+            {{form_user}}
+            <h1>Contacto</h1>
+            <p>Usuario:
+            {{form_socio.usuario}}</p>
+            <p>Email:
+            {{form_socio.email}}</p>
+            <p>Teléfono:
+            {{form_socio.telefono}}</p>
+            <p>Web:
+            {{form_socio.web}}</p>
+            <h1>Personal</h1>
+            <p>Año nacimiento:
+            {{form_socio.ano_nacimiento}}</p>
+            <p>Hijos:
+            {{form_socio.tiene_hijos}}</p>
+            <p>Sexo:
+            {{form_socio.sexo}}</p>
+            <p>Estado civil:
+            {{form_socio.estado_civil}}</p>
+            <h1>Experiencia Laboral</h1>
+            <h2>Enseñanza escolar</h2>
+            {{form_estudio}}
+            <h2>Estudios superiores</h2>
+            {{form_estudio2}}
+            <h2>Experiencia laboral</h2>
+            {{form_explab}}
+            <h2>Otras habilidades</h2>
+            {{form_hab}}
+            <h1>Ultimos datos</h1>
+            <p>Localidad:
+            {{form_sociol.localidad}}</p>
+            <p>Pretenciones de renta:
+            {{form_socio.pretencion_renta}}</p>
+            <p>Tipo contrato:
+            {{form_socio.tipo_contrato}}</p>
+            <input class="btn btn-primary" type="submit" value="Registrar">               
+        </form>   
+    </div>
+</div>
     
 
 {% endblock %}
