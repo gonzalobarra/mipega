@@ -63,7 +63,7 @@ class RutField(models.CharField):
 
 class Socio(models.Model):
 	id                = models.AutoField('ID', primary_key=True)
-	usuario           = RutField('RUT',unique= True,help_text='ejemplo: 12.345.678-K')
+	usuario           = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	email             = models.CharField('Email' ,max_length=64, null=True, blank=True)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
 	web               = models.CharField('Email' ,max_length=64, null=True, blank=True)
@@ -175,6 +175,7 @@ class Estudios(models.Model):
 	# Llaves foraneas
 	titulo      = models.ForeignKey(Titulo, verbose_name="Titulo")
 	institucion = models.ForeignKey(Institucion, verbose_name="Institucion")
+	socio       = models.ForeignKey(Socio, verbose_name="Socio")
 
 
 
@@ -200,3 +201,6 @@ class LocalidadConSocio(models.Model):
 	#llaves foraneas
 	socio     = models.ForeignKey(Socio, verbose_name="Socio")
 	localidad = models.ForeignKey(Localidad, verbose_name="Localidad")
+
+
+
