@@ -21,6 +21,7 @@ class UserForm(forms.ModelForm):
 class SocioForm(forms.ModelForm):
     class Meta:
         model = Socio
+        fields = ('usuario','email','telefono', 'web', 'ano_nacimiento', 'sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
 
 class LocalidadconSocioForm(forms.ModelForm):
     class Meta:
@@ -30,11 +31,14 @@ class LocalidadconSocioForm(forms.ModelForm):
 class EstudioForm(forms.ModelForm):
     class Meta:
         model = Estudios
+        fields = ('ano', 'estado', 'titulo', 'institucion')
 
 class ExperienciaLaboralForm(forms.ModelForm):
     class Meta:
         model = ExperienciaLaboral
+        fields = ('ano_ingreso', 'ano_egreso', 'cargo', 'rubro',)
 
 class OtrasHabilidadesForm(forms.ModelForm):
     class Meta:
-        model = OtrasHabilidades                        
+        model = OtrasHabilidades
+        fields = ('nivel', 'habilidad',)                        

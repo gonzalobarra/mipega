@@ -115,6 +115,9 @@ class Habilidad(models.Model):
 	# Llaves foraneas
 	tipoHabilidad = models.ForeignKey(TipoHabilidad, verbose_name="Tipo")
 
+	def __unicode__(self):
+		return u'%s' % (self.nombre)	
+
 class OtrasHabilidades(models.Model):
 	id        = models.AutoField('ID', primary_key=True)
 	nivel     = models.CharField('Nivel', max_length=7,choices=nivelHabilidad, default="u")
@@ -128,11 +131,15 @@ class Rubro(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
 	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
 
+	def __unicode__(self):
+		return u'%s' % (self.nombre)
 
 class Cargo(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
 	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
 
+	def __unicode__(self):
+		return u'%s' % (self.nombre)
 
 class EmpleoBuscado(models.Model):
 	id    = models.AutoField('ID', primary_key=True)
@@ -159,13 +166,16 @@ class Titulo(models.Model):
 	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
 	tipo   = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
 
+	def __unicode__(self):
+		return u'%s' % (self.nombre)
 
 class Institucion(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
 	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
 	tipo   = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
 
-
+	def __unicode__(self):
+		return u'%s' % (self.nombre)
 
 class Estudios(models.Model):
 	id          = models.AutoField('ID', primary_key=True)
@@ -193,6 +203,8 @@ class Localidad(models.Model):
 	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
 	tipo   = models.CharField('Tipo', max_length=7, choices=tipoLocalidad, default="c")
 
+	def __unicode__(self):
+		return u'%s' % (self.nombre)
 
 class LocalidadConSocio(models.Model):
 #tabla resultante de una relacion n-n
