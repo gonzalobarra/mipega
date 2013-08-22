@@ -207,3 +207,45 @@ ul {
   list-style: none;
   bottom: 0px;
 }
+
+
+
+#msg{
+    height: 0; /* This div is a 'line' */
+    overflow: visible;
+    width: 90%;
+    position: fixed;
+    top: 20px;
+    left:50%;
+    z-index: 99999999;
+    margin-left: -45%;
+    text-align: center;
+    background: #eee;
+}
+.message{
+    display: inline-block;
+    .ie7-inline-block();
+    margin: 0 auto;
+    text-align: center;
+    padding: 5px 10px;
+    
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+         -o-border-radius: 4px;
+            border-radius: 4px;
+    
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.35);
+       -moz-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.35);
+        -ms-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.35);
+         -o-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.35);
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.35);
+    
+    margin: 0 5px;
+}
+
+
+.message.info{background-color:#9698fe;color:#eee;background-color:#6d71fe;background-repeat:no-repeat;background-image:-webkit-linear-gradient(-90deg, #aeb9ff 0, #6d71fe 100%);background-image:-moz-linear-gradient(-90deg, #aeb9ff 0, #6d71fe 100%);background-image:-ms-linear-gradient(-90deg, #aeb9ff 0, #6d71fe 100%);background-image:-o-linear-gradient(-90deg, #aeb9ff 0, #6d71fe 100%);background-image:linear-gradient(-90deg, #aeb9ff 0, #6d71fe 100%);border:1px solid #453cf9}
+.message.success{background-color:#adfe96;background-color:#adfe96;background-repeat:no-repeat;background-image:-webkit-linear-gradient(-90deg, #cbfebc 0, #adfe96 100%);background-image:-moz-linear-gradient(-90deg, #cbfebc 0, #adfe96 100%);background-image:-ms-linear-gradient(-90deg, #cbfebc 0, #adfe96 100%);background-image:-o-linear-gradient(-90deg, #cbfebc 0, #adfe96 100%);background-image:linear-gradient(-90deg, #cbfebc 0, #adfe96 100%);border:1px solid #56a211}
+.message.warning{background-color:#ffffa4;background-color:#ffffa4;background-repeat:no-repeat;background-image:-webkit-linear-gradient(-90deg, #ffb 0, #ffffa4 100%);background-image:-moz-linear-gradient(-90deg, #ffb 0, #ffffa4 100%);background-image:-ms-linear-gradient(-90deg, #ffb 0, #ffffa4 100%);background-image:-o-linear-gradient(-90deg, #ffb 0, #ffffa4 100%);background-image:linear-gradient(-90deg, #ffb 0, #ffffa4 100%);border:1px solid #fc0}
+.message.error{background-color:#ffdcd7;background-color:#ffdcd7;background-repeat:no-repeat;background-image:-webkit-linear-gradient(-90deg, #ffebe8 0, #ffdcd7 100%);background-image:-moz-linear-gradient(-90deg, #ffebe8 0, #ffdcd7 100%);background-image:-ms-linear-gradient(-90deg, #ffebe8 0, #ffdcd7 100%);background-image:-o-linear-gradient(-90deg, #ffebe8 0, #ffdcd7 100%);background-image:linear-gradient(-90deg, #ffebe8 0, #ffdcd7 100%);border:1px solid #DD3C10}
