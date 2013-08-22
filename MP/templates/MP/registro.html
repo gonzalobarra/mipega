@@ -6,47 +6,101 @@
         {% load bootstrap_toolkit %}
         <form id="formElem" name="formElem" action="" method="post">
             {% csrf_token %}
-            <h1>Cuenta</h1>
-            <p>RUT:
-            {{form_user.username|as_bootstrap}}</p>
-            <p>Clave:
-            {{form_user.password|as_bootstrap}}</p>
-            <p>Repita su clave:
-            {{form_user.ClaveRepetida|as_bootstrap}}</p>
-            <h1>Contacto</h1>
-            <p>Usuario:
-            {{form_socio.usuario|as_bootstrap}}</p>
-            <p>Email:
-            {{form_user.email|as_bootstrap}}</p>
-            <p>Teléfono:
-            {{form_socio.telefono|as_bootstrap}}</p>
-            <p>Web:
-            {{form_socio.web|as_bootstrap}}</p>
-            <h1>Personal</h1>
-            <p>Año nacimiento:
-            {{form_socio.ano_nacimiento|as_bootstrap}}</p>
-            <p>Hijos:
-            {{form_socio.tiene_hijos|as_bootstrap}}</p>
-            <p>Sexo:
-            {{form_socio.sexo|as_bootstrap}}</p>
-            <p>Estado civil:
-            {{form_socio.estado_civil|as_bootstrap}}</p>
-            <h1>Experiencia Laboral</h1>
-            <h2>Enseñanza escolar</h2>
-            {{form_estudio|as_bootstrap}}
-            <h2>Estudios superiores</h2>
-            {{form_estudio2|as_bootstrap}}
-            <h2>Experiencia laboral</h2>
-            {{form_explab|as_bootstrap}}
-            <h2>Otras habilidades</h2>
-            {{form_hab|as_bootstrap}}
-            <h1>Ultimos datos</h1>
-            <p>Localidad:
-            {{form_sociol.localidad|as_bootstrap}}</p>
-            <p>Pretenciones de renta:
-            {{form_socio.pretencion_renta|as_bootstrap}}</p>
-            <p>Tipo contrato:
-            {{form_socio.tipo_contrato|as_bootstrap}}</p>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2">
+                    <h1>Cuenta</h1>
+                    <div class="form_group">
+                        <label for="id_username">RUT:</label>
+                        {{form_user.username}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_password">Clave:</label>
+                        {{form_user.password}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_claveRepetida">Repita su clave:</label>
+                        {{form_user.ClaveRepetida}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2">
+                    <h1>Contacto</h1>
+                    <div class="form_group">
+                        <label for="id_usuario">Usuario:</label>
+                        {{form_socio.usuario}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_email">Email:</label>
+                        {{form_user.email}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_telefono">Teléfono:</label>
+                        {{form_socio.telefono}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_web">Web:</label>
+                        {{form_socio.web}}
+                    </div>
+
+                    <h1>Personal</h1>
+                    <div class="form_group">
+                        <label for="id_ano_nacimiento">Año nacimiento:</label>
+                        {{form_socio.ano_nacimiento}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_tiene_hijos">Hijos:</label>
+                        {{form_socio.tiene_hijos}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_sexo">Sexo:</label>
+                        {{form_socio.sexo}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_estado_civil">Estado civil:</label>
+                        {{form_socio.estado_civil}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2">
+                    <h1>Experiencia Laboral</h1>
+                    <h2>Enseñanza escolar</h2>
+                    <div class="form_group">
+                        {{form_estudio}}
+                    </div>
+                    <h2>Estudios superiores</h2>
+                    <div class="form_group">
+                        {{form_estudio2}}
+                    </div>
+                    <h2>Experiencia laboral</h2>
+                    <div class="form_group">
+                        {{form_explab}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2">
+                    <h2>Otras habilidades</h2>
+                    <div class="form_group">
+                        {{form_hab}}
+                    </div>
+                    <h1>Ultimos datos</h1>
+                    <div class="form_group">
+                        <label for="id_localidad">Localidad:</label>
+                        {{form_sociol.localidad}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_pretencion_renta">Pretenciones de renta:</label>
+                        {{form_socio.pretencion_renta}}
+                    </div>
+                    <div class="form_group">
+                        <label for="id_tipo_contrato">Tipo contrato:</label>
+                        {{form_socio.tipo_contrato}}
+                    </div>
+                </div>
+            </div>
             <input class="btn btn-primary" type="submit" value="Registrar">               
         </form>   
     </div>
