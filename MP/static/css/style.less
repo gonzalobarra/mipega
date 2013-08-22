@@ -2,11 +2,15 @@
 /*mixins*/
 
 .box-shadow(@x: 0px, @y: 0px, @blur: 10px, @spread: 0px, @color: rgba(0, 0, 0, 0.3)){
-    -webkit-box-shadow:  @x @y @blur @spread @color;        
-    box-shadow:  @x @y @blur @spread @color;
+    -o-box-shadow:  @arguments;
+    -moz-box-shadow:  @arguments;    
+    -webkit-box-shadow:  @arguments;        
+    box-shadow:  @arguments;
 }
 
 .border-radius(@radius: 5px){
+    -o-border-radius: @radius;
+    -moz-border-radius: @radius;
     -webkit-border-radius: @radius;
     border-radius: @radius;
 }
@@ -64,7 +68,9 @@
     font-family: tequila-sunrise;
     src: url('../fonts/tequilla_sunrise/TequillaSunrise.ttf');         
 }
-
+p.help-block {
+  clear: both;
+}
 body {
     background-color: darken(rgba(255,255,255,0.9),10%);
     overflow-x: hidden;
@@ -181,10 +187,15 @@ body {
 ul {
     list-style: none;    
 }
+
+.row {
+    margin:0px;
+}
 .footer {
     position: relative;
     bottom: 0px;
-    
+    margin-top: 170px;
+    width: 100%;
     background-color: darken(rgba(255,255,255,0.9),15%);
     .box-shadow(0px, -2px, 0px, 0px, darken(rgba(255,255,255,0.9),20%));        
     
