@@ -13,15 +13,17 @@ class Html5DateInput(Input):
     input_type = 'date'
 
 class UserForm(forms.ModelForm):
+    ClaveRepetida = forms.CharField(widget=forms.PasswordInput,required=False,label='Repita su clave')
+    password = forms.CharField(widget=forms.PasswordInput,required=False,label='Clave')
     class Meta:
         model = User
-        fields = ('username', 'password',)
-    #ClaveRepetida = forms.CharField(widget=forms.PasswordInput,required=False,label='Repita su clave')
+        fields = ('username', 'password','email',)
+    
 
 class SocioForm(forms.ModelForm):
     class Meta:
         model = Socio
-        fields = ('usuario','email','telefono', 'web', 'ano_nacimiento', 'sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('usuario','telefono', 'web', 'ano_nacimiento', 'sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
 
 class LocalidadconSocioForm(forms.ModelForm):
     class Meta:

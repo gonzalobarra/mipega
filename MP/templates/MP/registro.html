@@ -6,12 +6,17 @@
         <form id="formElem" name="formElem" action="" method="post">
             {% csrf_token %}
             <h1>Cuenta</h1>
-            {{form_user}}
+            <p>RUT:
+            {{form_user.username}}</p>
+            <p>Clave:
+            {{form_user.password}}</p>
+            <p>Repita su clave:
+            {{form_user.ClaveRepetida}}</p>
             <h1>Contacto</h1>
             <p>Usuario:
             {{form_socio.usuario}}</p>
             <p>Email:
-            {{form_socio.email}}</p>
+            {{form_user.email}}</p>
             <p>Teléfono:
             {{form_socio.telefono}}</p>
             <p>Web:
