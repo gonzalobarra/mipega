@@ -39,14 +39,14 @@
             </p>
         </noscript>
     </div><!-- #warning -->
-    <div id="msg">
+    <!--<div id="msg"> #sistema viejo de mensajes#
         {% if messages %}
             {% for message in messages %}
                 <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
             {% endfor %}
         {% endif %}
-    </div><!-- #fixed_msg-->
-         
+    </div>--><!-- #fixed_msg-->
+        
 
     <div class="header">
         <img src="{{STATIC_URL}}img/mipegalogo.png" id="logo">
@@ -93,8 +93,24 @@
     <!--<script type="text/javascript" src="{{STATIC_URL}}js/less-1.3.3.min.js"></script>-->
     <script type="text/javascript" src="{{STATIC_URL}}js/sliding.form.js"></script>
     <script src="{{STATIC_URL}}js/more.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.noty.js"></script>
     {% block SCRIPT %}
     
+        <script type="text/javascript">
+            {% if messages %}
+                {% for message in messages %}
+                    noty({
+                        text: '{{message}}',
+                        type: {% if message.tags %}'{{message.tags}}'{% else %}'alert'{% endif %},
+                        dismissQueue: true,
+                        layout: 'topCenter',
+                        theme: 'defaultTheme'
+                    });
+                {% endfor %}
+            {% endif %}
+        </script>
+    
+        
     {% endblock %}
 </body>
 </html>

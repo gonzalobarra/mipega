@@ -10,6 +10,9 @@ $(document).ready(function() {
     $('.message').delay(6000).fadeOut(function() {
         $(this).remove();
     });
+        $('.noty_bar').parent().delay(10000).fadeOut(function() {
+        $(this).remove();
+    });
 });
 
 
