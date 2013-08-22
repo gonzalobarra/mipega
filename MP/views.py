@@ -12,8 +12,10 @@ from MP.forms import *
 from django.contrib.auth.models import User
 from MP.models import *
 from django.contrib.auth.hashers import make_password
+from django.contrib import messages
 
 def index_view(request):
+	messages.warning(request, "hola perrin kakod")
 	return render_to_response('MP/index.html',context_instance=RequestContext(request))
 
 def registro_view(request):
