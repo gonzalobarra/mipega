@@ -13,33 +13,69 @@ class Html5DateInput(Input):
     input_type = 'date'
 
 class UserForm(forms.ModelForm):
-    ClaveRepetida = forms.CharField(widget=forms.PasswordInput,required=True,label='Repita su clave')
-    password = forms.CharField(widget=forms.PasswordInput,required=True,label='Clave')
+    ClaveRepetida = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}),required=True,label='Repita su clave')
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}),required=True,label='Clave')
     class Meta:
         model = User
         fields = ('username', 'password','email',)
+        widgets = {
+            'username': forms.TextInput(attrs={'class':'form-control'}),  
+            'password': forms.PasswordInput(attrs={'class':'form-control'}), 
+            'email': forms.TextInput(attrs={'class':'form-control'}),       
+        }
     
 class SocioForm(forms.ModelForm):
     class Meta:
         model = Socio
         fields = ('usuario','telefono', 'web', 'ano_nacimiento', 'sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        widgets = {
+            'usuario': forms.TextInput(attrs={'class':'form-control'}),
+            'telefono': forms.TextInput(attrs={'class':'form-control'}),
+            'web': forms.TextInput(attrs={'class':'form-control'}),
+            'ano_nacimiento': forms.TextInput(attrs={'class':'form-control'}),
+            'sexo': forms.Select(attrs={'class':'form-control'}),
+            'estado_civil': forms.Select(attrs={'class':'form-control'}),
+            'pretencion_renta': forms.TextInput(attrs={'class':'form-control'}),
+            'tipo_contrato': forms.Select(attrs={'class':'form-control'}), 
+        }
 
 class LocalidadconSocioForm(forms.ModelForm):
     class Meta:
         model = LocalidadConSocio
         fields = ('localidad',)
+        widgets = {
+            'localidad': forms.Select(attrs={'class':'form-control'}),            
+        }
 
 class EstudioForm(forms.ModelForm):
     class Meta:
         model = Estudios
         fields = ('ano', 'estado', 'titulo', 'institucion')
+        widgets = {
+            'ano': forms.TextInput(attrs={'class':'form-control'}),
+            'estado': forms.Select(attrs={'class':'form-control'}),
+            'titulo': forms.Select(attrs={'class':'form-control'}),
+            'institucion': forms.Select(attrs={'class':'form-control'}),        
+        }
 
 class ExperienciaLaboralForm(forms.ModelForm):
     class Meta:
         model = ExperienciaLaboral
         fields = ('ano_ingreso', 'ano_egreso', 'cargo', 'rubro',)
+        widgets = {
+            'ano_ingreso': forms.TextInput(attrs={'class':'form-control'}),
+            'ano_egreso': forms.TextInput(attrs={'class':'form-control'}),
+            'cargo': forms.Select(attrs={'class':'form-control'}),
+            'rubro': forms.Select(attrs={'class':'form-control'}),        
+        }
+
 
 class OtrasHabilidadesForm(forms.ModelForm):
     class Meta:
         model = OtrasHabilidades
-        fields = ('nivel', 'habilidad',)                        
+        fields = ('nivel', 'habilidad',) 
+        widgets = {
+            'nivel': forms.Select(attrs={'class':'form-control'}),
+            'habilidad': forms.Select(attrs={'class':'form-control'}),        
+        }
+                       
