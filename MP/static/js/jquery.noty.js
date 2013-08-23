@@ -686,7 +686,7 @@ window.noty = function noty(options) {
 					this.$bar.css({backgroundColor: 'red', borderColor: 'darkred', color: '#FFF'});
 					this.$message.css({fontWeight: 'bold'});
 					this.$buttons.css({borderTop: '1px solid darkred'}); break;
-				case 'information':
+				case 'info':
 					this.$bar.css({backgroundColor: '#57B7E2', borderColor: '#0B90C4', color: '#FFF'});
 					this.$buttons.css({borderTop: '1px solid #0B90C4'}); break;
 				case 'success':

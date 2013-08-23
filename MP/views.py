@@ -17,6 +17,7 @@ from django.contrib import messages
 def index_view(request):
 	messages.warning(request, "hola perrin kakod")
 	messages.error(request, ":O que paso")
+	messages.info(request, 'SQL statements were executed.')
 	return render_to_response('MP/index.html',context_instance=RequestContext(request))
 
 def registro_view(request):

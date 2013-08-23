@@ -39,7 +39,7 @@
             </p>
         </noscript>
     </div><!-- #warning -->
-    <!--<div id="msg"> #sistema viejo de mensajes#
+    <!--<div id="msg">
         {% if messages %}
             {% for message in messages %}
                 <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
@@ -103,7 +103,7 @@
                         text: '{{message}}',
                         type: {% if message.tags %}'{{message.tags}}'{% else %}'alert'{% endif %},
                         dismissQueue: true,
-                        layout: 'topCenter',
+                        layout: 'top',
                         theme: 'defaultTheme'
                     });
                 {% endfor %}
