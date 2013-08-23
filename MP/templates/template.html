@@ -104,6 +104,15 @@
             });
             {% if messages %}
                 $(document).ready(function(){
+                    function mensaje(tipo, mensaje){
+                        $.ambiance({message: mensaje,
+                                    title:"Informacion",                            
+                                    type: tipo,
+                                    timeout:6,
+                                    width:300,
+                                });
+                    }
+
                     {% for message in messages %}
                         $.ambiance({message: "{{message}}", 
                             {% ifequal message.tags "info" %}title:"Informacion",{% endifequal %}
@@ -119,6 +128,10 @@
                 });
                 
             {% endif %}
+        </script>
+        <script type="text/javascript">
+        
+            mensaje("info", "hola");
         </script>
     
         

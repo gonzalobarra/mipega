@@ -11,3 +11,11 @@
     <br />
   {% endfor %}
 </div>
+<script type="text/javascript">
+    var mensaje = "{{mensaje}}";
+    if (mensaje != ""){
+      $.ambiance({message: mensaje, title:"Debug",
+                  type: "info",timeout:4,width:200,});  
+    }
+    
+</script>

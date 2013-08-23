@@ -16,13 +16,20 @@ from django.contrib import messages
 
 def index_view(request):
 	messages.success(request, 'plugin de mensajes final final.')
-	return render_to_response('MP/index.html',context_instance=RequestContext(request))
+	form = BuscaRapidaForm(request.POST or None)
+	ctx ={'form_busqueda_rapida':form}
+	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
 def busqueda_rapida_view(request):
-	messages.warning(request, 'plugin de mensajes final final.')
-	resultados_busqueda = [{'titulo':"asd", 'descripcion':"loremasd"},{'titulo':"asd2", 'descripcion':"loremasd2"}]
-	ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':2}
-	return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
+	form = BuscaRapidaForm(request.POST or None)
+	#falta implementar aqui la busqueda rapida, ya llegan los valores del form
+	if request.method == "POST":
+		
+		mensaje = form.is_valid()
+
+		resultados_busqueda = [{'titulo':"asd", 'descripcion':"loremasd"},{'titulo':"asd2", 'descripcion':"loremasd2"}]
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
+		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 
 def pruebita(request):
 	form = BuscaRapidaForm(request.POST or None)
