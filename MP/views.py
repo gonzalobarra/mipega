@@ -15,9 +15,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 
 def index_view(request):
-	messages.warning(request, "hola perrin kakod")
-	messages.error(request, ":O que paso")
-	messages.info(request, 'SQL statements were executed.')
+	messages.success(request, 'plugin de mensajes final final.')
 	return render_to_response('MP/index.html',context_instance=RequestContext(request))
 
 def registro_view(request):
