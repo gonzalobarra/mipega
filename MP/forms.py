@@ -9,6 +9,23 @@ from MP.models import *
 from django.contrib.auth.models import User
 from django.contrib.localflavor.cl.forms import CLRutField, CLRegionSelect
 
+
+RANGO = (
+    ('0','Indiferente'),
+    ('1','18-22'),
+    ('2','23-29'),
+    ('3','29-37'),
+    ('4','38-44'),
+    ('5','44+'),
+    )
+
+SEXO = (
+    ('i','Indiferente'),
+    ('m','Masculino'),
+    ('f','Femenino'),
+    )
+
+
 class Html5DateInput(Input):
     input_type = 'date'
 
@@ -79,3 +96,11 @@ class OtrasHabilidadesForm(forms.ModelForm):
             'habilidad': forms.Select(attrs={'class':'form-control'}),        
         }
                        
+class BuscaRapidaForm(forms.Form):
+
+    cargo = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),required=False,label='Cargo')
+    rango_etario = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control'}),required=False,label='Rango etario', choices=RANGO)
+    localidad = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),required=False,label='Localidad')
+    sexo = forms.ChoiceField(widget=forms.RadioSelect(attrs={'class':'form-control'}),choices=SEXO)
+
+
