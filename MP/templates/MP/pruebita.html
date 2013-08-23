@@ -1,0 +1,11 @@
+{% extends 'template.html' %}
+{% block title %} Pruebita | MiPega.cl {% endblock %}
+{% block contenido %}
+<div id="content">
+<form action="" method="post">
+	{% csrf_token %}
+{{ form }}
+<input type="submit" value="Submit" />
+</form>
+</div>
+{% endblock %}
