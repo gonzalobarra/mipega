@@ -17,6 +17,8 @@
     <link href="{{STATIC_URL}}css/bootstrap-glyphicons.css" rel="stylesheet"/>
     <!--<link href="{{STATIC_URL}}css/style.less" rel="stylesheet/less" type="text/css"/>--> 
     <link href="{{STATIC_URL}}css/slidingForm.css" rel="stylesheet" type="text/css" media="screen"/> 
+    <link href="{{STATIC_URL}}css/jquery.ambiance.css" rel="stylesheet" type="text/css" media="screen"/> 
+    
 </head>
 
 <body>
@@ -82,6 +84,7 @@
             </ul>
         </div>
     </div><!-- #footer -->
+    <button id="botoncito">hola</button>
 
     <!-- Le javascript
     ================================================== -->
@@ -94,19 +97,28 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/sliding.form.js"></script>
     <script src="{{STATIC_URL}}js/more.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.noty.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.ambiance.js"></script>
     {% block SCRIPT %}
-    
         <script type="text/javascript">
+            $('#botoncito').on('click',function(){
+                
+            });
             {% if messages %}
-                {% for message in messages %}
-                    noty({
-                        text: '{{message}}',
-                        type: {% if message.tags %}'{{message.tags}}'{% else %}'alert'{% endif %},
-                        dismissQueue: true,
-                        layout: 'top',
-                        theme: 'defaultTheme'
-                    });
-                {% endfor %}
+                $(document).ready(function(){
+                    {% for message in messages %}
+                        $.ambiance({message: "{{message}}", 
+                            {% ifequal message.tags "info" %}title:"Informacion",{% endifequal %}
+                            {% ifequal message.tags "warning" %}title:"Advertencia",{% endifequal %}
+                            {% ifequal message.tags "error" %}title:"Error",{% endifequal %}
+                            {% ifequal message.tags "success" %}title:"Aviso",{% endifequal %}
+                            
+                            type: "{{message.tags}}",
+                            timeout:6,
+                            width:400,
+                        });
+                    {% endfor %}
+                });
+                
             {% endif %}
         </script>
     
