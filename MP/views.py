@@ -24,6 +24,11 @@ def busqueda_rapida_view(request):
 	ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':2}
 	return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 
+def pruebita(request):
+	form = BuscaRapidaForm(request.POST or None)
+	ctx = {'form':form} 
+	return render_to_response('MP/pruebita.html',ctx,context_instance=RequestContext(request))
+
 def registro_view(request):
 	form_user = UserForm(request.POST or None)
 	form_socio = SocioForm(request.POST or None)
