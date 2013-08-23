@@ -49,7 +49,7 @@ def registro_view(request):
 							estudio2 = Estudios(ano=form_estudio2.cleaned_data['ano'], estado=form_estudio2.cleaned_data['estado'], titulo=form_estudio2.cleaned_data['titulo'], institucion=form_estudio2.cleaned_data['institucion'], socio=socio_inst)
 							if form_explab.is_valid():
 								explab = ExperienciaLaboral(ano_ingreso=form_explab.cleaned_data['ano_ingreso'], ano_egreso=form_explab.cleaned_data['ano_egreso'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
-								if form_hab.is_valid() and explab.ano_ingreso < ano_egreso:
+								if form_hab.is_valid() and explab.ano_ingreso < explab.ano_egreso:
 									habilidades = OtrasHabilidades(nivel=form_hab.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab.cleaned_data['habilidad'])		
 									#usuario.save()
 									#socio.save()
