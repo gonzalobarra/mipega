@@ -18,6 +18,12 @@ def index_view(request):
 	messages.success(request, 'plugin de mensajes final final.')
 	return render_to_response('MP/index.html',context_instance=RequestContext(request))
 
+def busqueda_rapida_view(request):
+	messages.warning(request, 'plugin de mensajes final final.')
+	resultados_busqueda = [{'titulo':"asd", 'descripcion':"loremasd"},{'titulo':"asd2", 'descripcion':"loremasd2"}]
+	ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':2}
+	return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
+
 def registro_view(request):
 	form_user = UserForm(request.POST or None)
 	form_socio = SocioForm(request.POST or None)

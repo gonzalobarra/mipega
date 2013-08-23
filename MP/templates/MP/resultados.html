@@ -1,0 +1,13 @@
+<a id="indice" href="#" style="display: inline;">Resultados totales ({{cant_resultados}})</a>
+<div class="media">
+  {% for r in resultados_busqueda %}
+    <!--<a class="pull-left" href="#">
+      <img class="media-object" src="{{STATIC_URL}}img/avatar/avatar.png">
+    </a>-->
+    <div class="media-body">
+        <h4 class="media-heading"><a href="#">{{r.titulo}}</a></h4>
+        {{r.descripcion}}
+    </div>
+    <br />
+  {% endfor %}
+</div>

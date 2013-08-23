@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="col-lg-5 busqueda">
-            <form>
+            <form onsubmit="return false;">
                 <fieldset>
                     <legend>Encuentre a su trabajador!</legend>
                     <!--<div class="form-group">                    
@@ -65,7 +65,7 @@
                     </div>
                     <a class="pull-right" href="#">Busqueda avanzada</a>
                     <br><br>
-                    <button type="submit" class="btn btn-default" id="search">Buscar</button>
+                    <button class="btn btn-default" id="search">Buscar</button>
                 </fieldset>
             </form>
         </div>
@@ -73,40 +73,47 @@
 
     
     <div class="result">
-        <a id="indice" href="#"></a>
-        <div class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="img/avatar.png">
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading"><a href="#">Media heading</a></h4>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            </div>
-            <br>
-            <a class="pull-left" href="#">
-              <img class="media-object" src="img/avatar.png">
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading"><a href="#">Media heading</a></h4>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            </div>
-            <br>
-            <a class="pull-left" href="#">
-              <img class="media-object" src="img/avatar.png">
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading"><a href="#">Media heading</a></h4>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            </div>
-            <br>
-            <a class="pull-left" href="#">
-              <img class="media-object" src="img/avatar.png">
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading"><a href="#">Media heading</a></h4>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            </div>
-            <br>
-        </div>
+        <!-- aqui se insertan los resultados de la busqueda simple -->
     </div>
+{% endblock %}
+{% block SCRIPT %}
+<script type="text/javascript">
+    $('#search').click(function(){
+        var parametros = {
+            "TIPO" : 1,
+            "TALLA" : 1,
+            "PRECIO" : 1,
+            "COLOR" : 1
+        };
+        
+        //alert(parametros.COLOR);
+        
+        $.ajax({
+            url: "{% url 'busqueda_rapida' %}",
+            data: parametros,
+            datatype: 'json',           
+            type: 'post'
+            
+        }).done(function(data){
+            /*aca lo que haces con la respuesta de la funcion*/
+            $('#result').append(data);
+            $(".media").show();
+            $(".result").animate({
+                height: "180px",
+                padding: "15px"
+            }, 500);
+            $("#indice").show();
+        }).fail(function(){
+            /*aca lo que pasa si la funcion falla*/
+            $.ambiance({message: "Error al hacer la busqueda", 
+                        title:"Error",
+                        type: "error",
+                        timeout:4,
+                        width:200,
+                        });
+            
+        }); 
+    });
+    // {% url 'busqueda_rapida' %}
+</script>
 {% endblock %}
