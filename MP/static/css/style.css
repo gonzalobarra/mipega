@@ -49,7 +49,7 @@ body {
   top: 0px;
   margin-top: 40px;
   margin-right: 150px;
-  font-family: santos-dumont;
+  font-family: pointy;
   font-size: 55px;
 }
 .header h1 a:hover,
@@ -112,14 +112,52 @@ body {
   margin-top: 0px;
   margin-bottom: 20px;
 }
-div.form-group {
-  max-width: 260px;
+/*
+div.form-group{
+    max-width: 260px;
+    float: left;
+}*/
+div#session_pane {
+  width: 50%;
+  margin: 10px auto;
+}
+div#session_pane label {
+  float: left;
+  clear: both;
+  margin-right: 100%;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 18%;
+}
+div#session_pane .form-control {
+  margin-left: 18%;
+  float: left;
+}
+div#user_pane #contact {
+  min-height: 200px;
+}
+div#user_pane #contact div {
+  float: left;
+  padding-left: 20px;
+}
+div#user_pane #contact label {
+  float: left;
+  clear: both;
+  margin-right: 100%;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 10%;
+}
+div#user_pane #contact .form-control {
+  margin-left: 10%;
   float: left;
 }
 .form-control {
   display: inline-block;
   max-width: 200px;
-  margin: 5px;
+  margin: 5px 0px;
 }
 #indice {
   display: none;

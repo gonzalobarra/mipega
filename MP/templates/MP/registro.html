@@ -6,7 +6,7 @@
         {% load bootstrap_toolkit %}
         <form id="formElem" name="formElem" action="" method="post">
             {% csrf_token %}
-            <div class="row">
+            <div class="row" id="session_pane">
                 <div class="col-md-6 col-md-offset-2">
                     <h1>Cuenta</h1>
                     <div class="form_group">
@@ -18,52 +18,57 @@
                         {{form_user.password}}
                     </div>
                     <div class="form_group">
-                        <label for="id_claveRepetida">Repita su clave:</label>
+                        <label for="id_ClaveRepetida">Repita su clave:</label>
                         {{form_user.ClaveRepetida}}
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="user_pane">
                 <div class="col-md-6 col-md-offset-2">
                     <h1>Contacto</h1>
-                    <div class="form_group">
-                        <label for="id_usuario">Usuario:</label>
-                        {{form_socio.usuario}}
+                    <div id="contact">
+                        <div id="contact1">
+                            <div class="form_group contact">
+                                <label for="id_usuario">Usuario:</label>
+                                {{form_socio.usuario}}
+                            </div>
+                            <div class="form_group contact">
+                                <label for="id_email">Email:</label>
+                                {{form_user.email}}
+                            </div>
+                        </div>
+                        <div id="contact2">
+                            <div class="form_group contact">
+                                <label for="id_telefono">Teléfono:</label>
+                                {{form_socio.telefono}}
+                            </div>
+                            <div class="form_group contact">
+                                <label for="id_web">Web:</label>
+                                {{form_socio.web}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="form_group">
-                        <label for="id_email">Email:</label>
-                        {{form_user.email}}
-                    </div>
-                    <div class="form_group">
-                        <label for="id_telefono">Teléfono:</label>
-                        {{form_socio.telefono}}
-                    </div>
-                    <div class="form_group">
-                        <label for="id_web">Web:</label>
-                        {{form_socio.web}}
-                    </div>
-
                     <h1>Personal</h1>
-                    <div class="form_group">
+                    <div class="form_group personal">
                         <label for="id_ano_nacimiento">Año nacimiento:</label>
                         {{form_socio.ano_nacimiento}}
                     </div>
-                    <div class="form_group">
+                    <div class="form_group personal">
                         <label for="id_tiene_hijos">Hijos:</label>
                         {{form_socio.tiene_hijos}}
                     </div>
-                    <div class="form_group">
+                    <div class="form_group personal">
                         <label for="id_sexo">Sexo:</label>
                         {{form_socio.sexo}}
                     </div>
-                    <div class="form_group">
+                    <div class="form_group personal">
                         <label for="id_estado_civil">Estado civil:</label>
                         {{form_socio.estado_civil}}
                     </div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="experience_pane">
                 <div class="col-md-6 col-md-offset-2">
                     <h1>Experiencia Laboral</h1>
                     <h2>Enseñanza escolar</h2>
@@ -80,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="other_pane">
                 <div class="col-md-6 col-md-offset-2">
                     <h2>Otras habilidades</h2>
                     <div class="form_group">

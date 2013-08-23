@@ -73,8 +73,7 @@ p.help-block {
 }
 body {
     background-color: darken(rgba(255,255,255,0.9),10%);
-    overflow-x: hidden;
-    //background-image: url("../img/wallpaper/madera-negra.jpg");
+    overflow-x: hidden;    
 }
 
 .header {
@@ -92,7 +91,7 @@ body {
         top: 0px;
         margin-top: 40px;
         margin-right: 150px;
-        font-family: santos-dumont;
+        font-family: pointy;
         font-size: 55px;
         a {
             &:hover, &:visited,
@@ -154,15 +153,61 @@ body {
     }
 }
 
+/*
 div.form-group{
     max-width: 260px;
     float: left;
-}
-    .form-control{
+}*/
+
+div#session_pane{
+    width:50%;
+    margin: 10px auto;
+
+    label{
+        float: left;
+        clear: both;
+        margin-right: 100%;
         display: inline-block;
-        max-width: 200px;
-        margin: 5px;    
+        overflow: hidden;
+        white-space: nowrap;
+        margin-left: 18%;
     }
+    .form-control{
+        margin-left: 18%;
+        float: left;
+    }    
+}
+
+div#user_pane{
+
+    #contact{
+        min-height: 200px;
+        div{
+            float: left;
+            padding-left: 20px;
+        }
+
+        label{
+            float: left;
+            clear: both;
+            margin-right: 100%;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-left: 10%;
+        }
+        .form-control{
+            margin-left: 10%;
+            float: left;
+        }
+    }
+}
+
+.form-control{
+    display: inline-block;
+    max-width: 200px;
+    margin: 5px 0px;    
+}
 
 #indice {
     display: none;
