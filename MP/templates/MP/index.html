@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <p class="help-block">Localidad:</p>
                         <!-- <input type="text" class="form-control" id="inputLocalidad" placeholder="La florida, Region de Atacama..."> -->
-                        <select name="localidad" class="chosen-select" multiple tabindex="6">
+                        <select name="localidad" class="chosen-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
                             <optgroup label="REGIONES">
                                 {% for localidad in localidades %}
                                 {% ifequal localidad.tipo "r" %}
