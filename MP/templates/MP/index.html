@@ -3,23 +3,23 @@
 {% block contenido %}
 <div class="body row">
         
-        <div class="col-lg-6">
+        <div class="col-lg-7">
             <div class="jumbotron">
             <h1>Bienvenido a mipega</h1>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
             <p><a class="btn btn-primary btn-large" href="{% url 'vista_registro' %}">¡Unete!</a></p>
             </div>
         </div>
-        <div class="col-lg-5 busqueda">
+        <div class="col-lg-4 busqueda">
             <form id="id_form" onsubmit="return false;">
                 <fieldset>
-                    {{form_busqueda_rapida}}
-                    <!--
+                    <!--{{form_busqueda_rapida}}-->
+                    
                     <legend>Encuentre a su trabajador!</legend>
-                    <!--<div class="form-group">                    
+                    <!-- <div class="form-group">                    
                         <input type="text" class="form-control" id="inputProfesion" placeholder="Profesion...">
-                    </div>-->
-                    <!--<div class="form-group">
+                    </div> -->
+                    <div class="form-group">
                         <p class="help-block">Cargo:</p>
                         <input type="text" class="form-control" id="inputCargo" placeholder="Ingeniero, Tecnico alambrista...">
                         
@@ -63,10 +63,15 @@
                     <div class="form-group">
                         <p class="help-block">Localidad:</p>
                         <input type="text" class="form-control" id="inputLocalidad" placeholder="La florida, Region de Atacama...">
+                        <select>
+                            {% for localidad in localidades %}
+                                <option value="{{localidad.id}}">{{localidad.nombre}}</option>
+                            {% endfor %}
+                        </select>
                         
                     </div>
                     <a class="pull-right" href="#">Busqueda avanzada</a>
-                    <br><br>-->
+                    <br><br>
                     <button class="btn btn-default" id="search">Buscar</button>
                 </fieldset>
             </form>
