@@ -112,6 +112,24 @@ body {
   margin-top: 0px;
   margin-bottom: 20px;
 }
+div#aviso {
+  position: fixed;
+  width: 200px;
+  height: 350px;
+  top: 170px;
+  left: 5px;
+  padding: 5px;
+  background-color: rgba(240, 229, 108, 0.8);
+  overflow-y: scroll;
+  -o-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -o-box-shadow: 1px 1px 8px 0px #000000;
+  -moz-box-shadow: 1px 1px 8px 0px #000000;
+  -webkit-box-shadow: 1px 1px 8px 0px #000000;
+  box-shadow: 1px 1px 8px 0px #000000;
+}
 input[value="Registrar"] {
   margin: 5px;
   display: none;
