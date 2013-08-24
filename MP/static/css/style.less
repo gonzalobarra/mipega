@@ -153,13 +153,7 @@ body {
     }
 }
 
-/*
-div.form-group{
-    max-width: 260px;
-    float: left;
-}*/
-
-div#session_pane{
+div#session_pane,div#last{
     width:50%;
     margin: 10px auto;
 
@@ -200,6 +194,95 @@ div#user_pane{
             margin-left: 10%;
             float: left;
         }
+        label[for="id_sexo"],label[for="id_estado_civil"]{
+            margin-left: 12%;
+        }
+        label[for="id_tiene_hijos"]{
+            width: 100%;
+            margin: 0px auto;
+        }
+
+        Select.form-control{
+            margin-left:12%;
+            width: 200px;        
+        }
+        input[type="checkbox"]{
+            margin-top: 15px;
+             
+        }
+    }
+}
+
+div#experience_pane{
+
+    #escolar{
+        min-height: 200px;
+        div{
+            float: left;
+            padding-left: 20px;
+        }
+        #lefty{
+            margin-left: 18px;
+        }
+        #ingreso{
+            width: 45%;        
+        }
+        #egreso{
+            width: 40%;    
+        }
+        label{
+            float: left;
+            clear: both;
+            margin-right: 100%;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-left: 10%;
+        }
+        .form-control{
+            margin-left: 10%;
+            float: left;
+        }        
+
+        Select.form-control{
+            margin-left:10%;
+            width: 200px;        
+        }       
+    }
+}
+
+div#other_pane{
+
+    #habilidades{
+        min-height: 100px;        
+        width: 100%;
+        
+        .form_group{
+            float: left;
+            padding-left: 40px;
+            min-height: 100px;
+        }
+        .form_group + .form_group {
+            padding-left: 20px;
+        }
+        label{
+            float: left;
+            clear: both;
+            margin-right: 100%;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-left: 10%;
+        }
+        .form-control{
+            margin-left: 10%;
+            float: left;
+        }        
+
+        Select.form-control{
+            margin-left:10%;
+            width: 200px;        
+        }       
     }
 }
 

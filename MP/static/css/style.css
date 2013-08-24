@@ -112,16 +112,11 @@ body {
   margin-top: 0px;
   margin-bottom: 20px;
 }
-/*
-div.form-group{
-    max-width: 260px;
-    float: left;
-}*/
-div#session_pane {
+div#session_pane, div#last {
   width: 50%;
   margin: 10px auto;
 }
-div#session_pane label {
+div#session_pane label, div#last label {
   float: left;
   clear: both;
   margin-right: 100%;
@@ -130,7 +125,7 @@ div#session_pane label {
   white-space: nowrap;
   margin-left: 18%;
 }
-div#session_pane .form-control {
+div#session_pane .form-control, div#last .form-control {
   margin-left: 18%;
   float: left;
 }
@@ -153,6 +148,82 @@ div#user_pane #contact label {
 div#user_pane #contact .form-control {
   margin-left: 10%;
   float: left;
+}
+div#user_pane #contact label[for="id_sexo"], div#user_pane #contact label[for="id_estado_civil"] {
+  margin-left: 12%;
+}
+div#user_pane #contact label[for="id_tiene_hijos"] {
+  width: 100%;
+  margin: 0px auto;
+}
+div#user_pane #contact Select.form-control {
+  margin-left: 12%;
+  width: 200px;
+}
+div#user_pane #contact input[type="checkbox"] {
+  margin-top: 15px;
+}
+div#experience_pane #escolar {
+  min-height: 200px;
+}
+div#experience_pane #escolar div {
+  float: left;
+  padding-left: 20px;
+}
+div#experience_pane #escolar #lefty {
+  margin-left: 18px;
+}
+div#experience_pane #escolar #ingreso {
+  width: 45%;
+}
+div#experience_pane #escolar #egreso {
+  width: 40%;
+}
+div#experience_pane #escolar label {
+  float: left;
+  clear: both;
+  margin-right: 100%;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 10%;
+}
+div#experience_pane #escolar .form-control {
+  margin-left: 10%;
+  float: left;
+}
+div#experience_pane #escolar Select.form-control {
+  margin-left: 10%;
+  width: 200px;
+}
+div#other_pane #habilidades {
+  min-height: 100px;
+  width: 100%;
+}
+div#other_pane #habilidades .form_group {
+  float: left;
+  padding-left: 40px;
+  min-height: 100px;
+}
+div#other_pane #habilidades .form_group + .form_group {
+  padding-left: 20px;
+}
+div#other_pane #habilidades label {
+  float: left;
+  clear: both;
+  margin-right: 100%;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 10%;
+}
+div#other_pane #habilidades .form-control {
+  margin-left: 10%;
+  float: left;
+}
+div#other_pane #habilidades Select.form-control {
+  margin-left: 10%;
+  width: 200px;
 }
 .form-control {
   display: inline-block;
