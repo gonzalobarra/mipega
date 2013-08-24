@@ -25,6 +25,43 @@ $(document).ready(function() {
     for (var selector in configChosen) {
       $(selector).chosen(configChosen[selector]);
     }
+
+    var minVal=0;
+    var maxVal=4;
+    var current=0;
+
+    $(".form-pane:not(.active-pane)").hide();
+    $("a#prev").attr("disabled","disabled");
+
+    $("#controls > a#next").click(function(event){        
+        event.preventDefault();
+        $(".form-pane:nth-of-type("+(current+1)+")").removeClass("active-pane").fadeOut();
+        $(".form-pane:nth-of-type("+(current+2)+")").addClass("active-pane").fadeIn();
+        current++;
+        if(current > 0){
+            $("a#prev").removeAttr("disabled");    
+        }
+        if(current == 3){
+            //$("a#next").attr("disabled","disabled"); 
+            $("a#next").fadeOut();
+            $("[value=Registrar]").fadeIn();          
+        }                
+        
+    });
+    $("#controls > a#prev").click(function(event){
+        event.preventDefault();
+        $(".form-pane:nth-of-type("+(current+1)+")").removeClass("active-pane").fadeOut();
+        $(".form-pane:nth-of-type("+(current)+")").addClass("active-pane").fadeIn();
+        current--;
+        if(current < 4){
+            //$("a#next").removeAttr("disabled");
+            $("a#next").fadeIn();
+            $("[value=Registrar]").fadeOut();    
+        }
+        if(current == 0){
+            $("a#prev").attr("disabled","disabled");           
+        }
+    });
 });
 
 

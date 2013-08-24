@@ -6,7 +6,7 @@
         {% load bootstrap_toolkit %}
         <form id="formElem" name="formElem" action="" method="post">
             {% csrf_token %}
-            <div class="row" id="session_pane">
+            <div class="row form-pane active-pane" id="session_pane">
                 <div class="col-md-6 col-md-offset-2">
                     <h1>Cuenta</h1>
                     <div class="form_group">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="user_pane">
+            <div class="row form-pane" id="user_pane">
                 <div class="col-md-6 col-md-offset-2">
                     <h1>Contacto</h1>
                     <div id="contact">
@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="row" id="experience_pane">
+            <div class="row form-pane" id="experience_pane">
                 <div class="col-md-6 col-md-offset-2">
                     <h1>Experiencia Laboral</h1>
                     <h2>Enseñanza escolar</h2>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="other_pane">
+            <div class="row form-pane" id="other_pane">
                 <div class="col-md-6 col-md-offset-2">
                     <h2>Otras habilidades</h2>
                     <div id="habilidades">
@@ -177,8 +177,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <input class="btn btn-primary" type="submit" value="Registrar">               
+            </div>            
+            <div id="controls">
+                <a id="prev" class="btn btn-success" href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <a id="next" class="btn btn-success" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                <input class="btn btn-primary" type="submit" value="Registrar">
+            </div>               
         </form>   
     </div>
 </div>
