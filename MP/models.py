@@ -203,6 +203,7 @@ class Localidad(models.Model):
 	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
 	tipo   = models.CharField('Tipo', max_length=7, choices=tipoLocalidad, default="c")
 
+	#localidadPadre = models.ForeignKey(Localidad, verbose_name="Localidad Padre")
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
 

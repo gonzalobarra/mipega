@@ -1,3 +1,4 @@
+# -*- coding: Utf8 -*-
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext, loader
@@ -17,7 +18,9 @@ from django.contrib import messages
 def index_view(request):
 	messages.success(request, 'plugin de mensajes final final.')
 	form = BuscaRapidaForm(request.POST or None)
-	ctx ={'form_busqueda_rapida':form}
+	localidades = Localidad.objects.all()
+	cargos = Cargo.objects.all()
+	ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos}
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
 def busqueda_rapida_view(request):
@@ -121,3 +124,32 @@ def logout_view(request):
     """
     logout(request)
     return HttpResponseRedirect('/serco')
+
+
+
+
+#lineas para poblado parcial de localidades
+# nuevo11 = Localidad(nombre="Angol",tipo="c")
+	# nuevo21 = Localidad(nombre="Antofagasta",tipo="c")
+	# nuevo31 = Localidad(nombre="Antuco",tipo="c")
+	# nuevo51 = Localidad(nombre="Arica",tipo="c")
+	# nuevo11.save()
+	# nuevo21.save()
+	# nuevo31.save()
+	# nuevo51.save()
+	# nuevo1 = Localidad(nombre="PRIMERA REGIÓN DE TARAPACÁ",tipo="r")
+	# nuevo2 = Localidad(nombre="SEGUNDA REGIÓN DE ANTOFAGASTA",tipo="r")
+	# nuevo3 = Localidad(nombre="TERCERA REGIÓN DE ATACAMA",tipo="r")
+	# nuevo5 = Localidad(nombre="METROPOLITANA",tipo="r")
+	# nuevo1.save()
+	# nuevo2.save()
+	# nuevo3.save()
+	# nuevo5.save()
+	# nuevo = Cargo(nombre="Gruero")
+	# nuevo.save()
+	# nuevo1 = Cargo(nombre="Supervisor")
+	# nuevo1.save()
+	# nuevo3 = Cargo(nombre="Jornal")
+	# nuevo3.save()
+	# nuevo4 = Cargo(nombre="Programador")
+	# nuevo4.save()
