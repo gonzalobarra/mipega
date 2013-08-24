@@ -28,7 +28,15 @@ def busqueda_rapida_view(request):
 	#falta implementar aqui la busqueda rapida, ya llegan los valores del form
 	if request.method == "POST":
 		#mensaje = form.is_valid()
-		
+		cargo = request.POST['cargo']
+		edad  = request.POST['edad']
+		sexo  = request.POST['optionsRadios']
+		localidad = request.POST['localidad']
+
+		ides = []
+
+		socios = Socio.objects.all()
+
 
 		resultados_busqueda = [{'titulo':"asd", 'descripcion':"loremasd"},{'titulo':"asd2", 'descripcion':"loremasd2"}]
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}

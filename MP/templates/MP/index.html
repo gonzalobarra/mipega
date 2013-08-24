@@ -22,17 +22,15 @@
                     </div> -->
                     <div class="form-group">
                         <p class="help-block">Cargo:</p>
-                        <!-- <input type="text" class="form-control" id="inputCargo" placeholder="Ingeniero, Tecnico alambrista..."> -->
-                        <select class="form-control chosen-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
+                        <select name="cargo" class="form-control chosen-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
                             {% for cargo in cargos %}
                                 <option value="{{cargo.id}}">{{cargo.nombre}}</option>
                             {% endfor %}
                         </select>
-                        
                     </div>
                     <div class="form-group">
                         <p class="help-block">Rango etario:</p>
-                        <select class="form-control">
+                        <select name="edad" class="form-control">
                             <option>Indiferente</option>
                             <option>18-22</option>
                             <option>22-29</option>
