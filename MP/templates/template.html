@@ -55,8 +55,14 @@
         <img src="{{STATIC_URL}}img/mipegalogo.png" id="logo">
         <h1><a href="/">Mi Pega.cl</a></h1>
         <div class="sesion-buttons">
-            <a href="{% url 'vista_login' %}">Ingresar</a>
-            <a href="{% url 'vista_registro' %}">Registrarse</a>
+            {% if user.is_authenticated and user.is_active%}
+                <h5>Bienvenido {{user.first_name}}!  </h5>
+                <a href="{% url 'vista_logout' %}" class="btn btn-mini">Cerrar Sesión</a><a href="{% url 'vista_editarperfil' %}" class="btn btn-mini">Perfil</a>
+            {% else %}
+                <a href="{% url 'vista_login' %}">Ingresar</a>
+                <a href="{% url 'vista_registro' %}">Registrarse</a>
+            {% endif %}
+            
         </div>
     </div><!-- #header -->
 

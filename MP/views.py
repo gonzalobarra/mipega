@@ -27,8 +27,8 @@ def busqueda_rapida_view(request):
 	form = BuscaRapidaForm(request.POST or None)
 	#falta implementar aqui la busqueda rapida, ya llegan los valores del form
 	if request.method == "POST":
+		#mensaje = form.is_valid()
 		
-		mensaje = form.is_valid()
 
 		resultados_busqueda = [{'titulo':"asd", 'descripcion':"loremasd"},{'titulo':"asd2", 'descripcion':"loremasd2"}]
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
@@ -109,7 +109,7 @@ def login_view(request):
                 messages.warning(request, 'Tu cuenta ha sido desactivada.')
                 return HttpResponseRedirect('/')
         else:
-            # Mensaje de error
+            # Mensaje de errorreturn HttpResponseRedirect('/')
             messages.error(request, 'Nombre de usuario o password erronea.')
             return HttpResponseRedirect('/')
     else:
@@ -123,34 +123,36 @@ def logout_view(request):
     Cierra la sesion de un usuario y lo redirecciona al home
     """
     logout(request)
-    return HttpResponseRedirect('/serco')
+    return HttpResponseRedirect('/')
 
+def editarPerfil_view(request):
+    return HttpResponseRedirect('/')
 
 
 
 #lineas para poblado parcial de localidades
-def poblarlocalidadcargo(request):
-	nuevo11 = Localidad(nombre="Angol",tipo="c")
-	nuevo21 = Localidad(nombre="Antofagasta",tipo="c")
-	nuevo31 = Localidad(nombre="Antuco",tipo="c")
-	nuevo51 = Localidad(nombre="Arica",tipo="c")
-	nuevo11.save()
-	nuevo21.save()
-	nuevo31.save()
-	nuevo51.save()
-	nuevo1 = Localidad(nombre="PRIMERA REGIÓN DE TARAPACÁ",tipo="r")
-	nuevo2 = Localidad(nombre="SEGUNDA REGIÓN DE ANTOFAGASTA",tipo="r")
-	nuevo3 = Localidad(nombre="TERCERA REGIÓN DE ATACAMA",tipo="r")
-	nuevo5 = Localidad(nombre="METROPOLITANA",tipo="r")
-	nuevo1.save()
-	nuevo2.save()
-	nuevo3.save()
-	nuevo5.save()
-	nuevo = Cargo(nombre="Gruero")
-	nuevo.save()
-	nuevo1 = Cargo(nombre="Supervisor")
-	nuevo1.save()
-	nuevo3 = Cargo(nombre="Jornal")
-	nuevo3.save()
-	nuevo4 = Cargo(nombre="Programador")
-	nuevo4.save()
+# def poblarlocalidadcargo(request):
+# 	nuevo11 = Localidad(nombre="Angol",tipo="c")
+# 	nuevo21 = Localidad(nombre="Antofagasta",tipo="c")
+# 	nuevo31 = Localidad(nombre="Antuco",tipo="c")
+# 	nuevo51 = Localidad(nombre="Arica",tipo="c")
+# 	nuevo11.save()
+# 	nuevo21.save()
+# 	nuevo31.save()
+# 	nuevo51.save()
+# 	nuevo1 = Localidad(nombre="PRIMERA REGIÓN DE TARAPACÁ",tipo="r")
+# 	nuevo2 = Localidad(nombre="SEGUNDA REGIÓN DE ANTOFAGASTA",tipo="r")
+# 	nuevo3 = Localidad(nombre="TERCERA REGIÓN DE ATACAMA",tipo="r")
+# 	nuevo5 = Localidad(nombre="METROPOLITANA",tipo="r")
+# 	nuevo1.save()
+# 	nuevo2.save()
+# 	nuevo3.save()
+# 	nuevo5.save()
+# 	nuevo = Cargo(nombre="Gruero")
+# 	nuevo.save()
+# 	nuevo1 = Cargo(nombre="Supervisor")
+# 	nuevo1.save()
+# 	nuevo3 = Cargo(nombre="Jornal")
+# 	nuevo3.save()
+# 	nuevo4 = Cargo(nombre="Programador")
+# 	nuevo4.save()

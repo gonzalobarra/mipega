@@ -7,5 +7,6 @@ urlpatterns = patterns('MP.views',
 	url(r'^pruebita/$','pruebita',name='pruebita'),
 	url(r'^login/$','login_view',name='vista_login'),
 	url(r'^logout/$','logout_view',name='vista_logout'),
+	url(r'^editar/perfil/$','editarPerfil_view',name='vista_editarperfil'),
 )    
 
