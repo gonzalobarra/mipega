@@ -84,3 +84,40 @@ def registro_view(request):
 	else:
 		ctx = {'form_user':form_user, 'form_socio': form_socio, 'form_sociol': form_sociol, 'form_estudio': form_estudio, 'form_estudio2': form_estudio2, 'form_explab': form_explab, 'form_hab': form_hab}
 		return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))
+
+def login_view(request):
+    """
+    Vista encargada autenticar un usuario para ingresar al sistema
+    """
+    if not request.user.is_anonymous():
+        return HttpResponseRedirect('/')
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                # redireccionar al inicio
+                messages.success(request, 'Bienvenido ' + user.username)
+                return HttpResponseRedirect('/')
+            else:
+                # Mensaje warning
+                messages.warning(request, 'Tu cuenta ha sido desactivada.')
+                return HttpResponseRedirect('/')
+        else:
+            # Mensaje de error
+            messages.error(request, 'Nombre de usuario o password erronea.')
+            return HttpResponseRedirect('/')
+    else:
+        form = LoginForm()
+        ctx = {'form':form}
+        return render_to_response('MP/login.html',ctx,context_instance=RequestContext(request))
+ 
+#@login_required(login_url='/serco')
+def logout_view(request):
+    """
+    Cierra la sesion de un usuario y lo redirecciona al home
+    """
+    logout(request)
+    return HttpResponseRedirect('/serco')

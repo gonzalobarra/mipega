@@ -1,0 +1,11 @@
+{% extends 'template.html' %}
+{% block title %} Login | MiPega.cl {% endblock %}
+{% block contenido %}
+<div id="content">
+	<form action="" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input class="btn btn-primary" type="submit" value="Ingresar">
+    </form>    
+</div>
+{% endblock %}
