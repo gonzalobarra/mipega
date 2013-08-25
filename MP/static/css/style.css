@@ -134,6 +134,12 @@ input[value="Registrar"] {
   margin: 5px;
   display: none;
 }
+.alert {
+  margin-top: 150px;
+}
+#content {
+  margin-top: 0px;
+}
 #controls a {
   margin: 5px;
 }
@@ -203,6 +209,7 @@ div#experience_pane #escolar #ingreso {
 }
 div#experience_pane #escolar #egreso {
   width: 40%;
+  margin-left: 25px;
 }
 div#experience_pane #escolar label {
   float: left;

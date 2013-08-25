@@ -6,10 +6,10 @@ body{
     font-family:"Century Gothic", Helvetica, sans-serif;
 }
 #content{
-    margin:15px auto;
+    margin:15px auto;    
     text-align:center;
     width:600px;
-    position:relative;
+    /*position:relative;*/
     height:100%;
     top: 150px;
 }

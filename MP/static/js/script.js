@@ -26,18 +26,33 @@ $(document).ready(function() {
       $(selector).chosen(configChosen[selector]);
     }
 
+    //Control del formulario de registro, para que funcione por paginas
     var minVal=0;
     var maxVal=4;
     var current=0;
 
+    //Control de los mensajes de ayuda debajo del header, para que acompañen a 
+    //cada pagina del formulario
+    var titulos = ["su Perfil","sus Aspiraciones","sus Estudios", "su Experiencia laboral"];
+    var textos = [        
+        "A continuaci&oacute;n debe completar sus datos de cuenta, datos personals y de contacto <br>",
+        "En esta secci&oacute;n debe ingresar las caracteristicas del trabajo que desea encontrar <br>",
+        "Ahora ingrese los datos de sus estudios escolares y superiores... esta casi listo <br>",
+        "Finalmente, debe ingresar los datos referentes a su experiencia laboral y ya está! <br>"
+    ];
+    
     $(".form-pane:not(.active-pane)").hide();
     $("a#prev").attr("disabled","disabled");
+    $(".alert > h4").html(titulos[current]);
+    $(".alert > p:first").html(textos[current]);
 
     $("#controls > a#next").click(function(event){        
         event.preventDefault();
         $(".form-pane:nth-of-type("+(current+1)+")").removeClass("active-pane").fadeOut();
         $(".form-pane:nth-of-type("+(current+2)+")").addClass("active-pane").fadeIn();
         current++;
+        $(".alert > h4").html(titulos[current]);
+        $(".alert > p:first").html(textos[current]);
         if(current > 0){
             $("a#prev").removeAttr("disabled");    
         }
@@ -53,6 +68,8 @@ $(document).ready(function() {
         $(".form-pane:nth-of-type("+(current+1)+")").removeClass("active-pane").fadeOut();
         $(".form-pane:nth-of-type("+(current)+")").addClass("active-pane").fadeIn();
         current--;
+        $(".alert > h4").html(titulos[current]);
+        $(".alert > p:first").html(textos[current]);
         if(current < 4){
             //$("a#next").removeAttr("disabled");
             $("a#next").fadeIn();
@@ -62,6 +79,13 @@ $(document).ready(function() {
             $("a#prev").attr("disabled","disabled");           
         }
     });
+    
+    $("#hide-alert").click(function(event){
+        event.preventDefault();
+        $(".alert").alert('close');
+        $("#content").css("position","relative");
+    });
+    
 });
 
 
