@@ -40,7 +40,23 @@ $(document).ready(function() {
         "Ahora ingrese los datos de sus estudios escolares y superiores... esta casi listo <br>",
         "Finalmente, debe ingresar los datos referentes a su experiencia laboral y ya está! <br>"
     ];
-    
+    /*
+    var offset = $(".alert").offset().top;
+    var winOffset = $('html').offset().top;    
+    //OJO! SE USA EN TODOS LOS DOCUMENTOS ASI QUE CUIDADO!
+    $(window).scroll(function(){
+        alert($(window).position());
+        //si la posicion vertical de la laerta y la ventana son las mismas
+        if($(window).offset().top - $(".alert").offset().top < 0){
+            
+            $(".alert").css("position","fixed");
+            $(".alert").css("top","0px");   
+                 
+        }else if (($(window).offset().top - offset) < 0){
+            $(".alert").css("position","relative");
+        }
+    });
+*/
     $(".form-pane:not(.active-pane)").hide();
     $("a#prev").attr("disabled","disabled");
     $(".alert > h4").html(titulos[current]);
@@ -84,6 +100,27 @@ $(document).ready(function() {
         event.preventDefault();
         $(".alert").alert('close');
         $("#content").css("position","relative");
+    });
+
+    //mensaje guia del inicio
+    $("#surprise-message").animate({
+        width: "100%",
+        height: "100%"
+    },400, function(){
+        
+        $(".panel").fadeIn();
+    });
+
+    //ocultar mensaje
+    $(".panel-body > a").click(function(event){
+
+        event.preventDefault();
+        $(".panel").fadeOut("slow");
+        setTimeout(function(){
+            $("#surprise-message").animate({
+                height: "0px"            
+            }, 400);
+        },400);
     });
     
 });
