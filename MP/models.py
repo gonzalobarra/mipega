@@ -10,15 +10,13 @@ from calendar import mdays
 from django.contrib.localflavor.cl.forms import CLRutField
 
 sexo=(
-	('i','Indiferente'),
 	('m','Masculino'),
 	('f','Femenino'),
 )
 estadoCivil=(
 	('sol','Soltero'),
 	('cas','Casado'),
-	('sep','Separado'),
-	('viu','Viudo'),
+	('div','Divorciado'),
 )
 tipoContrato=(
 	('indi','Me es Indferente'),
@@ -50,6 +48,24 @@ tipoLocalidad=(
 	('c','Comuna'),
 	('r','Región'),
 )
+nacionalidad=(
+	('cl', 'Chile'),
+)
+nacimiento=(
+	('0','18-25'),
+	('1','26-35'),
+	('2','36-45'),
+	('3','46-55'),
+	('4','56+'),
+)
+hijos=(
+	('s','Si'),
+	('n','No'),
+)
+renta=(
+	('0','100-500'),
+	('1','500-700'),
+	)
 
 class RutField(models.CharField):
 	def __init__(self, *args, **kwargs):
@@ -67,12 +83,14 @@ class Socio(models.Model):
 	email             = models.CharField('Email' ,max_length=64, null=True, blank=True)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
 	web               = models.CharField('Email' ,max_length=64, null=True, blank=True)
-	ano_nacimiento    = models.IntegerField('Año Nacimiento', null=True, blank=True)
-	sexo              = models.CharField("Sexo",max_length=7, choices=sexo, default='Ind')
-	tiene_hijos       = models.BooleanField('Tiene Hijos?')
-	estado_civil      = models.CharField('Estado Civil',max_length=7, choices=estadoCivil, default='Sol')
-	pretencion_renta  = models.IntegerField("Pretenciones de Renta", null=True, blank=True)
-	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=7, choices=tipoContrato, default='Ind')
+	ano_nacimiento    = models.CharField('Año de nacimiento',max_length=7, choices=nacimiento)
+	sexo              = models.CharField("Sexo",max_length=7, choices=sexo)
+	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=3, choices=hijos)
+	estado_civil      = models.CharField('Estado Civil',max_length=7, choices=estadoCivil)
+	pretencion_renta  = models.IntegerField("Pretenciones de Renta", max_length=3, choices=renta)
+	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=7, choices=tipoContrato)
+	nacionalidad	  = models.CharField('Nacionalidad',max_length=7, choices=nacionalidad)
+	comentario		  = models.CharField('Comentario', max_length=512,null=False, blank=False)
 	
 	user = models.OneToOneField(User)
 
@@ -162,24 +180,25 @@ class ExperienciaLaboral(models.Model):
 
 
 class Titulo(models.Model):
-	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
-	tipo   = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
+	id      = models.AutoField('ID', primary_key=True)
+	nombre  = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	tipo    = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
+	colegio = models.BooleanField('Colegio')
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
 
 class Institucion(models.Model):
-	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
-	tipo   = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
+	id      = models.AutoField('ID', primary_key=True)
+	nombre  = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	tipo    = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
+	colegio = models.BooleanField('Colegio') 
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
 
 class Estudios(models.Model):
 	id          = models.AutoField('ID', primary_key=True)
-	ano         = models.IntegerField("Año", null=False, blank=False)
 	estado      = models.CharField('Estado', max_length=7, choices=estadoEstudio, default="i")
 
 	# Llaves foraneas

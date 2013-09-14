@@ -65,33 +65,25 @@ def registro_view(request):
 			usuario_inst = User.objects.get(username = form_user.cleaned_data['username']) 
 			nombre_usuario = form_user.cleaned_data['username']
 			if form_socio.is_valid():
-				socio = Socio(usuario=form_socio.cleaned_data['usuario'], telefono=form_socio.cleaned_data['telefono'], web=form_socio.cleaned_data['web'], ano_nacimiento=form_socio.cleaned_data['ano_nacimiento'], sexo=form_socio.cleaned_data['sexo'], tiene_hijos=form_socio.cleaned_data['tiene_hijos'], estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], user=usuario_inst) 
+				socio = Socio(usuario=form_socio.cleaned_data['usuario'],telefono=form_socio.cleaned_data['telefono'], web=form_socio.cleaned_data['web'], ano_nacimiento=form_socio.cleaned_data['ano_nacimiento'], sexo=form_socio.cleaned_data['sexo'], tiene_hijos=form_socio.cleaned_data['tiene_hijos'], estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], nacionalidad=form_socio.cleaned_data['nacionalidad'], comentario=form_socio.cleaned_data['comentario'] ,user=usuario_inst) 
 				socio.save()
 				socio_inst = Socio.objects.get(user__username = nombre_usuario)
 				if form_sociol.is_valid():
 					localidad = LocalidadConSocio(socio=socio_inst, localidad=form_sociol.cleaned_data['localidad'])
 					if form_estudio.is_valid():
-						estudio1 = Estudios(ano=form_estudio.cleaned_data['ano'], estado=form_estudio.cleaned_data['estado'], titulo=form_estudio.cleaned_data['titulo'], institucion=form_estudio.cleaned_data['institucion'], socio=socio_inst)
+						estudio1 = Estudios(estado=form_estudio.cleaned_data['estado'], titulo=form_estudio.cleaned_data['titulo'], institucion=form_estudio.cleaned_data['institucion'], socio=socio_inst)
 						if form_estudio2.is_valid():
-							estudio2 = Estudios(ano=form_estudio2.cleaned_data['ano'], estado=form_estudio2.cleaned_data['estado'], titulo=form_estudio2.cleaned_data['titulo'], institucion=form_estudio2.cleaned_data['institucion'], socio=socio_inst)
+							estudio2 = Estudios(estado=form_estudio2.cleaned_data['estado'], titulo=form_estudio2.cleaned_data['titulo'], institucion=form_estudio2.cleaned_data['institucion'], socio=socio_inst)
 							if form_explab.is_valid():
 								explab = ExperienciaLaboral(ano_ingreso=form_explab.cleaned_data['ano_ingreso'], ano_egreso=form_explab.cleaned_data['ano_egreso'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
 								if form_hab.is_valid() and explab.ano_ingreso < explab.ano_egreso:
 									habilidades = OtrasHabilidades(nivel=form_hab.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab.cleaned_data['habilidad'])		
-									#usuario.save()
-									#socio.save()
 									localidad.save()
 									estudio1.save()
 									estudio2.save()
 									explab.save()
 									habilidades.save()
-									return HttpResponseRedirect('/')
-								else:
-									usuario.delete()	
-				else:
-					usuario.delete()				
-			else:
-				usuario.delete()						
+									return HttpResponseRedirect('/')				
 	else:
 		ctx = {'form_user':form_user, 'form_socio': form_socio, 'form_sociol': form_sociol, 'form_estudio': form_estudio, 'form_estudio2': form_estudio2, 'form_explab': form_explab, 'form_hab': form_hab}
 		return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))

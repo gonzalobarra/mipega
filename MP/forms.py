@@ -11,7 +11,6 @@ from django.contrib.localflavor.cl.forms import CLRutField, CLRegionSelect
 
 
 RANGO = (
-    ('0','Indiferente'),
     ('1','18-22'),
     ('2','23-29'),
     ('3','29-37'),
@@ -20,7 +19,6 @@ RANGO = (
     )
 
 SEXO = (
-    ('i','Indiferente'),
     ('m','Masculino'),
     ('f','Femenino'),
     )
@@ -42,18 +40,21 @@ class UserForm(forms.ModelForm):
         }
     
 class SocioForm(forms.ModelForm):
+    comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
     class Meta:
         model = Socio
-        fields = ('usuario','telefono', 'web', 'ano_nacimiento', 'sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('usuario','telefono', 'web', 'ano_nacimiento', 'nacionalidad','comentario','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'usuario': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control'}),
             'web': forms.TextInput(attrs={'class':'form-control'}),
-            'ano_nacimiento': forms.TextInput(attrs={'class':'form-control'}),
+            'ano_nacimiento': forms.Select(attrs={'class':'form-control'}),
             'sexo': forms.Select(attrs={'class':'form-control'}),
             'estado_civil': forms.Select(attrs={'class':'form-control'}),
-            'pretencion_renta': forms.TextInput(attrs={'class':'form-control'}),
-            'tipo_contrato': forms.Select(attrs={'class':'form-control'}), 
+            'pretencion_renta': forms.Select(attrs={'class':'form-control'}),
+            'tipo_contrato': forms.Select(attrs={'class':'form-control'}),
+            'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
+            'nacionalidad': forms.Select(attrs={'class':'form-control'}),   
         }
 
 class LocalidadconSocioForm(forms.ModelForm):
@@ -67,9 +68,8 @@ class LocalidadconSocioForm(forms.ModelForm):
 class EstudioForm(forms.ModelForm):
     class Meta:
         model = Estudios
-        fields = ('ano', 'estado', 'titulo', 'institucion')
+        fields = ('estado', 'titulo', 'institucion')
         widgets = {
-            'ano': forms.TextInput(attrs={'class':'form-control'}),
             'estado': forms.Select(attrs={'class':'form-control'}),
             'titulo': forms.Select(attrs={'class':'form-control'}),
             'institucion': forms.Select(attrs={'class':'form-control'}),        

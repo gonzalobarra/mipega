@@ -95,6 +95,10 @@ $(document).ready(function(){
                                 <label for="id_estado_civil">Estado civil:</label>
                                 {{form_socio.estado_civil}}
                             </div>
+                            <div class="form_group personal">
+                                <label for="id_nacionalidad">Nacionalidad:</label>
+                                {{form_socio.nacionalidad}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,10 +109,6 @@ $(document).ready(function(){
                     <h2>Enseñanza escolar</h2>
                     <div id="escolar">
                         <div id="escolar1">
-                            <div class="form_group">
-                                <label for="id_ano">Año:</label>
-                                {{form_estudio.ano}}
-                            </div>
                             <div class="form_group" id="lefty">
                                 <label for="id_estado">Estado:</label>
                                 {{form_estudio.estado}}
@@ -116,7 +116,7 @@ $(document).ready(function(){
                         </div>
                         <div id="escolar2">
                             <div class="form_group">
-                                <label for="id_titulo">titulo:</label>
+                                <label for="id_titulo">Título:</label>
                                 {{form_estudio.titulo}}
                             </div>
                             <div class="form_group">
@@ -128,10 +128,6 @@ $(document).ready(function(){
                     <h2>Estudios superiores</h2>
                     <div id="escolar">
                         <div id="escolar1">
-                            <div class="form_group">
-                                <label for="id_ano">Año:</label>
-                                {{form_estudio2.ano}}
-                            </div>
                             <div class="form_group" id="lefty">
                                 <label for="id_estado">Estado:</label>
                                 {{form_estudio2.estado}}
@@ -139,7 +135,7 @@ $(document).ready(function(){
                         </div>
                         <div id="escolar2">
                             <div class="form_group">
-                                <label for="id_titulo">titulo:</label>
+                                <label for="id_titulo">Título:</label>
                                 {{form_estudio2.titulo}}
                             </div>
                             <div class="form_group">
@@ -168,6 +164,10 @@ $(document).ready(function(){
                             <div class="form_group">
                                 <label for="id_cargo">Cargo:</label>
                                 {{form_explab.cargo}}
+                            </div>
+                            <div class="form_group">
+                                <label for="id_comentario">Comentario:</label>
+                                {{form_socio.comentario}}
                             </div>
                         </div>
                     </div>
