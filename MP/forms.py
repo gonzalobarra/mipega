@@ -43,7 +43,7 @@ class SocioForm(forms.ModelForm):
     comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
     class Meta:
         model = Socio
-        fields = ('usuario','telefono', 'web', 'ano_nacimiento', 'nacionalidad','comentario','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('usuario','telefono', 'web', 'ano_nacimiento', 'comentario','nacionalidad','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'usuario': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control'}),
@@ -54,7 +54,7 @@ class SocioForm(forms.ModelForm):
             'pretencion_renta': forms.Select(attrs={'class':'form-control'}),
             'tipo_contrato': forms.Select(attrs={'class':'form-control'}),
             'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
-            'nacionalidad': forms.Select(attrs={'class':'form-control'}),   
+            'nacionalidad': forms.Select(attrs={'class':'form-control'}),
         }
 
 class LocalidadconSocioForm(forms.ModelForm):

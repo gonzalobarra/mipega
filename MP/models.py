@@ -7,7 +7,6 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import authenticate, login
 from datetime import date,timedelta
 from calendar import mdays
-from django.contrib.localflavor.cl.forms import CLRutField
 
 sexo=(
 	('m','Masculino'),
@@ -65,32 +64,21 @@ hijos=(
 renta=(
 	('0','100-500'),
 	('1','500-700'),
-	)
-
-class RutField(models.CharField):
-	def __init__(self, *args, **kwargs):
-		kwargs['max_length'] = kwargs.get('max_length', 12)
-		models.CharField.__init__(self, *args, **kwargs)
-		
-	def formfield(self, **kwargs):
-		defaults = {'form_class': CLRutField}
-		defaults.update(kwargs)
-		return super(RutField, self).formfield(**defaults)
+)
 
 class Socio(models.Model):
 	id                = models.AutoField('ID', primary_key=True)
 	usuario           = models.CharField('Nombre', max_length=64,null=False, blank=False)
-	email             = models.CharField('Email' ,max_length=64, null=True, blank=True)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
 	web               = models.CharField('Email' ,max_length=64, null=True, blank=True)
-	ano_nacimiento    = models.CharField('Año de nacimiento',max_length=7, choices=nacimiento)
-	sexo              = models.CharField("Sexo",max_length=7, choices=sexo)
-	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=3, choices=hijos)
-	estado_civil      = models.CharField('Estado Civil',max_length=7, choices=estadoCivil)
-	pretencion_renta  = models.IntegerField("Pretenciones de Renta", max_length=3, choices=renta)
-	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=7, choices=tipoContrato)
-	nacionalidad	  = models.CharField('Nacionalidad',max_length=7, choices=nacionalidad)
-	comentario		  = models.CharField('Comentario', max_length=512,null=False, blank=False)
+	ano_nacimiento    = models.CharField('Año de nacimiento',max_length=10, choices=nacimiento)
+	sexo              = models.CharField("Sexo",max_length=10, choices=sexo)
+	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=10, choices=hijos)
+	estado_civil      = models.CharField('Estado Civil',max_length=10, choices=estadoCivil)
+	pretencion_renta  = models.CharField("Pretenciones de Renta", max_length=10, choices=renta)
+	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=10, choices=tipoContrato)
+	nacionalidad	  = models.CharField('Nacionalidad',max_length=10, choices=nacionalidad)
+	comentario        = models.CharField('Comentario' ,max_length=512, null=True, blank=True)
 	
 	user = models.OneToOneField(User)
 
