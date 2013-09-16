@@ -168,14 +168,14 @@ div#session_pane .form-control, div#last .form-control {
   margin-left: 18%;
   float: left;
 }
-div#user_pane #contact {
+div#user_pane #contact, div#session_pane #contact {
   min-height: 200px;
 }
-div#user_pane #contact div {
+div#user_pane #contact div, div#session_pane #contact div {
   float: left;
   padding-left: 20px;
 }
-div#user_pane #contact label {
+div#user_pane #contact label, div#session_pane #contact label {
   float: left;
   clear: both;
   margin-right: 100%;
@@ -184,22 +184,25 @@ div#user_pane #contact label {
   white-space: nowrap;
   margin-left: 10%;
 }
-div#user_pane #contact .form-control {
+div#user_pane #contact .form-control, div#session_pane #contact .form-control {
   margin-left: 10%;
   float: left;
 }
-div#user_pane #contact label[for="id_sexo"], div#user_pane #contact label[for="id_estado_civil"] {
+div#user_pane #contact label[for="id_sexo"],
+div#session_pane #contact label[for="id_sexo"],
+div#user_pane #contact label[for="id_estado_civil"],
+div#session_pane #contact label[for="id_estado_civil"] {
   margin-left: 12%;
 }
-div#user_pane #contact label[for="id_tiene_hijos"] {
+div#user_pane #contact label[for="id_tiene_hijos"], div#session_pane #contact label[for="id_tiene_hijos"] {
   width: 100%;
   margin: 0px auto;
 }
-div#user_pane #contact Select.form-control {
+div#user_pane #contact Select.form-control, div#session_pane #contact Select.form-control {
   margin-left: 12%;
   width: 200px;
 }
-div#user_pane #contact input[type="checkbox"] {
+div#user_pane #contact input[type="checkbox"], div#session_pane #contact input[type="checkbox"] {
   margin-top: 15px;
 }
 div#surprise-message {

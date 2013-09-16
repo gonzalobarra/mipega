@@ -102,6 +102,22 @@ $(document).ready(function() {
         $("#content").css("position","relative");
     });
 
+    $("#help").click(function(event){
+        event.preventDefault();
+        
+        //Para cada caso, se activa el tour definido
+        //Si estoy en la pagina de sesion
+        if(current == 0){
+            hopscotch.startTour(tour1);   
+        //Si estoy en la pagina de aspiraciones     
+        }else if(current == 1){
+            hopscotch.startTour(tour2);
+        }else if(current == 2){
+            hopscotch.startTour(tour3);
+        }else if(current == 3){
+            hopscotch.startTour(tour4);
+        }
+    });
     //mensaje guia del inicio
     $("#surprise-message").animate({
         width: "100%",

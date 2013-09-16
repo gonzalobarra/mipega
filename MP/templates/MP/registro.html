@@ -24,7 +24,7 @@ $(document).ready(function(){
     <h4>Ayuda para la pagina!</h4>
     <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
     <p>
-        <a class="btn btn-primary" href="#">Ayuda</a> <a class="btn btn-info" id="hide-alert" href="#">Ocultar</a>
+        <a class="btn btn-primary" id="help" href="#">Ayuda</a> <a class="btn btn-info" id="hide-alert" href="#">Ocultar</a>
     </p>
 </div>
 <div id="content">
@@ -32,26 +32,24 @@ $(document).ready(function(){
         {% load bootstrap_toolkit %}
         <form id="formElem" name="formElem" action="" method="post">
             {% csrf_token %}
-            <div class="row form-pane active-pane" id="session_pane">
+            <div class="row form-pane active-pane" id="session_pane"> <!-- PANEL DE PERFIL -->
                 <div class="col-md-6 col-md-offset-2">
-                    <h1>Cuenta</h1>
-                    <div class="form_group">
-                        <label for="id_username">RUT:</label>
-                        {{form_user.username}}
+                    <h1 id="seccion_cuenta">Cuenta</h1><!-- CUENTA DE MIPEGA -->
+                    <div id="contact">
+                        <div class="form_group">
+                            <label for="id_username">RUT:</label>
+                            {{form_user.username}}
+                        </div>
+                        <div class="form_group">
+                            <label for="id_password">Clave:</label>
+                            {{form_user.password}}
+                        </div>
+                        <div class="form_group">
+                            <label for="id_ClaveRepetida">Repita su clave:</label>
+                            {{form_user.ClaveRepetida}}
+                        </div>
                     </div>
-                    <div class="form_group">
-                        <label for="id_password">Clave:</label>
-                        {{form_user.password}}
-                    </div>
-                    <div class="form_group">
-                        <label for="id_ClaveRepetida">Repita su clave:</label>
-                        {{form_user.ClaveRepetida}}
-                    </div>
-                </div>
-            </div>
-            <div class="row form-pane" id="user_pane">
-                <div class="col-md-6 col-md-offset-2">
-                    <h1>Contacto</h1>
+                    <h1 id="seccion_contacto">Contacto</h1><!-- INFORMACIÓN DE CONTACTO -->
                     <div id="contact">
                         <div id="contact1">
                             <div class="form_group contact">
@@ -74,7 +72,8 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </div>
-                    <h1>Personal</h1>
+
+                    <h1 id="seccion_personal">Personal</h1><!-- INFORMACIÓN PERSONAL -->
                     <div id="contact">
                         <div id="contact1">
                             <div class="form_group personal">
@@ -101,6 +100,26 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row form-pane" id="user_pane">
+                <div class="col-md-6 col-md-offset-2">
+                    
+                    <h1>¿Qué busca?</h1><!-- ASPIRACIONES -->
+                    <div id="last">
+                        <div class="form_group">
+                            <label for="id_localidad">Localidad:</label>
+                            {{form_sociol.localidad}}
+                        </div>
+                        <div class="form_group">
+                            <label for="id_pretencion_renta">Pretenciones de renta:</label>
+                            {{form_socio.pretencion_renta}}
+                        </div>
+                        <div class="form_group">
+                            <label for="id_tipo_contrato">Tipo contrato:</label>
+                            {{form_socio.tipo_contrato}}
+                        </div>
+                    </div>    
                 </div>
             </div>
 
@@ -144,6 +163,12 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </div>
+                    
+                </div>
+            </div>
+            <div class="row form-pane" id="other_pane">
+                <div class="col-md-6 col-md-offset-2">
+
                     <h2>Experiencia laboral</h2>
                     <div id="escolar">
                         <div id="escolar1">
@@ -171,10 +196,7 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row form-pane" id="other_pane">
-                <div class="col-md-6 col-md-offset-2">
+
                     <h2>Otras habilidades</h2>
                     <div id="habilidades">
                         <div class="form_group">
@@ -186,21 +208,7 @@ $(document).ready(function(){
                             {{form_hab.habilidad}}
                         </div>
                     </div>
-                    <h1>Ultimos datos</h1>
-                    <div id="last">
-                        <div class="form_group">
-                            <label for="id_localidad">Localidad:</label>
-                            {{form_sociol.localidad}}
-                        </div>
-                        <div class="form_group">
-                            <label for="id_pretencion_renta">Pretenciones de renta:</label>
-                            {{form_socio.pretencion_renta}}
-                        </div>
-                        <div class="form_group">
-                            <label for="id_tipo_contrato">Tipo contrato:</label>
-                            {{form_socio.tipo_contrato}}
-                        </div>
-                    </div>
+                    
                 </div>
             </div>            
             <div id="controls">
