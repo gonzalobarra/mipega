@@ -2,7 +2,7 @@
 {% block title %} Login | MiPega.cl {% endblock %}
 {% block contenido %}
 <div id="content">
-	<form action="" method="post">
+	<form action="" method="post" id="login-form">
         {% csrf_token %}
         {{form}}
         <input class="btn btn-primary" type="submit" value="Ingresar">

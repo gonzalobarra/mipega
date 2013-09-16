@@ -24,6 +24,14 @@
   font-family: tequila-sunrise;
   src: url('../fonts/tequilla_sunrise/TequillaSunrise.ttf');
 }
+#login-form {
+  margin-top: 200px;
+}
+#login-form input[type="submit"] {
+  float: right;
+  margin-right: 30px;
+  margin-top: 10px;
+}
 p.help-block {
   clear: both;
 }
