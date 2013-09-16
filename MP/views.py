@@ -97,9 +97,6 @@ def registro_view(request):
 		ctx = {'form_user': form_user, 'form_socio':form_socio, 'form_sociol':form_sociol, 'form_estudio':form_estudio, 'form_estudio2': form_estudio2, 'form_explab': form_explab, 'form_hab': form_hab}
 		return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))
 
-
-
-
 def login_view(request):
     """
     Vista encargada autenticar un usuario para ingresar al sistema
@@ -115,21 +112,21 @@ def login_view(request):
                 login(request, user)
                 # redireccionar al inicio
                 messages.success(request, 'Bienvenido ' + user.username)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/perfil/')
             else:
                 # Mensaje warning
                 messages.warning(request, 'Tu cuenta ha sido desactivada.')
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/login/')
         else:
             # Mensaje de errorreturn HttpResponseRedirect('/')
             messages.error(request, 'Nombre de usuario o password erronea.')
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/login/')
     else:
         form = LoginForm()
         ctx = {'form':form}
         return render_to_response('MP/login.html',ctx,context_instance=RequestContext(request))
  
-#@login_required(login_url='/serco')
+#@login_required(login_url='/')
 def logout_view(request):
     """
     Cierra la sesion de un usuario y lo redirecciona al home
@@ -137,10 +134,66 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-def editarPerfil_view(request):
-    return HttpResponseRedirect('/')
+def perfil_view(request):
+    return render_to_response('MP/perfil.html',context_instance=RequestContext(request))
 
+def nuevaclave_view(request):
+	if request.method == 'POST':
+		user_form = cambiarClave(request.POST)
+		if user_form.is_valid():
+			pass_user = user_form.cleaned_data['ClaveAntigua']
+			if User.check_password(request.user,pass_user):
+				pass_nueva = user_form.cleaned_data['ClaveNueva']
+				pass_rep= user_form.cleaned_data['ClaveRepetida']
+				if pass_nueva==pass_rep:
+					User.set_password(request.user,pass_nueva)
+					request.user.save()
+			return HttpResponseRedirect('/')
 
+	else:
+		user_form = cambiarClave()
+	ctx = {'user_form':user_form}
+	return render_to_response('MP/nuevaclave.html',ctx, context_instance=RequestContext(request))
+
+def bandejaentrada_view(request):
+	usuario = User.objects.get(username = request.user.username)
+	socio = Socio.objects.get(user__id = usuario.id)
+	mensajes = Mensaje.objects.filter(socio__id=socio.id)
+	ctx = {'mensajes':mensajes} 
+	return render_to_response('MP/bandejaentrada.html', ctx, context_instance=RequestContext(request))
+
+def editarperfil_view(request):
+	user = request.user.username
+	socio = Socio.objects.get(user__username = user)
+	localidad = LocalidadConSocio.objects.get(socio__id = socio.id)
+	estudios = Estudios.objects.filter(socio__id = socio.id)
+	explab = ExperienciaLaboral.objects.get(socio__id = socio.id)
+	habilidades = OtrasHabilidades.objects.get(socio__id = socio.id)
+
+	if request.method == 'POST':
+		form_socio = SocioForm(request.POST,request.FILES, instance=socio)
+		form_sociol = LocalidadconSocioForm(request.POST, request.FILES, instance=localidad.localidad)
+		form_estudio1 = EstudioForm(request.POST, request.FILES, instance=estudios[0])
+		form_estudio2 = EstudioForm(request.POST, request.FILES, instance=estudios[1])
+		form_explab = ExperienciaLaboralForm(request.POST, request.FILES, instance=explab)
+		form_hab = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades.habilidad)
+		if form_socio.is_valid() and form_sociol.is_valid() and form_estudio1.is_valid() and form_estudio2.is_valid() and form_explab.is_valid() and form_hab.is_valid():
+			form_socio.save()
+			form_estudio1.save()
+			form_estudio2.save()
+			form_explab.save()
+			form_hab.save()
+			return HttpResponseRedirect('/editarperfil/')
+	else:
+		form_socio = SocioForm(instance=socio)
+		form_sociol = LocalidadconSocioForm(instance=localidad)
+		form_estudio1 = EstudioForm(instance=estudios[0])
+		form_estudio2 = EstudioForm(instance=estudios[1])
+		form_explab = ExperienciaLaboralForm(instance=explab)
+		form_hab = OtrasHabilidadesForm(instance=habilidades)
+
+	ctx = {'form_socio':form_socio, 'form_sociol':form_sociol, 'form_estudio1':form_estudio1,'form_estudio2':form_estudio2, 'form_explab':form_explab, 'form_hab':form_hab}	
+	return render_to_response('MP/editarperfil.html', ctx, context_instance=RequestContext(request))		 
 
 #lineas para poblado parcial de localidades
 # def poblarlocalidadcargo(request):

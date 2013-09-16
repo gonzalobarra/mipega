@@ -1,0 +1,13 @@
+{% extends 'template.html' %}
+{% block title %} Perfil de usuario | MiPega.cl {% endblock %}
+{% block contenido %}
+<div id="content">
+	<div id="login-form">
+		<h3>Perfil</h3>
+		<a href="{% url 'vista_nuevaclave' %}" class="btn btn-primary btn-lg btn-block">Cambiar clave</a>
+		<a href="{% url 'vista_editarperfil' %}" class="btn btn-primary btn-lg btn-block">Editar perfil</a>
+		<a href="{% url 'vista_bandejaentrada' %}" class="btn btn-primary btn-lg btn-block">Bandeja de entrada</a>
+		<a href="#" class="btn btn-primary btn-lg btn-block">Pagar subscripción</a>
+	</div>
+</div>	
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'template.html' %}
+{% block title %} Editar perfil | MiPega.cl {% endblock %}
+{% block contenido %}
+<div id="content">
+	<form action="" method="post" id="login-form">
+		<h3>Editar perfil</h3>
+        {% csrf_token %}
+        {{form_socio}}
+        {{form_sociol}}
+        {{form_estudio1}}
+        {{form_estudio2}}
+        {{form_explab}}
+        {{form_hab}}
+        <input class="btn btn-primary" type="submit" value="Guardar cambios">
+    </form>   
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+{% block title %} Bandeja de entrada | MiPega.cl {% endblock %}
+{% block contenido %}
+<div id="content">
+	<div id="login-form">
+		<h3>Bandeja de entrada</h3>
+		<table class="table table-striped">
+			<tr>
+				<th>Fecha</th>
+				<th>Mensaje</th>
+				<th>Contacto</th>
+				<th>Medio de contacto</th>
+			</tr>
+			{% for mensaje in mensajes %}
+			<tr>
+				<th>{{mensaje.fecha}}</th>
+				<th>{{mensaje.contenido}}</th>
+				<th>{{mensaje.nombre_contacto}}</th>
+				<th>{{mensaje.medio_contacto}}</th>
+			</tr>
+			{% endfor %}	
+		</table>	
+	</div>
+</div>	
+{% endblock %}

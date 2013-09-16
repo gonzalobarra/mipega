@@ -58,7 +58,7 @@
         <div class="sesion-buttons">
             {% if user.is_authenticated and user.is_active%}
                 <h5>Bienvenido {{user.username}}!  </h5>
-                <a href="{% url 'vista_logout' %}" class="btn btn-mini">Cerrar Sesión</a><a href="{% url 'vista_editarperfil' %}" class="btn btn-mini">Perfil</a>
+                <a href="{% url 'vista_logout' %}" class="btn btn-mini">Cerrar Sesión</a><a href="{% url 'vista_perfil' %}" class="btn btn-mini">Perfil</a>
             {% else %}
                 <a href="{% url 'vista_login' %}">Ingresar</a>
                 <a href="{% url 'vista_registro' %}">Registrarse</a>

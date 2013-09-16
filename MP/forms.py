@@ -108,3 +108,8 @@ class LoginForm(forms.Form):
     
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+
+class cambiarClave(forms.Form):
+    ClaveAntigua = forms.CharField(max_length=20,  widget= forms.PasswordInput,label='Clave antigua')
+    ClaveNueva = forms.CharField(max_length=20,  widget= forms.PasswordInput,label='Clave nueva:')
+    ClaveRepetida = forms.CharField(max_length=20, widget= forms.PasswordInput,label='Clave nueva (confirmación):')    
