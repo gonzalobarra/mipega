@@ -103,8 +103,6 @@
     $('#search').click(function(){
         var parametros = $('#id_form').serialize();
         parametros["cargo"] = "ads~asd";
-        alert($('#id_form').serialize());
-        //alert(parametros.COLOR);
         $.ajax({
             url: "{% url 'busqueda_rapida' %}",
             data: parametros,
@@ -112,7 +110,6 @@
             type: 'post'
             
         }).done(function(data){
-            /*aca lo que haces con la respuesta de la funcion*/
             $('.result').html(data);
             $(".media").show();
             $(".result").animate({
@@ -121,12 +118,9 @@
             }, 500);
             $("#indice").show();
         }).fail(function(){
-            /*aca lo que pasa si la funcion falla*/
             $.ambiance({message: "Error al hacer la busqueda", title:"Error",
                         type: "error",timeout:4,width:200,});
-            
         }); 
     });
-    // {% url 'busqueda_rapida' %}
 </script>
 {% endblock %}
