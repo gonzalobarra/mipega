@@ -14,6 +14,7 @@ from django.contrib.auth.models import User
 from MP.models import *
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
+import datetime
 
 def index_view(request):
 	messages.success(request, 'plugin de mensajes final final.')
@@ -23,22 +24,62 @@ def index_view(request):
 	ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos}
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
+def detalle_socio_view(request, id_socio):
+	socios = Socio.objects.all()
+
 def busqueda_rapida_view(request):
 	form = BuscaRapidaForm(request.POST or None)
+	mensaje = ""
+	ano_actual = datetime.datetime.now().year
 	#falta implementar aqui la busqueda rapida, ya llegan los valores del form
 	if request.method == "POST":
-		#mensaje = form.is_valid()
-		cargo = request.POST['cargo']
-		edad  = request.POST['edad']
-		sexo  = request.POST['optionsRadios']
-		localidad = request.POST['localidad']
-
-		ides = []
-
 		socios = Socio.objects.all()
-
-
-		resultados_busqueda = [{'titulo':"asd", 'descripcion':"loremasd"},{'titulo':"asd2", 'descripcion':"loremasd2"}]
+		if "cargo" in request.POST:
+			ids_cargos = request.POST.getlist('cargo')
+			id_socios_en_cargo = EmpleoBuscado.objects.filter(cargo_id__in=ids_cargos).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_cargo)
+		if "localidad" in request.POST:
+			ids_localidades = request.POST.getlist('localidad')
+			mensaje = ids_localidades
+			id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_localidad)
+		edad  = request.POST['edad']
+		menor = 0
+		mayor = ano_actual
+		if edad == "1":
+			menor = ano_actual - 24
+			mayor = ano_actual - 18
+		if edad == "2":
+			menor = ano_actual - 29
+			mayor = ano_actual - 24
+		if edad == "3":
+			menor = ano_actual - 37
+			mayor = ano_actual - 30
+		if edad == "4":
+			menor = ano_actual - 44
+			mayor = ano_actual - 37
+		if edad == "5":
+			menor = ano_actual - ano_actual
+			mayor = ano_actual - 44
+		socios = socios.exclude(ano_nacimiento__lt=menor)
+		socios = socios.exclude(ano_nacimiento__gt=mayor)
+		sexo  = request.POST['optionsRadios']
+		if sexo != "i":
+			socios = socios.filter(sexo=sexo)
+		resultados_busqueda = []
+		for socio in socios:
+			str_coment = " año nacimiento "+ str(socio.ano_nacimiento)
+			element = {'id':socio.id, 'titulo':socio.usuario, 'descripcion':str_coment}
+			resultados_busqueda.append(element)
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
+		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
+	else:
+		socios = Socio.objects.all()
+		resultados_busqueda = []
+		for socio in socios:
+			element = {'id':socio.id, 'titulo':socio.usuario, 'descripcion':socio.comentario}
+			resultados_busqueda.append(element)
+		#resultados_busqueda = [{'id':1,'titulo':"asd", 'descripcion':"loremasd"},{'id':2,'titulo':"asd2", 'descripcion':"loremasd2"}]
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 

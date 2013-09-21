@@ -1,3 +1,9 @@
+{% ifequal cant_resultados 0 %}
+<script type="text/javascript">
+      $.ambiance({message: "No hay resultados para los valores buscados.", title:"Alerta",
+                  type: "warning",timeout:4,width:300,});  
+</script>
+{% else %}
 <a id="indice" href="#" style="display: inline;">Resultados totales ({{cant_resultados}})</a>
 <div class="media">
   {% for r in resultados_busqueda %}
@@ -5,17 +11,18 @@
       <img class="media-object" src="{{STATIC_URL}}img/avatar/avatar.png">
     </a>-->
     <div class="media-body">
-        <h4 class="media-heading"><a href="#">{{r.titulo}}</a></h4>
+        <h4 class="media-heading"><a href="{% url 'vista_detalle_socio' r.id %}">{{r.titulo}}</a></h4>
         {{r.descripcion}}
     </div>
     <br />
   {% endfor %}
 </div>
 <script type="text/javascript">
+    $.ambiance({message: "Se han encontrado {{cant_resultados}} resultados para esta busqueda.",type:"success",timeout:4,width:300,});
     var mensaje = "{{mensaje}}";
     if (mensaje != ""){
       $.ambiance({message: mensaje, title:"Debug",
-                  type: "info",timeout:4,width:200,});  
+                  type: "info",timeout:4,width:200,});
     }
-    
 </script>
+{% endifequal %}

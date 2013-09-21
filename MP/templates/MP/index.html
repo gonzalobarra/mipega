@@ -31,12 +31,12 @@
                     <div class="form-group">
                         <p class="help-block">Rango etario:</p>
                         <select name="edad" class="form-control">
-                            <option>Indiferente</option>
-                            <option>18-22</option>
-                            <option>22-29</option>
-                            <option>30-37</option>
-                            <option>37-44</option>
-                            <option>44+</option>
+                            <option value="-">Indiferente</option>
+                            <option value="1">18-24</option>
+                            <option value="2">24-29</option>
+                            <option value="3">30-37</option>
+                            <option value="4">37-44</option>
+                            <option value="5">44+</option>
                         </select>
                         
                     </div>
@@ -45,19 +45,19 @@
                             <p class="help-block">Sexo:</p>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="m" checked>
                                     Masculino
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="f">
                                     Femenino
                                 </label>
                             </div>                            
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="i">
                                     Indiferente
                                 </label>
                             </div>
@@ -101,7 +101,9 @@
 {% block SCRIPT %}
 <script type="text/javascript">
     $('#search').click(function(){
-        var parametros = $('#id_form').serialize(); 
+        var parametros = $('#id_form').serialize();
+        parametros["cargo"] = "ads~asd";
+        alert($('#id_form').serialize());
         //alert(parametros.COLOR);
         $.ajax({
             url: "{% url 'busqueda_rapida' %}",
