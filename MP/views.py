@@ -73,15 +73,6 @@ def busqueda_rapida_view(request):
 			resultados_busqueda.append(element)
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
-	else:
-		socios = Socio.objects.all()
-		resultados_busqueda = []
-		for socio in socios:
-			element = {'id':socio.id, 'titulo':socio.usuario, 'descripcion':socio.comentario}
-			resultados_busqueda.append(element)
-		#resultados_busqueda = [{'id':1,'titulo':"asd", 'descripcion':"loremasd"},{'id':2,'titulo':"asd2", 'descripcion':"loremasd2"}]
-		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
-		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 
 def pruebita(request):
 	form = BuscaRapidaForm(request.POST or None)
