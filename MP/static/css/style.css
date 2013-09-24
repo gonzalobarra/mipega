@@ -206,45 +206,6 @@ div#last, div#escolar1 {
   width: 50%;
   margin: 20px auto;
 }
-div#preference_pane #contact {
-  /*
-        min-height: 200px;
-        div{
-            float: left;
-            padding-left: 20px;
-        }
-
-        label{
-            float: left;
-            clear: both;
-            margin-right: 100%;
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            margin-left: 10%;
-        }
-        .form-control{
-            margin-left: 10%;
-            float: left;
-        }
-        label[for="id_sexo"],label[for="id_estado_civil"]{
-            margin-left: 12%;
-        }
-        label[for="id_tiene_hijos"]{
-            width: 100%;
-            margin: 0px auto;
-        }
-
-        Select.form-control{
-            margin-left:12%;
-            width: 200px;        
-        }
-        input[type="checkbox"]{
-            margin-top: 15px;
-             
-        }*/
-
-}
 div#surprise-message {
   width: 100%;
   height: 0px;
@@ -270,25 +231,26 @@ div#surprise-message .panel panel-body a {
   bottom: 0px;
   margin-top: 120px;
 }
-div#study_pane #escolar {
-  min-height: 200px;
-  /*#lefty{
-            margin-left: 18px;
-        }*/
-
+div#_escolar1 {
+  margin: 20px auto;
 }
-div#study_pane #escolar div {
+#id_comentario {
+  width: 100%;
+  min-width: 465px;
+}
+div#study_pane h2, div#other_pane h2 {
+  margin: 20px auto;
+  width: 50%;
+}
+div#study_pane #escolar, div#other_pane #escolar {
+  min-height: 200px;
+  overflow: auto;
+}
+div#study_pane #escolar div, div#other_pane #escolar div {
   float: left;
   padding-left: 20px;
 }
-div#study_pane #escolar #ingreso {
-  width: 45%;
-}
-div#study_pane #escolar #egreso {
-  width: 40%;
-  margin-left: 25px;
-}
-div#study_pane #escolar label {
+div#study_pane #escolar label, div#other_pane #escolar label {
   float: left;
   clear: both;
   margin-right: 100%;
@@ -297,17 +259,24 @@ div#study_pane #escolar label {
   white-space: nowrap;
   margin-left: 10%;
 }
-div#study_pane #escolar .form-control {
+div#study_pane #escolar .form-control, div#other_pane #escolar .form-control {
   margin-left: 10%;
   float: left;
 }
-div#study_pane #escolar Select.form-control {
+div#study_pane #escolar textarea.form-control, div#other_pane #escolar textarea.form-control {
+  margin-left: 15%;
+}
+div#study_pane #escolar Select.form-control, div#other_pane #escolar Select.form-control {
   margin-left: 10%;
   width: 200px;
 }
 div#other_pane #habilidades {
   min-height: 100px;
   width: 100%;
+}
+div#other_pane #habilidades div {
+  float: left;
+  padding-left: 20px;
 }
 div#other_pane #habilidades .form_group {
   float: left;
@@ -316,6 +285,9 @@ div#other_pane #habilidades .form_group {
 }
 div#other_pane #habilidades .form_group + .form_group {
   padding-left: 20px;
+}
+div#other_pane #habilidades #alone {
+  padding-left: 40px;
 }
 div#other_pane #habilidades label {
   float: left;

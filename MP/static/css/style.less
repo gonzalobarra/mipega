@@ -239,46 +239,7 @@ div#last,div#escolar1{
     width: 50%;
     margin: 20px auto;
 }
-div#preference_pane{
 
-    #contact{/*
-        min-height: 200px;
-        div{
-            float: left;
-            padding-left: 20px;
-        }
-
-        label{
-            float: left;
-            clear: both;
-            margin-right: 100%;
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            margin-left: 10%;
-        }
-        .form-control{
-            margin-left: 10%;
-            float: left;
-        }
-        label[for="id_sexo"],label[for="id_estado_civil"]{
-            margin-left: 12%;
-        }
-        label[for="id_tiene_hijos"]{
-            width: 100%;
-            margin: 0px auto;
-        }
-
-        Select.form-control{
-            margin-left:12%;
-            width: 200px;        
-        }
-        input[type="checkbox"]{
-            margin-top: 15px;
-             
-        }*/
-    }
-}
 div#surprise-message{
 
     width: 100%;
@@ -310,24 +271,30 @@ div#surprise-message{
     }
 }
 
-div#study_pane{
+div#_escolar1{
+    margin:20px auto;
+}
+#id_comentario{
+    
+    width:100%;
+    min-width: 465px;
+}
 
+div#study_pane,div#other_pane{
+
+    h2{
+        margin: 20px auto;
+        width: 50%;
+    }
+    
     #escolar{
         min-height: 200px;
+        overflow: auto;
         div{
             float: left;
             padding-left: 20px;
-        }
-        /*#lefty{
-            margin-left: 18px;
-        }*/
-        #ingreso{
-            width: 45%;        
-        }
-        #egreso{
-            width: 40%; 
-            margin-left: 25px;   
-        }
+        }        
+        
         label{
             float: left;
             clear: both;
@@ -341,7 +308,9 @@ div#study_pane{
             margin-left: 10%;
             float: left;
         }        
-
+        textarea.form-control{
+            margin-left: 15%;
+        }
         Select.form-control{
             margin-left:10%;
             width: 200px;        
@@ -349,11 +318,12 @@ div#study_pane{
     }
 }
 
-div#other_pane{
-
-
-    
+div#other_pane{    
     #habilidades{
+        div{
+            float: left;
+            padding-left: 20px;
+        }
         min-height: 100px;        
         width: 100%;
         
@@ -365,6 +335,9 @@ div#other_pane{
         .form_group + .form_group {
             padding-left: 20px;
         }
+        #alone{
+            padding-left: 40px;
+        }
         label{
             float: left;
             clear: both;
@@ -385,6 +358,8 @@ div#other_pane{
         }       
     }
 }
+
+
 
 .form-control{
     display: inline-block;
@@ -499,3 +474,5 @@ ul {
         } 
     }
 }
+
+

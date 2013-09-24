@@ -40,23 +40,7 @@ $(document).ready(function() {
         "Ahora ingrese los datos de sus estudios escolares y superiores... esta casi listo <br>",
         "Finalmente, debe ingresar los datos referentes a su experiencia laboral y ya está! <br>"
     ];
-    /*
-    var offset = $(".alert").offset().top;
-    var winOffset = $('html').offset().top;    
-    //OJO! SE USA EN TODOS LOS DOCUMENTOS ASI QUE CUIDADO!
-    $(window).scroll(function(){
-        alert($(window).position());
-        //si la posicion vertical de la laerta y la ventana son las mismas
-        if($(window).offset().top - $(".alert").offset().top < 0){
-            
-            $(".alert").css("position","fixed");
-            $(".alert").css("top","0px");   
-                 
-        }else if (($(window).offset().top - offset) < 0){
-            $(".alert").css("position","relative");
-        }
-    });
-*/
+    
     $(".form-pane:not(.active-pane)").hide();
     $("a#prev").attr("disabled","disabled");
     $(".alert > h4").html(titulos[current]);
@@ -73,12 +57,13 @@ $(document).ready(function() {
             $("a#prev").removeAttr("disabled");    
         }
         if(current == 3){
-            //$("a#next").attr("disabled","disabled"); 
+            
             $("a#next").fadeOut();
             $("[value=Registrar]").fadeIn();          
         }                
         
     });
+    //Se manejan los botones de acceso a las paginas de registro
     $("#controls > a#prev").click(function(event){
         event.preventDefault();
         $(".form-pane:nth-of-type("+(current+1)+")").removeClass("active-pane").fadeOut();
@@ -87,7 +72,7 @@ $(document).ready(function() {
         $(".alert > h4").html(titulos[current]);
         $(".alert > p:first").html(textos[current]);
         if(current < 4){
-            //$("a#next").removeAttr("disabled");
+            
             $("a#next").fadeIn();
             $("[value=Registrar]").fadeOut();    
         }
@@ -95,13 +80,15 @@ $(document).ready(function() {
             $("a#prev").attr("disabled","disabled");           
         }
     });
-    
+    //Se muestra la ayuda que corresponda
     $("#hide-alert").click(function(event){
         event.preventDefault();
         $(".alert").alert('close');
         $("#content").css("position","relative");
     });
 
+    
+    //Se usan los tour de ayuda en cada pagina
     $("#help").click(function(event){
         event.preventDefault();
         

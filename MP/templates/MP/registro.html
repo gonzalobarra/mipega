@@ -1,12 +1,7 @@
 {% extends 'template.html' %}
 {% block title %} Registro de usuario | MiPega.cl {% endblock %}
 {% block contenido %}
-<script type="text/javascript">
-$(document).ready(function(){
 
-    alert("asd");
-});
-</script>
 <div id="surprise-message">
     <div class="panel panel-warning">
         <div class="panel-heading">
@@ -20,7 +15,7 @@ $(document).ready(function(){
         </div>
     </div>
 </div>
-<div class="alert alert-block alert-info fade in">        
+<div class="alert alert-block alert-info fade in" id="slide-alert">        
     <h4>Ayuda para la pagina!</h4>
     <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
     <p>
@@ -94,7 +89,7 @@ $(document).ready(function(){
                                 <label for="id_estado_civil">Estado civil:</label>
                                 {{form_socio.estado_civil}}
                             </div>
-                            <div class="form_group personal" style="margin: 5px 110px;>
+                            <div class="form_group personal" style="margin: 5px 110px;">
                                 <label for="id_nacionalidad">Nacionalidad:</label>
                                 {{form_socio.nacionalidad}}
                             </div>
@@ -125,7 +120,7 @@ $(document).ready(function(){
 
             <div class="row form-pane" id="study_pane">
                 <div class="col-md-6 col-md-offset-2">                    
-                    <h2>Enseñanza escolar</h2>
+                    <h2 id="seccion_escolar">Enseñanza escolar</h2>
                     <div id="escolar">
                         <div id="escolar1">
                             <div class="form_group" id="lefty">
@@ -144,7 +139,7 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </div>
-                    <h2>Estudios superiores</h2>
+                    <h2 id="seccion_superiores">Estudios superiores</h2>
                     <div id="escolar">
                         <div id="escolar1">
                             <div class="form_group" id="lefty">
@@ -169,9 +164,9 @@ $(document).ready(function(){
             <div class="row form-pane" id="other_pane">
                 <div class="col-md-6 col-md-offset-2">
 
-                    <h2>Experiencia laboral</h2>
+                    <h2 id="seccion_laboral">Experiencia laboral</h2>
                     <div id="escolar">
-                        <div id="escolar1">
+                        <div id="_escolar1">
                             <div class="form_group" id="ingreso">
                                 <label for="id_ano_ingreso">Desde:</label>
                                 {{form_explab.ano_ingreso}}
@@ -189,15 +184,11 @@ $(document).ready(function(){
                             <div class="form_group">
                                 <label for="id_cargo">Cargo:</label>
                                 {{form_explab.cargo}}
-                            </div>
-                            <div class="form_group">
-                                <label for="id_cargo">Comentario:</label>
-                                {{form_socio.comentario}}
-                            </div>
-                        </div>
+                            </div>                            
+                        </div>                        
                     </div>
 
-                    <h2>Otras habilidades</h2>
+                    <h2 id="seccion_habilidades">Otras habilidades</h2>
                     <div id="habilidades">
                         <div class="form_group">
                             <label for="id_nivel">Nivel:</label>
@@ -207,6 +198,10 @@ $(document).ready(function(){
                             <label for="id_habilidad">Habilidad:</label>
                             {{form_hab.habilidad}}
                         </div>
+                        <div class="form_group" id="alone">
+                            <label for="id_comentario">Comentario:</label>
+                            {{form_socio.comentario}}
+                        </div>
                     </div>
                     
                 </div>
@@ -214,7 +209,7 @@ $(document).ready(function(){
             <div id="controls">
                 <a id="prev" class="btn btn-success" href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
                 <a id="next" class="btn btn-success" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                <input class="btn btn-primary" type="submit" value="Registrar">
+                <input id="final" class="btn btn-primary" type="submit" value="Registrar">
             </div>               
         </form>   
     </div>
