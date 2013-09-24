@@ -190,10 +190,20 @@ input[value="Registrar"]{
         margin: 5px;
     }
 }
-div#session_pane,div#last{
-    width:50%;
-    margin: 10px auto;
 
+div#session_pane,div#last{
+    /*width:50%;*/
+    
+    h1{
+        margin: 20px auto;
+        width: 50%;
+    }
+    
+    #session{
+        margin: 10px auto;
+        width:50%;
+        overflow: auto;
+    }
     label{
         float: left;
         clear: both;
@@ -207,11 +217,31 @@ div#session_pane,div#last{
         margin-left: 18%;
         float: left;
     }    
+    
+    #contact, #personal{
+        min-height: 200px;
+        div{
+            float: left;
+            padding-left: 20px;
+        }        
+               
+
+        .form-control{            
+            width: 200px;        
+        }       
+        select.form-control{
+            margin-left: 18%;
+        }
+    }
 }
 
-div#user_pane, div#session_pane{
+div#last,div#escolar1{
+    width: 50%;
+    margin: 20px auto;
+}
+div#preference_pane{
 
-    #contact{
+    #contact{/*
         min-height: 200px;
         div{
             float: left;
@@ -246,7 +276,7 @@ div#user_pane, div#session_pane{
         input[type="checkbox"]{
             margin-top: 15px;
              
-        }
+        }*/
     }
 }
 div#surprise-message{
@@ -263,8 +293,14 @@ div#surprise-message{
         margin: 100px auto;
         width: 60%;
         height: 350px;
+        
         panel-body{
             height: 100%;
+
+            p{
+                font-size: 15px;
+            }
+            
             a{
                 position: relative;
                 bottom: 0px;
@@ -274,7 +310,7 @@ div#surprise-message{
     }
 }
 
-div#experience_pane{
+div#study_pane{
 
     #escolar{
         min-height: 200px;
@@ -282,9 +318,9 @@ div#experience_pane{
             float: left;
             padding-left: 20px;
         }
-        #lefty{
+        /*#lefty{
             margin-left: 18px;
-        }
+        }*/
         #ingreso{
             width: 45%;        
         }
@@ -315,6 +351,8 @@ div#experience_pane{
 
 div#other_pane{
 
+
+    
     #habilidades{
         min-height: 100px;        
         width: 100%;

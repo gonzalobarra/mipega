@@ -35,7 +35,7 @@ $(document).ready(function(){
             <div class="row form-pane active-pane" id="session_pane"> <!-- PANEL DE PERFIL -->
                 <div class="col-md-6 col-md-offset-2">
                     <h1 id="seccion_cuenta">Cuenta</h1><!-- CUENTA DE MIPEGA -->
-                    <div id="contact">
+                    <div id="session">
                         <div class="form_group">
                             <label for="id_username">RUT:</label>
                             {{form_user.username}}
@@ -74,27 +74,27 @@ $(document).ready(function(){
                     </div>
 
                     <h1 id="seccion_personal">Personal</h1><!-- INFORMACIÓN PERSONAL -->
-                    <div id="contact">
+                    <div id="personal">
                         <div id="contact1">
-                            <div class="form_group personal">
+                            <div class="form_group personal" style="width:270px;">
                                 <label for="id_ano_nacimiento">Año nacimiento:</label>
                                 {{form_socio.ano_nacimiento}}
                             </div>
-                            <div class="form_group personal" style="width:200px">
+                            <div class="form_group personal">
                                 <label for="id_tiene_hijos">Hijos:</label>
                                 {{form_socio.tiene_hijos}}
                             </div>
                         </div>
                         <div id="contact2">
-                            <div class="form_group personal">
+                            <div class="form_group personal" style="width:270px;">
                                 <label for="id_sexo">Sexo:</label>
                                 {{form_socio.sexo}}
                             </div>
-                            <div class="form_group personal">
+                            <div class="form_group personal" style="width:255px;">
                                 <label for="id_estado_civil">Estado civil:</label>
                                 {{form_socio.estado_civil}}
                             </div>
-                            <div class="form_group personal">
+                            <div class="form_group personal" style="margin: 5px 110px;>
                                 <label for="id_nacionalidad">Nacionalidad:</label>
                                 {{form_socio.nacionalidad}}
                             </div>
@@ -102,7 +102,7 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
-            <div class="row form-pane" id="user_pane">
+            <div class="row form-pane" id="preference_pane">
                 <div class="col-md-6 col-md-offset-2">
                     
                     <h1>¿Qué busca?</h1><!-- ASPIRACIONES -->
@@ -123,7 +123,7 @@ $(document).ready(function(){
                 </div>
             </div>
 
-            <div class="row form-pane" id="experience_pane">
+            <div class="row form-pane" id="study_pane">
                 <div class="col-md-6 col-md-offset-2">                    
                     <h2>Enseñanza escolar</h2>
                     <div id="escolar">

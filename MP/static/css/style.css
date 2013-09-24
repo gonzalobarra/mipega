@@ -152,8 +152,17 @@ input[value="Registrar"] {
   margin: 5px;
 }
 div#session_pane, div#last {
+  /*width:50%;*/
+
+}
+div#session_pane h1, div#last h1 {
+  margin: 20px auto;
   width: 50%;
+}
+div#session_pane #session, div#last #session {
   margin: 10px auto;
+  width: 50%;
+  overflow: auto;
 }
 div#session_pane label, div#last label {
   float: left;
@@ -168,42 +177,73 @@ div#session_pane .form-control, div#last .form-control {
   margin-left: 18%;
   float: left;
 }
-div#user_pane #contact, div#session_pane #contact {
+div#session_pane #contact,
+div#last #contact,
+div#session_pane #personal,
+div#last #personal {
   min-height: 200px;
 }
-div#user_pane #contact div, div#session_pane #contact div {
+div#session_pane #contact div,
+div#last #contact div,
+div#session_pane #personal div,
+div#last #personal div {
   float: left;
   padding-left: 20px;
 }
-div#user_pane #contact label, div#session_pane #contact label {
-  float: left;
-  clear: both;
-  margin-right: 100%;
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  margin-left: 10%;
-}
-div#user_pane #contact .form-control, div#session_pane #contact .form-control {
-  margin-left: 10%;
-  float: left;
-}
-div#user_pane #contact label[for="id_sexo"],
-div#session_pane #contact label[for="id_sexo"],
-div#user_pane #contact label[for="id_estado_civil"],
-div#session_pane #contact label[for="id_estado_civil"] {
-  margin-left: 12%;
-}
-div#user_pane #contact label[for="id_tiene_hijos"], div#session_pane #contact label[for="id_tiene_hijos"] {
-  width: 100%;
-  margin: 0px auto;
-}
-div#user_pane #contact Select.form-control, div#session_pane #contact Select.form-control {
-  margin-left: 12%;
+div#session_pane #contact .form-control,
+div#last #contact .form-control,
+div#session_pane #personal .form-control,
+div#last #personal .form-control {
   width: 200px;
 }
-div#user_pane #contact input[type="checkbox"], div#session_pane #contact input[type="checkbox"] {
-  margin-top: 15px;
+div#session_pane #contact select.form-control,
+div#last #contact select.form-control,
+div#session_pane #personal select.form-control,
+div#last #personal select.form-control {
+  margin-left: 18%;
+}
+div#last, div#escolar1 {
+  width: 50%;
+  margin: 20px auto;
+}
+div#preference_pane #contact {
+  /*
+        min-height: 200px;
+        div{
+            float: left;
+            padding-left: 20px;
+        }
+
+        label{
+            float: left;
+            clear: both;
+            margin-right: 100%;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-left: 10%;
+        }
+        .form-control{
+            margin-left: 10%;
+            float: left;
+        }
+        label[for="id_sexo"],label[for="id_estado_civil"]{
+            margin-left: 12%;
+        }
+        label[for="id_tiene_hijos"]{
+            width: 100%;
+            margin: 0px auto;
+        }
+
+        Select.form-control{
+            margin-left:12%;
+            width: 200px;        
+        }
+        input[type="checkbox"]{
+            margin-top: 15px;
+             
+        }*/
+
 }
 div#surprise-message {
   width: 100%;
@@ -222,29 +262,33 @@ div#surprise-message .panel {
 div#surprise-message .panel panel-body {
   height: 100%;
 }
+div#surprise-message .panel panel-body p {
+  font-size: 15px;
+}
 div#surprise-message .panel panel-body a {
   position: relative;
   bottom: 0px;
   margin-top: 120px;
 }
-div#experience_pane #escolar {
+div#study_pane #escolar {
   min-height: 200px;
+  /*#lefty{
+            margin-left: 18px;
+        }*/
+
 }
-div#experience_pane #escolar div {
+div#study_pane #escolar div {
   float: left;
   padding-left: 20px;
 }
-div#experience_pane #escolar #lefty {
-  margin-left: 18px;
-}
-div#experience_pane #escolar #ingreso {
+div#study_pane #escolar #ingreso {
   width: 45%;
 }
-div#experience_pane #escolar #egreso {
+div#study_pane #escolar #egreso {
   width: 40%;
   margin-left: 25px;
 }
-div#experience_pane #escolar label {
+div#study_pane #escolar label {
   float: left;
   clear: both;
   margin-right: 100%;
@@ -253,11 +297,11 @@ div#experience_pane #escolar label {
   white-space: nowrap;
   margin-left: 10%;
 }
-div#experience_pane #escolar .form-control {
+div#study_pane #escolar .form-control {
   margin-left: 10%;
   float: left;
 }
-div#experience_pane #escolar Select.form-control {
+div#study_pane #escolar Select.form-control {
   margin-left: 10%;
   width: 200px;
 }
