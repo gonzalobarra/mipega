@@ -101,7 +101,7 @@ def registro_view(request):
 			else:
 				if form_socio.is_valid():
 					try:
-						socio = Socio(usuario=form_socio.cleaned_data['usuario'], comentario=form_socio.cleaned_data['comentario'], nacionalidad=form_socio.cleaned_data['nacionalidad'],telefono=form_socio.cleaned_data['telefono'], web=form_socio.cleaned_data['web'], ano_nacimiento=form_socio.cleaned_data['ano_nacimiento'], sexo=form_socio.cleaned_data['sexo'], tiene_hijos=form_socio.cleaned_data['tiene_hijos'], estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], user=usuario_inst) 
+						socio = Socio(usuario=form_socio.cleaned_data['usuario'], comentario=form_socio.cleaned_data['comentario'], comentario_est=form_socio.cleaned_data['comentario_est'],nacionalidad=form_socio.cleaned_data['nacionalidad'],telefono=form_socio.cleaned_data['telefono'], web=form_socio.cleaned_data['web'], ano_nacimiento=form_socio.cleaned_data['ano_nacimiento'], sexo=form_socio.cleaned_data['sexo'], tiene_hijos=form_socio.cleaned_data['tiene_hijos'], estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], user=usuario_inst) 
 						socio.save()
 						socio_inst = Socio.objects.get(user__username = nombre_usuario)
 					except:

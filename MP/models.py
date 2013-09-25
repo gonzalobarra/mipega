@@ -79,6 +79,7 @@ class Socio(models.Model):
 	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=10, choices=tipoContrato)
 	nacionalidad	  = models.CharField('Nacionalidad',max_length=10, choices=nacionalidad)
 	comentario        = models.CharField('Comentario' ,max_length=512, null=True, blank=True)
+	comentario_est	  = models.CharField('Comentario' ,max_length=512, null=True, blank=True)
 	
 	user = models.OneToOneField(User)
 
