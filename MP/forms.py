@@ -113,4 +113,12 @@ class LoginForm(forms.Form):
 class cambiarClave(forms.Form):
     ClaveAntigua = forms.CharField(max_length=20,  widget= forms.PasswordInput,label='Clave antigua')
     ClaveNueva = forms.CharField(max_length=20,  widget= forms.PasswordInput,label='Clave nueva:')
-    ClaveRepetida = forms.CharField(max_length=20, widget= forms.PasswordInput,label='Clave nueva (confirmación):')    
+    ClaveRepetida = forms.CharField(max_length=20, widget= forms.PasswordInput,label='Clave nueva (confirmación):')   
+
+class EmpleoBuscadoForm(forms.ModelForm):
+    class Meta:
+        model = EmpleoBuscado
+        fields = ('cargo',)
+        widgets = {
+            'cargo': forms.Select(attrs={'class':'form-control'}),
+        }     
