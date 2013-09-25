@@ -25,7 +25,29 @@ def index_view(request):
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
 def detalle_socio_view(request, id_socio):
-	socios = Socio.objects.all()
+	socio = Socio.objects.get(pk =id_socio)
+	edad = datetime.datetime.today().year - int(socio.ano_nacimiento)
+	localidades = Localidad.objects.filter(id__in = LocalidadConSocio.objects.filter(socio = socio).values_list('localidad',flat=True))
+	cargos = Cargo.objects.filter(id__in=EmpleoBuscado.objects.filter(socio = socio).values_list('cargo',flat=True))
+	estudios_escolares = Estudios.objects.filter(socio = socio).filter(titulo__tipo = "t")
+	estudios_superiores = Estudios.objects.filter(socio = socio).exclude(titulo__tipo = "t")
+	habilidades = OtrasHabilidades.objects.filter(socio=socio)
+	experiencia = ExperienciaLaboral.objects.filter(socio=socio)
+	if estudios_escolares or estudios_superiores:
+		estudios = True
+	else:
+		estudios = False
+	ctx = {'socio': socio, 'edad':edad, 'localidades':localidades, 
+		   'cargos':cargos, 'estudios_superiores':estudios_superiores, 
+		   'estudios_escolares':estudios_escolares, 'estudios':estudios,
+		   'experiencia':experiencia, 'habilidades':habilidades}
+	return render_to_response('MP/detalle.html',ctx,context_instance=RequestContext(request))
+
+def enviar_mensaje_view(request):
+
+	#enviar mendaje
+	return HttpResponse("enviado")
+	#return HttpResponse("error")  ##retornar error si no se pudo enviar el mensaje, si se envio correctamente retornar enviado
 
 def busqueda_rapida_view(request):
 	form = BuscaRapidaForm(request.POST or None)
