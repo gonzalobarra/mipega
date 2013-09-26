@@ -168,7 +168,7 @@
                         </select>
                     </div>                    
                 </fieldset>
-                <button class="btn btn-default" id="search"><strong>Buscar</strong></button>
+                <button class="btn btn-default" id="search">Buscar</button>
             </form>
         </div>
     </div>

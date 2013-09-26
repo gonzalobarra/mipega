@@ -143,6 +143,7 @@ $(document).ready(function() {
         $("li#nacionalidad").html("<img class='nac_image' src='../../../static/img/chile.png' />");
     }
     
+        
 });
 
 

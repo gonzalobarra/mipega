@@ -518,3 +518,37 @@ ul {
   font-size: 15px;
   text-align: justify;
 }
+/*      BUSQUEDA.HTML       */
+.busqueda.avanzada {
+  margin-left: 10%;
+  width: 80%;
+}
+.busqueda.avanzada fieldset {
+  padding-left: 20px;
+}
+.busqueda.avanzada fieldset#radios {
+  margin-left: 15%;
+  width: 70%;
+}
+.busqueda.avanzada fieldset#last-search {
+  width: 76%;
+  margin-left: 12%;
+}
+.busqueda.avanzada fieldset:not(:first-child) {
+  margin-top: 15px;
+}
+.busqueda.avanzada .form-group {
+  display: inline-block;
+  width: 200px;
+  margin-left: 8px;
+  margin-right: 30px;
+}
+.busqueda.avanzada .form-group#sex-group {
+  width: 300px;
+}
+.busqueda.avanzada .form-group .chosen-container {
+  width: 100% !important;
+}
+.busqueda.avanzada #search {
+  float: right;
+}
