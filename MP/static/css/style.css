@@ -518,6 +518,39 @@ ul {
   font-size: 15px;
   text-align: justify;
 }
+#detail_content .contact_form {
+  background-color: #52585C;
+  color: #D0D4D6;
+  padding: 5px;
+  border: solid 1px;
+  margin: 5px;
+}
+#detail_content .contact_form input, #detail_content .contact_form textarea {
+  background-color: #52585C;
+  color: #D0D4D6;
+  padding: 5px;
+  border: solid 0px;
+  margin: 5px;
+  min-width: 250px;
+  border-bottom: solid 1px;
+}
+#detail_content .contact_form input:hover, #detail_content .contact_form textarea:hover {
+  background-color: #66696B;
+}
+#detail_content .contact_form input:focus, #detail_content .contact_form textarea:focus {
+  border: 0px;
+  border-bottom: solid 1px;
+  outline: 0px;
+}
+#detail_content .contact_form textarea {
+  width: 100%;
+}
+#detail_content #enviarPM {
+  float: right;
+  color: #444444;
+  font-weight: bold;
+  margin-right: 5px;
+}
 /*      BUSQUEDA.HTML       */
 .busqueda.avanzada {
   margin-left: 10%;

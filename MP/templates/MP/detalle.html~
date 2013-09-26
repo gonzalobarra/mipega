@@ -54,6 +54,7 @@
     {% if estudios  %}
     <!--<div id="wrapper">-->
         <h3>Estudios</h3>
+        <hr>
         {% if estudios_escolares %}
             <h4>Estudios escolares</h4>
             {% for est in estudios_escolares %}
@@ -71,6 +72,7 @@
     {% endif %}
     <!--<div id="wrapper">-->
         <h3>Experiencia</h3>
+        <hr>
         <h4>Experiencia Laboral</h4>
         {% for exp in experiencia %}
             Trabajo como {{exp.cargo.nombre}} en {{exp.rubro.nombre}} [{{exp.ano_ingreso}}-{{exp.ano_egreso}}]<br />
@@ -83,8 +85,16 @@
     <div style="height:17px;"></div>
     <!--<div id="wrapper">-->
         <h3>Datos de Contacto</h3>
-        <br /> contacto
-        <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>
+        <hr>
+        <br /> 
+        <form class="contact_form" id="id_form" onsubmit="return false;">
+            <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
+            <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
+            <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
+        </form>
+        <br />
+        <a href="#" id="enviarPM" class="btn btn-primary">Enviar ></a>
+        <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
     <!--</div>-->
 </div>
 
@@ -116,7 +126,8 @@
 {% endblock %}
 {% block SCRIPT %}
 <script type="text/javascript">
-    $('#enviarPM').click(function(){
+    $('#enviarPM').click(function(event){
+        event.preventDefault();
         var parametros = $('#id_form').serialize();
         $.ajax({
             url: "{% url 'enviar_mensaje_personal' %}",
