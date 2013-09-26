@@ -77,6 +77,84 @@
                             </optgroup>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <div class="sex-block">
+                            <p class="help-block">Tiene hijos:</p>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="hijos" value="i" checked>
+                                    Indiferente
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="hijos" value="1">
+                                    Si
+                                </label>
+                            </div>                            
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="hijos" value="0">
+                                    No
+                                </label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Estado Civil:</p>
+                        <select name="estado-civil" class="form-control">
+                            <option value="0">Me es indiferente</option>
+                            <option value="1">Soltero(a)</option>
+                            <option value="2">Casado(a)</option>
+                            <option value="3">Divorciado(a)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Pretencion de Renta:</p>
+                        <select name="renta" class="form-control">
+                            <option value="0"> &lt; 200</option>
+                            <option value="1">200-350</option>
+                            <option value="2">350-500</option>
+                            <option value="3">500-650</option>
+                            <option value="4">650 o +</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Tipo Contrato:</p>
+                        <select name="contrato" class="form-control">
+                            <option value="0">Me es indiferente</option>
+                            <option value="1">Definido</option>
+                            <option value="2">Indefinido</option>
+                            <option value="3">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Estudios Escolares:</p>
+                        <select name="carrera1" class="form-control">
+                            <option value="0">Carrera</option>
+                        </select>
+                        <select name="institucion1" class="form-control">
+                            <option value="0">Institucion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Estudios Superiores:</p>
+                        <select name="carrera1" class="form-control">
+                            <option value="0">Carrera</option>
+                        </select>
+                        <select name="institucion1" class="form-control">
+                            <option value="0">Institucion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Experiencia en Rubro:</p>
+                        <select name="rubro" class="form-control chosen-select" id="inputRubro" data-placeholder="" multiple tabindex="6">
+                            {% for rubro in rubros %}
+                                <option value="{{rubro.id}}">{{rubro.nombre}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <button class="btn btn-default" id="search">Buscar</button>
                 </fieldset>
             </form>

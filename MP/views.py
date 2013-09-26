@@ -58,6 +58,10 @@ def busqueda_view(request):
 				mensaje = ids_localidades
 				id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
 				socios = socios.filter(id__in=id_socios_en_localidad)
+			if "rubro" in request.POST and False:
+				ids_rubros = request.POST.getlist('rubro')
+				id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
+				socios = socios.filter(id__in=id_socios_en_rubro)
 			edad  = request.POST['edad']
 			menor = 0
 			mayor = ano_actual
@@ -81,6 +85,13 @@ def busqueda_view(request):
 			sexo  = request.POST['optionsRadios']
 			if sexo != "i":
 				socios = socios.filter(sexo=sexo)
+			socios = Socio.objects.all()
+			hijos  = request.POST['hijos']
+			if hijos != "i":
+				if(hijos=="1"):
+					socios = socios.filter(tiene_hijos="s")
+				if(hijos=="0"):
+					socios = socios.filter(tiene_hijos="n")
 			resultados_busqueda = []
 			for socio in socios:
 				str_coment = " año nacimiento "+ str(socio.ano_nacimiento)
@@ -92,7 +103,8 @@ def busqueda_view(request):
 		form = BuscaRapidaForm(request.POST or None)
 		localidades = Localidad.objects.all()
 		cargos = Cargo.objects.all()
-		ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos}
+		rubros = Rubro.objects.all()
+		ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos,'rubros':rubros}
 		return render_to_response('MP/busqueda.html',ctx,context_instance=RequestContext(request))
 
 def enviar_mensaje_view(request):
