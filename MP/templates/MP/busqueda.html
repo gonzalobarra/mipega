@@ -1,17 +1,9 @@
 {% extends 'template.html' %}
 {% block title %} Inicio | MiPega.cl {% endblock %}
 {% block contenido %}
-<div class="body row">
+<div class="body row"  style="width:98%">
         
-        <div class="col-lg-7">
-            <div class="jumbotron">
-            <h1>Participa de mipega.cl</h1>
-            <p style="text-align:justify">Esta es su oportunidad, basta de buscar trabajo... deja que el trabajo te busque a ti!
-                Estaras disponible para ser contactado con absoluta privacidad por toda la oferta de empleo del pais. Conocenos y no te arrepentiras.</p>
-            <p><a class="btn btn-primary btn-large" href="{% url 'vista_registro' %}">¡Unete!</a></p>
-            </div>
-        </div>
-        <div class="col-lg-4 busqueda">
+        <div class="col-lg-9 busqueda">
             {% csrf_token %}
             <form id="id_form" onsubmit="return false;">
                 <fieldset>
@@ -84,10 +76,7 @@
                                 {% endfor %}
                             </optgroup>
                         </select>
-                        
                     </div>
-                    <a class="pull-right" href="{% url 'busqueda_avanzada' %}">Busqueda avanzada</a>
-                    <br><br>
                     <button class="btn btn-default" id="search">Buscar</button>
                 </fieldset>
             </form>
@@ -104,10 +93,11 @@
     $('#search').click(function(){
         var parametros = $('#id_form').serialize();
         $.ajax({
-            url: "{% url 'busqueda_rapida' %}",
+            url: "{% url 'busqueda_avanzada' %}",
             data: parametros,
             datatype: 'json',           
             type: 'post'
+            
         }).done(function(data){
             if(data!=""){
                 $('.result').html(data);

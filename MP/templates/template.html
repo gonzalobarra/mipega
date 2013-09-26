@@ -108,39 +108,27 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.ambiance.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/chosen.jquery.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.ui.draggable.js"></script>
+    <script type="text/javascript">
+        {% if messages %}
+            $(document).ready(function(){
+                {% for message in messages %}
+                    $.ambiance({message: "{{message}}", 
+                        {% ifequal message.tags "info" %}title:"Informacion",{% endifequal %}
+                        {% ifequal message.tags "warning" %}title:"Advertencia",{% endifequal %}
+                        {% ifequal message.tags "error" %}title:"Error",{% endifequal %}
+                        {% ifequal message.tags "success" %}title:"Aviso",{% endifequal %}
+                        
+                        type: "{{message.tags}}",
+                        timeout:6,
+                        width:400,
+                    });
+                {% endfor %}
+            });
+            
+        {% endif %}
+    </script>
     {% block SCRIPT %}
-        <script type="text/javascript">
-            function mensaje(tipo, mensaje){
-                $.ambiance({message: mensaje,
-                            title:"Informacion",                            
-                            type: tipo,
-                            timeout:6,
-                            width:300,
-                        });
-            }
-            {% if messages %}
-                $(document).ready(function(){
-
-                    {% for message in messages %}
-                        $.ambiance({message: "{{message}}", 
-                            {% ifequal message.tags "info" %}title:"Informacion",{% endifequal %}
-                            {% ifequal message.tags "warning" %}title:"Advertencia",{% endifequal %}
-                            {% ifequal message.tags "error" %}title:"Error",{% endifequal %}
-                            {% ifequal message.tags "success" %}title:"Aviso",{% endifequal %}
-                            
-                            type: "{{message.tags}}",
-                            timeout:6,
-                            width:400,
-                        });
-                    {% endfor %}
-                });
-                
-            {% endif %}
-        </script>
-        <script type="text/javascript">
         
-            mensaje("info", "hola");
-        </script>
     
         
     {% endblock %}

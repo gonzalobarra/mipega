@@ -1,7 +1,14 @@
 {% ifequal cant_resultados 0 %}
 <script type="text/javascript">
       $.ambiance({message: "No hay resultados para los valores buscados.", title:"Alerta",
-                  type: "warning",timeout:4,width:300,});  
+                  type: "warning",timeout:4,width:300,});
+      /*$('.result').html(data);*/
+      $(".media").hide();
+      $(".result").animate({
+          height: "0px",
+          padding: "0px"
+      }, 500);
+      $("#indice").hide();
 </script>
 {% else %}
 <a id="indice" href="#" style="display: inline;">Resultados totales ({{cant_resultados}})</a>
@@ -19,6 +26,12 @@
 </div>
 <script type="text/javascript">
     $.ambiance({message: "Se han encontrado {{cant_resultados}} resultados para esta busqueda.",type:"success",timeout:4,width:300,});
+    $(".media").show();
+    $(".result").animate({
+        height: "180px",
+        padding: "15px"
+    }, 500);
+    $("#indice").show();
     var mensaje = "{{mensaje}}";
     if (mensaje != ""){
       $.ambiance({message: mensaje, title:"Debug",

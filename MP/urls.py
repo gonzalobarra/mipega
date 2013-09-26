@@ -13,5 +13,6 @@ urlpatterns = patterns('MP.views',
 	url(r'^editarperfil/$','editarperfil_view',name='vista_editarperfil'),
 	url(r'^detalle/socio/(\d+)/$','detalle_socio_view',name='vista_detalle_socio'),
 	url(r'^enviarPM/$','enviar_mensaje_view',name='enviar_mensaje_personal'),
+	url(r'^busqueda/avanzada/$','busqueda_view',name='busqueda_avanzada'),
 )    
 
