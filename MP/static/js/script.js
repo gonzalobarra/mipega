@@ -126,6 +126,23 @@ $(document).ready(function() {
         },400);
     });
     
+    /*       DETALLE.HTML        */
+    
+    var sexo = $("li#sex").text();
+    $("li#sex").remove();
+    	
+    if(sexo=="Masculino"){    
+        $("#user_name").after("<img class='sex_image' src='../../../static/img/man.png' />");        
+    }else{    
+        $("#user_name").after("<img class='sex_image' src='../../../static/img/female.png' />");        
+    }    
+    
+    var nacionalidad = $("li#nacionalidad").text();
+    
+    if(nacionalidad=="cl"){
+        $("li#nacionalidad").html("<img class='nac_image' src='../../../static/img/chile.png' />");
+    }
+    
 });
 
 

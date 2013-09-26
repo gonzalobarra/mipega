@@ -41,6 +41,12 @@
 
 @font-face
 {
+    font-family: agilis;
+    src: url('../fonts/agilis/webfonts/agilis.ttf');         
+}
+
+@font-face
+{
     font-family: times_new_yorker;
     src: url('../fonts/times_new_yorker/times_new_yorker.ttf');         
 }
@@ -235,9 +241,32 @@ div#session_pane,div#last{
     }
 }
 
-div#last,div#escolar1{
+div#last{
     width: 50%;
     margin: 20px auto;
+
+    .form-group{
+        width:200px;
+        
+        select.form-control{
+            width: 150px;
+        }
+    }
+
+}
+
+div#escolar1{
+    width: 100%;
+    margin: 20px auto;
+    padding: 0px !important;
+
+    div{
+        padding: 0px !important;
+    }
+    select.form-control{
+        width: 150px !important;
+    }
+    
 }
 
 div#surprise-message{
@@ -288,7 +317,7 @@ div#study_pane,div#other_pane{
     }
     
     #escolar{
-        min-height: 200px;
+        min-height: 150px;
         overflow: auto;
         div{
             float: left;
@@ -317,7 +346,18 @@ div#study_pane,div#other_pane{
         }       
     }
 }
+#alone{
 
+    label{
+        margin-left:0px !important;
+    }
+    textarea{
+        
+        width: 100px;
+        min-width: 530px;
+        margin-left:0px !important;
+    }
+}
 div#other_pane{    
     #habilidades{
         div{
@@ -474,5 +514,111 @@ ul {
         } 
     }
 }
+
+
+/*       DETALLE.HTML          */
+
+#detail_content{
+
+    margin: 0px auto;
+    min-width: 400px;
+    max-width: 800px;
+    padding: 20px;
+    
+    h3{
+        font-family: agilis;
+        font-size: 30px;            
+    }
+        
+    hr{
+        margin-top: 0px;
+        border-top: 1px solid #A8A8A8;
+    }
+    #user_header{
+    
+        max-height: 150px;
+        
+        h1#user_name{
+        
+            font-family: agilis;
+            font-size: 100px;            
+            display:inline-block;            
+            
+        }
+        .sex_image{
+            
+            width: 110px;
+            height: 110px;
+            margin-right: 20px;
+            margin-bottom: 60px;
+        }
+    }
+    
+    .nac_image{
+        width: 35px;
+        height: 35px;
+    }
+    
+    ul#user_detail{
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 18px;
+        padding: 0px;
+        max-width: 250px;
+        display: inline-block;
+        
+        & + #descripcion {
+            width: 70%;
+            min-height: 100px;
+            display: inline-block;
+            border: solid 1px lighten(black,80%);
+            .border-radius(5px);
+            margin-left: 30px;
+            
+            h3{
+                font-family: agilis;
+            }
+        }
+        
+        p{        
+            display: inline;
+            
+            &#age, &#childs{
+                text-indent: 5px;
+                margin-left: 55px;
+            }           
+            
+            &#state{
+                text-indent: 5px;
+                margin-left: 4px;
+            }
+        }
+    }
+    
+    /* Disponibilidad */
+    ul#disponibilidad{ 
+    
+        li{                    
+            margin: 10px;
+            
+            h2{
+                /*font-family: agilis;*/            
+                margin-left: 140px;
+                font-size: 19px;
+                text-decoration:underline;
+                display: inline;
+                margin-right:30%;
+            }
+               
+            span{
+                margin-left: 170px;
+                font-size: 15px;
+                text-align: justify;
+            }     
+        }
+    }
+}
+
+
+
 
 

@@ -3,37 +3,58 @@
 {% block contenido %}
 {% load bootstrap_toolkit %}
 <div style="height:170px;"></div>
-<div id="content">
+<div id="detail_content">
 
-    <div id="wrapper">
-        <h3>{{socio.usuario}}</h3>
-        <ul>
-            <li>Edad : {{edad}}</li>
-            <li>Tiene Hijos : {{socio.tiene_hijos}}</li>
-            <li>Sexo : {{ socio.get_sexo_display }}</li>
-            <li>Estado Civil : {{socio.get_estado_civil_display}}</li>
-            <li>Nacionalidad : {{socio.nacionalidad}}</li>
+    <!--<div id="wrapper">-->
+        <div id="user_header">
+            <h1 id="user_name">{{socio.usuario}}</h1>
+        </div>
+        <ul id="user_detail">
+            <li>Edad : <p id="age">{{edad}}</p></li>
+            <li>Hijos : <p id="childs">{{socio.tiene_hijos}}</p></li>
+            <li id="sex">{{ socio.get_sexo_display }}</li>
+            <li>Estado Civil : <p id="state">{{socio.get_estado_civil_display}}</p></li>
+            <li id="nacionalidad">{{socio.nacionalidad}}</li>
         </ul>
-    </div>
+        <div id="descripcion"></div>
+    <!--</div>-->
     <div style="height:17px;"></div>
-    <div id="wrapper">
-        <h3>Que anda buscando?</h3>
-        <ul>
-            <li>En que quiere trabajar?</li>
-            {% for cargo in cargos %}
+    <!--<div id="wrapper">-->
+        <h3>Disponibilidad</h3>
+        <hr>
+        <ul id="disponibilidad">
+            <!-- Cargo buscado -->
+            <li>
+                <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_450_factory.png"/>
+                <h2>Cargos buscados</h2>
+                {% for cargo in cargos %}
                 <span>{{cargo.nombre}}, </span>
-            {% endfor %}
-            <li>Donde quiere trabajar?</li>
-            {% for loc in localidades %}
+                {% endfor %}
+            </li>
+            
+            <!-- Donde quiere trabajar -->
+            <li>
+                <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_370_globe_af.png"/>
+                <h2>Localidades buscadas</h2>
+                {% for loc in localidades %}
                 <span>{{loc.nombre}}, </span>
-            {% endfor %}
-            <li>Busca contrato {{socio.get_tipo_contrato_display}}.</li>
+                {% endfor %}
+            </li>
+            
+            <!-- Contrato buscado -->
+            <li>
+                <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_458_money.png"/>
+                <h2>Tipo de contrato</h2>
+                <span>{{socio.get_tipo_contrato_display}}.</span>
+            </li>
+            
         </ul>
-    </div>
+    <!--</div>-->
     <div style="height:17px;"></div>
     {% if estudios  %}
-    <div id="wrapper">
+    <!--<div id="wrapper">-->
         <h3>Estudios</h3>
+        <hr>
         {% if estudios_escolares %}
             <h4>Estudios escolares</h4>
             {% for est in estudios_escolares %}
@@ -46,11 +67,12 @@
                 {{est.titulo.nombre}} en {{est.institucion.nombre}} [{{est.get_estado_display}}]<br />
             {% endfor %}
         {% endif %}
-    </div>
+    <!--</div>-->
     <div style="height:17px;"></div>
     {% endif %}
-    <div id="wrapper">
+    <!--<div id="wrapper">-->
         <h3>Experiencia</h3>
+        <hr>
         <h4>Experiencia Laboral</h4>
         {% for exp in experiencia %}
             Trabajo como {{exp.cargo.nombre}} en {{exp.rubro.nombre}} [{{exp.ano_ingreso}}-{{exp.ano_egreso}}]<br />
@@ -59,14 +81,17 @@
         {% for hab in habilidades %}
             <span class="glyphicon glyphicon-ok"></span> [{{hab.habilidad.tipoHabilidad.nombre}}] {{hab.habilidad.nombre}} Nivel: {{hab.habilidad.get_nivel_display}}<br />
         {% endfor %}
-    </div>
+    <!--</div>-->
     <div style="height:17px;"></div>
-    <div id="wrapper">
+    <!--<div id="wrapper">-->
         <h3>Datos de Contacto</h3>
+        <hr>
         <br /> contacto
         <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>
-    </div>
+    <!--</div>-->
 </div>
+
+
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
