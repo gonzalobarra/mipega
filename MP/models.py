@@ -172,7 +172,6 @@ class Titulo(models.Model):
 	id      = models.AutoField('ID', primary_key=True)
 	nombre  = models.CharField('Nombre', max_length=32,null=False, blank=False)
 	tipo    = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
-	colegio = models.BooleanField('Colegio')
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
@@ -180,7 +179,6 @@ class Titulo(models.Model):
 class Institucion(models.Model):
 	id      = models.AutoField('ID', primary_key=True)
 	nombre  = models.CharField('Nombre', max_length=32,null=False, blank=False)
-	tipo    = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
 	colegio = models.BooleanField('Colegio') 
 
 	def __unicode__(self):
