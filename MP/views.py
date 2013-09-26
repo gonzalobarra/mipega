@@ -195,7 +195,7 @@ def registro_view(request):
 						usuario.delete()
 					else:
 						if form_empb.is_valid():
-							empb = EmpleoBuscado(socio=socio_inst, cargo=form_explab.cleaned_data['cargo'])
+							empb = EmpleoBuscado(socio=socio_inst, cargo=form_empb.cleaned_data['cargo'])
 							if form_sociol.is_valid():
 								localidad = LocalidadConSocio(socio=socio_inst, localidad=form_sociol.cleaned_data['localidad'])
 								if form_estudio.is_valid():
@@ -213,6 +213,9 @@ def registro_view(request):
 												habilidades.save()
 												empb.save()
 												return HttpResponseRedirect('/')
+						else:
+							usuario.delete()
+
 
 	else:	
 		ctx = {'form_user': form_user, 'form_socio':form_socio, 'form_sociol':form_sociol, 'form_estudio':form_estudio, 'form_estudio2': form_estudio2, 'form_explab': form_explab, 'form_hab': form_hab, 'form_empb': form_empb}

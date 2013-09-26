@@ -87,7 +87,6 @@ class ExperienciaLaboralForm(forms.ModelForm):
             'rubro': forms.Select(attrs={'class':'form-control'}),        
         }
 
-
 class OtrasHabilidadesForm(forms.ModelForm):
     class Meta:
         model = OtrasHabilidades

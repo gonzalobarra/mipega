@@ -51,11 +51,11 @@ nacionalidad=(
 	('cl', 'Chile'),
 )
 nacimiento=(
-	('0','18-25'),
-	('1','26-35'),
-	('2','36-45'),
-	('3','46-55'),
-	('4','56+'),
+	('0','1990 - 1996'),
+	('1','1980 - 1990'),
+	('2','1970 - 1980'),
+	('3','1960 - 1970'),
+	('4','1960 o menos'),
 )
 hijos=(
 	('s','Si'),
@@ -70,7 +70,7 @@ class Socio(models.Model):
 	id                = models.AutoField('ID', primary_key=True)
 	usuario           = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
-	web               = models.CharField('Email' ,max_length=64, null=True, blank=True)
+	web               = models.CharField('Web' ,max_length=64, null=True, blank=True)
 	ano_nacimiento    = models.CharField('Año de nacimiento',max_length=10, choices=nacimiento)
 	sexo              = models.CharField("Sexo",max_length=10, choices=sexo)
 	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=10, choices=hijos)
@@ -194,7 +194,7 @@ class Estudios(models.Model):
 	socio       = models.ForeignKey(Socio, verbose_name="Socio")
 
 
-
+#Ver bien el funcuionamiento de esta tabla
 class TitulosEnInstituciones(models.Model):
 	#tabla resultante de una relacion n-n
 	id          = models.AutoField('ID', primary_key=True)
