@@ -112,12 +112,12 @@ class Mensaje(models.Model):
 
 class TipoHabilidad(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=64,null=False, blank=False)
 
 
 class Habilidad(models.Model):
 	id            = models.AutoField('ID', primary_key=True)
-	nombre        = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	nombre        = models.CharField('Nombre', max_length=64,null=False, blank=False)
 
 	# Llaves foraneas
 	tipoHabilidad = models.ForeignKey(TipoHabilidad, verbose_name="Tipo")
@@ -136,14 +136,14 @@ class OtrasHabilidades(models.Model):
 
 class Rubro(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=64,null=False, blank=False)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
 
 class Cargo(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=64,null=False, blank=False)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
@@ -170,7 +170,7 @@ class ExperienciaLaboral(models.Model):
 
 class Titulo(models.Model):
 	id      = models.AutoField('ID', primary_key=True)
-	nombre  = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	nombre  = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	tipo    = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
 
 	def __unicode__(self):
@@ -178,7 +178,7 @@ class Titulo(models.Model):
 
 class Institucion(models.Model):
 	id      = models.AutoField('ID', primary_key=True)
-	nombre  = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	nombre  = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	colegio = models.BooleanField('Colegio') 
 
 	def __unicode__(self):
@@ -206,10 +206,11 @@ class TitulosEnInstituciones(models.Model):
 
 class Localidad(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=32,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	tipo   = models.CharField('Tipo', max_length=7, choices=tipoLocalidad, default="c")
 
-	#localidadPadre = models.ForeignKey(Localidad, verbose_name="Localidad Padre")
+	localidadPadre = models.ForeignKey('self', null=True, blank=True,verbose_name="Pertenece a")
+	
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
 
