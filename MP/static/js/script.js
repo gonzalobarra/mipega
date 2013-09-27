@@ -26,6 +26,7 @@ $(document).ready(function() {
       $(selector).chosen(configChosen[selector]);
     }
 
+
     //Control del formulario de registro, para que funcione por paginas
     var minVal=0;
     var maxVal=4;

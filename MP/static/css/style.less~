@@ -169,6 +169,10 @@ body {
         }
     }
 }
+
+.index-select + .chosen-container {
+    width: 100% !important;
+}
 div#aviso{
     position: fixed;
     width: 200px;
@@ -480,19 +484,10 @@ ul {
             .transition;
             max-height: 30px;
             float: left;
-            //p.hiden {
-            //    //display: none;
-            //    margin-left: 10px;
-            //    .transition;
-            //    &:hover {
-            //        
-            //        display: block;
-            //        color: black;
-            //    }
-            //}
-            
+                        
             &:hover {
                 width: 200px;
+                content: "asdas";
                 //.transform;
             }
             
@@ -617,6 +612,16 @@ ul {
         }
     }
     
+    .contact-icons{
+    
+        display: inline-block;
+        margin-left: 35%;
+        li{
+            margin: 10px;
+            display: inline;
+        }
+    }
+    
     .contact_form{
     
         background-color: #52585C;
@@ -624,6 +629,11 @@ ul {
         padding: 5px;
         border: solid 1px;
         margin: 5px;
+        overflow-y:auto;
+        overflow-x:hidden;
+        
+        min-width: 500px;
+        
         input, textarea{
             background-color: #52585C;
             color: #D0D4D6;
@@ -645,13 +655,19 @@ ul {
         
         textarea{
             
-            width: 100%;
+            width: 95%;
         }
     }
     #enviarPM{
         float: right;
-        color: #444444;
+        color: #D0D4D6;
         font-weight: bold;
+        margin-right: 5px;
+        
+        &:hover{
+            text-decoration: none;
+            color: #fff;
+        }
     }
 }
 
