@@ -82,8 +82,14 @@ body {
   margin-top: 50px;
   margin-right: 50px;
 }
+.header .sesion-buttons #session_links {
+  clear: both;
+}
 .header .sesion-buttons a {
   margin-left: 20px;
+}
+.header .sesion-buttons h5 {
+  float: right;
 }
 .body {
   position: relative;
@@ -126,6 +132,42 @@ body {
 }
 .index-select + .chosen-container {
   width: 100% !important;
+}
+.profile-nav {
+  max-width: 200px;
+  display: inline-block;
+}
+.profile-nav li {
+  overflow: auto;
+  margin: 5px;
+  min-width: 200px;
+}
+.profile-nav li a {
+  width: 150px;
+}
+.profile-nav li a.btn-primary {
+  background-color: transparent;
+  border-color: transparent;
+  color: #444444;
+  -o-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  padding: 5px 12px;
+}
+.profile-nav li a.btn-primary:hover {
+  background-color: #428bca;
+  color: #fff;
+  border-color: #428bca;
+}
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  display: inline-block;
+  border-left: 16px solid #428bca;
+  position: absolute;
 }
 div#aviso {
   position: fixed;

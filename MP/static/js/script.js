@@ -26,7 +26,15 @@ $(document).ready(function() {
       $(selector).chosen(configChosen[selector]);
     }
 
-
+    $(".profile-nav li a.btn-primary").hover(function(){
+        $(this).after("<div class='arrow-right'></div>");
+        var i = $(".profile-nav li").index($(this));
+        $(".arrow-right").css("top",(205 + (i*37))+"");
+    }, function(){
+        $(".arrow-right").remove();
+    });
+    
+    
     //Control del formulario de registro, para que funcione por paginas
     var minVal=0;
     var maxVal=4;

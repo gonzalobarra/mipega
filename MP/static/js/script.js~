@@ -26,21 +26,14 @@ $(document).ready(function() {
       $(selector).chosen(configChosen[selector]);
     }
 
-
-    //Se dan los efectos para el footer
-    $(".contacto").children().hover(function(){
-        $(this).animate({
-            width: "200px"
-        }, 400, function(){
-            $(this).append("asd");
-        });
+    $(".profile-nav li a.btn-primary").hover(function(){
+        $(this).after("<div class='arrow-right'></div>");
+        var i = $(this).parent().index($(this));
+        $(".arrow-right").css("top",(205 + (i*37))+"");
     }, function(){
-        $(this).animate({
-            width: "25px"
-        }, 400, function(){
-            $(this).text("");
-        });
+        $(".arrow-right").remove();
     });
+    
     
     //Control del formulario de registro, para que funcione por paginas
     var minVal=0;

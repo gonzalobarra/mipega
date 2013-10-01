@@ -129,8 +129,15 @@ body {
         top: 0px;
         margin-top: 50px;
         margin-right: 50px;
+        
+        #session_links{
+            clear: both;
+        }
         a {
             margin-left: 20px; 
+        }
+        h5{
+            float: right;
         }
     }
 }
@@ -172,6 +179,45 @@ body {
 
 .index-select + .chosen-container {
     width: 100% !important;
+}
+
+.profile-nav{
+
+    max-width: 200px;
+    display: inline-block;
+    
+    li{
+        overflow: auto;
+        margin: 5px;
+        min-width: 200px;
+        a{
+            width: 150px;
+            &.btn-primary{
+                background-color: transparent;
+                border-color: transparent;
+                color: #444444;
+                .border-radius(0px);
+                padding: 5px 12px;
+                
+                &:hover{
+                    background-color: #428bca;
+                    color: #fff;
+                    border-color: #428bca;
+                    
+                }
+            }
+        }
+    }
+}
+
+.arrow-right {
+	width: 0; 
+	height: 0; 
+	border-top: 16px solid transparent;
+	border-bottom: 16px solid transparent;
+	display: inline-block;
+	border-left: 16px solid #428bca;
+	position: absolute;
 }
 div#aviso{
     position: fixed;

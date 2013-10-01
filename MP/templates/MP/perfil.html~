@@ -2,7 +2,7 @@
 {% block title %} Perfil de usuario | MiPega.cl {% endblock %}
 {% block contenido %}
 
-	<div id="login-form">
+	<div>
 		<!--<h3 style="text-align:center;">Perfil</h3>-->
 		<ul class="profile-nav">
 		    <li><a href="{% url 'vista_nuevaclave' %}" class="btn btn-primary btn-lg">Cambiar clave</a></li>
