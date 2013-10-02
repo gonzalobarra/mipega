@@ -1,0 +1,33 @@
+
+/*mixins*/
+
+.box-shadow(@x: 0px, @y: 0px, @blur: 10px, @spread: 0px, @color: rgba(0, 0, 0, 0.3)){
+    -o-box-shadow:  @arguments;
+    -moz-box-shadow:  @arguments;    
+    -webkit-box-shadow:  @arguments;        
+    box-shadow:  @arguments;
+}
+
+.border-radius(@radius: 5px){
+    -o-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.transition (@property: all, @time: 0.5s){
+    
+    transition:@arguments;
+    -moz-transition:@arguments; /* Firefox 4 */
+    -webkit-transition:@arguments; /* Safari and Chrome */
+    -o-transition:@arguments; /* Opera */    
+}
+
+.transform (@tProperty: scale(1.2)){
+    
+    transform:@tProperty;
+    -webkit-transform:@tProperty;
+    -ms-transform:@tProperty;
+    -moz-transform:@tProperty;
+    -o-transform:@tProperty;
+}

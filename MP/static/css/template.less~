@@ -1,0 +1,162 @@
+
+p.help-block {
+  clear: both;
+}
+body {
+    background-color: darken(rgba(255,255,255,0.9),10%);
+    overflow-x: hidden;    
+}
+
+.header {
+    .box-shadow(0px, 1px, 0px, 0px, darken(rgba(255,255,255,0.9),15%));
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    display: inline;
+    background-color: rgba(255,255,255,0.9);
+    min-height: 150px;
+    //.box-shadow;
+    h1 {
+        position: absolute;
+        left: 200px;
+        top: 0px;
+        margin-top: 40px;
+        margin-right: 150px;
+        font-family: pointy;
+        font-size: 55px;
+        a {
+            &:hover, &:visited,
+            &:visited, &:link{
+                text-decoration: none;
+                color: #444444;
+            }
+        }
+    }
+    #logo{
+        display: inline;
+        margin-left: 50px;        
+    }
+    
+    .sesion-buttons {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        margin-top: 50px;
+        margin-right: 50px;
+        
+        #session_links{
+            clear: both;
+        }
+        a {
+            margin-left: 20px; 
+        }
+        h5{
+            float: right;
+        }
+    }
+}
+
+.body {
+    
+    position: relative;
+    top: 200px;    
+    display: inline-block;
+    
+    
+    .jumbotron {
+        position: relative;
+        .box-shadow(0px, 1px, 8px, 0px, darken(rgba(255,255,255,0.9),55%));
+        background-color: darken(rgba(255,255,255,0.9),0%);
+        margin-left: 20px;
+        h1 {
+            font-size: 45px;
+        }
+    }
+    .busqueda {
+        position: relative;
+        margin-left: 20px;
+        .box-shadow(0px, 1px, 8px, 0px, darken(rgba(255,255,255,0.9),55%));
+        background-color: darken(rgba(255,255,255,0.9),5%);
+        padding: 10px;
+        .border-radius(6px);        
+       
+        .radio {
+            display: inline;
+            float: left;
+            margin-right: 10px;
+            margin-left: 5px;
+            margin-top: 0px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.index-select + .chosen-container {
+    width: 100% !important;
+}
+
+.row {
+    margin:0px;
+}
+
+.footer {
+    position: relative;
+    bottom: 0px;
+    margin-top: 170px;
+    width: 100%;
+    background-color: darken(rgba(255,255,255,0.9),15%);
+    .box-shadow(0px, -2px, 0px, 0px, darken(rgba(255,255,255,0.9),20%));        
+    
+    .first {
+        padding-left: 50px;
+        ul {
+            float: left;
+            list-style: none;
+            li {
+                float: left;
+                margin-right: 15px;
+                margin-top: 20px;
+                color: #2a6496;
+            }
+        }
+    }
+    .contacto {
+        
+        li{
+            background-color: darken(rgba(255,255,255,0.9),5%);
+            font-weight: 400;
+            font-height: 1;
+            width: 25px;
+            padding: 5px;
+            margin: 8px;
+            .border-radius;
+            cursor: pointer;
+            .box-shadow;
+            .transition;
+            max-height: 30px;
+            float: left;
+                        
+            &:hover {
+                width: 200px;                
+                //.transform;
+            }
+            
+            p {
+                display: none;
+                position: relative;
+                padding-left: 40px; 
+                top: -20px;
+            }
+        }
+    }
+    
+    .col-lg-4{        
+        
+        ul {
+            margin-top: 20px;
+            list-style: none;
+            bottom: 0px;
+        } 
+    }
+}
+

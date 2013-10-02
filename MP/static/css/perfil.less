@@ -1,0 +1,64 @@
+#login-form_ {
+
+position: absolute;
+z-index: 12;
+height: 90%;
+top: 150px;
+}
+
+.profile-nav{
+
+    max-width: 195px;
+    height: 460px;
+    display: inline-block;
+    background-color: rgba(66, 139, 202, 0.2);
+    .box-shadow(4px, 0px, 5px, -2px, #888);
+    
+    li{
+        overflow: auto;
+        margin: 5px;
+        min-width: 200px;
+        a{
+            width: 150px;
+            &.btn-primary{
+                background-color: transparent;
+                border-color: transparent;
+                color: #444444;
+                .border-radius(0px);
+                padding: 5px 12px;
+                
+                &:hover, &#selected-option{
+                    background-color: #428bca;
+                    color: #fff;
+                    border-color: #428bca;
+                    
+                }
+            }
+        }
+    }
+}
+.profile-content{
+    width: 80%;
+    height: 270px;
+    margin-top: 170px;
+    margin-left: 210px;
+}
+.arrow-right, .arrow-right2 {
+	width: 0; 
+	height: 0; 
+	border-top: 16px solid transparent;
+	border-bottom: 16px solid transparent;
+	display: inline-block;
+	border-left: 16px solid #428bca;
+	position: absolute;
+}
+
+.rectangle, .rectangle2{
+
+    background-color: #428bca;
+    height: 32px;
+    width: 50px;
+    position: absolute;
+    left: 0px;
+}
+
