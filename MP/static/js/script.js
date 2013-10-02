@@ -26,12 +26,23 @@ $(document).ready(function() {
       $(selector).chosen(configChosen[selector]);
     }
 
+    $("#selected-option").before("<div class='rectangle2'></div>").after("<div class='arrow-right2'></div>");
+    var i = $(".profile-nav li").index($("#selected-option"));
+    $(".arrow-right2").css("top",(205 + (i*37))+"");
+    $(".rectangle2").css("top",(205 + (i*37))+"");
+    
     $(".profile-nav li a.btn-primary").hover(function(){
         $(this).after("<div class='arrow-right'></div>");
-        var i = $(".profile-nav li").index($(this));
+        $(this).before("<div class='rectangle'></div>");
+        
+        i = $(".profile-nav li").index($(this));
         $(".arrow-right").css("top",(205 + (i*37))+"");
+        $(".rectangle").css("top",(205 + (i*37))+"");
     }, function(){
+    
         $(".arrow-right").remove();
+        $(".rectangle").remove();
+        
     });
     
     

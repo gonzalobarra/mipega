@@ -36,6 +36,12 @@
   margin-right: 30px;
   margin-top: 10px;
 }
+#login-form_ {
+  position: absolute;
+  z-index: 12;
+  height: 90%;
+  top: 150px;
+}
 p.help-block {
   clear: both;
 }
@@ -134,8 +140,14 @@ body {
   width: 100% !important;
 }
 .profile-nav {
-  max-width: 200px;
+  max-width: 195px;
+  height: 460px;
   display: inline-block;
+  background-color: rgba(66, 139, 202, 0.2);
+  -o-box-shadow: 4px 0px 5px -2px #888888;
+  -moz-box-shadow: 4px 0px 5px -2px #888888;
+  -webkit-box-shadow: 4px 0px 5px -2px #888888;
+  box-shadow: 4px 0px 5px -2px #888888;
 }
 .profile-nav li {
   overflow: auto;
@@ -155,12 +167,18 @@ body {
   border-radius: 0px;
   padding: 5px 12px;
 }
-.profile-nav li a.btn-primary:hover {
+.profile-nav li a.btn-primary:hover, .profile-nav li a.btn-primary#selected-option {
   background-color: #428bca;
   color: #fff;
   border-color: #428bca;
 }
-.arrow-right {
+.profile-content {
+  width: 80%;
+  height: 270px;
+  margin-top: 170px;
+  margin-left: 210px;
+}
+.arrow-right, .arrow-right2 {
   width: 0;
   height: 0;
   border-top: 16px solid transparent;
@@ -168,6 +186,13 @@ body {
   display: inline-block;
   border-left: 16px solid #428bca;
   position: absolute;
+}
+.rectangle, .rectangle2 {
+  background-color: #428bca;
+  height: 32px;
+  width: 50px;
+  position: absolute;
+  left: 0px;
 }
 div#aviso {
   position: fixed;
