@@ -96,6 +96,7 @@
             <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
             <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
             <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
+            <input type="hidden" name="id_user" value="{{socio.id}}">
         <br />
         <a href="#" id="enviarPM" >Enviar ></a>
         </form>
@@ -142,13 +143,13 @@
             type: 'post'
             
         }).done(function(data){
-            $('#myModal').modal('hide');
+            //$('#myModal').modal('hide');
             if(data == "enviado"){
                 $('#input-nombre, #input-contacto, #text-mensaje').val("");
                 $.ambiance({message: "Mensaje enviado con exito.", title:"",
                         type: "success",timeout:4,width:200,});
             }else{
-                $.ambiance({message: "Error al enviar el mensaje, intentelo denuevo mas tarde.", title:"Error",
+                $.ambiance({message: data, title:"Error",
                         type: "error",timeout:4,width:200,});
             }
         }).fail(function(){
