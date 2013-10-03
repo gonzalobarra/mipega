@@ -109,8 +109,17 @@ def busqueda_view(request):
 
 def enviar_mensaje_view(request):
 	#enviar mendaje
-	return HttpResponse("enviado")
-	#return HttpResponse("error")  ##retornar error si no se pudo enviar el mensaje, si se envio correctamente retornar enviado
+	nombre = request.POST['nombre']
+	contacto = request.POST['contacto']
+	mensaje = request.POST['mensaje']
+	socio = Socio.objects.get(pk=request.POST['id_user'])
+	now = datetime.datetime.now()
+	if nombre!="" and contacto!="" and mensaje!="":
+		mensaje = Mensaje(fecha=now, contenido=mensaje, nombre_contacto=nombre,medio_contacto=contacto, socio= socio)
+		mensaje.save()
+		return HttpResponse("enviado")
+	return HttpResponse("Debe llenar todos los campos")
+
 
 def busqueda_rapida_view(request):
 	form = BuscaRapidaForm(request.POST or None)
