@@ -36,7 +36,7 @@ class UserForm(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(attrs={'class':'form-control'}),  
             'password': forms.PasswordInput(attrs={'class':'form-control'}), 
-            'email': forms.TextInput(attrs={'class':'form-control'}),       
+            'email': forms.TextInput(attrs={'class':'form-control plain-field'}),       
         }
     
 class SocioForm(forms.ModelForm):
@@ -47,8 +47,8 @@ class SocioForm(forms.ModelForm):
         fields = ('usuario','telefono', 'web', 'ano_nacimiento', 'comentario', 'comentario_est','nacionalidad','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'usuario': forms.TextInput(attrs={'class':'form-control'}),
-            'telefono': forms.TextInput(attrs={'class':'form-control'}),
-            'web': forms.TextInput(attrs={'class':'form-control'}),
+            'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
+            'web': forms.TextInput(attrs={'class':'form-control plain-field'}),
             'ano_nacimiento': forms.Select(attrs={'class':'form-control'}),
             'sexo': forms.Select(attrs={'class':'form-control'}),
             'estado_civil': forms.Select(attrs={'class':'form-control'}),

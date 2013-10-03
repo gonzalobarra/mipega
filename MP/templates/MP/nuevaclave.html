@@ -3,15 +3,15 @@
 {% block contenido %}
 <div id="login-form_">
 		<!--<h3 style="text-align:center;">Perfil</h3>-->
-		<ul class="profile-nav">
-		    <li><a id="selected-option" href="{% url 'vista_nuevaclave' %}" class="btn btn-primary btn-lg">Cambiar clave</a></li>
+		<ul class="profile-nav">		    
 		    <li><a href="{% url 'vista_editarperfil' %}" class="btn btn-primary btn-lg">Editar perfil</a></li>
+		    <li><a id="selected-option" href="{% url 'vista_nuevaclave' %}" class="btn btn-primary btn-lg">Cambiar clave</a></li>
 		    <li><a href="{% url 'vista_bandejaentrada' %}" class="btn btn-primary btn-lg">Bandeja de entrada</a></li>
 		    <li><a href="#" class="btn btn-primary btn-lg">Pagar subscripción</a></li>
 		</ul>
 </div>
 <div class="profile-content">
-	<form action="" method="post" id="login-form">
+	<form action="" method="post">
         {% csrf_token %}
         <div class="form-group">
             <label for="id_ClaveAntigua">Clave actual:</label>

@@ -1,6 +1,6 @@
-/*      MIXINS      */
+/*          MIXINS          */
 /*mixins*/
-/*      FONTS       */
+/*          FONTS           */
 @font-face {
   font-family: marcelle;
   src: url('../fonts/marcelle/Marcsc___.ttf');
@@ -29,7 +29,7 @@
   font-family: tequila-sunrise;
   src: url('../fonts/tequilla_sunrise/TequillaSunrise.ttf');
 }
-/*      TEMPLATE    */
+/*          TEMPLATE        */
 p.help-block {
   clear: both;
 }
@@ -227,7 +227,7 @@ body {
 ul {
   list-style: none;
 }
-/*      LOGIN    */
+/*          LOGIN           */
 #login-form {
   margin-top: 200px;
 }
@@ -236,7 +236,7 @@ ul {
   margin-right: 30px;
   margin-top: 10px;
 }
-/*      PERFIL    */
+/*          PERFIL          */
 #login-form_ {
   position: absolute;
   z-index: 12;
@@ -298,7 +298,7 @@ ul {
   position: absolute;
   left: 0px;
 }
-/*      REGISTRO    */
+/*          REGISTRO        */
 div#aviso {
   position: fixed;
   width: 200px;
@@ -330,18 +330,117 @@ input[value="Registrar"] {
 #controls a {
   margin: 5px;
 }
-div#session_pane, div#last {
-  /*width:50%;*/
-
+#session_pane .inline_group,
+#study_pane .inline_group,
+#other_pane .inline_group,
+#last .inline_group {
+  display: inline-block;
 }
-div#session_pane h1, div#last h1 {
-  margin: 20px auto;
-  width: 50%;
+#session_pane h1,
+#study_pane h1,
+#other_pane h1,
+#last h1 {
+  width: 200px;
+  text-align: center;
+  background-color: #428bca;
+  border-color: #428bca;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 30px;
+  position: absolute;
+  -o-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  -o-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  left: 60px;
+  z-index: 10;
 }
-div#session_pane #session, div#last #session {
-  margin: 10px auto;
-  width: 50%;
+#session_pane h1#seccion_personal,
+#study_pane h1#seccion_personal,
+#other_pane h1#seccion_personal,
+#last h1#seccion_personal {
+  right: 440px;
+  left: initial;
+}
+#session_pane .special-form-pane,
+#study_pane .special-form-pane,
+#other_pane .special-form-pane,
+#last .special-form-pane {
+  background-color: rgba(66, 139, 202, 0.2);
+  padding: 10px;
+  padding-top: 20px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #717680;
+  border-width: 5px;
   overflow: auto;
+  width: 50%;
+  display: inline-block;
+  margin: 30px;
+  margin-top: 60px;
+}
+#session_pane .special-form-pane .line p,
+#study_pane .special-form-pane .line p,
+#other_pane .special-form-pane .line p,
+#last .special-form-pane .line p {
+  display: inline;
+  float: left;
+  line-height: 30px;
+}
+#session_pane .special-form-pane .line .plain-field,
+#study_pane .special-form-pane .line .plain-field,
+#other_pane .special-form-pane .line .plain-field,
+#last .special-form-pane .line .plain-field {
+  margin: 0px 5px;
+  height: 30px;
+  width: 120px !important;
+  background-color: rgba(66, 139, 202, 0.005);
+  border: 0px;
+  -o-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+  -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+  border-bottom-style: solid;
+  border-width: 1px;
+  padding: 0px;
+  -o-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+#session_pane .special-form-pane .line .plain-field:focus,
+#study_pane .special-form-pane .line .plain-field:focus,
+#other_pane .special-form-pane .line .plain-field:focus,
+#last .special-form-pane .line .plain-field:focus {
+  background-color: rgba(66, 139, 202, 0.05);
+}
+#session_pane .form-help-block,
+#study_pane .form-help-block,
+#other_pane .form-help-block,
+#last .form-help-block {
+  display: inline-block;
+  width: 30%;
+  min-height: 180px;
+  position: absolute;
+  z-index: -1;
+}
+#session_pane .form-help-block.right-block,
+#study_pane .form-help-block.right-block,
+#other_pane .form-help-block.right-block,
+#last .form-help-block.right-block {
+  border-left-style: dotted;
+}
+#session_pane .form-help-block.left-block,
+#study_pane .form-help-block.left-block,
+#other_pane .form-help-block.left-block,
+#last .form-help-block.left-block {
+  border-right-style: dotted;
 }
 div#session_pane label, div#last label {
   float: left;
@@ -360,7 +459,8 @@ div#session_pane #contact,
 div#last #contact,
 div#session_pane #personal,
 div#last #personal {
-  min-height: 200px;
+  overflow: auto;
+  margin-bottom: 15px;
 }
 div#session_pane #contact div,
 div#last #contact div,
@@ -382,8 +482,7 @@ div#last #personal select.form-control {
   margin-left: 18%;
 }
 div#last {
-  width: 50%;
-  margin: 20px auto;
+  margin: 20px 10%;
 }
 div#last .form-group {
   width: 200px;
@@ -409,6 +508,7 @@ div#surprise-message {
   top: 0px;
   left: 0px;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
 }
 div#surprise-message .panel {
   display: none;
@@ -510,7 +610,11 @@ div#other_pane #habilidades Select.form-control {
   margin-left: 10%;
   width: 200px;
 }
-/*      DETALLE    */
+#controls {
+  margin: 0px auto;
+  width: 105px;
+}
+/*          DETALLE         */
 /*       DETALLE.HTML          */
 #detail_content {
   margin: 0px auto;
@@ -642,7 +746,7 @@ div#other_pane #habilidades Select.form-control {
   text-decoration: none;
   color: #fff;
 }
-/*      BUSQUEDA    */
+/*          BUSQUEDA        */
 /*      BUSQUEDA.HTML       */
 .busqueda.avanzada {
   margin-left: 10%;
@@ -676,4 +780,14 @@ div#other_pane #habilidades Select.form-control {
 }
 .busqueda.avanzada #search {
   float: right;
+}
+/*          EDITAR PERFIL   */
+.profile-content #edit-profile-form {
+  height: 440px;
+  overflow-y: scroll;
+  width: 104%;
+}
+/*          BANDEJA DE ENTRADA   */
+.bandeja {
+  overflow-y: scroll;
 }

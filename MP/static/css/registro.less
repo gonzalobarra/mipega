@@ -26,19 +26,99 @@ input[value="Registrar"]{
     }
 }
 
-div#session_pane,div#last{
-    /*width:50%;*/
+
+
+#session_pane, #study_pane, #other_pane, #last{
+
+    .inline_group{
+        display: inline-block;
+    }
     
     h1{
-        margin: 20px auto;
-        width: 50%;
+        width: 200px;
+        text-align: center;
+        background-color: #428bca;
+        border-color: #428bca;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+        text-transform:uppercase;
+        font-size: 30px;
+        position: absolute;
+        .box-shadow(2px,2px,5px,0px,rgba(0, 0, 0, 0.3));
+        .border-radius(2px);
+        left: 60px;
+        z-index:10;
+        
+        &#seccion_personal{
+            right: 440px;
+            left: initial;
+        }
     }
     
-    #session{
-        margin: 10px auto;
-        width:50%;
+    .special-form-pane{
+        background-color: rgba(66, 139, 202, 0.2);
+        padding: 10px;
+        padding-top: 20px;
+        border-style: solid;
+        border-radius: 3px;
+        border-color: #717680;
+        border-width: 5px;
         overflow: auto;
+        width: 50%;
+        display:inline-block;
+        margin: 30px;
+        margin-top: 60px;
+        
+        .line{
+            p{
+                display: inline;
+                float: left;
+                line-height: 30px;
+            }
+            .plain-field{
+                margin: 0px 5px;
+                height: 30px;
+                width: 120px !important;
+                background-color: rgba(66, 139, 202, 0.005);
+                border: 0px;
+                .box-shadow(0px,0px,0px,0px,rgba(0,0,0,0)) !important;
+                border-bottom-style: solid;
+                border-width: 1px;
+                padding: 0px;
+                .border-radius(0px);
+                
+                &:focus{
+                    background-color: rgba(66, 139, 202, 0.05);
+                }
+            }     
+        }   
     }
+    
+    .form-help-block{
+        display: inline-block;
+        width: 30%;
+        min-height: 180px;
+        position: absolute;
+        z-index: -1;
+        
+        &.right-block{
+            border-left-style: dotted;
+        }
+        &.left-block{
+            border-right-style: dotted;
+        }
+    }
+}
+
+
+
+div#session_pane,div#last{
+    
+    
+    
+    
+    
     label{
         float: left;
         clear: both;
@@ -54,13 +134,15 @@ div#session_pane,div#last{
     }    
     
     #contact, #personal{
-        min-height: 200px;
+        overflow: auto;
+        margin-bottom: 15px;
+        
         div{
             float: left;
             padding-left: 20px;
         }        
-               
-
+        
+        
         .form-control{            
             width: 200px;        
         }       
@@ -71,8 +153,8 @@ div#session_pane,div#last{
 }
 
 div#last{
-    width: 50%;
-    margin: 20px auto;
+    
+    margin: 20px 10%;
 
     .form-group{
         width:200px;
@@ -106,6 +188,7 @@ div#surprise-message{
     top: 0px;
     left: 0px;
     background-color: rgba(0,0,0,0.7);
+    z-index: 100;
 
     .panel{
         display: none;
@@ -226,5 +309,10 @@ div#other_pane{
             width: 200px;        
         }       
     }
+}
+
+#controls{
+    margin: 0px auto;
+    width: 105px;
 }
 

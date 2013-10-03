@@ -6,14 +6,14 @@
 		<ul class="profile-nav">
 		    <li><a href="{% url 'vista_nuevaclave' %}" class="btn btn-primary btn-lg">Cambiar clave</a></li>
 		    <li><a href="{% url 'vista_editarperfil' %}" class="btn btn-primary btn-lg">Editar perfil</a></li>
-		    <li><a href="{% url 'vista_bandejaentrada' %}" class="btn btn-primary btn-lg">Bandeja de entrada</a></li>
+		    <li><a id="selected-option" href="{% url 'vista_bandejaentrada' %}" class="btn btn-primary btn-lg">Bandeja de entrada</a></li>
 		    <li><a href="#" class="btn btn-primary btn-lg">Pagar subscripción</a></li>
 		</ul>
 </div>
 <div class="profile-content">
-	<div id="login-form">
-		<h3>Bandeja de entrada</h3>
-		<table class="table table-striped">
+	<!--<div id="login-form">-->
+		
+		<table class="bandeja table table-striped">
 			<tr>
 				<th>Fecha</th>
 				<th>Mensaje</th>
@@ -22,13 +22,13 @@
 			</tr>
 			{% for mensaje in mensajes %}
 			<tr>
-				<th>{{mensaje.fecha}}</th>
-				<th>{{mensaje.contenido}}</th>
-				<th>{{mensaje.nombre_contacto}}</th>
-				<th>{{mensaje.medio_contacto}}</th>
+				<td>{{mensaje.fecha}}</td>
+				<td>{{mensaje.contenido}}</td>
+				<td>{{mensaje.nombre_contacto}}</td>
+				<td>{{mensaje.medio_contacto}}</td>
 			</tr>
 			{% endfor %}	
 		</table>	
-	</div>
+	<!--</div>-->
 </div>	
 {% endblock %}

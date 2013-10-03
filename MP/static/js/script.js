@@ -45,6 +45,17 @@ $(document).ready(function() {
         
     });
     
+    $("#id_usuario").css("margin-left","23%");
+    
+    var height = $(".form-help-block.right-block").prev().css("height");
+    height = parseInt(height.substring(0, height.length - 2));
+    
+    $(".special-form-pane + .form-help-block").css("height",(height - 15))
+    
+    var height_ = $(".form-help-block.left-block").next().css("height");
+    height_ = parseInt(height_.substring(0, height_.length - 2));
+    
+    $(".form-help-block.left-block").css("height",(height_ - 15))
     
     //Control del formulario de registro, para que funcione por paginas
     var minVal=0;
@@ -75,11 +86,13 @@ $(document).ready(function() {
         $(".alert > p:first").html(textos[current]);
         if(current > 0){
             $("a#prev").removeAttr("disabled");    
+            $("#controls").css("width","105px");
         }
         if(current == 3){
             
             $("a#next").fadeOut();
-            $("[value=Registrar]").fadeIn();          
+            $("[value=Registrar]").fadeIn();
+            $("#controls").css("width","150px");          
         }                
         
     });

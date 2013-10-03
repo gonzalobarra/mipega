@@ -1,71 +1,33 @@
 
-/*      MIXINS      */
+/*          MIXINS          */
 @import "mixins";
 
-/*      FONTS       */
+/*          FONTS           */
 @import "fonts";
 
-/*      TEMPLATE    */
+/*          TEMPLATE        */
 @import "template";
 
-/*      LOGIN    */
+/*          LOGIN           */
 @import "login";
 
-/*      PERFIL    */
+/*          PERFIL          */
 @import "perfil";
 
-/*      REGISTRO    */
+/*          REGISTRO        */
 @import "registro";
 
-/*      DETALLE    */
+/*          DETALLE         */
 @import "detalle";
 
+/*          BUSQUEDA        */
+@import "busqueda";
+
+/*          EDITAR PERFIL   */
+@import "editarperfil";
 
 
 
-
-
-
-
-/*      BUSQUEDA.HTML       */
-
-.busqueda.avanzada{
-    
-    margin-left: 10%;
-    width: 80%;
-    
-    fieldset{
-        padding-left: 20px;
-        &#radios{
-            margin-left: 15%;
-            width: 70%;
-        }
-        &#last-search{
-            width: 76%;
-            margin-left: 12%;
-        }
-        &:not(:first-child){
-            margin-top: 15px;
-        }
-    }
-    .form-group{
-        display: inline-block;
-        width: 200px;
-        margin-left: 8px;
-        margin-right: 30px;
-        
-        &#sex-group{
-            width:300px;
-        }        
-        .chosen-container{
-            width: 100% !important;
-        }
-    }
-    
-    #search{
-        float:right;
-    }
-}
 
 
 
