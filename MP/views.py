@@ -245,7 +245,7 @@ def login_view(request):
                 login(request, user)
                 # redireccionar al inicio
                 messages.success(request, 'Bienvenido ' + user.username)
-                return HttpResponseRedirect('/perfil/')
+                return HttpResponseRedirect('/editarperfil/')
             else:
                 # Mensaje warning
                 messages.warning(request, 'Tu cuenta ha sido desactivada.')
