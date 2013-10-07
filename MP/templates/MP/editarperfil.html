@@ -14,13 +14,25 @@
 	<form action="" method="post" id="edit-profile-form">
 		
         {% csrf_token %}
-        {{form_socio}}
-        {{form_sociol}}
-        {{form_estudio1}}
-        {{form_estudio2}}
-        {{form_explab}}
-        {{form_hab}}
-        <input class="btn btn-primary" type="submit" value="Guardar cambios">
+        <div class="block-form-pane">
+            {{form_socio}}
+        </div>
+        <div class="block-form-pane">
+            {{form_sociol}}
+        </div>
+        <div class="block-form-pane">
+            {{form_estudio1}}
+        </div>
+        <div class="block-form-pane">
+            {{form_estudio2}}
+        </div>
+        <div class="block-form-pane">
+            {{form_explab}}
+        </div>
+        <div class="block-form-pane">
+            {{form_hab}}
+        </div>
+        <input class="pull-right btn btn-primary" style="margin:30px;"type="submit" value="Guardar cambios">
     </form>   
 </div>
 {% endblock %}

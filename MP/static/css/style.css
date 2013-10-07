@@ -837,9 +837,31 @@ div#other_pane #habilidades Select.form-control {
 .profile-content #edit-profile-form {
   height: 440px;
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 104%;
+}
+.profile-content #edit-profile-form .block-form-pane {
+  width: 95%;
 }
 /*          BANDEJA DE ENTRADA   */
 .bandeja {
   overflow-y: scroll;
+}
+/*          CAMBIO DE CLAVE      */
+.block-form-pane {
+  background-color: rgba(66, 139, 202, 0.2);
+  padding: 30px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #717680;
+  border-width: 5px;
+  overflow: auto;
+  width: 100%;
+  display: block;
+  margin: 30px;
+  margin-top: 60px;
+}
+.block-form-pane .inline-group {
+  display: inline-block;
+  margin: 10px 30px;
 }

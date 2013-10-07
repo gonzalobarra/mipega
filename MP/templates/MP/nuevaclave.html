@@ -11,21 +11,23 @@
 		</ul>
 </div>
 <div class="profile-content">
-	<form action="" method="post">
+	<form  action="" method="post">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="id_ClaveAntigua">Clave actual:</label>
-            {{user_form.ClaveAntigua}}
+        <div class="block-form-pane">
+            <div class="inline-group">
+                <label for="id_ClaveAntigua">Clave actual:</label>
+                {{user_form.ClaveAntigua}}
+            </div>
+            <div class="inline-group">
+                <label for="id_ClaveNueva">Nueva clave:</label>
+                {{user_form.ClaveNueva}}
+            </div>
+            <div class="inline-group">
+                <label for="id_ClaveRepetida">Repita su clave:</label>
+                {{user_form.ClaveRepetida}}
+            </div>
         </div>
-        <div class="form-group">
-            <label for="id_ClaveNueva">Nueva clave:</label>
-            {{user_form.ClaveNueva}}
-        </div>
-        <div class="form-group">
-            <label for="id_ClaveRepetida">Repita su clave:</label>
-            {{user_form.ClaveRepetida}}
-        </div>
-        <input class="btn btn-primary" type="submit" value="Cambiar clave">
+        <input class="pull-right btn btn-primary" type="submit" value="Cambiar clave">
     </form>   
 </div>
 {% endblock %}
