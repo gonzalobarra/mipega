@@ -34,8 +34,8 @@ input[value="Registrar"]{
         display: inline-block;
     }
     
-    h1{
-        width: 200px;
+    h1, h2{
+        /*width: 240px;*/
         text-align: center;
         background-color: #428bca;
         border-color: #428bca;
@@ -51,7 +51,16 @@ input[value="Registrar"]{
         z-index:10;
         
         &#seccion_personal{
-            right: 440px;
+            right: 400px;
+            left: initial;
+        }
+    }
+    h2{
+        width: 390px;
+        
+        &#seccion_superiores{
+            
+            right: 250px;
             left: initial;
         }
     }
@@ -69,6 +78,13 @@ input[value="Registrar"]{
         display:inline-block;
         margin: 30px;
         margin-top: 60px;
+        
+        &#habilidades{
+            .inline_group{
+                width: 200px;
+                margin: 0px 40px;
+            }
+        }
         
         .line{
             p{
@@ -97,8 +113,8 @@ input[value="Registrar"]{
     
     .form-help-block{
         display: inline-block;
-        width: 30%;
-        min-height: 180px;
+        width: 40%;
+        padding: 15px;
         position: absolute;
         z-index: -1;
         
@@ -154,7 +170,6 @@ div#session_pane,div#last{
 
 div#last{
     
-    margin: 20px 10%;
 
     .form-group{
         width:200px;
@@ -223,12 +238,9 @@ div#_escolar1{
 
 div#study_pane,div#other_pane{
 
-    h2{
-        margin: 20px auto;
-        width: 50%;
-    }
     
-    #escolar{
+    
+    #escolar, #superiores, #experiencias{
         min-height: 150px;
         overflow: auto;
         div{

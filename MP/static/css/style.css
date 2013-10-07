@@ -339,8 +339,13 @@ input[value="Registrar"] {
 #session_pane h1,
 #study_pane h1,
 #other_pane h1,
-#last h1 {
-  width: 200px;
+#last h1,
+#session_pane h2,
+#study_pane h2,
+#other_pane h2,
+#last h2 {
+  /*width: 240px;*/
+
   text-align: center;
   background-color: #428bca;
   border-color: #428bca;
@@ -364,8 +369,25 @@ input[value="Registrar"] {
 #session_pane h1#seccion_personal,
 #study_pane h1#seccion_personal,
 #other_pane h1#seccion_personal,
-#last h1#seccion_personal {
-  right: 440px;
+#last h1#seccion_personal,
+#session_pane h2#seccion_personal,
+#study_pane h2#seccion_personal,
+#other_pane h2#seccion_personal,
+#last h2#seccion_personal {
+  right: 400px;
+  left: initial;
+}
+#session_pane h2,
+#study_pane h2,
+#other_pane h2,
+#last h2 {
+  width: 390px;
+}
+#session_pane h2#seccion_superiores,
+#study_pane h2#seccion_superiores,
+#other_pane h2#seccion_superiores,
+#last h2#seccion_superiores {
+  right: 250px;
   left: initial;
 }
 #session_pane .special-form-pane,
@@ -384,6 +406,13 @@ input[value="Registrar"] {
   display: inline-block;
   margin: 30px;
   margin-top: 60px;
+}
+#session_pane .special-form-pane#habilidades .inline_group,
+#study_pane .special-form-pane#habilidades .inline_group,
+#other_pane .special-form-pane#habilidades .inline_group,
+#last .special-form-pane#habilidades .inline_group {
+  width: 200px;
+  margin: 0px 40px;
 }
 #session_pane .special-form-pane .line p,
 #study_pane .special-form-pane .line p,
@@ -425,8 +454,8 @@ input[value="Registrar"] {
 #other_pane .form-help-block,
 #last .form-help-block {
   display: inline-block;
-  width: 30%;
-  min-height: 180px;
+  width: 40%;
+  padding: 15px;
   position: absolute;
   z-index: -1;
 }
@@ -481,9 +510,6 @@ div#session_pane #personal select.form-control,
 div#last #personal select.form-control {
   margin-left: 18%;
 }
-div#last {
-  margin: 20px 10%;
-}
 div#last .form-group {
   width: 200px;
 }
@@ -534,19 +560,30 @@ div#_escolar1 {
   width: 100%;
   min-width: 465px;
 }
-div#study_pane h2, div#other_pane h2 {
-  margin: 20px auto;
-  width: 50%;
-}
-div#study_pane #escolar, div#other_pane #escolar {
+div#study_pane #escolar,
+div#other_pane #escolar,
+div#study_pane #superiores,
+div#other_pane #superiores,
+div#study_pane #experiencias,
+div#other_pane #experiencias {
   min-height: 150px;
   overflow: auto;
 }
-div#study_pane #escolar div, div#other_pane #escolar div {
+div#study_pane #escolar div,
+div#other_pane #escolar div,
+div#study_pane #superiores div,
+div#other_pane #superiores div,
+div#study_pane #experiencias div,
+div#other_pane #experiencias div {
   float: left;
   padding-left: 20px;
 }
-div#study_pane #escolar label, div#other_pane #escolar label {
+div#study_pane #escolar label,
+div#other_pane #escolar label,
+div#study_pane #superiores label,
+div#other_pane #superiores label,
+div#study_pane #experiencias label,
+div#other_pane #experiencias label {
   float: left;
   clear: both;
   margin-right: 100%;
@@ -555,14 +592,29 @@ div#study_pane #escolar label, div#other_pane #escolar label {
   white-space: nowrap;
   margin-left: 10%;
 }
-div#study_pane #escolar .form-control, div#other_pane #escolar .form-control {
+div#study_pane #escolar .form-control,
+div#other_pane #escolar .form-control,
+div#study_pane #superiores .form-control,
+div#other_pane #superiores .form-control,
+div#study_pane #experiencias .form-control,
+div#other_pane #experiencias .form-control {
   margin-left: 10%;
   float: left;
 }
-div#study_pane #escolar textarea.form-control, div#other_pane #escolar textarea.form-control {
+div#study_pane #escolar textarea.form-control,
+div#other_pane #escolar textarea.form-control,
+div#study_pane #superiores textarea.form-control,
+div#other_pane #superiores textarea.form-control,
+div#study_pane #experiencias textarea.form-control,
+div#other_pane #experiencias textarea.form-control {
   margin-left: 15%;
 }
-div#study_pane #escolar Select.form-control, div#other_pane #escolar Select.form-control {
+div#study_pane #escolar Select.form-control,
+div#other_pane #escolar Select.form-control,
+div#study_pane #superiores Select.form-control,
+div#other_pane #superiores Select.form-control,
+div#study_pane #experiencias Select.form-control,
+div#other_pane #experiencias Select.form-control {
   margin-left: 10%;
   width: 200px;
 }
