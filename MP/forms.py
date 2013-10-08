@@ -43,7 +43,7 @@ class SocioForm(forms.ModelForm):
     comentario_est = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
     class Meta:
         model = Socio
-        fields = ('nombre','telefono', 'web', 'ano_nacimiento', 'comentario_est','nacionalidad','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato', 'nacionalidad',)
+        fields = ('nombre','telefono', 'web', 'ano_nacimiento', 'comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato', 'nacionalidad',)
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
@@ -71,9 +71,10 @@ class EstudioForm(forms.ModelForm):
         }
 
 class ExperienciaLaboralForm(forms.ModelForm):
+    comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
     class Meta:
         model = ExperienciaLaboral
-        fields = ('anos_trabajados', 'cargo', 'rubro',)
+        fields = ('anos_trabajados', 'cargo', 'rubro','comentario')
         widgets = {
             'anos_trabajados': forms.TextInput(attrs={'class':'form-control'}),
             'cargo': forms.Select(attrs={'class':'form-control'}),
