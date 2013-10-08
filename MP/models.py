@@ -85,6 +85,8 @@ class Socio(models.Model):
 	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=10, choices=tipoContrato, null=True, blank=True)
 	comentario_est	  = models.CharField('Comentario' ,max_length=512, null=True, blank=True)
 	folio			  = models.CharField('Folio', max_length=4, null=False, blank=False, unique=True)
+	magister		  = models.BooleanField('Magister')
+	doctorado 		  = models.BooleanField('Doctorado')
 	
 	nacionalidad  =models.ForeignKey(Nacionalidad, verbose_name="Nacionalidad", null=True, blank=True)
 	user = models.OneToOneField(User)
