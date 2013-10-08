@@ -86,7 +86,7 @@
                         </select>
                         
                     </div>
-                    <a class="pull-right" href="{% url 'busqueda_avanzada' %}">Busqueda avanzada</a>
+                    <a class="pull-right" onclick="busquedaavanzada()">Busqueda avanzada</a>
                     <br><br>
                     <button class="btn btn-default" id="search">Buscar</button>
                 </fieldset>
@@ -101,6 +101,25 @@
 {% endblock %}
 {% block SCRIPT %}
 <script type="text/javascript">
+function busquedaavanzada(){
+    alert("asd");
+    var parametros = $('#id_form').serialize();
+    $.ajax({
+        url: "{% url 'busqueda_avanzada' %}",
+        data: parametros,
+        datatype: 'json',           
+        type: 'post'
+    }).done(function(data){
+        if(data!=""){
+            $(document).html(data);
+        }
+    }).fail(function(){
+        $.ambiance({message: "Error al hacer la busqueda", title:"Error",
+                    type: "error",timeout:4,width:200,});
+    }); 
+}
+
+
     $('#search').click(function(){
         var parametros = $('#id_form').serialize();
         $.ajax({

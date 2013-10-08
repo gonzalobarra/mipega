@@ -180,6 +180,12 @@
 {% endblock %}
 {% block SCRIPT %}
 <script type="text/javascript">
+    {% for c in id_cargos %}
+    $('#inputCargo option[value={{c}}]').attr('selected','selected')
+    {% endfor %}
+    
+</script>
+<script type="text/javascript">
     $('#search').click(function(){
         var parametros = $('#id_form').serialize();
         $.ajax({
