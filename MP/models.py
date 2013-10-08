@@ -47,9 +47,6 @@ tipoLocalidad=(
 	('c','Comuna'),
 	('r','Región'),
 )
-nacionalidad=(
-	('cl', 'Chile'),
-)
 nacimiento=(
 	('0','1990 - 1996'),
 	('1','1980 - 1990'),
@@ -66,21 +63,30 @@ renta=(
 	('1','500-700'),
 )
 
+class Nacionalidad(models.Model):
+	id 				  = models.AutoField('ID', primary_key=True)
+	nombre 			  = models.CharField('Nombre', max_length=64, null=False, blank=False)
+	codigo 			  = models.CharField('Codigo', max_length=32, null=False, blank=False)
+
+	def __unicode__(self):
+		return u'%s' % (self.nombre)
+
+
 class Socio(models.Model):
 	id                = models.AutoField('ID', primary_key=True)
-	usuario           = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre            = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
 	web               = models.CharField('Web' ,max_length=64, null=True, blank=True)
-	ano_nacimiento    = models.CharField('Año de nacimiento',max_length=10, choices=nacimiento)
-	sexo              = models.CharField("Sexo",max_length=10, choices=sexo)
-	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=10, choices=hijos)
-	estado_civil      = models.CharField('Estado Civil',max_length=10, choices=estadoCivil)
-	pretencion_renta  = models.CharField("Pretenciones de Renta", max_length=10, choices=renta)
-	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=10, choices=tipoContrato)
-	nacionalidad	  = models.CharField('Nacionalidad',max_length=10, choices=nacionalidad)
-	comentario        = models.CharField('Comentario' ,max_length=512, null=True, blank=True)
+	ano_nacimiento    = models.CharField('Año de nacimiento',max_length=10, choices=nacimiento, null=True, blank=True)
+	sexo              = models.CharField("Sexo",max_length=10, choices=sexo, null=True, blank=True)
+	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=10, choices=hijos, null=True, blank=True)
+	estado_civil      = models.CharField('Estado Civil',max_length=10, choices=estadoCivil, null=True, blank=True)
+	pretencion_renta  = models.CharField("Pretenciones de Renta", max_length=10, choices=renta, null=True, blank=True)
+	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=10, choices=tipoContrato, null=True, blank=True)
 	comentario_est	  = models.CharField('Comentario' ,max_length=512, null=True, blank=True)
+	folio			  = models.CharField('Folio', max_length=4, null=False, blank=False, unique=True)
 	
+	nacionalidad  =models.ForeignKey(Nacionalidad, verbose_name="Nacionalidad", null=True, blank=True)
 	user = models.OneToOneField(User)
 
 	def __unicode__(self):
@@ -127,11 +133,11 @@ class Habilidad(models.Model):
 
 class OtrasHabilidades(models.Model):
 	id        = models.AutoField('ID', primary_key=True)
-	nivel     = models.CharField('Nivel', max_length=7,choices=nivelHabilidad, default="u")
+	nivel     = models.CharField('Nivel', max_length=7,choices=nivelHabilidad, default="u", null=True, blank=True)
 
 	# Llaves foraneas
 	socio     = models.ForeignKey(Socio, verbose_name="Socio")
-	habilidad = models.ForeignKey(Habilidad, verbose_name="Habilidad")
+	habilidad = models.ForeignKey(Habilidad, verbose_name="Habilidad", null=True, blank=True)
 
 
 class Rubro(models.Model):
@@ -153,19 +159,19 @@ class EmpleoBuscado(models.Model):
 
 	# Llaves foraneas
 	socio = models.ForeignKey(Socio, verbose_name="Socio")
-	cargo = models.ForeignKey(Cargo, verbose_name="Cargo")
+	cargo = models.ForeignKey(Cargo, verbose_name="Cargo", null=True, blank=True)
 
 
 
 class ExperienciaLaboral(models.Model):
-	id          = models.AutoField('ID', primary_key=True)
-	ano_ingreso = models.IntegerField("Año Ingreso", null=False, blank=False)
-	ano_egreso  = models.IntegerField("Año Egreso", null=True, blank=True)
+	id              = models.AutoField('ID', primary_key=True)
+	anos_trabajados = models.IntegerField("Años trabajados", null=True, blank=True)
+	comentario      = models.CharField('Comentario', max_length=64,null=True, blank=True)
 
 	# Llaves foraneas
-	cargo       = models.ForeignKey(Cargo, verbose_name="Cargo")
+	cargo       = models.ForeignKey(Cargo, verbose_name="Cargo", null=True, blank=True)
 	socio       = models.ForeignKey(Socio, verbose_name="Socio")
-	rubro       = models.ForeignKey(Rubro, verbose_name="Rubro")
+	rubro       = models.ForeignKey(Rubro, verbose_name="Rubro", null=True, blank=True)
 
 
 class Titulo(models.Model):
@@ -189,8 +195,8 @@ class Estudios(models.Model):
 	estado      = models.CharField('Estado', max_length=7, choices=estadoEstudio, default="i")
 
 	# Llaves foraneas
-	titulo      = models.ForeignKey(Titulo, verbose_name="Titulo")
-	institucion = models.ForeignKey(Institucion, verbose_name="Institucion")
+	titulo      = models.ForeignKey(Titulo, verbose_name="Titulo", null=True, blank=True)
+	institucion = models.ForeignKey(Institucion, verbose_name="Institucion", null=True, blank=True)
 	socio       = models.ForeignKey(Socio, verbose_name="Socio")
 
 
@@ -220,7 +226,7 @@ class LocalidadConSocio(models.Model):
 
 	#llaves foraneas
 	socio     = models.ForeignKey(Socio, verbose_name="Socio")
-	localidad = models.ForeignKey(Localidad, verbose_name="Localidad")
+	localidad = models.ForeignKey(Localidad, verbose_name="Localidad", null=True, blank=True)
 
 
 
