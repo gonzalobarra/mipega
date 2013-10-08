@@ -177,13 +177,21 @@ def registro_view(request):
 	form_user = UserForm(request.POST or None)
 	form_socio = SocioForm(request.POST or None)
 	form_sociol = LocalidadconSocioForm(request.POST or None)
-	form_estudio = EstudioForm(request.POST or None)
-	form_estudio2 = EstudioForm(request.POST or None)
+	form_estudio = EstudioForm(request.POST or None) #Escolar
+	form_estudio2 = EstudioForm(request.POST or None) #Superior
+	form_estudio3 = EstudioForm(request.POST or None) #Superior
 	form_explab = ExperienciaLaboralForm(request.POST or None)
+	form_explab2 = ExperienciaLaboralForm(request.POST or None)
+	form_explab3 = ExperienciaLaboralForm(request.POST or None)
+	form_explab4 = ExperienciaLaboralForm(request.POST or None)
 	form_hab = OtrasHabilidadesForm(request.POST or None)
+	form_hab2 = OtrasHabilidadesForm(request.POST or None)
+	form_hab3 = OtrasHabilidadesForm(request.POST or None)
+	form_hab4 = OtrasHabilidadesForm(request.POST or None)
 	form_empb = EmpleoBuscadoForm(request.POST or None)
 
 	if request.POST:
+		'''
 		if form_user.is_valid():
 			try:
 				clave = form_user.cleaned_data['password']
@@ -224,10 +232,9 @@ def registro_view(request):
 												return HttpResponseRedirect('/')
 						else:
 							usuario.delete()
-
-
+		'''					
 	else:	
-		ctx = {'form_user': form_user, 'form_socio':form_socio, 'form_sociol':form_sociol, 'form_estudio':form_estudio, 'form_estudio2': form_estudio2, 'form_explab': form_explab, 'form_hab': form_hab, 'form_empb': form_empb}
+		ctx = {'form_user': form_user, 'form_socio':form_socio, 'form_sociol':form_sociol, 'form_estudio':form_estudio, 'form_estudio2': form_estudio2, 'form_estudio3':form_estudio3, 'form_explab': form_explab, 'form_explab2': form_explab2, 'form_explab3': form_explab3, 'form_explab4': form_explab4, 'form_hab': form_hab,'form_hab2': form_hab2,'form_hab3': form_hab3,'form_hab4': form_hab4, 'form_empb': form_empb}
 		return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))
 
 def login_view(request):
