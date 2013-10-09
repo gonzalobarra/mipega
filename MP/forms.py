@@ -71,7 +71,7 @@ class EstudioForm(forms.ModelForm):
         }
 
 class ExperienciaLaboralForm(forms.ModelForm):
-    comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
+    comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'5'}))
     class Meta:
         model = ExperienciaLaboral
         fields = ('anos_trabajados', 'cargo', 'rubro','comentario')

@@ -55,6 +55,7 @@ input[value="Registrar"]{
             left: initial;
         }
     }
+    
     h2{
         width: 390px;
         
@@ -64,6 +65,37 @@ input[value="Registrar"]{
             left: initial;
         }
     }
+    #superiores{
+        #escolar1{
+            div{
+                width: 30%;
+            }
+        }
+        
+        #postgrados{
+            display: inline-block;
+            width: 100%;
+            
+            .checkbox{
+            
+                margin-top: 0px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+                width: 50%;
+                
+                label{
+                    width: 50%;
+                }
+                input[type="checkbox"]{
+                    margin: 5px;
+                    padding: 5px;
+                    width: 15px;
+                    height: 15px;
+                }         
+            }  
+        }
+    }
+    
     
     .special-form-pane{
         background-color: rgba(66, 139, 202, 0.2);
@@ -78,6 +110,48 @@ input[value="Registrar"]{
         display:inline-block;
         margin: 30px;
         margin-top: 60px;
+        
+        &#experiencias{
+        
+            .inline_group{
+                width: 30%;
+                
+                select{
+                    width: 100%;
+                }
+            }
+            
+            #escolar2{
+                width: 100%;
+                padding: 0px;
+                
+                .form_group{
+                    padding: 0px;
+                    width: inherit;
+                    
+                    textarea{
+                    
+                    }
+                }
+            }
+        }
+        .plus-button{
+            padding: 1px;
+            width: 35px;
+            height: 35px;
+            margin-left: 6%;
+            margin-bottom: 3%;
+            .border-radius(10px);
+            
+            span{
+                line-height: 1.7;
+                font-size: 22px;
+            }
+        }
+        
+        .hidden-form{
+            display: none;
+        }
         
         &#habilidades{
             .inline_group{
@@ -129,11 +203,7 @@ input[value="Registrar"]{
 
 
 
-div#session_pane,div#last{
-    
-    
-    
-    
+div#session_pane,div#last{   
     
     label{
         float: left;
@@ -185,12 +255,13 @@ div#escolar1{
     width: 100%;
     margin: 20px auto;
     padding: 0px !important;
-
-    div{
-        padding: 0px !important;
-    }
-    select.form-control{
-        width: 150px !important;
+    
+    p{
+        clear: both;
+        padding-left: 7%;
+        font-weight: bold;
+        margin: 10px 0px;
+        font-size: 15px;
     }
     
 }

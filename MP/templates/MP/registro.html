@@ -30,8 +30,8 @@
             <div class="row form-pane active-pane" id="session_pane"> <!-- PANEL DE PERFIL -->
                 <!--<div class="col-md-6 col-md-offset-2">-->
                     <h1 id="seccion_cuenta">Cuenta</h1><!-- CUENTA DE MIPEGA -->
-                    <div class="special-form-pane" id="session">
-                        <div class="inline_group">
+                    <div class="special-form-pane"  id="session">
+                        <div style="width: 240px;" class="inline_group">
                             <label style="margin-left: 23%;" for="id_username">RUT:</label>
                             {{form_user.username}}
                         </div>
@@ -68,7 +68,7 @@
                                 {{form_socio.tiene_hijos}}
                             </div>
                         </div>
-                        <div class="inline_group personal" style="width:255px;">
+                        <div class="inline_group personal" style="padding-left: 36px;width: 100%;">
                                 <label for="id_estado_civil">Estado civil:</label>
                                 {{form_socio.estado_civil}}
                             </div>
@@ -140,10 +140,11 @@
                     <h2 id="seccion_escolar">Enseñanza escolar</h2>
                     <div class="special-form-pane" id="escolar">
                         <div id="escolar1">
-                            <div class="form_group" style="width:200px;">
+                            <div class="form_group" style="margin-bottom:10px;">
                                 <label for="id_estado">Estado:</label>
                                 {{form_estudio.estado}}
                             </div>
+                            <p>En caso de poseer un titulo tecnico de liceo, indiquelo en las casillas siguientes...</p>
                         <!--</div>
                         <div id="escolar2">-->
                             <div class="form_group">
@@ -165,9 +166,7 @@
                         <p>Sólo tu "usuario" será visible para los demás.</p>
                     </div>
                     <h2 id="seccion_superiores">Estudios superiores</h2>
-                    <div class="pull-right special-form-pane" id="superiores">
-                        <p> tiene magister{{form_socio.magister}}</p>
-                        <p>tiene doctorado{{form_socio.doctorado}}</p>
+                    <div class="pull-right special-form-pane" id="superiores">                        
                         <div id="escolar1">
                             <div class="form_group" id="lefty">
                                 <label for="id_estado">Estado:</label>
@@ -185,7 +184,7 @@
                             </div>
                         </div>
                         <!--el otro form que debe estar escondido-->
-                        <div id="escolar1">
+                        <div class="hidden-form" id="escolar1">
                             <div class="form_group" id="lefty">
                                 <label for="id_estado">Estado:</label>
                                 {{form_estudio3.estado}}
@@ -201,6 +200,15 @@
                                 {{form_estudio3.institucion}}
                             </div>
                         </div>
+                        <a href="#" class="plus-button btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                        <div id="postgrados">
+                            <div class="checkbox">
+                                <label> {{form_socio.magister}} tiene magister</label>
+                            </div>
+                            <div class="checkbox">
+                                <label> {{form_socio.doctorado}} tiene doctorado</label>
+                            </div>
+                        </div>
                         <div class="form_group" id="alone">
                             <label for="id_comentario">Comentario:</label>
                             {{form_socio.comentario_est}}
@@ -208,38 +216,47 @@
                     </div>
                     <h2 style="top: 1030px;" id="seccion_habilidades">Otras habilidades</h2>
                     <div class="special-form-pane" id="habilidades">
-                        <div class="inline_group">
-                            <label for="id_nivel">Nivel:</label>
-                            {{form_hab.nivel}}
+                        <div style="margin-bottom: 10px;">
+                            <div class="inline_group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab.nivel}}
+                            </div>
+                            <div class="inline_group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab.habilidad}}
+                            </div>
                         </div>
-                        <div class="inline_group">
-                            <label for="id_habilidad">Habilidad:</label>
-                            {{form_hab.habilidad}}
+                        <div style="margin-bottom: 10px;" class="hidden-form">
+                            <div class="inline_group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab2.nivel}}
+                            </div>
+                            <div class="inline_group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab2.habilidad}}
+                            </div>
                         </div>
-                        <div class="inline_group">
-                            <label for="id_nivel">Nivel:</label>
-                            {{form_hab2.nivel}}
+                        <div style="margin-bottom: 10px;" class="hidden-form">
+                            <div class="inline_group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab3.nivel}}
+                            </div>
+                            <div class="inline_group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab3.habilidad}}
+                            </div>
                         </div>
-                        <div class="inline_group">
-                            <label for="id_habilidad">Habilidad:</label>
-                            {{form_hab2.habilidad}}
+                        <div style="margin-bottom: 10px;" class="hidden-form">
+                            <div class="inline_group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab4.nivel}}
+                            </div>
+                            <div class="inline_group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab4.habilidad}}
+                            </div> 
                         </div>
-                        <div class="inline_group">
-                            <label for="id_nivel">Nivel:</label>
-                            {{form_hab3.nivel}}
-                        </div>
-                        <div class="inline_group">
-                            <label for="id_habilidad">Habilidad:</label>
-                            {{form_hab3.habilidad}}
-                        </div>
-                        <div class="inline_group">
-                            <label for="id_nivel">Nivel:</label>
-                            {{form_hab4.nivel}}
-                        </div>
-                        <div class="inline_group">
-                            <label for="id_habilidad">Habilidad:</label>
-                            {{form_hab4.habilidad}}
-                        </div>                              
+                        <a href="#" class="plus-button btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>                             
                     </div>
                     <div id="habilidades-help" style="top: 1060px;" class="right-block form-help-block">
                         <p>Tu rut solo se usa para acceder, pero <strong>nadie puede verlo!</strong></p>
@@ -252,89 +269,100 @@
 
                     <h2 id="seccion_laboral">Experiencia laboral</h2>
                     <div class="special-form-pane" id="experiencias">
-                        <div id="_escolar1">
-                            <div class="form_group" id="ingreso">
-                                <label for="id_ano_ingreso">Desde:</label>
-                                {{form_explab.anos_trabajados}}
+                        <div>
+                            <div id="_escolar1">
+                                <div class="inline_group" id="ingreso">
+                                    <label for="id_ano_ingreso">Desde:</label>
+                                    {{form_explab.anos_trabajados}}
+                                </div>
+                                <div class="inline_group">
+                                    <label for="id_rubro">Rubro:</label>
+                                    {{form_explab.rubro}}
+                                </div>
+                                <div class="inline_group">
+                                    <label for="id_cargo">Cargo:</label>
+                                    {{form_explab.cargo}}
+                                </div>
                             </div>
-                        </div>
-                        <div id="escolar2">
-                            <div class="form_group">
-                                <label for="id_rubro">Rubro:</label>
-                                {{form_explab.rubro}}
+                            <div id="escolar2">                            
+                                <div class="form_group">
+                                    <label for="id_comentario">Comentario:</label>
+                                    {{form_explab.comentario}}
+                                </div>                              
                             </div>
-                            <div class="form_group">
-                                <label for="id_cargo">Cargo:</label>
-                                {{form_explab.cargo}}
-                            </div>
-                            <div class="form_group">
-                                <label for="id_comentario">Comentario:</label>
-                                {{form_explab.comentario}}
-                            </div>                              
                         </div>
                         <!--el otro form-->
-                        <div id="_escolar1">
-                            <div class="form_group" id="ingreso">
-                                <label for="id_ano_ingreso">Desde:</label>
-                                {{form_explab2.anos_trabajados}}
+                        <div class="hidden-form">
+                            <div id="_escolar1">
+                                <div class="inline_group" id="ingreso">
+                                    <label for="id_ano_ingreso">Año:</label>
+                                    {{form_explab2.anos_trabajados}}
+                                </div>
+                                <div class="inline_group">
+                                    <label for="id_rubro">Rubro:</label>
+                                    {{form_explab2.rubro}}
+                                </div>
+                                <div class="inline_group">
+                                    <label for="id_cargo">Cargo:</label>
+                                    {{form_explab2.cargo}}
+                                </div>
                             </div>
-                        </div>
-                        <div id="escolar2">
-                            <div class="form_group">
-                                <label for="id_rubro">Rubro:</label>
-                                {{form_explab2.rubro}}
+                            <div id="escolar2">                            
+                                <div class="form_group">
+                                    <label for="id_comentario">Comentario:</label>
+                                    {{form_explab2.comentario}}
+                                </div>                            
                             </div>
-                            <div class="form_group">
-                                <label for="id_cargo">Cargo:</label>
-                                {{form_explab2.cargo}}
-                            </div>
-                            <div class="form_group">
-                                <label for="id_comentario">Comentario:</label>
-                                {{form_explab2.comentario}}
-                            </div>                            
                         </div>
                         <!--el otro form-->
-                        <div id="_escolar1">
-                            <div class="form_group" id="ingreso">
-                                <label for="id_ano_ingreso">Desde:</label>
-                                {{form_explab3.anos_trabajados}}
+                        <div class="hidden-form">
+                            <div id="_escolar1">
+                                <div class="inline_group" id="ingreso">
+                                    <label for="id_ano_ingreso">Desde:</label>
+                                    {{form_explab3.anos_trabajados}}
+                                </div>
+                                <div class="inline_group">
+                                    <label for="id_rubro">Rubro:</label>
+                                    {{form_explab3.rubro}}
+                                </div>
+                                <div class="inline_group">
+                                    <label for="id_cargo">Cargo:</label>
+                                    {{form_explab3.cargo}}
+                                </div>
                             </div>
-                        </div>
-                        <div id="escolar2">
-                            <div class="form_group">
-                                <label for="id_rubro">Rubro:</label>
-                                {{form_explab3.rubro}}
+                            <div id="escolar2">
+                                
+                                <div class="form_group">
+                                    <label for="id_comentario">Comentario:</label>
+                                    {{form_explab3.comentario}}
+                                </div>                            
                             </div>
-                            <div class="form_group">
-                                <label for="id_cargo">Cargo:</label>
-                                {{form_explab3.cargo}}
-                            </div>
-                            <div class="form_group">
-                                <label for="id_comentario">Comentario:</label>
-                                {{form_explab3.comentario}}
-                            </div>                            
                         </div>
                         <!--el otro form-->
-                        <div id="_escolar1">
-                            <div class="form_group" id="ingreso">
-                                <label for="id_ano_ingreso">Desde:</label>
-                                {{form_explab4.anos_trabajados}}
+                        <div class="hidden-form">
+                            <div id="_escolar1">
+                                <div class="inline_group" id="ingreso">
+                                    <label for="id_ano_ingreso">Desde:</label>
+                                    {{form_explab4.anos_trabajados}}
+                                </div>
+                                <div class="inline_group">
+                                    <label for="id_rubro">Rubro:</label>
+                                    {{form_explab4.rubro}}
+                                </div>
+                                <div class="inline_group">
+                                    <label for="id_cargo">Cargo:</label>
+                                    {{form_explab4.cargo}}
+                                </div>
                             </div>
-                        </div>
-                        <div id="escolar2">
-                            <div class="form_group">
-                                <label for="id_rubro">Rubro:</label>
-                                {{form_explab4.rubro}}
-                            </div>
-                            <div class="form_group">
-                                <label for="id_cargo">Cargo:</label>
-                                {{form_explab4.cargo}}
-                            </div>
-                            <div class="form_group">
-                                <label for="id_comentario">Comentario:</label>
-                                {{form_explab4.comentario}}
-                            </div>                            
-                        </div>                           
+                            <div id="escolar2">
+                                
+                                <div class="form_group">
+                                    <label for="id_comentario">Comentario:</label>
+                                    {{form_explab4.comentario}}
+                                </div>                            
+                            </div>   
+                        </div> 
+                        <a href="#" class="plus-button btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>                       
                     </div>
                     <div id="experiencias-help" style="top: 360px;" class="right-block form-help-block">
                         <p>Tu rut solo se usa para acceder, pero <strong>nadie puede verlo!</strong></p>

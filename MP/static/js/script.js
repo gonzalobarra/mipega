@@ -124,7 +124,30 @@ $(document).ready(function() {
         }   
     };    
     
+    $("#id_estado_civil").css({
     
+        width: "72%",
+        'margin-left': "8%",
+        'max-width': "100%"
+    });
+    
+    //Funcionalidad del boton plus
+    $(".plus-button").click(function(event){
+    
+        event.preventDefault();
+        var containerForm = $(this).parent();
+        var alreadyRemoved = false;
+        containerForm.children().each(function(){           
+        
+            if($(this).hasClass("hidden-form") && !alreadyRemoved){
+            
+                $(this).fadeIn();
+                $(this).removeClass("hidden-form");
+                alreadyRemoved = true;
+            }
+        
+        });
+    });
     
     //Control del formulario de registro, para que funcione por paginas
     var minVal=0;
