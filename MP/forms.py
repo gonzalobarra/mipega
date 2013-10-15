@@ -32,18 +32,17 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}),required=True,label='Clave')
     class Meta:
         model = User
-        fields = ('username', 'password','email',)
+        fields = ('username', 'password',)
         widgets = {
             'username': forms.TextInput(attrs={'class':'form-control'}),  
-            'password': forms.PasswordInput(attrs={'class':'form-control'}), 
-            'email': forms.TextInput(attrs={'class':'form-control plain-field'}),       
+            'password': forms.PasswordInput(attrs={'class':'form-control'}),        
         }
     
 class SocioForm(forms.ModelForm):
     comentario_est = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control'}))
     class Meta:
         model = Socio
-        fields = ('nombre','telefono', 'web', 'ano_nacimiento', 'comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato', 'nacionalidad',)
+        fields = ('nombre','telefono', 'web', 'ano_nacimiento', 'comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
@@ -56,9 +55,6 @@ class SocioForm(forms.ModelForm):
             'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
             'nacionalidad': forms.Select(attrs={'class':'form-control'}),
         }
-
-class LocalidadconSocioForm(forms.Form):
-    localidad = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),required=False,label='localidad')
 
 class EstudioForm(forms.ModelForm):
     class Meta:
@@ -89,7 +85,7 @@ class OtrasHabilidadesForm(forms.ModelForm):
             'nivel': forms.Select(attrs={'class':'form-control'}),
             'habilidad': forms.Select(attrs={'class':'form-control'}),        
         }
-                       
+#Al parecer no se usa nunca jamás                       
 class BuscaRapidaForm(forms.Form):
 
     cargo = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),required=False,label='Cargo')
@@ -108,6 +104,4 @@ class cambiarClave(forms.Form):
     ClaveNueva = forms.CharField(max_length=20,  widget= forms.PasswordInput(attrs={'class':'form-control'}),label='Clave nueva:')
     ClaveRepetida = forms.CharField(max_length=20, widget= forms.PasswordInput(attrs={'class':'form-control'}),label='Clave nueva (confirmación):')   
 
-class EmpleoBuscadoForm(forms.Form):
-    cargo = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),required=False,label='Cargo')
     

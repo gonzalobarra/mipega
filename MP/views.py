@@ -95,7 +95,7 @@ def busqueda_view(request):
 			resultados_busqueda = []
 			for socio in socios:
 				str_coment = " año nacimiento "+ str(socio.ano_nacimiento)
-				element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
+				element = {'id':socio.id, 'titulo':socio.usuario, 'descripcion':str_coment}
 				resultados_busqueda.append(element)
 			ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
 			return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))	
@@ -163,7 +163,7 @@ def busqueda_rapida_view(request):
 		resultados_busqueda = []
 		for socio in socios:
 			str_coment = " año nacimiento "+ str(socio.ano_nacimiento)
-			element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
+			element = {'id':socio.id, 'titulo':socio.usuario, 'descripcion':str_coment}
 			resultados_busqueda.append(element)
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
@@ -174,9 +174,9 @@ def pruebita(request):
 	return render_to_response('MP/pruebita.html',ctx,context_instance=RequestContext(request))
 
 def registro_view(request):
-	form_user = UserForm(request.POST or None)
-	form_socio = SocioForm(request.POST or None)
-	form_sociol = LocalidadconSocioForm(request.POST or None)
+
+	form_user = UserForm(request.POST or None) #Agregada
+	form_socio = SocioForm(request.POST or None) #Agregada
 	form_estudio = EstudioForm(request.POST or None) #Escolar
 	form_estudio2 = EstudioForm(request.POST or None) #Superior
 	form_estudio3 = EstudioForm(request.POST or None) #Superior
@@ -188,53 +188,95 @@ def registro_view(request):
 	form_hab2 = OtrasHabilidadesForm(request.POST or None)
 	form_hab3 = OtrasHabilidadesForm(request.POST or None)
 	form_hab4 = OtrasHabilidadesForm(request.POST or None)
-	form_empb = EmpleoBuscadoForm(request.POST or None)
 
+	cargos = Cargo.objects.all()
+	localidades = Localidad.objects.all()
 	if request.POST:
-		'''
 		if form_user.is_valid():
 			try:
 				clave = form_user.cleaned_data['password']
-				usuario = User.objects.create_user(form_user.cleaned_data['username'], form_user.cleaned_data['email'], clave)
-				usuario.save()
-				usuario_inst = User.objects.get(username = form_user.cleaned_data['username']) 
-				nombre_usuario = form_user.cleaned_data['username']
+				clave2 = form_user.cleaned_data['ClaveRepetida']
+				if clave == clave2:
+					usuario = User.objects.create_user(form_user.cleaned_data['username'], 'test@test.cl',clave)
+					usuario.save()
+					usuario_inst = User.objects.get(username = form_user.cleaned_data['username']) 
+					nombre_usuario = form_user.cleaned_data['username']
+				else:
+					messages.warning(request,"La clave no coincide")
+					return HttpResponseRedirect('/registro')		
 			except:
-				print "El usuario ya existe"
+				messages.warning(request,"Error en la información del usuario")
+				return HttpResponseRedirect('/registro')
 			else:
 				if form_socio.is_valid():
 					try:
-						socio = Socio(usuario=form_socio.cleaned_data['usuario'], comentario=form_socio.cleaned_data['comentario'], comentario_est=form_socio.cleaned_data['comentario_est'],nacionalidad=form_socio.cleaned_data['nacionalidad'],telefono=form_socio.cleaned_data['telefono'], web=form_socio.cleaned_data['web'], ano_nacimiento=form_socio.cleaned_data['ano_nacimiento'], sexo=form_socio.cleaned_data['sexo'], tiene_hijos=form_socio.cleaned_data['tiene_hijos'], estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], user=usuario_inst) 
+						socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],ano_nacimiento=form_socio.cleaned_data['ano_nacimiento'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio='qwer',magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
 						socio.save()
-						socio_inst = Socio.objects.get(user__username = nombre_usuario)
+						socio_inst = Socio.objects.get(user=usuario_inst)
 					except:
-						print "El socio ya existe"
+						messages.warning(request, "Error al crear el socio")
 						usuario.delete()
+						return HttpResponseRedirect('/registro')
+						#Aqui va el tema del cargo.
 					else:
-						if form_empb.is_valid():
-							empb = EmpleoBuscado(socio=socio_inst, cargo=form_empb.cleaned_data['cargo'])
-							if form_sociol.is_valid():
-								localidad = LocalidadConSocio(socio=socio_inst, localidad=form_sociol.cleaned_data['localidad'])
-								if form_estudio.is_valid():
-									estudio1 = Estudios(estado=form_estudio.cleaned_data['estado'], titulo=form_estudio.cleaned_data['titulo'], institucion=form_estudio.cleaned_data['institucion'], socio=socio_inst)
-									if form_estudio2.is_valid():
-										estudio2 = Estudios(estado=form_estudio2.cleaned_data['estado'], titulo=form_estudio2.cleaned_data['titulo'], institucion=form_estudio2.cleaned_data['institucion'], socio=socio_inst)
-										if form_explab.is_valid():
-											explab = ExperienciaLaboral(ano_ingreso=form_explab.cleaned_data['ano_ingreso'], ano_egreso=form_explab.cleaned_data['ano_egreso'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
-											if form_hab.is_valid() and explab.ano_ingreso < explab.ano_egreso:
-												habilidades = OtrasHabilidades(nivel=form_hab.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab.cleaned_data['habilidad'])		
-												localidad.save()
-												estudio1.save()
-												estudio2.save()
-												explab.save()
-												habilidades.save()
-												empb.save()
-												return HttpResponseRedirect('/')
-						else:
-							usuario.delete()
-		'''					
+						if "cargo" in request.POST:
+							ids_cargos = request.POST.getlist('cargo')
+							for cargo in ids_cargos:
+								cargo_socio = Cargo.objects.get(id=cargo)
+								asig_cargo = EmpleoBuscado(socio=socio_inst,cargo=cargo_socio)
+								asig_cargo.save()
+						#Aqui va el tema de la localidad.
+						if "localidad" in request.POST:
+							ids_localidades = request.POST.getlist('localidad')
+							for localidad in ids_localidades:
+								localidad_socio = Localidad.objects.get(id=localidad)
+								asig_localidad = LocalidadConSocio(socio=socio_inst,localidad=localidad_socio)
+								asig_localidad.save() 
+						
+						if form_estudio.is_valid():
+							estudio1 = Estudios(estado=form_estudio.cleaned_data['estado'], titulo=form_estudio.cleaned_data['titulo'], institucion=form_estudio.cleaned_data['institucion'], socio=socio_inst)
+							estudio1.save()
+						if form_estudio2.is_valid():
+							estudio2 = Estudios(estado=form_estudio2.cleaned_data['estado'], titulo=form_estudio2.cleaned_data['titulo'], institucion=form_estudio2.cleaned_data['institucion'], socio=socio_inst)
+							estudio2.save()
+						if form_estudio3.is_valid():
+							estudio3 = Estudios(estado=form_estudio3.cleaned_data['estado'], titulo=form_estudio3.cleaned_data['titulo'], institucion=form_estudio3.cleaned_data['institucion'], socio=socio_inst)
+							estudio3.save()
+						
+						if form_explab.is_valid():
+							explab = ExperienciaLaboral(anos_trabajados=form_explab.cleaned_data['anos_trabajados'], comentario=form_explab.cleaned_data['comentario'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
+							explab.save()
+						if form_explab2.is_valid():
+							explab2= ExperienciaLaboral(anos_trabajados=form_explab2.cleaned_data['anos_trabajados'], comentario=form_explab2.cleaned_data['comentario'], cargo=form_explab2.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab2.cleaned_data['rubro'])
+							explab2.save()
+						if form_explab3.is_valid():
+							explab3 = ExperienciaLaboral(anos_trabajados=form_explab3.cleaned_data['anos_trabajados'], comentario=form_explab3.cleaned_data['comentario'], cargo=form_explab3.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab3.cleaned_data['rubro'])
+							explab3.save()
+						if form_explab4.is_valid():
+							explab4 = ExperienciaLaboral(anos_trabajados=form_explab4.cleaned_data['anos_trabajados'], comentario=form_explab4.cleaned_data['comentario'], cargo=form_explab4.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab4.cleaned_data['rubro'])
+							explab4.save()
+						
+						if form_hab.is_valid():
+							habilidades = OtrasHabilidades(nivel=form_hab.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab.cleaned_data['habilidad'])		
+							habilidades.save()
+						if form_hab2.is_valid():
+							habilidades2 = OtrasHabilidades(nivel=form_hab2.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab2.cleaned_data['habilidad'])		
+							habilidades2.save()
+						if form_hab3.is_valid():
+							habilidades3 = OtrasHabilidades(nivel=form_hab3.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab3.cleaned_data['habilidad'])		
+							habilidades3.save()
+						if form_hab4.is_valid():
+							habilidades4 = OtrasHabilidades(nivel=form_hab4.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab4.cleaned_data['habilidad'])		
+							habilidades4.save()
+						
+						messages.success(request,"El registro se ha realizado exitosamente")
+						return HttpResponseRedirect('/')
+		#Else final
+		else:
+			messages.warning(request,"Error en los datos ingresados")
+			return HttpResponseRedirect('/registro')							
 	else:	
-		ctx = {'form_user': form_user, 'form_socio':form_socio, 'form_sociol':form_sociol, 'form_estudio':form_estudio, 'form_estudio2': form_estudio2, 'form_estudio3':form_estudio3, 'form_explab': form_explab, 'form_explab2': form_explab2, 'form_explab3': form_explab3, 'form_explab4': form_explab4, 'form_hab': form_hab,'form_hab2': form_hab2,'form_hab3': form_hab3,'form_hab4': form_hab4, 'form_empb': form_empb}
+		ctx = {'form_user': form_user,'form_socio':form_socio,'cargos':cargos, 'localidades':localidades, 'form_estudio':form_estudio,'form_estudio2':form_estudio2,'form_estudio3':form_estudio3, 'form_explab':form_explab, 'form_explab2':form_explab2,'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab, 'form_hab2':form_hab2, 'form_hab3':form_hab3, 'form_hab4':form_hab4}
 		return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))
 
 def login_view(request):
