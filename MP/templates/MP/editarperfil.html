@@ -15,40 +15,213 @@
 		
         {% csrf_token %}
         <div class="block-form-pane">
-            {{form_socio}}
+            <div class="inline-group">
+                <label for="id_nombre">Nombre:</label>
+                {{form_socio.nombre}}
+            </div>
+            <div class="inline-group">
+                <label for="id_telefono">Telefono:</label>
+                {{form_socio.telefono}}
+            </div>
+            <div class="inline-group">
+                <label for="id_web">Web:</label>
+                {{form_socio.web}}
+            </div>
+            <div class="inline-group">
+                <label for="id_ano_nacimiento">Año de nacimiento:</label>
+                {{form_socio.ano_nacimiento}}
+            </div>
+            <div class="inline-group comment">
+                <label for="id_comentario_est">Comentario:</label>
+                {{form_socio.comentario_est}}
+            </div>
+            <div class="inline-group">
+                <label for="id_nacionalidad">Nacionalidad:</label>
+                {{form_socio.nacionalidad}}
+            </div>
+            <div class="inline-group">
+                <label for="id_magister">Magister:</label>
+                {{form_socio.magister}}
+            </div>
+            <div class="inline-group">
+                <label for="id_doctorado">Doctorado:</label>
+                {{form_socio.doctorado}}
+            </div>
+            <div class="inline-group">
+                <label for="id_sexo">Sexo:</label>
+                {{form_socio.sexo}}
+            </div>
+            <div class="inline-group">
+                <label for="id_tiene_hijos">Hijos:</label>
+                {{form_socio.tiene_hijos}}
+            </div>
+            <div class="inline-group">
+                <label for="id_estado_civil">Estado civil:</label>
+                {{form_socio.estado_civil}}
+            </div>
+            <div class="inline-group">
+                <label for="id_pretencion_renta">Pretenciones de renta:</label>
+                {{form_socio.pretencion_renta}}
+            </div>
+            <div class="inline-group">
+                <label for="id_tipo_contrato">Tipo de contrato buscado:</label>
+                {{form_socio.tipo_contrato}}
+            </div>
+        </div>
+        
+        <div class="block-form-pane">
+            <div class="inline-group">
+                <label for="id_estado">Estado:</label>
+                {{form_estudio.estado}}
+            </div>
+            <div class="inline-group">
+                <label for="id_titulo">Titulo:</label>
+                {{form_estudio.titulo}}
+            </div>
+            <div class="inline-group">
+                <label for="id_institucion">Institucion:</label>
+                {{form_estudio.institucion}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_estudio}}
+            <div class="inline-group">
+                <label for="id_estado">Estado:</label>
+                {{form_estudio2.estado}}
+            </div>
+            <div class="inline-group">
+                <label for="id_titulo">Titulo:</label>
+                {{form_estudio2.titulo}}
+            </div>
+            <div class="inline-group">
+                <label for="id_institucion">Institucion:</label>
+                {{form_estudio2.institucion}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_estudio2}}
-        </div>
-        <div class="block-form-pane">
-            {{form_estudio3}}
+            <div class="inline-group">
+                <label for="id_estado">Estado:</label>
+                {{form_estudio3.estado}}
+            </div>
+            <div class="inline-group">
+                <label for="id_titulo">Titulo:</label>
+                {{form_estudio3.titulo}}
+            </div>
+            <div class="inline-group">
+                <label for="id_institucion">Institucion:</label>
+                {{form_estudio3.institucion}}
+            </div>
         </div>        
         <div class="block-form-pane">
-            {{form_explab}}
+            <div class="inline-group">
+                <label for="id_anos_trabajados">Años trabajados:</label>
+                {{form_explab.anos_trabajados}}
+            </div>
+            <div class="inline-group">
+                <label for="id_cargo">Cargo:</label>
+                {{form_explab.cargo}}
+            </div>
+            <div class="inline-group">
+                <label for="id_cargo">Rubro:</label>
+                {{form_explab.rubro}}
+            </div>
+            <div class="inline-group comment">
+                <label for="id_cargo">Comentario:</label>
+                {{form_explab.comentario}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_explab2}}
+            <div class="inline-group">
+                <label for="id_anos_trabajados">Años trabajados:</label>
+                {{form_explab2.anos_trabajados}}
+            </div>
+            <div class="inline-group">
+                <label for="id_cargo">Cargo:</label>
+                {{form_explab2.cargo}}
+            </div>
+            <div class="inline-group">
+                <label for="id_cargo">Rubro:</label>
+                {{form_explab2.rubro}}
+            </div>
+            <div class="inline-group comment">
+                <label for="id_cargo">Comentario:</label>
+                {{form_explab2.comentario}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_explab3}}
+            <div class="inline-group">
+                <label for="id_anos_trabajados">Años trabajados:</label>
+                {{form_explab3.anos_trabajados}}
+            </div>
+            <div class="inline-group">
+                <label for="id_cargo">Cargo:</label>
+                {{form_explab3.cargo}}
+            </div>
+            <div class="inline-group">
+                <label for="id_cargo">Rubro:</label>
+                {{form_explab3.rubro}}
+            </div>
+            <div class="inline-group comment">
+                <label for="id_cargo">Comentario:</label>
+                {{form_explab3.comentario}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_explab4}}
+            <div class="inline-group">
+                <label for="id_anos_trabajados">Años trabajados:</label>
+                {{form_explab4.anos_trabajados}}
+            </div>
+            <div class="inline-group">
+                <label for="id_cargo">Cargo:</label>
+                {{form_explab4.cargo}}
+            </div>
+            <div class="inline-group">
+                <label for="id_cargo">Rubro:</label>
+                {{form_explab4.rubro}}
+            </div>
+            <div class="inline-group comment">
+                <label for="id_cargo">Comentario:</label>
+                {{form_explab4.comentario}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_hab}}
+            <div class="inline-group">
+                <label for="id_habilidad">Habilidad:</label>
+                {{form_hab.habilidad}}
+            </div>
+            <div class="inline-group">
+                <label for="id_nivel">Nivel:</label>
+                {{form_hab.nivel}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_hab2}}
+            <div class="inline-group">
+                <label for="id_habilidad">Habilidad:</label>
+                {{form_hab2.habilidad}}
+            </div>
+            <div class="inline-group">
+                <label for="id_nivel">Nivel:</label>
+                {{form_hab2.nivel}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_hab3}}
+            <div class="inline-group">
+                <label for="id_habilidad">Habilidad:</label>
+                {{form_hab3.habilidad}}
+            </div>
+            <div class="inline-group">
+                <label for="id_nivel">Nivel:</label>
+                {{form_hab3.nivel}}
+            </div>
         </div>
         <div class="block-form-pane">
-            {{form_hab4}}
+            <div class="inline-group">
+                <label for="id_habilidad">Habilidad:</label>
+                {{form_hab4.habilidad}}
+            </div>
+            <div class="inline-group">
+                <label for="id_nivel">Nivel:</label>
+                {{form_hab4.nivel}}
+            </div>
         </div>
         <input class="pull-right btn btn-primary" style="margin:30px;"type="submit" value="Guardar cambios">
     </form>   

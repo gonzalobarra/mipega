@@ -112,30 +112,36 @@
                     <h1>¿Qué busca?</h1><!-- ASPIRACIONES -->
                     <div id="aspiraciones" class="special-form-pane">
                         <!--Espacio de los cargos-->
-                        <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
-                            {% for cargo in cargos %}
-                                <option value="{{cargo.id}}">{{cargo.nombre}}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="inline_group">
+                            <label for="id_pretencion_renta">Cargo buscado:</label>
+                            <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
+                                {% for cargo in cargos %}
+                                    <option value="{{cargo.id}}">{{cargo.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                         <!--Fin de modificacion-->
 
                         <!--Modificacion de localidad-->
-                        <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
-                            <optgroup label="REGIONES">
-                                {% for localidad in localidades %}
-                                {% ifequal localidad.tipo "r" %}
-                                    <option value="{{localidad.id}}">{{localidad.nombre}}</option>
-                                {% endifequal %}
-                                {% endfor %}
-                            </optgroup>
-                            <optgroup label="COMUNAS">
-                                {% for localidad in localidades %}
-                                {% ifequal localidad.tipo "c" %}
-                                    <option value="{{localidad.id}}">{{localidad.nombre}}</option>
-                                {% endifequal %}
-                                {% endfor %}
-                            </optgroup>
-                        </select>
+                        <div class="inline_group">
+                            <label for="id_pretencion_renta">Dónde desea trabajar:</label>
+                            <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
+                                <optgroup label="REGIONES">
+                                    {% for localidad in localidades %}
+                                    {% ifequal localidad.tipo "r" %}
+                                        <option value="{{localidad.id}}">{{localidad.nombre}}</option>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                </optgroup>
+                                <optgroup label="COMUNAS">
+                                    {% for localidad in localidades %}
+                                    {% ifequal localidad.tipo "c" %}
+                                        <option value="{{localidad.id}}">{{localidad.nombre}}</option>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                        </div>
                         <!--Fin de modificacion-->
                         <div class="inline_group">
                             <label for="id_pretencion_renta">Pretenciones de renta:</label>

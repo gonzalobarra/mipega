@@ -606,6 +606,19 @@ div#last .form-group {
 div#last .form-group select.form-control {
   width: 150px;
 }
+div#last #aspiraciones {
+  overflow-y: hidden;
+}
+div#last #aspiraciones .inline_group:first-child {
+  width: 35%;
+  margin: 5px;
+  padding-left: 40px;
+}
+div#last #aspiraciones .inline_group:first-child + .inline_group {
+  width: 35%;
+  margin: 5px;
+  padding-left: 40px;
+}
 div#escolar1 {
   width: 100%;
   margin: 20px auto;
@@ -955,6 +968,13 @@ div#other_pane #habilidades Select.form-control {
 }
 .profile-content #edit-profile-form .block-form-pane {
   width: 95%;
+}
+.profile-content #edit-profile-form .block-form-pane .comment {
+  width: 85%;
+}
+.profile-content #edit-profile-form .block-form-pane .form-control {
+  max-width: 100%;
+  display: block;
 }
 /*          BANDEJA DE ENTRADA   */
 .bandeja {

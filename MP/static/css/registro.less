@@ -248,7 +248,23 @@ div#last{
             width: 150px;
         }
     }
-
+    #aspiraciones{
+        overflow-y: hidden;
+        
+        .inline_group{
+        
+            &:first-child{
+                width: 35%;
+                margin: 5px;
+                padding-left: 40px;
+                &+.inline_group{
+                    width: 35%;
+                    margin: 5px;
+                    padding-left: 40px;
+                }
+            }
+        }
+    }
 }
 
 div#escolar1{
