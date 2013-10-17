@@ -345,11 +345,10 @@ def bandejaentrada_view(request):
 	return render_to_response('MP/bandejaentrada.html', ctx, context_instance=RequestContext(request))
 
 def editarperfil_view(request):
+	'''
 	user = request.user.username
 	socio = Socio.objects.get(user__username = user)
-	localidad = LocalidadConSocio.objects.get(socio__id = socio.id)
 	estudios = Estudios.objects.filter(socio__id = socio.id)
-	explab = ExperienciaLaboral.objects.get(socio__id = socio.id)
 	habilidades = OtrasHabilidades.objects.get(socio__id = socio.id)
 
 	if request.method == 'POST':
@@ -373,9 +372,9 @@ def editarperfil_view(request):
 		form_estudio2 = EstudioForm(instance=estudios[1])
 		form_explab = ExperienciaLaboralForm(instance=explab)
 		form_hab = OtrasHabilidadesForm(instance=habilidades)
-
 	ctx = {'form_socio':form_socio, 'form_sociol':form_sociol, 'form_estudio1':form_estudio1,'form_estudio2':form_estudio2, 'form_explab':form_explab, 'form_hab':form_hab}	
-	return render_to_response('MP/editarperfil.html', ctx, context_instance=RequestContext(request))		 
+	'''
+	return render_to_response('MP/editarperfil.html', context_instance=RequestContext(request))		 
 
 #lineas para poblado parcial de localidades
 # def poblarlocalidadcargo(request):
