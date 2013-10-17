@@ -345,36 +345,57 @@ def bandejaentrada_view(request):
 	return render_to_response('MP/bandejaentrada.html', ctx, context_instance=RequestContext(request))
 
 def editarperfil_view(request):
-	'''
+	
 	user = request.user.username
 	socio = Socio.objects.get(user__username = user)
 	estudios = Estudios.objects.filter(socio__id = socio.id)
-	habilidades = OtrasHabilidades.objects.get(socio__id = socio.id)
+	habilidades = OtrasHabilidades.objects.filter(socio__id = socio.id)
+	experiencialab = ExperienciaLaboral.objects.filter(socio__id=socio.id)
 
 	if request.method == 'POST':
 		form_socio = SocioForm(request.POST,request.FILES, instance=socio)
-		form_sociol = LocalidadconSocioForm(request.POST, request.FILES, instance=localidad.localidad)
-		form_estudio1 = EstudioForm(request.POST, request.FILES, instance=estudios[0])
+		form_estudio = EstudioForm(request.POST, request.FILES, instance=estudios[0])
 		form_estudio2 = EstudioForm(request.POST, request.FILES, instance=estudios[1])
-		form_explab = ExperienciaLaboralForm(request.POST, request.FILES, instance=explab)
-		form_hab = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades.habilidad)
-		if form_socio.is_valid() and form_sociol.is_valid() and form_estudio1.is_valid() and form_estudio2.is_valid() and form_explab.is_valid() and form_hab.is_valid():
+		form_estudio3 = EstudioForm(request.POST, request.FILES, instance=estudios[2])
+		form_explab = ExperienciaLaboralForm(request.POST, request.FILES, instance=experiencialab[0])
+		form_explab2 = ExperienciaLaboralForm(request.POST, request.FILES, instance=experiencialab[1])
+		form_explab3 = ExperienciaLaboralForm(request.POST, request.FILES, instance=experiencialab[2])
+		form_explab4 = ExperienciaLaboralForm(request.POST, request.FILES, instance=experiencialab[3])
+		form_hab = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades[0])
+		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades[1])
+		form_hab3 = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades[2])
+		form_hab4 = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades[3])
+		if form_socio.is_valid() and form_estudio.is_valid() and form_estudio2.is_valid() and form_estudio3.is_valid() and form_explab.is_valid() and form_explab2.is_valid() and form_explab3.is_valid() and form_explab4.is_valid() and form_hab.is_valid() and form_hab2.is_valid() and form_hab3.is_valid() and form_hab4.is_valid():
 			form_socio.save()
-			form_estudio1.save()
+			form_estudio.save()
 			form_estudio2.save()
+			form_estudio3.save()
 			form_explab.save()
+			form_explab2.save()
+			form_explab3.save()
+			form_explab4.save()
 			form_hab.save()
+			form_hab2.save()
+			form_hab3.save()
+			form_hab4.save()
 			return HttpResponseRedirect('/editarperfil/')
 	else:
 		form_socio = SocioForm(instance=socio)
-		form_sociol = LocalidadconSocioForm(instance=localidad)
-		form_estudio1 = EstudioForm(instance=estudios[0])
+		form_estudio = EstudioForm(instance=estudios[0])
 		form_estudio2 = EstudioForm(instance=estudios[1])
-		form_explab = ExperienciaLaboralForm(instance=explab)
-		form_hab = OtrasHabilidadesForm(instance=habilidades)
-	ctx = {'form_socio':form_socio, 'form_sociol':form_sociol, 'form_estudio1':form_estudio1,'form_estudio2':form_estudio2, 'form_explab':form_explab, 'form_hab':form_hab}	
-	'''
-	return render_to_response('MP/editarperfil.html', context_instance=RequestContext(request))		 
+		form_estudio3 = EstudioForm(instance=estudios[2])
+		form_explab = ExperienciaLaboralForm(instance=experiencialab[0])
+		form_explab2 = ExperienciaLaboralForm(instance=experiencialab[1])
+		form_explab3 = ExperienciaLaboralForm(instance=experiencialab[2])
+		form_explab4 = ExperienciaLaboralForm(instance=experiencialab[3])
+		form_hab = OtrasHabilidadesForm(instance=habilidades[0])
+		form_hab2 = OtrasHabilidadesForm(instance=habilidades[1])
+		form_hab3 = OtrasHabilidadesForm(instance=habilidades[2])
+		form_hab4 = OtrasHabilidadesForm(instance=habilidades[3])
+
+	ctx = {'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudio2, 'form_estudio3':form_estudio3, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2 , 'form_hab3':form_hab3, 'form_hab4':form_hab4}	
+	
+	return render_to_response('MP/editarperfil.html', ctx, context_instance=RequestContext(request))		 
 
 #lineas para poblado parcial de localidades
 # def poblarlocalidadcargo(request):
