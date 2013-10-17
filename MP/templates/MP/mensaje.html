@@ -1,0 +1,12 @@
+{% extends 'template.html' %}
+{% block title %} Mensaje de: {{mensaje.nombre_contacto}} | MiPega.cl {% endblock %}
+{% block contenido %}
+<div class="profile-content">
+<h4>Mensaje para: {{mensaje.socio.user.username}}</h4>
+<p><b>Enviado por:</b> {{mensaje.nombre_contacto}}</p>
+<p><b>Recibido:</b> {{mensaje.fecha}}</p>
+<p><b>Contenido:</b></p>
+<p>{{mensaje.contenido}}<p>
+<a href="{% url 'vista_editarperfil' %}" class="btn btn-primary btn-small">Volver</a>	
+</div>
+{% endblock %}

@@ -1,11 +1,23 @@
 {% extends 'template.html' %}
 {% block title %} Pruebita | MiPega.cl {% endblock %}
 {% block contenido %}
-<div id="content">
-<form action="" method="post">
-	{% csrf_token %}
-{{ form }}
-<input type="submit" value="Submit" />
-</form>
-</div>
+<div class="profile-content">
+	{%for estudio in estudios%}
+		<p>{{estudio.estado}}</p>
+		<p>{{estudio.titulo}}</p>
+		<p>{{estudio.institucion}}</p>
+		<p>{{estudio.socio.nombre}}</p>
+	{%endfor%}
+<p>balaslasldas</p>
+<p>{{est1.estado}}</p>
+<p>{{est1.titulo}}</p>
+<p>{{est1.institucion}}</p>
+<p>{{est1.socio.nombre}}</p>
+
+<p>balaslasldas</p>
+<p>{{est2.estado}}</p>
+<p>{{est2.titulo}}</p>
+<p>{{est2.institucion}}</p>
+<p>{{est2.socio.nombre}}</p>
+</div>	
 {% endblock %}

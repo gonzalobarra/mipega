@@ -16,16 +16,17 @@
 		<table class="bandeja table table-striped">
 			<tr>
 				<th>Fecha</th>
-				<th>Mensaje</th>
 				<th>Contacto</th>
 				<th>Medio de contacto</th>
+				<th>Ver mensaje</th>
 			</tr>
 			{% for mensaje in mensajes %}
 			<tr>
 				<td>{{mensaje.fecha}}</td>
-				<td>{{mensaje.contenido}}</td>
 				<td>{{mensaje.nombre_contacto}}</td>
 				<td>{{mensaje.medio_contacto}}</td>
+				<td><a href="/mensaje/{{mensaje.id}}" class="btn btn-primary btn-small">Ver mensaje</a><td>
+
 			</tr>
 			{% endfor %}	
 		</table>	
