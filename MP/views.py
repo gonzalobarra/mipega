@@ -24,6 +24,10 @@ def index_view(request):
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
 def detalle_socio_view(request, id_socio):
+	messages.success(request, "debug")
+	messages.warning(request, "debug")
+	messages.info(request, "debug")
+	messages.error(request, "debug")
 	socio = Socio.objects.get(pk =id_socio)
 	edad = datetime.datetime.today().year - int(socio.ano_nacimiento)
 	localidades = Localidad.objects.filter(id__in = LocalidadConSocio.objects.filter(socio = socio).values_list('localidad',flat=True))
@@ -37,9 +41,9 @@ def detalle_socio_view(request, id_socio):
 	else:
 		estudios = False
 	ctx = {'socio': socio, 'edad':edad, 'localidades':localidades, 
-		   'cargos':cargos, 'estudios_superiores':estudios_superiores, 
-		   'estudios_escolares':estudios_escolares, 'estudios':estudios,
-		   'experiencia':experiencia, 'habilidades':habilidades}
+			'cargos':cargos, 'estudios_superiores':estudios_superiores, 
+			'estudios_escolares':estudios_escolares, 'estudios':estudios,
+			'experiencia':experiencia, 'habilidades':habilidades}
 	return render_to_response('MP/detalle.html',ctx,context_instance=RequestContext(request))
 
 def busqueda_view(request):
