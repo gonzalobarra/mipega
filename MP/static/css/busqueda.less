@@ -6,9 +6,20 @@
     
     margin-left: 10%;
     width: 80%;
+    .box-shadow(0px,0px,0px,0px,rgba(0,0,0,1));
+    
+    legend{
+        background-color: #474949;
+        color: #fff;
+        padding: 10px;
+        text-transform: uppercase;
+    }
     
     fieldset{
+    
         padding-left: 20px;
+        background-color: rgba(66, 139, 202, 0.2);
+        /*
         &#radios{
             margin-left: 15%;
             width: 70%;
@@ -16,9 +27,21 @@
         &#last-search{
             width: 76%;
             margin-left: 12%;
+        }*/      
+        
+        &:first-child{
+            margin: 15px 0px;
         }
-        &:not(:first-child){
-            margin-top: 15px;
+        
+        h1{
+            font-size: 32px;
+            padding: 10px;
+            margin: 0px;
+            
+            &:before{
+                content: url("../img/square.png");
+                opacity: 0.8;
+            }           
         }
     }
     .form-group{
@@ -37,6 +60,7 @@
     
     #search{
         float:right;
+        margin: 10px 0px;
     }
 }
 
