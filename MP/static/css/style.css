@@ -894,20 +894,41 @@ div#other_pane #habilidades Select.form-control {
 .busqueda.avanzada {
   margin-left: 10%;
   width: 80%;
+  -o-box-shadow: 0px 0px 0px 0px #000000;
+  -moz-box-shadow: 0px 0px 0px 0px #000000;
+  -webkit-box-shadow: 0px 0px 0px 0px #000000;
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+.busqueda.avanzada legend {
+  background-color: #474949;
+  color: #fff;
+  padding: 10px;
+  text-transform: uppercase;
 }
 .busqueda.avanzada fieldset {
   padding-left: 20px;
+  background-color: rgba(66, 139, 202, 0.2);
+  /*
+        &#radios{
+            margin-left: 15%;
+            width: 70%;
+        }
+        &#last-search{
+            width: 76%;
+            margin-left: 12%;
+        }*/
 }
-.busqueda.avanzada fieldset#radios {
-  margin-left: 15%;
-  width: 70%;
+.busqueda.avanzada fieldset:first-child {
+  margin: 15px 0px;
 }
-.busqueda.avanzada fieldset#last-search {
-  width: 76%;
-  margin-left: 12%;
+.busqueda.avanzada fieldset h1 {
+  font-size: 32px;
+  padding: 10px;
+  margin: 0px;
 }
-.busqueda.avanzada fieldset:not(:first-child) {
-  margin-top: 15px;
+.busqueda.avanzada fieldset h1:before {
+  content: url("../img/square.png");
+  opacity: 0.8;
 }
 .busqueda.avanzada .form-group {
   display: inline-block;
@@ -923,6 +944,7 @@ div#other_pane #habilidades Select.form-control {
 }
 .busqueda.avanzada #search {
   float: right;
+  margin: 10px 0px;
 }
 /*          EDITAR PERFIL   */
 .profile-content #edit-profile-form {
