@@ -13,7 +13,7 @@
         </div>
         <div class="col-lg-4 busqueda">
             {% csrf_token %}
-            <form id="id_form" onsubmit="return false;">
+            <form id="id_form" onsubmit="">
                 <fieldset>
                     <!--{{form_busqueda_rapida}}-->
                     
@@ -102,25 +102,15 @@
 {% block SCRIPT %}
 <script type="text/javascript">
 function busquedaavanzada(){
-    alert("asd");
     var parametros = $('#id_form').serialize();
-    $.ajax({
-        url: "{% url 'busqueda_avanzada' %}",
-        data: parametros,
-        datatype: 'json',           
-        type: 'post'
-    }).done(function(data){
-        if(data!=""){
-            $(document).html(data);
-        }
-    }).fail(function(){
-        $.ambiance({message: "Error al hacer la busqueda", title:"Error",
-                    type: "error",timeout:4,width:200,});
-    }); 
+    $("#id_form").attr("action", "{% url 'busqueda_avanzada' %}");
+    $('#id_form').submit();
 }
 
 
-    $('#search').click(function(){
+    $('#search').click(function(e){
+        e.preventDefault(); 
+        alert("asdsads");
         var parametros = $('#id_form').serialize();
         $.ajax({
             url: "{% url 'busqueda_rapida' %}",

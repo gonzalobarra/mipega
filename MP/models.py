@@ -76,7 +76,7 @@ class Socio(models.Model):
 	id                = models.AutoField('ID', primary_key=True)
 	nombre            = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
-	web               = models.CharField('Web' ,max_length=64, null=True, blank=True)
+	web               = models.CharField('Web' ,max_length=128, null=True, blank=True)
 	ano_nacimiento    = models.CharField('Año de nacimiento',max_length=10, choices=nacimiento, null=True, blank=True)
 	sexo              = models.CharField("Sexo",max_length=10, choices=sexo, null=True, blank=True)
 	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=10, choices=hijos, null=True, blank=True)
@@ -120,12 +120,12 @@ class Mensaje(models.Model):
 
 class TipoHabilidad(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=128,null=False, blank=False)
 
 
 class Habilidad(models.Model):
 	id            = models.AutoField('ID', primary_key=True)
-	nombre        = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre        = models.CharField('Nombre', max_length=128,null=False, blank=False)
 
 	# Llaves foraneas
 	tipoHabilidad = models.ForeignKey(TipoHabilidad, verbose_name="Tipo")
@@ -144,14 +144,14 @@ class OtrasHabilidades(models.Model):
 
 class Rubro(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=128,null=False, blank=False)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
 
 class Cargo(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=128,null=False, blank=False)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
@@ -168,7 +168,7 @@ class EmpleoBuscado(models.Model):
 class ExperienciaLaboral(models.Model):
 	id              = models.AutoField('ID', primary_key=True)
 	anos_trabajados = models.IntegerField("Años trabajados", null=True, blank=True)
-	comentario      = models.CharField('Comentario', max_length=64,null=True, blank=True)
+	comentario      = models.CharField('Comentario', max_length=512,null=True, blank=True)
 
 	# Llaves foraneas
 	cargo       = models.ForeignKey(Cargo, verbose_name="Cargo", null=True, blank=True)
@@ -178,7 +178,7 @@ class ExperienciaLaboral(models.Model):
 
 class Titulo(models.Model):
 	id      = models.AutoField('ID', primary_key=True)
-	nombre  = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre  = models.CharField('Nombre', max_length=128,null=False, blank=False)
 	tipo    = models.CharField('Tipo', max_length=7, choices=tipoTitulo, default="t")
 
 	def __unicode__(self):
@@ -186,11 +186,11 @@ class Titulo(models.Model):
 
 class Institucion(models.Model):
 	id      = models.AutoField('ID', primary_key=True)
-	nombre  = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre  = models.CharField('Nombre', max_length=128,null=False, blank=False)
 	colegio = models.BooleanField('Colegio') 
 
 	def __unicode__(self):
-		return u'%s' % (self.nombre)
+		return u'%s~%s' % (self.colegio,self.nombre)
 
 class Estudios(models.Model):
 	id          = models.AutoField('ID', primary_key=True)
@@ -214,7 +214,7 @@ class TitulosEnInstituciones(models.Model):
 
 class Localidad(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=128,null=False, blank=False)
 	tipo   = models.CharField('Tipo', max_length=7, choices=tipoLocalidad, default="c")
 
 	localidadPadre = models.ForeignKey('self', null=True, blank=True,verbose_name="Pertenece a")
