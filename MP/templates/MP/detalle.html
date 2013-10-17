@@ -7,12 +7,12 @@
 
     <!--<div id="wrapper">-->
         <div id="user_header">
-            <h1 id="user_name">{{socio.usuario}}</h1>
+            <h1 id="user_name">{{socio.nombre}}</h1>
         </div>
         <ul id="user_detail">
             <li>Edad : <p id="age">{{edad}}</p></li>
             <li>Hijos : <p id="childs">{{socio.tiene_hijos}}</p></li>
-            <li id="sex">{{ socio.get_sexo_display }}</li>
+            <li id="sex">{{ socio.sexo }}</li>
             <li>Estado Civil : <p id="state">{{socio.get_estado_civil_display}}</p></li>
             <li id="nacionalidad">{{socio.nacionalidad}}</li>
         </ul>

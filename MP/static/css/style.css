@@ -609,6 +609,9 @@ div#last .form-group select.form-control {
 div#last #aspiraciones {
   overflow-y: hidden;
 }
+div#last #aspiraciones .inline_group ul.chosen-choices {
+  border-color: #ccc;
+}
 div#last #aspiraciones .inline_group:first-child {
   width: 35%;
   margin: 5px;
@@ -921,15 +924,6 @@ div#other_pane #habilidades Select.form-control {
 .busqueda.avanzada fieldset {
   padding-left: 20px;
   background-color: rgba(66, 139, 202, 0.2);
-  /*
-        &#radios{
-            margin-left: 15%;
-            width: 70%;
-        }
-        &#last-search{
-            width: 76%;
-            margin-left: 12%;
-        }*/
 }
 .busqueda.avanzada fieldset:first-child {
   margin: 15px 0px;
@@ -966,8 +960,18 @@ div#other_pane #habilidades Select.form-control {
   overflow-x: hidden;
   width: 104%;
 }
+.profile-content #edit-profile-form legend {
+  background-color: #474949;
+  color: #fff;
+  padding: 10px;
+  text-transform: uppercase;
+  width: 95%;
+  margin: 30px;
+  margin-bottom: 0px;
+}
 .profile-content #edit-profile-form .block-form-pane {
   width: 95%;
+  margin-top: 30px;
 }
 .profile-content #edit-profile-form .block-form-pane .comment {
   width: 85%;

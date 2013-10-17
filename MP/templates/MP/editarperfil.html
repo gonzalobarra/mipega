@@ -14,6 +14,7 @@
 	<form action="" method="post" id="edit-profile-form">
 		
         {% csrf_token %}
+        <legend>Información personal</legend>
         <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_nombre">Nombre:</label>
@@ -68,7 +69,7 @@
                 {{form_socio.tipo_contrato}}
             </div>
         </div>
-        
+        <legend>Estudios</legend>
         <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_estado">Estado:</label>
@@ -82,8 +83,7 @@
                 <label for="id_institucion">Institucion:</label>
                 {{form_estudio.institucion}}
             </div>
-        </div>
-        <div class="block-form-pane">
+            
             <div class="inline-group">
                 <label for="id_estado">Estado:</label>
                 {{form_estudio2.estado}}
@@ -96,8 +96,6 @@
                 <label for="id_institucion">Institucion:</label>
                 {{form_estudio2.institucion}}
             </div>
-        </div>
-        <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_estado">Estado:</label>
                 {{form_estudio3.estado}}
@@ -110,7 +108,8 @@
                 <label for="id_institucion">Institucion:</label>
                 {{form_estudio3.institucion}}
             </div>
-        </div>        
+        </div>
+        <legend>Experiencia laboral</legend>    
         <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_anos_trabajados">Años trabajados:</label>
@@ -128,8 +127,6 @@
                 <label for="id_cargo">Comentario:</label>
                 {{form_explab.comentario}}
             </div>
-        </div>
-        <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_anos_trabajados">Años trabajados:</label>
                 {{form_explab2.anos_trabajados}}
@@ -146,8 +143,6 @@
                 <label for="id_cargo">Comentario:</label>
                 {{form_explab2.comentario}}
             </div>
-        </div>
-        <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_anos_trabajados">Años trabajados:</label>
                 {{form_explab3.anos_trabajados}}
@@ -164,8 +159,6 @@
                 <label for="id_cargo">Comentario:</label>
                 {{form_explab3.comentario}}
             </div>
-        </div>
-        <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_anos_trabajados">Años trabajados:</label>
                 {{form_explab4.anos_trabajados}}
@@ -183,6 +176,7 @@
                 {{form_explab4.comentario}}
             </div>
         </div>
+        <legend>Otras habilidades</legend>
         <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_habilidad">Habilidad:</label>
@@ -192,8 +186,6 @@
                 <label for="id_nivel">Nivel:</label>
                 {{form_hab.nivel}}
             </div>
-        </div>
-        <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_habilidad">Habilidad:</label>
                 {{form_hab2.habilidad}}
@@ -202,8 +194,6 @@
                 <label for="id_nivel">Nivel:</label>
                 {{form_hab2.nivel}}
             </div>
-        </div>
-        <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_habilidad">Habilidad:</label>
                 {{form_hab3.habilidad}}
@@ -212,8 +202,6 @@
                 <label for="id_nivel">Nivel:</label>
                 {{form_hab3.nivel}}
             </div>
-        </div>
-        <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_habilidad">Habilidad:</label>
                 {{form_hab4.habilidad}}
@@ -223,6 +211,7 @@
                 {{form_hab4.nivel}}
             </div>
         </div>
+        
         <input class="pull-right btn btn-primary" style="margin:30px;"type="submit" value="Guardar cambios">
     </form>   
 </div>

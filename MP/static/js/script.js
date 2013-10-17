@@ -45,6 +45,24 @@ $(document).ready(function() {
         
     });
     
+    /*       DETALLE.HTML        */
+    
+    var sexo = $("li#sex").text();
+    
+    $("li#sex").remove();
+    	
+    if(sexo=="m"){    
+        $("#user_name").after("<img class='sex_image' src='../../../static/img/man.png' />");        
+    }else{    
+        $("#user_name").after("<img class='sex_image' src='../../../static/img/female.png' />");        
+    }    
+    
+    var nacionalidad = $("li#nacionalidad").text();
+    
+    if(nacionalidad=="chile"){
+        $("li#nacionalidad").html("<img class='nac_image' src='../../../static/img/chile.png' />");
+    }
+    
     $("#id_usuario").css("margin-left","23%");
     
     function manageSize(){
@@ -257,26 +275,7 @@ $(document).ready(function() {
                 height: "0px"            
             }, 400);
         },400);
-    });
-    
-    /*       DETALLE.HTML        */
-    
-    var sexo = $("li#sex").text();
-    $("li#sex").remove();
-    	
-    if(sexo=="Masculino"){    
-        $("#user_name").after("<img class='sex_image' src='../../../static/img/man.png' />");        
-    }else{    
-        $("#user_name").after("<img class='sex_image' src='../../../static/img/female.png' />");        
-    }    
-    
-    var nacionalidad = $("li#nacionalidad").text();
-    
-    if(nacionalidad=="cl"){
-        $("li#nacionalidad").html("<img class='nac_image' src='../../../static/img/chile.png' />");
-    }
-    
-        
+    });        
 });
 
 
