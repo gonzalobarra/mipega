@@ -99,7 +99,7 @@ def busqueda_view(request):
 			resultados_busqueda = []
 			for socio in socios:
 				str_coment = " año nacimiento "+ str(socio.ano_nacimiento)
-				element = {'id':socio.id, 'titulo':socio.usuario, 'descripcion':str_coment}
+				element = {'id':socio.id, 'titulo':socio.nombre, 'descripcion':str_coment}
 				resultados_busqueda.append(element)
 			ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
 			return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))	
@@ -167,7 +167,7 @@ def busqueda_rapida_view(request):
 		resultados_busqueda = []
 		for socio in socios:
 			str_coment = " año nacimiento "+ str(socio.ano_nacimiento)
-			element = {'id':socio.id, 'titulo':socio.usuario, 'descripcion':str_coment}
+			element = {'id':socio.id, 'titulo':socio.nombre, 'descripcion':str_coment}
 			resultados_busqueda.append(element)
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
