@@ -114,8 +114,8 @@ $(document).ready(function() {
                             + parseInt($("#superiores").css("margin-top").substring(0, $("#superiores").css("margin-top").length - 2))
                             + parseInt($("#superiores").css("margin-bottom").substring(0, $("#superiores").css("margin-bottom").length - 2));
         
-        $("#habilidades-help").css("top",topContacto);
-        $("#habilidades-help").css("right","5%");
+        /*$("#habilidades-help").css("top",topContacto);
+        $("#habilidades-help").css("right","5%");*/
         
         /* Se calcula la posicion de cada titulo */
         if(current==0){
@@ -136,9 +136,9 @@ $(document).ready(function() {
             $("h2#seccion_superiores").css("right", parseInt($("#superiores").css("width").substring(0, $("#superiores").css("width").length - 2)) 
                                             - parseInt($("h2#seccion_superiores").css("width").substring(0, $("h2#seccion_superiores").css("width").length - 2))
                                             - 20);
-                                            
+            /*                                
             $("h2#seccion_habilidades").css("top", parseInt($("#habilidades-help").css("top").substring(0, $("#habilidades-help").css("top").length - 2)) - 55);
-            $("h2#seccion_habilidades").css("left","60px"); 
+            $("h2#seccion_habilidades").css("left","60px");*/ 
         }   
     };    
     
@@ -180,12 +180,13 @@ $(document).ready(function() {
     
     //Control de los mensajes de ayuda debajo del header, para que acompañen a 
     //cada pagina del formulario
-    var titulos = ["su Perfil","sus Aspiraciones","sus Estudios", "su Experiencia laboral"];
+    var titulos = ["su Perfil","sus Aspiraciones","sus Estudios", "su Experiencia laboral","Otras habilidades"];
     var textos = [        
         "A continuaci&oacute;n debe completar sus datos de cuenta, datos personals y de contacto <br>",
         "En esta secci&oacute;n debe ingresar las caracteristicas del trabajo que desea encontrar <br>",
         "Ahora ingrese los datos de sus estudios escolares y superiores... esta casi listo <br>",
-        "Finalmente, debe ingresar los datos referentes a su experiencia laboral y ya está! <br>"
+        "Finalmente, debe ingresar los datos referentes a su experiencia laboral y ya está! <br>",
+        "Ingrese otras caracteristicas que desee que aparescan en su perfil <br>"
     ];
     
     $(".form-pane:not(.active-pane)").hide();
@@ -205,7 +206,7 @@ $(document).ready(function() {
             $("a#prev").removeAttr("disabled");    
             $("#controls").css("width","105px");
         }
-        if(current == 3){
+        if(current == 4){
             
             $("a#next").fadeOut();
             $("[value=Registrar]").fadeIn();
@@ -222,7 +223,7 @@ $(document).ready(function() {
         current--;
         $(".alert > h4").html(titulos[current]);
         $(".alert > p:first").html(textos[current]);
-        if(current < 4){
+        if(current < 5){
             
             $("a#next").fadeIn();
             $("[value=Registrar]").fadeOut();    

@@ -16,38 +16,19 @@
         {% csrf_token %}
         <legend>Información personal</legend>
         <div class="block-form-pane">
+            <h1>Información personal</h1>
             <div class="inline-group">
                 <label for="id_nombre">Nombre:</label>
                 {{form_socio.nombre}}
-            </div>
-            <div class="inline-group">
-                <label for="id_telefono">Telefono:</label>
-                {{form_socio.telefono}}
-            </div>
-            <div class="inline-group">
-                <label for="id_web">Web:</label>
-                {{form_socio.web}}
-            </div>
+            </div>            
             <div class="inline-group">
                 <label for="id_ano_nacimiento">Año de nacimiento:</label>
                 {{form_socio.ano_nacimiento}}
-            </div>
-            <div class="inline-group comment">
-                <label for="id_comentario_est">Comentario:</label>
-                {{form_socio.comentario_est}}
-            </div>
+            </div>            
             <div class="inline-group">
                 <label for="id_nacionalidad">Nacionalidad:</label>
                 {{form_socio.nacionalidad}}
-            </div>
-            <div class="inline-group">
-                <label for="id_magister">Magister:</label>
-                {{form_socio.magister}}
-            </div>
-            <div class="inline-group">
-                <label for="id_doctorado">Doctorado:</label>
-                {{form_socio.doctorado}}
-            </div>
+            </div>            
             <div class="inline-group">
                 <label for="id_sexo">Sexo:</label>
                 {{form_socio.sexo}}
@@ -59,7 +40,19 @@
             <div class="inline-group">
                 <label for="id_estado_civil">Estado civil:</label>
                 {{form_socio.estado_civil}}
+            </div>        
+            <h1>Información de contacto</h1> 
+            <div class="inline-group">
+                <label for="id_telefono">Telefono:</label>
+                {{form_socio.telefono}}
             </div>
+            <div class="inline-group">
+                <label for="id_web">Web:</label>
+                {{form_socio.web}}
+            </div>   
+        </div>
+        <legend>Caracteristicas del trabajo buscado</legend>
+        <div class="block-form-pane">
             <div class="inline-group">
                 <label for="id_pretencion_renta">Pretenciones de renta:</label>
                 {{form_socio.pretencion_renta}}
@@ -71,6 +64,7 @@
         </div>
         <legend>Estudios</legend>
         <div class="block-form-pane">
+            <h1>Secundarios</h1>
             <div class="inline-group">
                 <label for="id_estado">Estado:</label>
                 {{form_estudio.estado}}
@@ -83,7 +77,7 @@
                 <label for="id_institucion">Institucion:</label>
                 {{form_estudio.institucion}}
             </div>
-            
+            <h1>Superiores</h1>
             <div class="inline-group">
                 <label for="id_estado">Estado:</label>
                 {{form_estudio2.estado}}
@@ -107,6 +101,18 @@
             <div class="inline-group">
                 <label for="id_institucion">Institucion:</label>
                 {{form_estudio3.institucion}}
+            </div>
+            <div class="inline-group">
+                <label for="id_magister">Magister:</label>
+                {{form_socio.magister}}
+            </div>
+            <div class="inline-group">
+                <label for="id_doctorado">Doctorado:</label>
+                {{form_socio.doctorado}}
+            </div>
+            <div class="inline-group comment">
+                <label for="id_comentario_est">Comentario:</label>
+                {{form_socio.comentario_est}}
             </div>
         </div>
         <legend>Experiencia laboral</legend>    
