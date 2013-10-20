@@ -1,15 +1,15 @@
 ﻿
 --TABLA MP_localidad, se llena del archivo localidades.csv (faltan las comunas)
 
-COPY "MP_localidad" ("id","nombre","tipo") FROM  '/home/gonzalo/Escritorio/poblado/localidades.csv'
+COPY "MP_localidad" ("id","nombre","tipo") FROM  '/home/gonzalo/Escritorio/mipega/poblado/localidades.csv'
 WITH DELIMITER ';';
 
-COPY "MP_localidad" FROM  '/home/gonzalo/Escritorio/poblado/localidades2.csv'
+COPY "MP_localidad" FROM  '/home/gonzalo/Escritorio/mipega/poblado/localidades2.csv'
 WITH DELIMITER ';';
 
 --TABLA MP_institucion, se llena con el archivo instituciones.csv (tiene solouniversidades, faltan institutos, cfts y colegios)
 
-COPY "MP_institucion" FROM  '/home/gonzalo/Escritorio/poblado/instituciones.csv'
+COPY "MP_institucion" FROM  '/home/gonzalo/Escritorio/mipega/poblado/instituciones.csv'
 WITH DELIMITER ';';
 
 

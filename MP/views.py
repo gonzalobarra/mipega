@@ -206,7 +206,7 @@ def registro_view(request):
 				clave = form_user.cleaned_data['password']
 				clave2 = form_user.cleaned_data['ClaveRepetida']
 				if clave == clave2:
-					usuario = User.objects.create_user(form_user.cleaned_data['username'], 'test@test.cl',clave)
+					usuario = User.objects.create_user(form_user.cleaned_data['username'], form_user.cleaned_data['email'],clave)
 					usuario.save()
 					usuario_inst = User.objects.get(username = form_user.cleaned_data['username']) 
 					nombre_usuario = form_user.cleaned_data['username']
@@ -219,7 +219,7 @@ def registro_view(request):
 			else:
 				if form_socio.is_valid():
 					try:
-						socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],ano_nacimiento=form_socio.cleaned_data['ano_nacimiento'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio='qwer',magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
+						socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio='qwer',magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
 						socio.save()
 						socio_inst = Socio.objects.get(user=usuario_inst)
 					except:
