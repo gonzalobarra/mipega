@@ -92,6 +92,18 @@
                 </fieldset>
             </form>
         </div>
+        <div class="col-lg-11">
+            <div class="jumbotron">
+            <h1>Ya encontraste a quien buscas?</h1>
+            <p style="text-align:justify">Si ya encontraste a quien estabas buscando ingresa su folio aqui.</p>
+            <p>
+                <form action="{% url '' %}">
+                    <input type="text" placeholder="folio...">
+                    <a class="btn btn-primary btn-large" href="{% url 'vista_registro' %}">Ver</a>
+                </form>
+            </p>
+            </div>
+        </div>
     </div>
 
     
