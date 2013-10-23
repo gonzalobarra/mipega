@@ -1,16 +1,15 @@
 {% extends 'template.html' %}
-{% block title %} Busqueda avanzada | MiPega.cl {% endblock %}
+{% block title %} Inicio | MiPega.cl {% endblock %}
 {% block contenido %}
 <div class="body row"  style="width:98%">
         
         <div class="col-lg-9 col-lg-offset-3 busqueda avanzada">
             {% csrf_token %}
             <form id="id_form" onsubmit="return false;">
-                <legend>¿A quién busca?</legend>
                 <fieldset>
                     <!--{{form_busqueda_rapida}}-->
                     
-                    <h1>Seccion de preferencias</h1>
+                    <legend>Encuentre a su trabajador!</legend>
                     <!-- <div class="form-group">                    
                         <input type="text" class="form-control" id="inputProfesion" placeholder="Profesion...">
                     </div> -->
@@ -65,7 +64,6 @@
                     </div>
                 </fieldset>
                 <fieldset id="radios">
-                    <h1>Seccion de datos personales</h1>
                     <div class="form-group" id="sex-group">
                         <div class="sex-block">
                             <p class="help-block">Sexo:</p>
@@ -117,7 +115,6 @@
                     </div>
                 </fieldset>
                 <fieldset>
-                    <h1>Seccion de estudios</h1>
                     <div class="form-group">
                         <p class="help-block">Estudios Escolares:</p>
                         <select name="carrera1" class="form-control">
@@ -142,7 +139,6 @@
                     </div>
                 </fieldset>
                 <fieldset id="last-search">
-                    <h1>Seccion de exigencias</h1>
                     <div class="form-group">
                         <p class="help-block">Pretencion de Renta:</p>
                         <select name="renta" class="form-control">
@@ -183,12 +179,6 @@
     </div>
 {% endblock %}
 {% block SCRIPT %}
-<script type="text/javascript">
-    {% for c in id_cargos %}
-    $('#inputCargo option[value={{c}}]').attr('selected','selected')
-    {% endfor %}
-    
-</script>
 <script type="text/javascript">
     $('#search').click(function(){
         var parametros = $('#id_form').serialize();

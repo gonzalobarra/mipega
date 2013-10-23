@@ -173,25 +173,33 @@ def busqueda_rapida_view(request):
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 
 def pruebita(request):
-	form = BuscaRapidaForm(request.POST or None)
-	ctx = {'form':form} 
+	user = request.user.username
+	socio = Socio.objects.get(user__username = user)
+	estudios = Estudios.objects.filter(socio__id = socio.id)
+	habilidades = OtrasHabilidades.objects.filter(socio__id = socio.id)
+	experiencialab = ExperienciaLaboral.objects.filter(socio__id=socio.id)
+
+	ctx = {'estudios':estudios, 'habilidades':habilidades, 'experiencialab': experiencialab, 'est1':estudios[0], 'est2':estudios[1], 'est3':estudios[2]} 
 	return render_to_response('MP/pruebita.html',ctx,context_instance=RequestContext(request))
 
 def registro_view(request):
 
 	form_user = UserForm(request.POST or None) #Agregada
 	form_socio = SocioForm(request.POST or None) #Agregada
-	form_estudio = EstudioForm(request.POST or None) #Escolar
-	form_estudio2 = EstudioForm(request.POST or None) #Superior
-	form_estudio3 = EstudioForm(request.POST or None) #Superior
-	form_explab = ExperienciaLaboralForm(request.POST or None)
-	form_explab2 = ExperienciaLaboralForm(request.POST or None)
-	form_explab3 = ExperienciaLaboralForm(request.POST or None)
-	form_explab4 = ExperienciaLaboralForm(request.POST or None)
-	form_hab = OtrasHabilidadesForm(request.POST or None)
-	form_hab2 = OtrasHabilidadesForm(request.POST or None)
-	form_hab3 = OtrasHabilidadesForm(request.POST or None)
-	form_hab4 = OtrasHabilidadesForm(request.POST or None)
+	form_estudio = EstudioForm(request.POST or None, prefix='est1') #Escolar
+	form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=True)
+	form_estudio2 = EstudioForm(request.POST or None, prefix='est2') #Superior
+	form_estudio2.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
+	form_estudio3 = EstudioForm(request.POST or None, prefix='est3') #Superior
+	form_estudio3.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
+	form_explab = ExperienciaLaboralForm(request.POST or None, prefix='esp1')
+	form_explab2 = ExperienciaLaboralForm(request.POST or None, prefix='esp2')
+	form_explab3 = ExperienciaLaboralForm(request.POST or None, prefix='esp3')
+	form_explab4 = ExperienciaLaboralForm(request.POST or None, prefix='esp4')
+	form_hab = OtrasHabilidadesForm(request.POST or None, prefix='hab1')
+	form_hab2 = OtrasHabilidadesForm(request.POST or None, prefix='hab2')
+	form_hab3 = OtrasHabilidadesForm(request.POST or None, prefix='hab3')
+	form_hab4 = OtrasHabilidadesForm(request.POST or None, prefix='hab4')
 
 	cargos = Cargo.objects.all()
 	localidades = Localidad.objects.all()
@@ -201,7 +209,7 @@ def registro_view(request):
 				clave = form_user.cleaned_data['password']
 				clave2 = form_user.cleaned_data['ClaveRepetida']
 				if clave == clave2:
-					usuario = User.objects.create_user(form_user.cleaned_data['username'], 'test@test.cl',clave)
+					usuario = User.objects.create_user(form_user.cleaned_data['username'], form_user.cleaned_data['email'],clave)
 					usuario.save()
 					usuario_inst = User.objects.get(username = form_user.cleaned_data['username']) 
 					nombre_usuario = form_user.cleaned_data['username']
@@ -214,7 +222,7 @@ def registro_view(request):
 			else:
 				if form_socio.is_valid():
 					try:
-						socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],ano_nacimiento=form_socio.cleaned_data['ano_nacimiento'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio='qwer',magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
+						socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio='qwer',magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
 						socio.save()
 						socio_inst = Socio.objects.get(user=usuario_inst)
 					except:
@@ -348,6 +356,12 @@ def bandejaentrada_view(request):
 	ctx = {'mensajes':mensajes} 
 	return render_to_response('MP/bandejaentrada.html', ctx, context_instance=RequestContext(request))
 
+def mensaje_view(request, pk):
+	mensaje = Mensaje.objects.get(id = pk)
+	ctx = {'mensaje':mensaje}
+	return render_to_response('MP/mensaje.html', ctx, context_instance=RequestContext(request))	
+
+
 def editarperfil_view(request):
 	
 	user = request.user.username
@@ -355,49 +369,75 @@ def editarperfil_view(request):
 	estudios = Estudios.objects.filter(socio__id = socio.id)
 	habilidades = OtrasHabilidades.objects.filter(socio__id = socio.id)
 	experiencialab = ExperienciaLaboral.objects.filter(socio__id=socio.id)
+	est1 = estudios[0]
+	est2 = estudios[1]
+	est3 = estudios[2]
+	exp1 = experiencialab[0]
+	exp2 = experiencialab[1]
+	exp3 = experiencialab[2]
+	exp4 = experiencialab[3]
+	hab1 = habilidades[0]
+	hab2 = habilidades[1]
+	hab3 = habilidades[2]
+	hab4 = habilidades[3]
 
 	if request.method == 'POST':
 		form_socio = SocioForm(request.POST,request.FILES, instance=socio)
-		form_estudio = EstudioForm(request.POST, request.FILES, instance=estudios[0])
-		form_estudio2 = EstudioForm(request.POST, request.FILES, instance=estudios[1])
-		form_estudio3 = EstudioForm(request.POST, request.FILES, instance=estudios[2])
-		form_explab = ExperienciaLaboralForm(request.POST, request.FILES, instance=experiencialab[0])
-		form_explab2 = ExperienciaLaboralForm(request.POST, request.FILES, instance=experiencialab[1])
-		form_explab3 = ExperienciaLaboralForm(request.POST, request.FILES, instance=experiencialab[2])
-		form_explab4 = ExperienciaLaboralForm(request.POST, request.FILES, instance=experiencialab[3])
-		form_hab = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades[0])
-		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades[1])
-		form_hab3 = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades[2])
-		form_hab4 = OtrasHabilidadesForm(request.POST, request.FILES, instance=habilidades[3])
-		if form_socio.is_valid() and form_estudio.is_valid() and form_estudio2.is_valid() and form_estudio3.is_valid() and form_explab.is_valid() and form_explab2.is_valid() and form_explab3.is_valid() and form_explab4.is_valid() and form_hab.is_valid() and form_hab2.is_valid() and form_hab3.is_valid() and form_hab4.is_valid():
+		form_estudio = EstudioForm(request.POST, request.FILES, instance=est1, prefix='est1')
+		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=True)
+		form_estudiodos = EstudioForm(request.POST, request.FILES, instance=est2, prefix='est2')
+		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
+		form_estudiotres = EstudioForm(request.POST, request.FILES, instance=est3, prefix='est3')
+		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
+		form_explab = ExperienciaLaboralForm(request.POST, request.FILES, instance=exp1, prefix='exp1')
+		form_explab2 = ExperienciaLaboralForm(request.POST, request.FILES, instance=exp2, prefix='exp2')
+		form_explab3 = ExperienciaLaboralForm(request.POST, request.FILES, instance=exp3, prefix='exp3')
+		form_explab4 = ExperienciaLaboralForm(request.POST, request.FILES, instance=exp4, prefix='exp4')
+		form_hab = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab1, prefix='hab1')
+		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab2, prefix='hab2')
+		form_hab3 = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab3, prefix='hab3')
+		form_hab4 = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab4, prefix='hab4')
+		if form_socio.is_valid():
 			form_socio.save()
+		if form_estudio.is_valid():
 			form_estudio.save()
-			form_estudio2.save()
-			form_estudio3.save()
+		if form_estudiodos.is_valid():
+			form_estudiodos.save()
+		if form_estudiotres.is_valid():
+			form_estudiotres.save()
+		if form_explab.is_valid():
 			form_explab.save()
-			form_explab2.save()
+		if form_explab2.is_valid():
+			form_explab2.save() 
+		if form_explab3.is_valid():
 			form_explab3.save()
-			form_explab4.save()
-			form_hab.save()
-			form_hab2.save()
+		if form_explab4.is_valid():
+			form_explab4.save() 
+		if form_hab.is_valid():
+			form_hab.save() 
+		if form_hab2.is_valid():
+			form_hab2.save() 
+		if form_hab3.is_valid():
 			form_hab3.save()
+		if form_hab4.is_valid():
 			form_hab4.save()
-			return HttpResponseRedirect('/editarperfil/')
+				
+		return HttpResponseRedirect('/editarperfil/')
 	else:
 		form_socio = SocioForm(instance=socio)
-		form_estudio = EstudioForm(instance=estudios[0])
-		form_estudio2 = EstudioForm(instance=estudios[1])
-		form_estudio3 = EstudioForm(instance=estudios[2])
-		form_explab = ExperienciaLaboralForm(instance=experiencialab[0])
-		form_explab2 = ExperienciaLaboralForm(instance=experiencialab[1])
-		form_explab3 = ExperienciaLaboralForm(instance=experiencialab[2])
-		form_explab4 = ExperienciaLaboralForm(instance=experiencialab[3])
-		form_hab = OtrasHabilidadesForm(instance=habilidades[0])
-		form_hab2 = OtrasHabilidadesForm(instance=habilidades[1])
-		form_hab3 = OtrasHabilidadesForm(instance=habilidades[2])
-		form_hab4 = OtrasHabilidadesForm(instance=habilidades[3])
+		form_estudio = EstudioForm(instance=est1, prefix='est1')
+		form_estudiodos = EstudioForm(instance=est2, prefix='est2')
+		form_estudiotres = EstudioForm(instance=est3, prefix='est3')
+		form_explab = ExperienciaLaboralForm(instance=exp1, prefix='exp1')
+		form_explab2 = ExperienciaLaboralForm(instance=exp2, prefix='exp2')
+		form_explab3 = ExperienciaLaboralForm(instance=exp3, prefix='exp3')
+		form_explab4 = ExperienciaLaboralForm(instance=exp4, prefix='exp4')
+		form_hab = OtrasHabilidadesForm(instance=hab1, prefix='hab1')
+		form_hab2 = OtrasHabilidadesForm(instance=hab2, prefix='hab2')
+		form_hab3 = OtrasHabilidadesForm(instance=hab3, prefix='hab3')
+		form_hab4 = OtrasHabilidadesForm(instance=hab4, prefix='hab4')
 
-	ctx = {'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudio2, 'form_estudio3':form_estudio3, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2 , 'form_hab3':form_hab3, 'form_hab4':form_hab4}	
+	ctx = {'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2 , 'form_hab3':form_hab3, 'form_hab4':form_hab4}	
 	
 	return render_to_response('MP/editarperfil.html', ctx, context_instance=RequestContext(request))		 
 

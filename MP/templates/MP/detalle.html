@@ -28,7 +28,9 @@
                 <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_450_factory.png"/>
                 <h2>Cargos buscados</h2>
                 {% for cargo in cargos %}
-                <span>{{cargo.nombre}}, </span>
+                <ul>
+                    <li><span>{{cargo.nombre}}</span></li>
+                </ul>
                 {% endfor %}
             </li>
             
@@ -37,7 +39,9 @@
                 <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_370_globe_af.png"/>
                 <h2>Localidades buscadas</h2>
                 {% for loc in localidades %}
-                <span>{{loc.nombre}}, </span>
+                <ul>
+                    <li><span>{{loc.nombre}}, </span></li>
+                </ul>
                 {% endfor %}
             </li>
             
@@ -45,7 +49,9 @@
             <li>
                 <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_458_money.png"/>
                 <h2>Tipo de contrato</h2>
-                <span>{{socio.get_tipo_contrato_display}}.</span>
+                <ul>
+                    <li><span>{{socio.get_tipo_contrato_display}}.</span></li>
+                </ul>
             </li>
             
         </ul>
@@ -66,7 +72,7 @@
             {% for est in estudios_superiores %}
                 {{est.titulo.nombre}} en {{est.institucion.nombre}} [{{est.get_estado_display}}]<br />
             {% endfor %}
-        {% endif %}
+    {% endif %}
     <!--</div>-->
     <div style="height:17px;"></div>
     {% endif %}

@@ -74,8 +74,8 @@
                             </div>
                         <div id="personal1">
                             <div class="inline_group personal" style="width:270px;">
-                                <label for="id_ano_nacimiento">Año nacimiento:</label>
-                                {{form_socio.ano_nacimiento}}
+                                <label for="id_ano_nacimiento">Edad:</label>
+                                {{form_socio.edad}}
                             </div>
                                                         
                             <div class="inline_group personal">
@@ -193,34 +193,34 @@
                     <div class="pull-right special-form-pane" id="superiores">                        
                         <div id="escolar1">
                             <div class="form_group" id="lefty">
-                                <label for="id_estado">Estado:</label>
+                                <label for="id_estado2">Estado:</label>
                                 {{form_estudio2.estado}}
                             </div>
                         <!--</div>
                         <div id="escolar2">-->
                             <div class="form_group">
-                                <label for="id_titulo">Título:</label>
+                                <label for="id_titulo2">Título:</label>
                                 {{form_estudio2.titulo}}
                             </div>
                             <div class="form_group" style="width:200px;">
-                                <label for="id_institucion">Institución:</label>
+                                <label for="id_institucion2">Institución:</label>
                                 {{form_estudio2.institucion}}
                             </div>
                         </div>
                         <!--el otro form que debe estar escondido-->
                         <div class="hidden-form" id="escolar1">
                             <div class="form_group" id="lefty">
-                                <label for="id_estado">Estado:</label>
+                                <label for="id_estado3">Estado:</label>
                                 {{form_estudio3.estado}}
                             </div>
                         <!--</div>
                         <div id="escolar2">-->
                             <div class="form_group">
-                                <label for="id_titulo">Título:</label>
+                                <label for="id_titulo3">Título:</label>
                                 {{form_estudio3.titulo}}
                             </div>
                             <div class="form_group" style="width:200px;">
-                                <label for="id_institucion">Institución:</label>
+                                <label for="id_institucion3">Institución:</label>
                                 {{form_estudio3.institucion}}
                             </div>
                         </div>
@@ -238,54 +238,7 @@
                             {{form_socio.comentario_est}}
                         </div>
                     </div>
-                    <h2 style="top: 1030px;" id="seccion_habilidades">Otras habilidades</h2>
-                    <div class="special-form-pane" id="habilidades">
-                        <div style="margin-bottom: 10px;">
-                            <div class="inline_group">
-                                <label for="id_nivel">Nivel:</label>
-                                {{form_hab.nivel}}
-                            </div>
-                            <div class="inline_group">
-                                <label for="id_habilidad">Habilidad:</label>
-                                {{form_hab.habilidad}}
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 10px;" class="hidden-form">
-                            <div class="inline_group">
-                                <label for="id_nivel">Nivel:</label>
-                                {{form_hab2.nivel}}
-                            </div>
-                            <div class="inline_group">
-                                <label for="id_habilidad">Habilidad:</label>
-                                {{form_hab2.habilidad}}
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 10px;" class="hidden-form">
-                            <div class="inline_group">
-                                <label for="id_nivel">Nivel:</label>
-                                {{form_hab3.nivel}}
-                            </div>
-                            <div class="inline_group">
-                                <label for="id_habilidad">Habilidad:</label>
-                                {{form_hab3.habilidad}}
-                            </div>
-                        </div>
-                        <div style="margin-bottom: 10px;" class="hidden-form">
-                            <div class="inline_group">
-                                <label for="id_nivel">Nivel:</label>
-                                {{form_hab4.nivel}}
-                            </div>
-                            <div class="inline_group">
-                                <label for="id_habilidad">Habilidad:</label>
-                                {{form_hab4.habilidad}}
-                            </div> 
-                        </div>
-                        <a href="#" class="plus-button btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>                             
-                    </div>
-                    <div id="habilidades-help" style="top: 1060px;" class="right-block form-help-block">
-                        <p>Tu rut solo se usa para acceder, pero <strong>nadie puede verlo!</strong></p>
-                        <p>Sólo tu "usuario" será visible para los demás.</p>
-                    </div>
+                    
                 </div>
             </div>
             <div class="row form-pane" id="other_pane">
@@ -395,7 +348,60 @@
                     
                     
                 </div>
-            </div>            
+            </div>  
+            <div class="row form-pane" id="other_pane2">
+                <div class="col-md-6 col-md-offset-2">
+            
+                    <h2 id="seccion_habilidades">Otras habilidades</h2>
+                    <div class="special-form-pane" id="habilidades">
+                        <div style="margin-bottom: 10px;">
+                            <div class="inline_group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab.nivel}}
+                            </div>
+                            <div class="inline_group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab.habilidad}}
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="hidden-form">
+                            <div class="inline_group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab2.nivel}}
+                            </div>
+                            <div class="inline_group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab2.habilidad}}
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="hidden-form">
+                            <div class="inline_group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab3.nivel}}
+                            </div>
+                            <div class="inline_group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab3.habilidad}}
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 10px;" class="hidden-form">
+                            <div class="inline_group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab4.nivel}}
+                            </div>
+                            <div class="inline_group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab4.habilidad}}
+                            </div> 
+                        </div>
+                        <a href="#" class="plus-button btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></a>                             
+                    </div>
+                    <div id="habilidades-help" style="top: 355px;" class="right-block form-help-block">
+                        <p>Tu rut solo se usa para acceder, pero <strong>nadie puede verlo!</strong></p>
+                        <p>Sólo tu "usuario" será visible para los demás.</p>
+                    </div> 
+                </div>
+            </div>         
             <div id="controls">
                 <a id="prev" class="btn btn-success" href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
                 <a id="next" class="btn btn-success" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>

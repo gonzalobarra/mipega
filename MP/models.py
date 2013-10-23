@@ -77,7 +77,7 @@ class Socio(models.Model):
 	nombre            = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
 	web               = models.CharField('Web' ,max_length=128, null=True, blank=True)
-	ano_nacimiento    = models.CharField('Año de nacimiento',max_length=10, choices=nacimiento, null=True, blank=True)
+	edad		      = models.CharField('Edad',max_length=10, null=True, blank=True)
 	sexo              = models.CharField("Sexo",max_length=10, choices=sexo, null=True, blank=True)
 	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=10, choices=hijos, null=True, blank=True)
 	estado_civil      = models.CharField('Estado Civil',max_length=10, choices=estadoCivil, null=True, blank=True)
@@ -114,6 +114,7 @@ class Mensaje(models.Model):
 	contenido       = models.CharField('Mensaje', max_length=440,null=False, blank=False)
 	nombre_contacto = models.CharField('Nombre', max_length=25,null=False, blank=False)
 	medio_contacto  = models.CharField('Contacto', max_length=25,null=False, blank=False)
+	leido 			= models.BooleanField('Leido',default=True) 
 
 	# Llaves foraneas
 	socio           = models.ForeignKey(Socio, verbose_name="Socio")
@@ -135,7 +136,7 @@ class Habilidad(models.Model):
 
 class OtrasHabilidades(models.Model):
 	id        = models.AutoField('ID', primary_key=True)
-	nivel     = models.CharField('Nivel', max_length=7,choices=nivelHabilidad, default="u", null=True, blank=True)
+	nivel     = models.CharField('Nivel', max_length=7,choices=nivelHabilidad, null=True, blank=True)
 
 	# Llaves foraneas
 	socio     = models.ForeignKey(Socio, verbose_name="Socio")
@@ -194,7 +195,7 @@ class Institucion(models.Model):
 
 class Estudios(models.Model):
 	id          = models.AutoField('ID', primary_key=True)
-	estado      = models.CharField('Estado', max_length=7, choices=estadoEstudio, default="i")
+	estado      = models.CharField('Estado', max_length=7, choices=estadoEstudio, null=True, blank=True)
 
 	# Llaves foraneas
 	titulo      = models.ForeignKey(Titulo, verbose_name="Titulo", null=True, blank=True)

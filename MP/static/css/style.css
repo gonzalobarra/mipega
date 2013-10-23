@@ -333,17 +333,20 @@ input[value="Registrar"] {
 #session_pane .inline_group,
 #study_pane .inline_group,
 #other_pane .inline_group,
-#last .inline_group {
+#last .inline_group,
+#other_pane2 .inline_group {
   display: inline-block;
 }
 #session_pane h1,
 #study_pane h1,
 #other_pane h1,
 #last h1,
+#other_pane2 h1,
 #session_pane h2,
 #study_pane h2,
 #other_pane h2,
-#last h2 {
+#last h2,
+#other_pane2 h2 {
   /*width: 240px;*/
 
   text-align: center;
@@ -370,43 +373,50 @@ input[value="Registrar"] {
 #study_pane h1#seccion_personal,
 #other_pane h1#seccion_personal,
 #last h1#seccion_personal,
+#other_pane2 h1#seccion_personal,
 #session_pane h2#seccion_personal,
 #study_pane h2#seccion_personal,
 #other_pane h2#seccion_personal,
-#last h2#seccion_personal {
+#last h2#seccion_personal,
+#other_pane2 h2#seccion_personal {
   right: 400px;
   left: initial;
 }
 #session_pane h2,
 #study_pane h2,
 #other_pane h2,
-#last h2 {
+#last h2,
+#other_pane2 h2 {
   width: 390px;
 }
 #session_pane h2#seccion_superiores,
 #study_pane h2#seccion_superiores,
 #other_pane h2#seccion_superiores,
-#last h2#seccion_superiores {
+#last h2#seccion_superiores,
+#other_pane2 h2#seccion_superiores {
   right: 250px;
   left: initial;
 }
 #session_pane #superiores #escolar1 div,
 #study_pane #superiores #escolar1 div,
 #other_pane #superiores #escolar1 div,
-#last #superiores #escolar1 div {
+#last #superiores #escolar1 div,
+#other_pane2 #superiores #escolar1 div {
   width: 30%;
 }
 #session_pane #superiores #postgrados,
 #study_pane #superiores #postgrados,
 #other_pane #superiores #postgrados,
-#last #superiores #postgrados {
+#last #superiores #postgrados,
+#other_pane2 #superiores #postgrados {
   display: inline-block;
   width: 100%;
 }
 #session_pane #superiores #postgrados .checkbox,
 #study_pane #superiores #postgrados .checkbox,
 #other_pane #superiores #postgrados .checkbox,
-#last #superiores #postgrados .checkbox {
+#last #superiores #postgrados .checkbox,
+#other_pane2 #superiores #postgrados .checkbox {
   margin-top: 0px;
   margin-bottom: 10px;
   margin-left: 10px;
@@ -415,13 +425,15 @@ input[value="Registrar"] {
 #session_pane #superiores #postgrados .checkbox label,
 #study_pane #superiores #postgrados .checkbox label,
 #other_pane #superiores #postgrados .checkbox label,
-#last #superiores #postgrados .checkbox label {
+#last #superiores #postgrados .checkbox label,
+#other_pane2 #superiores #postgrados .checkbox label {
   width: 50%;
 }
 #session_pane #superiores #postgrados .checkbox input[type="checkbox"],
 #study_pane #superiores #postgrados .checkbox input[type="checkbox"],
 #other_pane #superiores #postgrados .checkbox input[type="checkbox"],
-#last #superiores #postgrados .checkbox input[type="checkbox"] {
+#last #superiores #postgrados .checkbox input[type="checkbox"],
+#other_pane2 #superiores #postgrados .checkbox input[type="checkbox"] {
   margin: 5px;
   padding: 5px;
   width: 15px;
@@ -430,7 +442,8 @@ input[value="Registrar"] {
 #session_pane .special-form-pane,
 #study_pane .special-form-pane,
 #other_pane .special-form-pane,
-#last .special-form-pane {
+#last .special-form-pane,
+#other_pane2 .special-form-pane {
   background-color: rgba(66, 139, 202, 0.2);
   padding: 10px;
   padding-top: 20px;
@@ -447,33 +460,38 @@ input[value="Registrar"] {
 #session_pane .special-form-pane#experiencias .inline_group,
 #study_pane .special-form-pane#experiencias .inline_group,
 #other_pane .special-form-pane#experiencias .inline_group,
-#last .special-form-pane#experiencias .inline_group {
+#last .special-form-pane#experiencias .inline_group,
+#other_pane2 .special-form-pane#experiencias .inline_group {
   width: 30%;
 }
 #session_pane .special-form-pane#experiencias .inline_group select,
 #study_pane .special-form-pane#experiencias .inline_group select,
 #other_pane .special-form-pane#experiencias .inline_group select,
-#last .special-form-pane#experiencias .inline_group select {
+#last .special-form-pane#experiencias .inline_group select,
+#other_pane2 .special-form-pane#experiencias .inline_group select {
   width: 100%;
 }
 #session_pane .special-form-pane#experiencias #escolar2,
 #study_pane .special-form-pane#experiencias #escolar2,
 #other_pane .special-form-pane#experiencias #escolar2,
-#last .special-form-pane#experiencias #escolar2 {
+#last .special-form-pane#experiencias #escolar2,
+#other_pane2 .special-form-pane#experiencias #escolar2 {
   width: 100%;
   padding: 0px;
 }
 #session_pane .special-form-pane#experiencias #escolar2 .form_group,
 #study_pane .special-form-pane#experiencias #escolar2 .form_group,
 #other_pane .special-form-pane#experiencias #escolar2 .form_group,
-#last .special-form-pane#experiencias #escolar2 .form_group {
+#last .special-form-pane#experiencias #escolar2 .form_group,
+#other_pane2 .special-form-pane#experiencias #escolar2 .form_group {
   padding: 0px;
   width: inherit;
 }
 #session_pane .special-form-pane .plus-button,
 #study_pane .special-form-pane .plus-button,
 #other_pane .special-form-pane .plus-button,
-#last .special-form-pane .plus-button {
+#last .special-form-pane .plus-button,
+#other_pane2 .special-form-pane .plus-button {
   padding: 1px;
   width: 35px;
   height: 35px;
@@ -487,27 +505,31 @@ input[value="Registrar"] {
 #session_pane .special-form-pane .plus-button span,
 #study_pane .special-form-pane .plus-button span,
 #other_pane .special-form-pane .plus-button span,
-#last .special-form-pane .plus-button span {
+#last .special-form-pane .plus-button span,
+#other_pane2 .special-form-pane .plus-button span {
   line-height: 1.7;
   font-size: 22px;
 }
 #session_pane .special-form-pane .hidden-form,
 #study_pane .special-form-pane .hidden-form,
 #other_pane .special-form-pane .hidden-form,
-#last .special-form-pane .hidden-form {
+#last .special-form-pane .hidden-form,
+#other_pane2 .special-form-pane .hidden-form {
   display: none;
 }
 #session_pane .special-form-pane#habilidades .inline_group,
 #study_pane .special-form-pane#habilidades .inline_group,
 #other_pane .special-form-pane#habilidades .inline_group,
-#last .special-form-pane#habilidades .inline_group {
+#last .special-form-pane#habilidades .inline_group,
+#other_pane2 .special-form-pane#habilidades .inline_group {
   width: 200px;
   margin: 0px 40px;
 }
 #session_pane .special-form-pane .line p,
 #study_pane .special-form-pane .line p,
 #other_pane .special-form-pane .line p,
-#last .special-form-pane .line p {
+#last .special-form-pane .line p,
+#other_pane2 .special-form-pane .line p {
   display: inline;
   float: left;
   line-height: 30px;
@@ -515,7 +537,8 @@ input[value="Registrar"] {
 #session_pane .special-form-pane .line .plain-field,
 #study_pane .special-form-pane .line .plain-field,
 #other_pane .special-form-pane .line .plain-field,
-#last .special-form-pane .line .plain-field {
+#last .special-form-pane .line .plain-field,
+#other_pane2 .special-form-pane .line .plain-field {
   margin: 0px 5px;
   height: 30px;
   width: 120px !important;
@@ -536,13 +559,15 @@ input[value="Registrar"] {
 #session_pane .special-form-pane .line .plain-field:focus,
 #study_pane .special-form-pane .line .plain-field:focus,
 #other_pane .special-form-pane .line .plain-field:focus,
-#last .special-form-pane .line .plain-field:focus {
+#last .special-form-pane .line .plain-field:focus,
+#other_pane2 .special-form-pane .line .plain-field:focus {
   background-color: rgba(66, 139, 202, 0.05);
 }
 #session_pane .form-help-block,
 #study_pane .form-help-block,
 #other_pane .form-help-block,
-#last .form-help-block {
+#last .form-help-block,
+#other_pane2 .form-help-block {
   display: inline-block;
   width: 40%;
   padding: 15px;
@@ -552,13 +577,15 @@ input[value="Registrar"] {
 #session_pane .form-help-block.right-block,
 #study_pane .form-help-block.right-block,
 #other_pane .form-help-block.right-block,
-#last .form-help-block.right-block {
+#last .form-help-block.right-block,
+#other_pane2 .form-help-block.right-block {
   border-left-style: dotted;
 }
 #session_pane .form-help-block.left-block,
 #study_pane .form-help-block.left-block,
 #other_pane .form-help-block.left-block,
-#last .form-help-block.left-block {
+#last .form-help-block.left-block,
+#other_pane2 .form-help-block.left-block {
   border-right-style: dotted;
 }
 div#session_pane label, div#last label {
@@ -669,28 +696,37 @@ div#_escolar1 {
 }
 div#study_pane #escolar,
 div#other_pane #escolar,
+div#other_pane2 #escolar,
 div#study_pane #superiores,
 div#other_pane #superiores,
+div#other_pane2 #superiores,
 div#study_pane #experiencias,
-div#other_pane #experiencias {
+div#other_pane #experiencias,
+div#other_pane2 #experiencias {
   min-height: 150px;
   overflow: auto;
 }
 div#study_pane #escolar div,
 div#other_pane #escolar div,
+div#other_pane2 #escolar div,
 div#study_pane #superiores div,
 div#other_pane #superiores div,
+div#other_pane2 #superiores div,
 div#study_pane #experiencias div,
-div#other_pane #experiencias div {
+div#other_pane #experiencias div,
+div#other_pane2 #experiencias div {
   float: left;
   padding-left: 20px;
 }
 div#study_pane #escolar label,
 div#other_pane #escolar label,
+div#other_pane2 #escolar label,
 div#study_pane #superiores label,
 div#other_pane #superiores label,
+div#other_pane2 #superiores label,
 div#study_pane #experiencias label,
-div#other_pane #experiencias label {
+div#other_pane #experiencias label,
+div#other_pane2 #experiencias label {
   float: left;
   clear: both;
   margin-right: 100%;
@@ -701,27 +737,36 @@ div#other_pane #experiencias label {
 }
 div#study_pane #escolar .form-control,
 div#other_pane #escolar .form-control,
+div#other_pane2 #escolar .form-control,
 div#study_pane #superiores .form-control,
 div#other_pane #superiores .form-control,
+div#other_pane2 #superiores .form-control,
 div#study_pane #experiencias .form-control,
-div#other_pane #experiencias .form-control {
+div#other_pane #experiencias .form-control,
+div#other_pane2 #experiencias .form-control {
   margin-left: 10%;
   float: left;
 }
 div#study_pane #escolar textarea.form-control,
 div#other_pane #escolar textarea.form-control,
+div#other_pane2 #escolar textarea.form-control,
 div#study_pane #superiores textarea.form-control,
 div#other_pane #superiores textarea.form-control,
+div#other_pane2 #superiores textarea.form-control,
 div#study_pane #experiencias textarea.form-control,
-div#other_pane #experiencias textarea.form-control {
+div#other_pane #experiencias textarea.form-control,
+div#other_pane2 #experiencias textarea.form-control {
   margin-left: 15%;
 }
 div#study_pane #escolar Select.form-control,
 div#other_pane #escolar Select.form-control,
+div#other_pane2 #escolar Select.form-control,
 div#study_pane #superiores Select.form-control,
 div#other_pane #superiores Select.form-control,
+div#other_pane2 #superiores Select.form-control,
 div#study_pane #experiencias Select.form-control,
-div#other_pane #experiencias Select.form-control {
+div#other_pane #experiencias Select.form-control,
+div#other_pane2 #experiencias Select.form-control {
   margin-left: 10%;
   width: 200px;
 }
@@ -968,6 +1013,15 @@ div#other_pane #habilidades Select.form-control {
   width: 95%;
   margin: 30px;
   margin-bottom: 0px;
+}
+.profile-content #edit-profile-form h1 {
+  font-size: 32px;
+  padding: 10px;
+  margin: 0px;
+}
+.profile-content #edit-profile-form h1:before {
+  content: url("../img/square.png");
+  opacity: 0.8;
 }
 .profile-content #edit-profile-form .block-form-pane {
   width: 95%;

@@ -32,22 +32,23 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}),required=True,label='Clave')
     class Meta:
         model = User
-        fields = ('username', 'password',)
+        fields = ('username', 'password','email',)
         widgets = {
             'username': forms.TextInput(attrs={'class':'form-control'}),  
-            'password': forms.PasswordInput(attrs={'class':'form-control'}),        
+            'password': forms.PasswordInput(attrs={'class':'form-control'}),
+            'email': forms.TextInput(attrs={'class':'form-control'}),        
         }
     
 class SocioForm(forms.ModelForm):
     comentario_est = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'5'}))
     class Meta:
         model = Socio
-        fields = ('nombre','telefono', 'web', 'ano_nacimiento', 'comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('nombre','telefono', 'web', 'edad', 'comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
             'web': forms.TextInput(attrs={'class':'form-control plain-field'}),
-            'ano_nacimiento': forms.Select(attrs={'class':'form-control'}),
+            'edad': forms.TextInput(attrs={'class':'form-control'}),
             'sexo': forms.Select(attrs={'class':'form-control'}),
             'estado_civil': forms.Select(attrs={'class':'form-control'}),
             'pretencion_renta': forms.Select(attrs={'class':'form-control'}),
@@ -57,26 +58,6 @@ class SocioForm(forms.ModelForm):
         }
 
 class EstudioForm(forms.ModelForm):
-    class Meta:
-        model = Estudios
-        fields = ('estado', 'titulo', 'institucion')
-        widgets = {
-            'estado': forms.Select(attrs={'class':'form-control'}),
-            'titulo': forms.Select(attrs={'class':'form-control'}),
-            'institucion': forms.Select(attrs={'class':'form-control'}),        
-        }
-
-class EstudioForm2(forms.ModelForm):
-    class Meta:
-        model = Estudios
-        fields = ('estado', 'titulo', 'institucion')
-        widgets = {
-            'estado': forms.Select(attrs={'class':'form-control'}),
-            'titulo': forms.Select(attrs={'class':'form-control'}),
-            'institucion': forms.Select(attrs={'class':'form-control'}),        
-        }        
-
-class EstudioForm3(forms.ModelForm):
     class Meta:
         model = Estudios
         fields = ('estado', 'titulo', 'institucion')
@@ -97,39 +78,6 @@ class ExperienciaLaboralForm(forms.ModelForm):
             'rubro': forms.Select(attrs={'class':'form-control'}),        
         }
 
-class ExperienciaLaboralForm2(forms.ModelForm):
-    comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'5'}))
-    class Meta:
-        model = ExperienciaLaboral
-        fields = ('anos_trabajados', 'cargo', 'rubro','comentario')
-        widgets = {
-            'anos_trabajados': forms.TextInput(attrs={'class':'form-control'}),
-            'cargo': forms.Select(attrs={'class':'form-control'}),
-            'rubro': forms.Select(attrs={'class':'form-control'}),        
-        }
-
-class ExperienciaLaboralForm3(forms.ModelForm):
-    comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'5'}))
-    class Meta:
-        model = ExperienciaLaboral
-        fields = ('anos_trabajados', 'cargo', 'rubro','comentario')
-        widgets = {
-            'anos_trabajados': forms.TextInput(attrs={'class':'form-control'}),
-            'cargo': forms.Select(attrs={'class':'form-control'}),
-            'rubro': forms.Select(attrs={'class':'form-control'}),        
-        }
-
-class ExperienciaLaboralForm4(forms.ModelForm):
-    comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'5'}))
-    class Meta:
-        model = ExperienciaLaboral
-        fields = ('anos_trabajados', 'cargo', 'rubro','comentario')
-        widgets = {
-            'anos_trabajados': forms.TextInput(attrs={'class':'form-control'}),
-            'cargo': forms.Select(attrs={'class':'form-control'}),
-            'rubro': forms.Select(attrs={'class':'form-control'}),        
-        }                
-
 class OtrasHabilidadesForm(forms.ModelForm):
     class Meta:
         model = OtrasHabilidades
@@ -138,33 +86,7 @@ class OtrasHabilidadesForm(forms.ModelForm):
             'nivel': forms.Select(attrs={'class':'form-control'}),
             'habilidad': forms.Select(attrs={'class':'form-control'}),        
         }
-
-class OtrasHabilidadesForm2(forms.ModelForm):
-    class Meta:
-        model = OtrasHabilidades
-        fields = ('nivel', 'habilidad',) 
-        widgets = {
-            'nivel': forms.Select(attrs={'class':'form-control'}),
-            'habilidad': forms.Select(attrs={'class':'form-control'}),        
-        }
-
-class OtrasHabilidadesForm3(forms.ModelForm):
-    class Meta:
-        model = OtrasHabilidades
-        fields = ('nivel', 'habilidad',) 
-        widgets = {
-            'nivel': forms.Select(attrs={'class':'form-control'}),
-            'habilidad': forms.Select(attrs={'class':'form-control'}),        
-        }
-
-class OtrasHabilidadesForm4(forms.ModelForm):
-    class Meta:
-        model = OtrasHabilidades
-        fields = ('nivel', 'habilidad',) 
-        widgets = {
-            'nivel': forms.Select(attrs={'class':'form-control'}),
-            'habilidad': forms.Select(attrs={'class':'form-control'}),        
-        }                        
+                        
 #Al parecer no se usa nunca jamás                       
 class BuscaRapidaForm(forms.Form):
 
