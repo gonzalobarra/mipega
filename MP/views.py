@@ -23,13 +23,25 @@ def index_view(request):
 	ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos}
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
+def detalle_socio_folio_view(request):
+	if request.method == "POST":
+		if "folio" in request.POST:
+			socio = Socio.objects.filter(folio =request.POST['folio'])
+			if len(socio) == 1:
+				return detalle_socio_view(request, socio[0].id)
+			else:
+				messages.warning(request, "Folio incorrecto.")
+				return HttpResponseRedirect("/")
+
+	return HttpResponseRedirect("/")
+
 def detalle_socio_view(request, id_socio):
 	messages.success(request, "debug")
 	messages.warning(request, "debug")
 	messages.info(request, "debug")
 	messages.error(request, "debug")
 	socio = Socio.objects.get(pk =id_socio)
-	edad = datetime.datetime.today().year - int(socio.ano_nacimiento)
+	edad = socio.edad#datetime.datetime.today().year - int(socio.ano_nacimiento)
 	localidades = Localidad.objects.filter(id__in = LocalidadConSocio.objects.filter(socio = socio).values_list('localidad',flat=True))
 	cargos = Cargo.objects.filter(id__in=EmpleoBuscado.objects.filter(socio = socio).values_list('cargo',flat=True))
 	estudios_escolares = Estudios.objects.filter(socio = socio).filter(titulo__tipo = "t")
