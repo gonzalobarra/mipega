@@ -370,9 +370,16 @@ def bandejaentrada_view(request):
 
 def mensaje_view(request, pk):
 	mensaje = Mensaje.objects.get(id = pk)
+	mensaje.leido = True
+	mensaje.save()
 	ctx = {'mensaje':mensaje}
 	return render_to_response('MP/mensaje.html', ctx, context_instance=RequestContext(request))	
 
+
+def eliminarmensaje_view(request,pk):
+	mensaje = Mensaje.objects.get(id = pk)
+	mensaje.delete()
+	return render_to_response('MP/bandejaentrada.html',context_instance=RequestContext(request))
 
 def editarperfil_view(request):
 	

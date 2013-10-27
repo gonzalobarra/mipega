@@ -114,7 +114,7 @@ class Mensaje(models.Model):
 	contenido       = models.CharField('Mensaje', max_length=440,null=False, blank=False)
 	nombre_contacto = models.CharField('Nombre', max_length=25,null=False, blank=False)
 	medio_contacto  = models.CharField('Contacto', max_length=25,null=False, blank=False)
-	leido 			= models.BooleanField('Leido',default=True) 
+	leido 			= models.BooleanField('Leido',default=False) 
 
 	# Llaves foraneas
 	socio           = models.ForeignKey(Socio, verbose_name="Socio")

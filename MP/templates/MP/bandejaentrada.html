@@ -15,19 +15,33 @@
 		
 		<table class="bandeja table table-striped">
 			<tr>
+				<th>Estado</th>
 				<th>Fecha</th>
 				<th>Contacto</th>
 				<th>Medio de contacto</th>
 				<th>Ver mensaje</th>
+				<th>Eliminar mensaje<th>
 			</tr>
 			{% for mensaje in mensajes %}
-			<tr>
-				<td>{{mensaje.fecha}}</td>
-				<td>{{mensaje.nombre_contacto}}</td>
-				<td>{{mensaje.medio_contacto}}</td>
-				<td><a href="/mensaje/{{mensaje.id}}" class="btn btn-primary btn-small">Ver mensaje</a><td>
-
-			</tr>
+				{% ifequal mensaje.leido True %}
+					<tr>
+						<td>Leido</td>
+						<td>{{mensaje.fecha}}</td>
+						<td>{{mensaje.nombre_contacto}}</td>
+						<td>{{mensaje.medio_contacto}}</td>
+						<td><a href="/mensaje/{{mensaje.id}}" class="btn btn-primary btn-small">Ver mensaje</a></td>
+						<td><a href="/eliminar/mensaje/{{mensaje.id}}" class="btn btn-warning btn-small">Eliminar</a></td>	
+					</tr>
+				{% else %}
+					<tr>
+						<td><b>No leido</b></td>
+						<td>{{mensaje.fecha}}</td>
+						<td>{{mensaje.nombre_contacto}}</td>
+						<td>{{mensaje.medio_contacto}}</td>
+						<td><a href="/mensaje/{{mensaje.id}}" class="btn btn-primary btn-small">Ver mensaje</a></td>
+						<td><a href="/eliminar/mensaje/{{mensaje.id}}" class="btn btn-warning btn-small">Eliminar</a></td>	
+					</tr>
+				{% endifequal %}
 			{% endfor %}	
 		</table>	
 	<!--</div>-->
