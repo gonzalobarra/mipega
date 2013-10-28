@@ -3,6 +3,20 @@
 {% block contenido %}
 <div class="body row">
         
+        <div class="col-lg-4 fast-search-container pull-right">
+            <div class="fast-search">
+            
+            <p style="text-align:justify">Si ya encontraste a quien estabas buscando ingresa su folio aqui.</p>
+            <p>
+                <form role="form" action="{% url 'vista_detalle_socio_folio' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" name="folio" placeholder="folio...">
+                    <input type="submit" value="Ver" class="btn btn-primary">
+                </form>
+            </p>
+            </div>
+        </div>
+        
         <div class="col-lg-7">
             <div class="jumbotron">
             <h1>Participa de mipega.cl</h1>
@@ -92,19 +106,7 @@
                 </fieldset>
             </form>
         </div>
-        <div class="col-lg-11">
-            <div class="jumbotron">
-            <h1>Ya encontraste a quien buscas?</h1>
-            <p style="text-align:justify">Si ya encontraste a quien estabas buscando ingresa su folio aqui.</p>
-            <p>
-                <form action="{% url 'vista_detalle_socio_folio' %}" method="post">
-                    {% csrf_token %}
-                    <input type="text" name="folio" placeholder="folio...">
-                    <input type="submit" value="Ver" class="btn btn-primary btn-large">
-                </form>
-            </p>
-            </div>
-        </div>
+        
     </div>
 
     

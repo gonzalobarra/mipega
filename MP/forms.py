@@ -36,7 +36,7 @@ class UserForm(forms.ModelForm):
         widgets = {
             'username': forms.TextInput(attrs={'class':'form-control'}),  
             'password': forms.PasswordInput(attrs={'class':'form-control'}),
-            'email': forms.TextInput(attrs={'class':'form-control'}),        
+            'email': forms.TextInput(attrs={'class':'form-control plain-field'}),        
         }
     
 class SocioForm(forms.ModelForm):
