@@ -66,7 +66,6 @@ renta=(
 class Nacionalidad(models.Model):
 	id 				  = models.AutoField('ID', primary_key=True)
 	nombre 			  = models.CharField('Nombre', max_length=64, null=False, blank=False)
-	codigo 			  = models.CharField('Codigo', max_length=32, null=False, blank=False)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
