@@ -234,12 +234,13 @@ def registro_view(request):
 			else:
 				if form_socio.is_valid():
 					try:
-						socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio='qwer',magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
+						foliox = (hex(usuario_inst.id + 10555665)).split('0x')[1]
+						socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
 						socio.save()
 						socio_inst = Socio.objects.get(user=usuario_inst)
 					except:
 						messages.warning(request, "Error al crear el socio")
-						usuario.delete()
+						usuario_inst.delete()
 						return HttpResponseRedirect('/registro')
 						#Aqui va el tema del cargo.
 					else:
