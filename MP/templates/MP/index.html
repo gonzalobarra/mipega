@@ -46,7 +46,7 @@
                     <div class="well">
                         Seleccione un rango de edades:<br />
                         <b>18</b> 
-                        <input class="span7" type="text" name="edad" value="" data-slider-min="18" data-slider-max="100" data-slider-step="1" data-slider-value="[18,100]" id="sl2">
+                        <input class="span7" type="text" name="edad" value="18,100" data-slider-min="18" data-slider-max="100" data-slider-step="1" data-slider-value="[18,100]" id="sl2">
                         <b>100</b>
                     </div>
                     <div class="form-group">
@@ -111,6 +111,8 @@
 {% block SCRIPT %}
 <script type="text/javascript">
 $('#sl2').slider();
+
+
 function busquedaavanzada(){
     var parametros = $('#id_form').serialize();
     $("#id_form").attr("action", "{% url 'busqueda_avanzada' %}");
@@ -120,7 +122,6 @@ function busquedaavanzada(){
 
     $('#search').click(function(e){
         e.preventDefault(); 
-        alert("asdsads");
         var parametros = $('#id_form').serialize();
         $.ajax({
             url: "{% url 'busqueda_rapida' %}",

@@ -20,6 +20,7 @@ def index_view(request):
 	form = BuscaRapidaForm(request.POST or None)
 	localidades = Localidad.objects.all()
 	cargos = Cargo.objects.all()
+	#messages.warning(request, "DEBUG")
 	ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos}
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
@@ -41,7 +42,8 @@ def detalle_socio_view(request, id_socio):
 	messages.info(request, "debug")
 	messages.error(request, "debug")
 	socio = Socio.objects.get(pk =id_socio)
-	edad = socio.edad#datetime.datetime.today().year - int(socio.ano_nacimiento)
+	edad = socio.edad
+	#datetime.datetime.today().year - int(socio.ano_nacimiento)
 	localidades = Localidad.objects.filter(id__in = LocalidadConSocio.objects.filter(socio = socio).values_list('localidad',flat=True))
 	cargos = Cargo.objects.filter(id__in=EmpleoBuscado.objects.filter(socio = socio).values_list('cargo',flat=True))
 	estudios_escolares = Estudios.objects.filter(socio = socio).filter(titulo__tipo = "t")
@@ -81,23 +83,9 @@ def busqueda_view(request):
 			edad  = request.POST['edad']
 			menor = 0
 			mayor = ano_actual
-			if edad == "1":
-				menor = ano_actual - 24
-				mayor = ano_actual - 18
-			if edad == "2":
-				menor = ano_actual - 29
-				mayor = ano_actual - 24
-			if edad == "3":
-				menor = ano_actual - 37
-				mayor = ano_actual - 30
-			if edad == "4":
-				menor = ano_actual - 44
-				mayor = ano_actual - 37
-			if edad == "5":
-				menor = ano_actual - ano_actual
-				mayor = ano_actual - 44
-			socios = socios.exclude(ano_nacimiento__lt=menor)
-			socios = socios.exclude(ano_nacimiento__gt=mayor)
+			
+			#socios = socios.exclude(ano_nacimiento__lt=menor)
+			#socios = socios.exclude(ano_nacimiento__gt=mayor)
 			sexo  = request.POST['optionsRadios']
 			if sexo != "i":
 				socios = socios.filter(sexo=sexo)
@@ -110,7 +98,7 @@ def busqueda_view(request):
 					socios = socios.filter(tiene_hijos="n")
 			resultados_busqueda = []
 			for socio in socios:
-				str_coment = " año nacimiento "+ str(socio.ano_nacimiento)
+				#str_coment = " año nacimiento "+ str(socioedad)
 				element = {'id':socio.id, 'titulo':socio.nombre, 'descripcion':str_coment}
 				resultados_busqueda.append(element)
 			ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
@@ -140,7 +128,6 @@ def enviar_mensaje_view(request):
 def busqueda_rapida_view(request):
 	form = BuscaRapidaForm(request.POST or None)
 	mensaje = ""
-	ano_actual = datetime.datetime.now().year
 	#falta implementar aqui la busqueda rapida, ya llegan los valores del form
 	if request.method == "POST":
 		socios = Socio.objects.all()
@@ -150,35 +137,21 @@ def busqueda_rapida_view(request):
 			socios = socios.filter(id__in=id_socios_en_cargo)
 		if "localidad" in request.POST:
 			ids_localidades = request.POST.getlist('localidad')
-			mensaje = ids_localidades
 			id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
 			socios = socios.filter(id__in=id_socios_en_localidad)
 		edad  = request.POST['edad']
-		menor = 0
-		mayor = ano_actual
-		if edad == "1":
-			menor = ano_actual - 24
-			mayor = ano_actual - 18
-		if edad == "2":
-			menor = ano_actual - 29
-			mayor = ano_actual - 24
-		if edad == "3":
-			menor = ano_actual - 37
-			mayor = ano_actual - 30
-		if edad == "4":
-			menor = ano_actual - 44
-			mayor = ano_actual - 37
-		if edad == "5":
-			menor = ano_actual - ano_actual
-			mayor = ano_actual - 44
-		socios = socios.exclude(ano_nacimiento__lt=menor)
-		socios = socios.exclude(ano_nacimiento__gt=mayor)
+		menor = int(edad.split(',')[0])
+		mayor = int(edad.split(',')[1])
+		#mensaje=str(mayor)+"-"+ edad
+		socios = socios.exclude(edad__lt=menor)
+		socios = socios.exclude(edad__gt=mayor)
 		sexo  = request.POST['optionsRadios']
 		if sexo != "i":
 			socios = socios.filter(sexo=sexo)
 		resultados_busqueda = []
 		for socio in socios:
-			str_coment = " año nacimiento "+ str(socio.ano_nacimiento)
+			str_coment = " año nacimiento " + "-" + str(socio.edad)
+			#+ str(edad)
 			element = {'id':socio.id, 'titulo':socio.nombre, 'descripcion':str_coment}
 			resultados_busqueda.append(element)
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
