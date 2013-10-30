@@ -66,7 +66,6 @@ renta=(
 class Nacionalidad(models.Model):
 	id 				  = models.AutoField('ID', primary_key=True)
 	nombre 			  = models.CharField('Nombre', max_length=64, null=False, blank=False)
-	codigo 			  = models.CharField('Codigo', max_length=32, null=False, blank=False)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
@@ -85,7 +84,7 @@ class Socio(models.Model):
 	pretencion_renta  = models.CharField("Pretenciones de Renta", max_length=10, choices=renta, null=True, blank=True)
 	tipo_contrato     = models.CharField('Tipo de Contrato',max_length=10, choices=tipoContrato, null=True, blank=True)
 	comentario_est	  = models.CharField('Comentario' ,max_length=512, null=True, blank=True)
-	folio			  = models.CharField('Folio', max_length=4, null=False, blank=False, unique=True)
+	folio			  = models.CharField('Folio', max_length=10, null=False, blank=False, unique=True)
 	magister		  = models.BooleanField('Magister')
 	doctorado 		  = models.BooleanField('Doctorado')
 	

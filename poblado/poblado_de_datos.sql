@@ -7,6 +7,10 @@ WITH DELIMITER ';';
 COPY "MP_localidad" FROM  '/home/gonzalo/Escritorio/mipega/poblado/localidades2.csv'
 WITH DELIMITER ';';
 
+--TABLA MP_nacionalidad, se llena del archivo pais.csv
+COPY "MP_nacionalidad" FROM  '/home/gonzalo/Escritorio/mipega/poblado/pais.csv'
+WITH DELIMITER ';';
+
 --TABLA MP_institucion, se llena con el archivo instituciones.csv (tiene solouniversidades, faltan institutos, cfts y colegios)
 
 COPY "MP_institucion" FROM  '/home/gonzalo/Escritorio/mipega/poblado/instituciones.csv'
