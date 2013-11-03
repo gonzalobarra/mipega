@@ -117,6 +117,7 @@ def enviar_mensaje_view(request):
 	contacto = request.POST['contacto']
 	mensaje = request.POST['mensaje']
 	socio = Socio.objects.get(pk=request.POST['id_user'])
+	#el now no es necesario ya que la fecha se ingresa automaticamente en el model
 	now = datetime.datetime.now()
 	if nombre!="" and contacto!="" and mensaje!="":
 		mensaje = Mensaje(fecha=now, contenido=mensaje, nombre_contacto=nombre,medio_contacto=contacto, socio= socio)
@@ -194,36 +195,45 @@ def registro_view(request):
 				clave = form_user.cleaned_data['password']
 				clave2 = form_user.cleaned_data['ClaveRepetida']
 				if clave == clave2:
-					usuario = User.objects.create_user(form_user.cleaned_data['username'], form_user.cleaned_data['email'],clave)
-					usuario.save()
-					usuario_inst = User.objects.get(username = form_user.cleaned_data['username']) 
-					nombre_usuario = form_user.cleaned_data['username']
+					# Agregar la condicion de que el correo no puede ser vacio
+					if form_user.cleaned_data['username'] == '' or clave == '' or form_user.cleaned_data['email'] == '':
+						messages.warning(request, "El nombre de usuario, clave y email no pueden ser nulos")
+						HttpResponseRedirect('/registro')
+					else:
+						usuario = User.objects.create_user(form_user.cleaned_data['username'], form_user.cleaned_data['email'],clave)
+						usuario.save()
 				else:
-					messages.warning(request,"La clave no coincide")
+					messages.warning(request,"Las claves ingresadas no coinciden")
 					return HttpResponseRedirect('/registro')		
 			except:
-				messages.warning(request,"Error en la información del usuario")
+				messages.warning(request,"Error al crear el usuario")
 				return HttpResponseRedirect('/registro')
 			else:
-				if form_socio.is_valid():
+				if form_socio.is_valid() and form_user.is_valid():
+					usuario_inst = User.objects.get(username = form_user.cleaned_data['username'])
 					try:
 						foliox = (hex(usuario_inst.id + 10555665)).split('0x')[1]
-						socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
-						socio.save()
-						socio_inst = Socio.objects.get(user=usuario_inst)
+						if form_socio.cleaned_data['nombre'] != "":
+							socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
+							socio.save()
+						else:
+							messages.warning(request,"El nombre de usuario no puede ser vacio")
+							return HttpResponseRedirect('/registro')	
 					except:
 						messages.warning(request, "Error al crear el socio")
 						usuario_inst.delete()
 						return HttpResponseRedirect('/registro')
-						#Aqui va el tema del cargo.
+					#De aca para abajo van los forms que no necesitan comprobaciones.
 					else:
+						socio_inst = Socio.objects.get(user=usuario_inst)
+						#Cargos buscados
 						if "cargo" in request.POST:
 							ids_cargos = request.POST.getlist('cargo')
 							for cargo in ids_cargos:
 								cargo_socio = Cargo.objects.get(id=cargo)
 								asig_cargo = EmpleoBuscado(socio=socio_inst,cargo=cargo_socio)
 								asig_cargo.save()
-						#Aqui va el tema de la localidad.
+						#Localidad dondes se busca el trabajo
 						if "localidad" in request.POST:
 							ids_localidades = request.POST.getlist('localidad')
 							for localidad in ids_localidades:
@@ -231,6 +241,7 @@ def registro_view(request):
 								asig_localidad = LocalidadConSocio(socio=socio_inst,localidad=localidad_socio)
 								asig_localidad.save() 
 						
+						#Experiencia laboral
 						if form_estudio.is_valid():
 							estudio1 = Estudios(estado=form_estudio.cleaned_data['estado'], titulo=form_estudio.cleaned_data['titulo'], institucion=form_estudio.cleaned_data['institucion'], socio=socio_inst)
 							estudio1.save()
@@ -241,6 +252,7 @@ def registro_view(request):
 							estudio3 = Estudios(estado=form_estudio3.cleaned_data['estado'], titulo=form_estudio3.cleaned_data['titulo'], institucion=form_estudio3.cleaned_data['institucion'], socio=socio_inst)
 							estudio3.save()
 						
+						#Estudios
 						if form_explab.is_valid():
 							explab = ExperienciaLaboral(anos_trabajados=form_explab.cleaned_data['anos_trabajados'], comentario=form_explab.cleaned_data['comentario'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
 							explab.save()
@@ -254,6 +266,7 @@ def registro_view(request):
 							explab4 = ExperienciaLaboral(anos_trabajados=form_explab4.cleaned_data['anos_trabajados'], comentario=form_explab4.cleaned_data['comentario'], cargo=form_explab4.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab4.cleaned_data['rubro'])
 							explab4.save()
 						
+						#Otras habilidades
 						if form_hab.is_valid():
 							habilidades = OtrasHabilidades(nivel=form_hab.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab.cleaned_data['habilidad'])		
 							habilidades.save()

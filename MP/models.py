@@ -18,7 +18,6 @@ estadoCivil=(
 	('div','Divorciado'),
 )
 tipoContrato=(
-	('indi','Me es Indferente'),
 	('inde','Indefinido'),
 	('def','Definido'),
 	('otr','Otro'),
@@ -47,13 +46,6 @@ tipoLocalidad=(
 	('c','Comuna'),
 	('r','Región'),
 )
-nacimiento=(
-	('0','1990 - 1996'),
-	('1','1980 - 1990'),
-	('2','1970 - 1980'),
-	('3','1960 - 1970'),
-	('4','1960 o menos'),
-)
 hijos=(
 	('s','Si'),
 	('n','No'),
@@ -76,7 +68,6 @@ class Socio(models.Model):
 	nombre            = models.CharField('Nombre', max_length=64,null=False, blank=False)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
 	web               = models.CharField('Web' ,max_length=128, null=True, blank=True)
-	#edad		      = models.CharField   ('Edad',max_length=10, null=True, blank=True)
 	edad              = models.IntegerField('Edad', null=True, blank=True)
 	sexo              = models.CharField("Sexo",max_length=10, choices=sexo, null=True, blank=True)
 	tiene_hijos       = models.CharField('¿Tiene hijos?',max_length=10, choices=hijos, null=True, blank=True)
