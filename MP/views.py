@@ -64,7 +64,7 @@ def busqueda_view(request):
 	if request.method == "POST":
 		form = BuscaRapidaForm(request.POST or None)
 		mensaje = ""
-		ano_actual = datetime.datetime.now().year
+		#falta implementar aqui la busqueda rapida, ya llegan los valores del form
 		if request.method == "POST":
 			socios = Socio.objects.all()
 			if "cargo" in request.POST:
@@ -73,36 +73,25 @@ def busqueda_view(request):
 				socios = socios.filter(id__in=id_socios_en_cargo)
 			if "localidad" in request.POST:
 				ids_localidades = request.POST.getlist('localidad')
-				mensaje = ids_localidades
 				id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
 				socios = socios.filter(id__in=id_socios_en_localidad)
-			if "rubro" in request.POST and False:
-				ids_rubros = request.POST.getlist('rubro')
-				id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
-				socios = socios.filter(id__in=id_socios_en_rubro)
 			edad  = request.POST['edad']
-			menor = 0
-			mayor = ano_actual
-			
-			#socios = socios.exclude(ano_nacimiento__lt=menor)
-			#socios = socios.exclude(ano_nacimiento__gt=mayor)
+			menor = int(edad.split(',')[0])
+			mayor = int(edad.split(',')[1])
+			#mensaje=str(mayor)+"-"+ edad
+			socios = socios.exclude(edad__lt=menor)
+			socios = socios.exclude(edad__gt=mayor)
 			sexo  = request.POST['optionsRadios']
 			if sexo != "i":
 				socios = socios.filter(sexo=sexo)
-			socios = Socio.objects.all()
-			hijos  = request.POST['hijos']
-			if hijos != "i":
-				if(hijos=="1"):
-					socios = socios.filter(tiene_hijos="s")
-				if(hijos=="0"):
-					socios = socios.filter(tiene_hijos="n")
 			resultados_busqueda = []
 			for socio in socios:
-				#str_coment = " año nacimiento "+ str(socioedad)
-				element = {'id':socio.id, 'titulo':socio.nombre, 'descripcion':str_coment}
+				str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad)
+				#+ str(edad)
+				element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
 				resultados_busqueda.append(element)
 			ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
-			return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))	
+			return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 	else:
 		form = BuscaRapidaForm(request.POST or None)
 		localidades = Localidad.objects.all()
