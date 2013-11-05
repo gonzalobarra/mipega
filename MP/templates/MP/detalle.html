@@ -93,52 +93,78 @@
         <h3>Datos de Contacto</h3>
         <hr>
         <br />
-        <ul class="contact-icons">
-            <li id="mail"><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_010_envelope.png"/></li>
-            <li id="phone"><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_442_earphone.png"/></li>
-            <li id="web"><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_050_link.png"/></li>
-        </ul> 
-        <form class="contact_form" id="id_form" onsubmit="return false;">
-            <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
-            <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
-            <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
-            <input type="hidden" name="id_user" value="{{socio.id}}">
-        <br />
-        <a href="#" id="enviarPM" >Enviar ></a>
-        </form>
+        <ul class="nav nav-tabs contact-icons">
+            <li>
+                {% if socio.correovisible %}
+                <a href="#mail" data-toggle="tab" >
+                {% else %}
+                <a disabled>
+                {% endif %}
+
+                    <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_010_envelope.png"/>
+                </a>
+            </li>
+            <li>
+                <a href="#fono" data-toggle="tab">
+                    <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_442_earphone.png"/>
+                </a>
+            </li>
+            <li>
+                <a href="#otro" data-toggle="tab">
+                    <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_050_link.png"/>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            {% if socio.correovisible %}
+            <div id="mail" class="tab-pane fade">
+                <form class="contact_form" id="id_form" onsubmit="return false;">
+                    <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
+                    <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
+                    <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
+                    <input type="hidden" name="id_user" value="{{socio.id}}">
+                <br />
+                <a href="#" id="enviarPM" >Enviar ></a>
+                </form>
+            </div>
+            {% endif %}
+            {% if socio.telefono %}
+            <div id="fono" class="tab-pane fade">
+                <form class="contact_form" id="id_form" onsubmit="return false;">
+                    <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
+                    <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
+                    <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
+                    <input type="hidden" name="id_user" value="{{socio.id}}">
+                <br />
+                <a href="#" id="enviarPM" >Enviar ></a>
+                </form>
+            </div>
+            {% endif %}
+            {% if 0 %}
+            <!--<div id="otro" class="tab-pane fade">
+                <form class="contact_form" id="id_form" onsubmit="return false;">
+                    <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
+                    <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
+                    <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
+                    <input type="hidden" name="id_user" value="{{socio.id}}">
+                <br />
+                <a href="#" id="enviarPM" >Enviar ></a>
+                </form>
+            </div>-->
+            {% endif %}
+        </div>
         
         <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
     <!--</div>-->
 </div>
 
-
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Redactar Mensaje</h4>
-            </div>
-            <div class="modal-body">
-                {% csrf_token %}
-                <form id="id_form" onsubmit="return false;">
-                    <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
-                    <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
-                    <br />
-                    <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-dismiss="modal">Cancelar</button>
-                <button id="enviarPM" class="btn btn-primary">Enviar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 {% endblock %}
 {% block SCRIPT %}
 <script type="text/javascript">
+    $('#mail a, #fono a,#otro a').click(function(e){
+        e.preventDefault();
+        $(this).tab('show');
+    });
     $('#enviarPM').click(function(event){
         event.preventDefault();
         var parametros = $('#id_form').serialize();

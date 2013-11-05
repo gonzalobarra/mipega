@@ -78,6 +78,7 @@ class Socio(models.Model):
 	folio			  = models.CharField('Folio', max_length=10, null=False, blank=False, unique=True)
 	magister		  = models.BooleanField('Magister')
 	doctorado 		  = models.BooleanField('Doctorado')
+	correovisible 	  = models.BooleanField('Correo visible', default=False)
 	
 	nacionalidad  =models.ForeignKey(Nacionalidad, verbose_name="Nacionalidad", null=True, blank=True)
 	user = models.OneToOneField(User)

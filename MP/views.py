@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from MP.forms import *
 from django.contrib.auth.models import User
 from MP.models import *
+from MP.urls import *
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
 import datetime
@@ -59,6 +60,12 @@ def detalle_socio_view(request, id_socio):
 			'estudios_escolares':estudios_escolares, 'estudios':estudios,
 			'experiencia':experiencia, 'habilidades':habilidades}
 	return render_to_response('MP/detalle.html',ctx,context_instance=RequestContext(request))
+
+def resultados_view(request):
+	if request.method == "POST":
+		return render_to_response('MP/resultados_todos.html',ctx,context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect("/busqueda/avanzada")
 
 def busqueda_view(request):
 	if request.method == "POST":
