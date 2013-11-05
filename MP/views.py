@@ -106,10 +106,19 @@ def enviar_mensaje_view(request):
 	contacto = request.POST['contacto']
 	mensaje = request.POST['mensaje']
 	socio = Socio.objects.get(pk=request.POST['id_user'])
-	#el now no es necesario ya que la fecha se ingresa automaticamente en el model
+	#Esto no está funcionando por que no se conoce el correo del usuario que esta en la tabla user
+	#usuario = User.objects.get(id=request.POST['id_user']+1)
 	now = datetime.datetime.now()
 	if nombre!="" and contacto!="" and mensaje!="":
-		mensaje = Mensaje(fecha=now, contenido=mensaje, nombre_contacto=nombre,medio_contacto=contacto, socio= socio)
+		#Envia correo electronico
+		asunto = "Mipega - Nuevo mensaje de " + nombre
+		contenido = "Correo de contacto:" + contacto + "\nMensaje:" + mensaje
+		#email = EmailMessage(asunto, contenido,['contacto.workapps@gmail.com'])
+		#email.send()
+		#Actualmente se encuentra con esta configuracion a modo de prueba
+		send_mail(asunto, contenido, 'contacto.workapps@gmail.com',['contacto.workapps@gmail.com'], fail_silently=False)
+		#Envia mensaje a la bandeja de la aplicacion
+		mensaje = Mensaje(fecha=now,contenido=mensaje, nombre_contacto=nombre,medio_contacto=contacto, socio= socio)
 		mensaje.save()
 		return HttpResponse("enviado")
 	return HttpResponse("Debe llenar todos los campos")
