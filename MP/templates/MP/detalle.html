@@ -147,7 +147,10 @@
             {% endif %}
             {% if socio.web %}
             <div id="web" class="tab-pane fade">
-                <a href="http://{{socio.web}}"><img src="http://picoshot.com/t.php?picurl={{socio.web}}"></a>
+                <a href="http://{{socio.web}}">
+                    <img src="http://picoshot.com/t.php?picurl={{socio.web}}" style="border: 1px solid #ccc;border-radius:7px"> 
+                    <span style="margin-left:15px;">{{socio.web}}</span>
+                </a>
             </div>
             {% endif %}
         </div>
