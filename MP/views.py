@@ -67,88 +67,173 @@ def resultados_view(request):
 	else:
 		return HttpResponseRedirect("/busqueda/avanzada")
 
+def resultados_completos(request):
+	if request.method == "GET":
+		socios = Socio.objects.all()
+		messages.info(request, request.GET["edad"])
+		if "cargo" in request.GET:
+
+			ids_cargos = request.GET.getlist('cargo')
+			id_socios_en_cargo = EmpleoBuscado.objects.filter(cargo_id__in=ids_cargos).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_cargo)
+		if "localidad" in request.GET:
+			ids_localidades = request.GET.getlist('localidad')
+			id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_localidad)
+		if "estado-civil" in request.GET:
+			if request.GET['estado-civil']!="0":
+				socios = socios.filter(estado_civil=str(request.GET['estado-civil']))
+		if "hijos" in request.GET:
+			if request.GET['hijos']!="0":
+				socios = socios.filter(tiene_hijos=str(request.GET['hijos']))
+		if "contrato" in request.GET:
+			if request.GET['contrato']!="0":
+				socios = socios.filter(tipo_contrato=str(request.GET['contrato']))
+
+		if "renta" in request.GET:
+			if request.GET['renta']!="-":
+				socios = socios.filter(pretencion_renta=str(request.GET['renta']))
+		if "rubro" in request.GET:
+			ids_rubros = request.GET.getlist('rubro')
+			id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_rubro)
+
+
+		if ('carrera1' in request.GET) and ('institucion1' in request.GET):
+			if request.GET['carrera1']!="-":
+				if request.GET['institucion1']== "-":
+					id_carrera = str(request.GET["carrera1"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+				else:
+					id_carrera = str(request.GET["carrera1"])
+					id_institucion = str(request.GET["institucion1"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+			else:
+				if request.GET['institucion1']!="-":
+					id_institucion = str(request.GET["institucion1"])
+					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_institucion)	
+		if 'carrera2' in request.GET and 'institucion2' in request.GET:
+			if request.GET['carrera2']!="-":
+				if request.GET['institucion2']=="-":
+					id_carrera = str(request.GET["carrera2"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+				else:
+					id_carrera = str(request.GET["carrera2"])
+					id_institucion = str(request.GET["institucion2"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+			else:
+				if request.GET['institucion2']!="-":
+					id_institucion = str(request.GET["institucion2"])
+					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_institucion)	
+		
+		edad  = request.GET['edad']
+		menor = int(edad.split(',')[0])
+		mayor = int(edad.split(',')[1])
+		messages.info(request, str(menor)+"~"+str(mayor))
+		socios = socios.exclude(edad__lt=menor)
+		socios = socios.exclude(edad__gt=mayor)
+		sexo  = request.GET['optionsRadios']
+		if sexo != "i":
+			socios = socios.filter(sexo=sexo)
+		#FIN DE LOS FILTROS
+
+		cantidad_resultados= len(socios)
+		resultados_busqueda = []
+		for socio in socios:
+			str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad) + " estado civil:~"+ str(socio.estado_civil)+"~"
+			element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
+			resultados_busqueda.append(element)
+		messages.success(request, str(len(resultados_busqueda)))
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados}
+		return render_to_response('MP/resultados_completos.html',ctx,context_instance=RequestContext(request))
+
+
 def busqueda_view(request):
+	mensaje = "addas"
 	if request.method == "POST":
-		form = BuscaRapidaForm(request.POST or None)
-		mensaje = ""
-		if request.method == "POST":
-			socios = Socio.objects.all()
-			if "cargo" in request.POST:
-				ids_cargos = request.POST.getlist('cargo')
-				id_socios_en_cargo = EmpleoBuscado.objects.filter(cargo_id__in=ids_cargos).values_list('socio_id',flat=True).distinct()
-				socios = socios.filter(id__in=id_socios_en_cargo)
-			if "localidad" in request.POST:
-				ids_localidades = request.POST.getlist('localidad')
-				id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
-				socios = socios.filter(id__in=id_socios_en_localidad)
-			if "estado-civil" in request.POST:
-				if request.POST['estado-civil']!="0":
-					socios = socios.filter(estado_civil=str(request.POST['estado-civil']))
-			if "hijos" in request.POST:
-				if request.POST['hijos']!="0":
-					socios = socios.filter(tiene_hijos=str(request.POST['hijos']))
-			if "contrato" in request.POST:
-				if request.POST['contrato']!="0":
-					socios = socios.filter(tipo_contrato=str(request.POST['contrato']))
+		socios = Socio.objects.all()
+		if "cargo" in request.POST:
+			ids_cargos = request.POST.getlist('cargo')
+			id_socios_en_cargo = EmpleoBuscado.objects.filter(cargo_id__in=ids_cargos).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_cargo)
+		if "localidad" in request.POST:
+			ids_localidades = request.POST.getlist('localidad')
+			id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_localidad)
+		if "estado-civil" in request.POST:
+			if request.POST['estado-civil']!="0":
+				socios = socios.filter(estado_civil=str(request.POST['estado-civil']))
+		if "hijos" in request.POST:
+			if request.POST['hijos']!="0":
+				socios = socios.filter(tiene_hijos=str(request.POST['hijos']))
+		if "contrato" in request.POST:
+			if request.POST['contrato']!="0":
+				socios = socios.filter(tipo_contrato=str(request.POST['contrato']))
 
-			if "renta" in request.POST:
-				if request.POST['renta']!="-":
-					socios = socios.filter(pretencion_renta=str(request.POST['renta']))
-			if "rubro" in request.POST:
-				ids_rubros = request.POST.getlist('rubro')
-				id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
-				socios = socios.filter(id__in=id_socios_en_rubro)
+		if "renta" in request.POST:
+			if request.POST['renta']!="-":
+				socios = socios.filter(pretencion_renta=str(request.POST['renta']))
+		if "rubro" in request.POST:
+			ids_rubros = request.POST.getlist('rubro')
+			id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_rubro)
 
-
-			if ('carrera1' in request.POST) and ('institucion1' in request.POST):
-				if request.POST['carrera1']!="-":
-					if request.POST['institucion1']== "-":
-						id_carrera = str(request.POST["carrera1"])
-						id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
-						socios = socios.filter(id__in=id_socios_en_carrera)
-					else:
-						id_carrera = str(request.POST["carrera1"])
-						id_institucion = str(request.POST["institucion1"])
-						id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
-						socios = socios.filter(id__in=id_socios_en_carrera)
+		if ('carrera1' in request.POST) and ('institucion1' in request.POST):
+			if request.POST['carrera1']!="-":
+				if request.POST['institucion1']== "-":
+					id_carrera = str(request.POST["carrera1"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
 				else:
-					if request.POST['institucion1']!="-":
-						id_institucion = str(request.POST["institucion1"])
-						id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
-						socios = socios.filter(id__in=id_socios_en_institucion)	
-			if 'carrera2' in request.POST and 'institucion2' in request.POST:
-				if request.POST['carrera2']!="-":
-					if request.POST['institucion2']=="-":
-						id_carrera = str(request.POST["carrera2"])
-						id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
-						socios = socios.filter(id__in=id_socios_en_carrera)
-					else:
-						id_carrera = str(request.POST["carrera2"])
-						id_institucion = str(request.POST["institucion2"])
-						id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
-						socios = socios.filter(id__in=id_socios_en_carrera)
+					id_carrera = str(request.POST["carrera1"])
+					id_institucion = str(request.POST["institucion1"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+			else:
+				if request.POST['institucion1']!="-":
+					id_institucion = str(request.POST["institucion1"])
+					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_institucion)
+		if 'carrera2' in request.POST and 'institucion2' in request.POST:
+			if request.POST['carrera2']!="-":
+				if request.POST['institucion2']=="-":
+					id_carrera = str(request.POST["carrera2"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
 				else:
-					if request.POST['institucion2']!="-":
-						id_institucion = str(request.POST["institucion2"])
-						id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
-						socios = socios.filter(id__in=id_socios_en_institucion)	
-			
-			edad  = request.POST['edad']
-			menor = int(edad.split(',')[0])
-			mayor = int(edad.split(',')[1])
-			socios = socios.exclude(edad__lt=menor)
-			socios = socios.exclude(edad__gt=mayor)
-			sexo  = request.POST['optionsRadios']
-			if sexo != "i":
-				socios = socios.filter(sexo=sexo)
-			resultados_busqueda = []
-			for socio in socios:
+					id_carrera = str(request.POST["carrera2"])
+					id_institucion = str(request.POST["institucion2"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+			else:
+				if request.POST['institucion2']!="-":
+					id_institucion = str(request.POST["institucion2"])
+					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_institucion)	
+		edad  = request.POST['edad']
+		menor = int(edad.split(',')[0])
+		mayor = int(edad.split(',')[1])
+		socios = socios.exclude(edad__lt=menor)
+		socios = socios.exclude(edad__gt=mayor)
+		sexo  = request.POST['optionsRadios']
+		if sexo != "i":
+			socios = socios.filter(sexo=sexo)
+		#FIN DE LOS FILTROS
+		cantidad_resultados= len(socios)
+		resultados_busqueda = []
+		for socio in socios:
+			if len(resultados_busqueda) <5:
 				str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad) + " estado civil:~"+ str(socio.estado_civil)+"~"
-				#+ str(edad)
 				element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
 				resultados_busqueda.append(element)
-			ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
-			return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'mensaje':mensaje}
+		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 	else:
 		form = BuscaRapidaForm(request.POST or None)
 		localidades = Localidad.objects.all()

@@ -1,3 +1,24 @@
+{% extends 'template.html' %}
+{% block title %} Resultados Busqueda | MiPega.cl {% endblock %}
+{% block contenido %}
+{% load bootstrap_toolkit %}
+<div style="height:180px;"></div>
+<div style="min-height:100px;">
+  <a id="indice" href="#">Resultados totales ({{cant_resultados}})</a>
+
+  <div class="">
+    {% for r in resultados_busqueda %}
+      <div class="">
+          <a href="{% url 'vista_detalle_socio' r.id %}">{{r.titulo}}</a> {{r.descripcion}}
+      </div>
+      <br />
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block SCRIPT %}
+
 {% ifequal cant_resultados 0 %}
 <script type="text/javascript">
       $.ambiance({message: "No hay resultados para los valores buscados.", title:"Alerta",
@@ -11,29 +32,8 @@
       $("#indice").hide();
 </script>
 {% else %}
-<a id="indice" href="#" style="display: inline;font-size:20px;margin-top:-10px;">Resultados totales ({{cant_resultados}})</a>
-<div class="media">
-  {% for r in resultados_busqueda %}
-    <!--<a class="pull-left" href="#">
-      <img class="media-object" src="{{STATIC_URL}}img/avatar/avatar.png">
-    </a>-->
-    <div class="media-body">
-        <h4 class="media-heading"><a href="{% url 'vista_detalle_socio' r.id %}">{{r.titulo}}</a></h4>
-        {{r.descripcion}}
-    </div>
-    <br />
-  {% endfor %}
-</div>
 
 <script type="text/javascript">
-    $('#indice').on('click',function(e){
-      e.preventDefault();
-      $("#id_form").attr("action", "{% url 'vista_resultados_completos' %}"); 
-      $("#id_form").attr("method", 'GET');
-      $("#id_form").submit();
-
-    });
-
     $.ambiance({message: "Se han encontrado {{cant_resultados}} resultados para esta busqueda.",type:"success",timeout:4,width:300,});
     $(".media").show();
     $(".result").animate({
@@ -48,3 +48,5 @@
     }
 </script>
 {% endifequal %}
+
+{% endblock %}

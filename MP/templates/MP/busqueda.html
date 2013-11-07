@@ -5,7 +5,7 @@
         
         <div class="col-lg-9 col-lg-offset-3 busqueda avanzada">
             {% csrf_token %}
-            <form id="id_form" onsubmit="return false;">
+            <form id="id_form" action="#">
                 <legend>¿A quién busca?</legend>
                 <fieldset>
                     <!--{{form_busqueda_rapida}}-->
@@ -199,7 +199,11 @@ $('#sl2').slider();
     
 </script>
 <script type="text/javascript">
-    $('#search').click(function(){
+    $('#search').click(function(e){
+        e.preventDefault();
+        
+        $("#id_form").attr("action", "{% url 'busqueda_avanzada' %}"); 
+        $("#id_form").attr("method", 'POST');
         var parametros = $('#id_form').serialize();
         $.ajax({
             url: "{% url 'busqueda_avanzada' %}",

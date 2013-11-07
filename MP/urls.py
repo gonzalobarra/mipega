@@ -16,6 +16,7 @@ urlpatterns = patterns('MP.views',
 	url(r'^enviarPM/$','enviar_mensaje_view',name='enviar_mensaje_personal'),
 	url(r'^busqueda/avanzada/$','busqueda_view',name='busqueda_avanzada'),
 	url(r'^resultados/$','resultados_view',name='vista_resultados'),
+	url(r'^todosresultados/$','resultados_completos',name='vista_resultados_completos'),
 	url(r'^mensaje/(\d+)/$','mensaje_view',name='vista_mensaje'),
 	url(r'^eliminar/mensaje/(\d+)/$','eliminarmensaje_view',name='vista_eliminarmensaje'),
 )    
