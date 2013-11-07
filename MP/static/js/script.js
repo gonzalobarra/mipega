@@ -13,7 +13,7 @@ $(document).ready(function() {
     //     $('.noty_bar').parent().delay(10000).fadeOut(function() {
     //     $(this).remove();
     // });
-
+    
     //configuracion e inicio Chosen
     var configChosen = {
       '.chosen-select'           : {},
@@ -82,64 +82,64 @@ $(document).ready(function() {
         
         /*Se hara para cada uno de los textos de ayuda, por separado*/  
         //Para el fomr de datos ersonales
-        // var topPersonal = parseInt($("#session-help").css("top").substring(0, $("#session-help").css("top").length - 2)) 
-        //                     + parseInt($("#session").css("height").substring(0, $("#session").css("height").length - 2))
-        //                     + parseInt($("#session").css("margin-top").substring(0, $("#session").css("margin-top").length - 2))
-        //                     + parseInt($("#session").css("margin-bottom").substring(0, $("#session").css("margin-bottom").length - 2));
+         var topPersonal = parseInt($("#session-help").css("top").substring(0, $("#session-help").css("top").length - 2)) 
+                             + parseInt($("#session").css("height").substring(0, $("#session").css("height").length - 2))
+                             + parseInt($("#session").css("margin-top").substring(0, $("#session").css("margin-top").length - 2))
+                             + parseInt($("#session").css("margin-bottom").substring(0, $("#session").css("margin-bottom").length - 2));
         
-        // $("#personal-help").css("top",topPersonal);
-        // $("#personal-help").css("left","5%");
+         $("#personal-help").css("top",topPersonal);
+         $("#personal-help").css("left","5%");
         
-        // //Para el form de datos de contacto
-        // var topContacto = parseInt($("#personal-help").css("top").substring(0, $("#personal-help").css("top").length - 2)) 
-        //                     + parseInt($("#personal").css("height").substring(0, $("#personal").css("height").length - 2))
-        //                     + parseInt($("#personal").css("margin-top").substring(0, $("#personal").css("margin-top").length - 2))
-        //                     + parseInt($("#personal").css("margin-bottom").substring(0, $("#personal").css("margin-bottom").length - 2));
+        //Para el form de datos de contacto
+         var topContacto = parseInt($("#personal-help").css("top").substring(0, $("#personal-help").css("top").length - 2)) 
+                             + parseInt($("#personal").css("height").substring(0, $("#personal").css("height").length - 2))
+                             + parseInt($("#personal").css("margin-top").substring(0, $("#personal").css("margin-top").length - 2))
+                             + parseInt($("#personal").css("margin-bottom").substring(0, $("#personal").css("margin-bottom").length - 2));
         
-        // $("#contact-help").css("top",topContacto);
-        // $("#contact-help").css("right","5%");
+         $("#contact-help").css("top",topContacto);
+         $("#contact-help").css("right","5%");
         
-        // //Para el fomr de datos de enseñanza superior
-        // var topPersonal = parseInt($("#escolar-help").css("top").substring(0, $("#escolar-help").css("top").length - 2)) 
-        //                     + parseInt($("#escolar").css("height").substring(0, $("#escolar").css("height").length - 2))
-        //                     + parseInt($("#escolar").css("margin-top").substring(0, $("#escolar").css("margin-top").length - 2))
-        //                     + parseInt($("#escolar").css("margin-bottom").substring(0, $("#escolar").css("margin-bottom").length - 2));
+         //Para el fomr de datos de enseñanza superior
+         var topPersonal = parseInt($("#escolar-help").css("top").substring(0, $("#escolar-help").css("top").length - 2)) 
+                             + parseInt($("#escolar").css("height").substring(0, $("#escolar").css("height").length - 2))
+                             + parseInt($("#escolar").css("margin-top").substring(0, $("#escolar").css("margin-top").length - 2))
+                             + parseInt($("#escolar").css("margin-bottom").substring(0, $("#escolar").css("margin-bottom").length - 2));
         
-        // $("#superiores-help").css("top",topPersonal);
-        // $("#superiores-help").css("left","5%");
+         $("#superiores-help").css("top",topPersonal);
+         $("#superiores-help").css("left","5%");
         
-        // //Para el form de datos de otras habilidades
-        // var topContacto = parseInt($("#superiores-help").css("top").substring(0, $("#superiores-help").css("top").length - 2)) 
-        //                     + parseInt($("#superiores").css("height").substring(0, $("#superiores").css("height").length - 2))
-        //                     + parseInt($("#superiores").css("margin-top").substring(0, $("#superiores").css("margin-top").length - 2))
-        //                     + parseInt($("#superiores").css("margin-bottom").substring(0, $("#superiores").css("margin-bottom").length - 2));
+         //Para el form de datos de otras habilidades
+         var topContacto = parseInt($("#superiores-help").css("top").substring(0, $("#superiores-help").css("top").length - 2)) 
+                             + parseInt($("#superiores").css("height").substring(0, $("#superiores").css("height").length - 2))
+                             + parseInt($("#superiores").css("margin-top").substring(0, $("#superiores").css("margin-top").length - 2))
+                             + parseInt($("#superiores").css("margin-bottom").substring(0, $("#superiores").css("margin-bottom").length - 2));
         
-        // /*$("#habilidades-help").css("top",topContacto);
-        // $("#habilidades-help").css("right","5%");*/
+         /*$("#habilidades-help").css("top",topContacto);
+         $("#habilidades-help").css("right","5%");*/
         
-        // /* Se calcula la posicion de cada titulo */
-        // if(current==0){
-        //     $("h1#seccion_personal").css("top", parseInt($("#personal-help").css("top").substring(0, $("#personal-help").css("top").length - 2)) - 55);
-        //     $("h1#seccion_personal").css("left","initial");
-        //     $("h1#seccion_personal").css("right", parseInt($("#personal").css("width").substring(0, $("#personal").css("width").length - 2)) 
-        //                                     - parseInt($("h1#seccion_personal").css("width").substring(0, $("h1#seccion_personal").css("width").length - 2))
-        //                                     - 20);
+         /* Se calcula la posicion de cada titulo */
+         if(current==0){
+             $("h1#seccion_personal").css("top", parseInt($("#personal-help").css("top").substring(0, $("#personal-help").css("top").length - 2)) - 55);
+             $("h1#seccion_personal").css("left","initial");
+             $("h1#seccion_personal").css("right", parseInt($("#personal").css("width").substring(0, $("#personal").css("width").length - 2)) 
+                                             - parseInt($("h1#seccion_personal").css("width").substring(0, $("h1#seccion_personal").css("width").length - 2))
+                                             - 20);
                                             
-        //     $("h1#seccion_contacto").css("top", parseInt($("#contact-help").css("top").substring(0, $("#contact-help").css("top").length - 2)) - 55);
-        //     $("h1#seccion_contacto").css("left","60px"); 
-        // }
-        // if(current==2){
+             $("h1#seccion_contacto").css("top", parseInt($("#contact-help").css("top").substring(0, $("#contact-help").css("top").length - 2)) - 55);
+             $("h1#seccion_contacto").css("left","60px"); 
+         }
+         if(current==2){
             
-        //     $("h2#seccion_superiores").css("top", parseInt($("#superiores-help").css("top").substring(0, $("#superiores-help").css("top").length - 2)) - 55);
+             $("h2#seccion_superiores").css("top", parseInt($("#superiores-help").css("top").substring(0, $("#superiores-help").css("top").length - 2)) - 55);
             
-        //     $("h2#seccion_superiores").css("left","initial");
-        //     $("h2#seccion_superiores").css("right", parseInt($("#superiores").css("width").substring(0, $("#superiores").css("width").length - 2)) 
-        //                                     - parseInt($("h2#seccion_superiores").css("width").substring(0, $("h2#seccion_superiores").css("width").length - 2))
-        //                                     - 20);
-        //     /*                                
-        //     $("h2#seccion_habilidades").css("top", parseInt($("#habilidades-help").css("top").substring(0, $("#habilidades-help").css("top").length - 2)) - 55);
-        //     $("h2#seccion_habilidades").css("left","60px");*/ 
-        // }   
+             $("h2#seccion_superiores").css("left","initial");
+             $("h2#seccion_superiores").css("right", parseInt($("#superiores").css("width").substring(0, $("#superiores").css("width").length - 2)) 
+                                             - parseInt($("h2#seccion_superiores").css("width").substring(0, $("h2#seccion_superiores").css("width").length - 2))
+                                             - 20);
+             /*                                
+             $("h2#seccion_habilidades").css("top", parseInt($("#habilidades-help").css("top").substring(0, $("#habilidades-help").css("top").length - 2)) - 55);
+             $("h2#seccion_habilidades").css("left","60px");*/ 
+         }   
     };    
     
     $("#id_estado_civil").css({
@@ -182,9 +182,11 @@ $(document).ready(function() {
     //cada pagina del formulario
     var titulos = ["su Perfil","sus Aspiraciones","sus Estudios", "su Experiencia laboral","Otras habilidades"];
     var textos = [        
-        "A continuaci&oacute;n debe completar sus datos de cuenta, datos personals y de contacto <br>",
-        "En esta secci&oacute;n debe ingresar las caracteristicas del trabajo que desea encontrar <br>",
-        "Ahora ingrese los datos de sus estudios escolares y superiores... esta casi listo <br>",
+        "A continuación debe completar con sus datos de cuenta, personales y de contacto en el formulario expuesto a continuación. Los campos marcados con un * son obligatorios. <br>",
+        "En la presente página debe seleccionar los diferentes cargos en los que desea encontrar trabajo, además, de donde le gustaría desempeñarlos, sus pretenciones de renta"
+        + "y el tipo de contrato buscado<br>",
+        "Dentro del formulario expuesto a continuación debe indicar si lo desea, el estado de su enseñanza escolar media, en el caso de que haya estudiado en un colegio técnico"
+        + "se le da la opción de ingresar la institución donde lo hizo y el título que obtuvo una vez finalizada estado <br>",
         "Finalmente, debe ingresar los datos referentes a su experiencia laboral y ya está! <br>",
         "Ingrese otras caracteristicas que desee que aparescan en su perfil <br>"
     ];
@@ -265,7 +267,7 @@ $(document).ready(function() {
         
         $(".panel").fadeIn();
     });
-
+    $("#surprise-message").parent().css("overflow","hidden");
     //ocultar mensaje
     $(".panel-body > a").click(function(event){
 
@@ -275,6 +277,7 @@ $(document).ready(function() {
             $("#surprise-message").animate({
                 height: "0px"            
             }, 400);
+            $("#surprise-message").parent().css("overflow","visible");
         },400);
     });        
 });
