@@ -10,7 +10,7 @@
                 <fieldset>
                     <!--{{form_busqueda_rapida}}-->
                     
-                    <h1>Seccion de preferencias</h1>
+                    <h1>Sección de preferencias</h1>
                     <!-- <div class="form-group">                    
                         <input type="text" class="form-control" id="inputProfesion" placeholder="Profesion...">
                     </div> -->
@@ -53,14 +53,14 @@
                         <p class="help-block">Estado Civil:</p>
                         <select name="estado-civil" class="form-control">
                             <option value="0">Me es indiferente</option>
-                            <option value="1">Soltero(a)</option>
-                            <option value="2">Casado(a)</option>
-                            <option value="3">Divorciado(a)</option>
+                            <option value="sol">Soltero(a)</option>
+                            <option value="cas">Casado(a)</option>
+                            <option value="div">Divorciado(a)</option>
                         </select>
                     </div>
                 </fieldset>
                 <fieldset id="radios">
-                    <h1>Seccion de datos personales</h1>
+                    <h1>Sección de datos personales</h1>
                     <div class="form-group" id="sex-group">
                         <div class="sex-block">
                             <p class="help-block">Sexo:</p>
@@ -91,19 +91,19 @@
                             <p class="help-block">Tiene hijos:</p>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="hijos" value="i" checked>
+                                    <input type="radio" name="hijos" value="0" checked>
                                     Indiferente
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="hijos" value="1">
+                                    <input type="radio" name="hijos" value="s">
                                     Si
                                 </label>
                             </div>                            
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="hijos" value="0">
+                                    <input type="radio" name="hijos" value="n">
                                     No
                                 </label>
                             </div>
@@ -112,7 +112,7 @@
                     </div>
                 </fieldset>
                 <fieldset>
-                    <h1>Seccion de estudios</h1>
+                    <h1>Sección de estudios</h1>
                     <div class="form-group">
                         <p class="help-block">Estudios Escolares:</p>
                         <select name="carrera1" class="form-control">
@@ -137,10 +137,11 @@
                     </div>
                 </fieldset>
                 <fieldset id="last-search">
-                    <h1>Seccion de exigencias</h1>
+                    <h1>Sección de exigencias</h1>
                     <div class="form-group">
                         <p class="help-block">Pretencion de Renta:</p>
                         <select name="renta" class="form-control">
+                            <option value="-">Indiferente</option>
                             <option value="0"> &lt; 200</option>
                             <option value="1">200-350</option>
                             <option value="2">350-500</option>
@@ -152,9 +153,9 @@
                         <p class="help-block">Tipo Contrato:</p>
                         <select name="contrato" class="form-control">
                             <option value="0">Me es indiferente</option>
-                            <option value="1">Definido</option>
-                            <option value="2">Indefinido</option>
-                            <option value="3">Otro</option>
+                            <option value="def">Definido</option>
+                            <option value="inde">Indefinido</option>
+                            <option value="otr">Otro</option>
                         </select>
                     </div>
                     

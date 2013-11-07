@@ -71,7 +71,6 @@ def busqueda_view(request):
 	if request.method == "POST":
 		form = BuscaRapidaForm(request.POST or None)
 		mensaje = ""
-		#falta implementar aqui la busqueda rapida, ya llegan los valores del form
 		if request.method == "POST":
 			socios = Socio.objects.all()
 			if "cargo" in request.POST:
@@ -82,6 +81,24 @@ def busqueda_view(request):
 				ids_localidades = request.POST.getlist('localidad')
 				id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
 				socios = socios.filter(id__in=id_socios_en_localidad)
+			if "estado-civil" in request.POST:
+				if request.POST['estado-civil']!="0":
+					socios = socios.filter(estado_civil=str(request.POST['estado-civil']))
+			if "hijos" in request.POST:
+				if request.POST['hijos']!="0":
+					socios = socios.filter(tiene_hijos=str(request.POST['hijos']))
+			if "contrato" in request.POST:
+				if request.POST['contrato']!="0":
+					socios = socios.filter(tipo_contrato=str(request.POST['contrato']))
+
+			if "renta" in request.POST:
+				if request.POST['renta']!="-":
+					socios = socios.filter(pretencion_renta=str(request.POST['renta']))
+			if "rubro" in request.POST:
+				ids_rubros = request.POST.getlist('rubro')
+				id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
+				socios = socios.filter(id__in=id_socios_en_rubro)
+
 			edad  = request.POST['edad']
 			menor = int(edad.split(',')[0])
 			mayor = int(edad.split(',')[1])
@@ -93,7 +110,7 @@ def busqueda_view(request):
 				socios = socios.filter(sexo=sexo)
 			resultados_busqueda = []
 			for socio in socios:
-				str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad)
+				str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad) + " estado civil:~"+ str(socio.estado_civil)+"~"
 				#+ str(edad)
 				element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
 				resultados_busqueda.append(element)
