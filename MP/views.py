@@ -70,7 +70,6 @@ def resultados_view(request):
 def resultados_completos(request):
 	if request.method == "GET":
 		socios = Socio.objects.all()
-		messages.info(request, request.GET["edad"])
 		if "cargo" in request.GET:
 
 			ids_cargos = request.GET.getlist('cargo')
@@ -131,16 +130,16 @@ def resultados_completos(request):
 					id_institucion = str(request.GET["institucion2"])
 					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
 					socios = socios.filter(id__in=id_socios_en_institucion)	
-		
-		edad  = request.GET['edad']
-		menor = int(edad.split(',')[0])
-		mayor = int(edad.split(',')[1])
-		messages.info(request, str(menor)+"~"+str(mayor))
-		socios = socios.exclude(edad__lt=menor)
-		socios = socios.exclude(edad__gt=mayor)
-		sexo  = request.GET['optionsRadios']
-		if sexo != "i":
-			socios = socios.filter(sexo=sexo)
+		if 'edad' in request.GET:
+			edad  = request.GET['edad']
+			menor = int(edad.split(',')[0])
+			mayor = int(edad.split(',')[1])
+			socios = socios.exclude(edad__lt=menor)
+			socios = socios.exclude(edad__gt=mayor)
+		if 'optionsRadios' in request.GET:
+			sexo  = request.GET['optionsRadios']
+			if sexo != "i":
+				socios = socios.filter(sexo=sexo)
 		#FIN DE LOS FILTROS
 
 		cantidad_resultados= len(socios)
@@ -216,14 +215,16 @@ def busqueda_view(request):
 					id_institucion = str(request.POST["institucion2"])
 					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
 					socios = socios.filter(id__in=id_socios_en_institucion)	
-		edad  = request.POST['edad']
-		menor = int(edad.split(',')[0])
-		mayor = int(edad.split(',')[1])
-		socios = socios.exclude(edad__lt=menor)
-		socios = socios.exclude(edad__gt=mayor)
-		sexo  = request.POST['optionsRadios']
-		if sexo != "i":
-			socios = socios.filter(sexo=sexo)
+		if 'edad' in request.POST:
+			edad  = request.POST['edad']
+			menor = int(edad.split(',')[0])
+			mayor = int(edad.split(',')[1])
+			socios = socios.exclude(edad__lt=menor)
+			socios = socios.exclude(edad__gt=mayor)
+		if 'optionsRadios' in request.POST:
+			sexo  = request.POST['optionsRadios']
+			if sexo != "i":
+				socios = socios.filter(sexo=sexo)
 		#FIN DE LOS FILTROS
 		cantidad_resultados= len(socios)
 		resultados_busqueda = []
@@ -286,15 +287,17 @@ def busqueda_rapida_view(request):
 			ids_localidades = request.POST.getlist('localidad')
 			id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
 			socios = socios.filter(id__in=id_socios_en_localidad)
-		edad  = request.POST['edad']
-		menor = int(edad.split(',')[0])
-		mayor = int(edad.split(',')[1])
-		#mensaje=str(mayor)+"-"+ edad
-		socios = socios.exclude(edad__lt=menor)
-		socios = socios.exclude(edad__gt=mayor)
-		sexo  = request.POST['optionsRadios']
-		if sexo != "i":
-			socios = socios.filter(sexo=sexo)
+		if 'edad' in request.POST:
+			edad  = request.POST['edad']
+			menor = int(edad.split(',')[0])
+			mayor = int(edad.split(',')[1])
+			
+			socios = socios.exclude(edad__lt=menor)
+			socios = socios.exclude(edad__gt=mayor)
+		if 'optionsRadios' in request.POST:
+			sexo  = request.POST['optionsRadios']
+			if sexo != "i":
+				socios = socios.filter(sexo=sexo)
 		resultados_busqueda = []
 		for socio in socios:
 			str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad)
