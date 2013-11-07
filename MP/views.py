@@ -99,10 +99,43 @@ def busqueda_view(request):
 				id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
 				socios = socios.filter(id__in=id_socios_en_rubro)
 
+
+			if ('carrera1' in request.POST) and ('institucion1' in request.POST):
+				if request.POST['carrera1']!="-":
+					if request.POST['institucion1']== "-":
+						id_carrera = str(request.POST["carrera1"])
+						id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
+						socios = socios.filter(id__in=id_socios_en_carrera)
+					else:
+						id_carrera = str(request.POST["carrera1"])
+						id_institucion = str(request.POST["institucion1"])
+						id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+						socios = socios.filter(id__in=id_socios_en_carrera)
+				else:
+					if request.POST['institucion1']!="-":
+						id_institucion = str(request.POST["institucion1"])
+						id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+						socios = socios.filter(id__in=id_socios_en_institucion)	
+			if 'carrera2' in request.POST and 'institucion2' in request.POST:
+				if request.POST['carrera2']!="-":
+					if request.POST['institucion2']=="-":
+						id_carrera = str(request.POST["carrera2"])
+						id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
+						socios = socios.filter(id__in=id_socios_en_carrera)
+					else:
+						id_carrera = str(request.POST["carrera2"])
+						id_institucion = str(request.POST["institucion2"])
+						id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+						socios = socios.filter(id__in=id_socios_en_carrera)
+				else:
+					if request.POST['institucion2']!="-":
+						id_institucion = str(request.POST["institucion2"])
+						id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+						socios = socios.filter(id__in=id_socios_en_institucion)	
+			
 			edad  = request.POST['edad']
 			menor = int(edad.split(',')[0])
 			mayor = int(edad.split(',')[1])
-			#mensaje=str(mayor)+"-"+ edad
 			socios = socios.exclude(edad__lt=menor)
 			socios = socios.exclude(edad__gt=mayor)
 			sexo  = request.POST['optionsRadios']
@@ -121,7 +154,13 @@ def busqueda_view(request):
 		localidades = Localidad.objects.all()
 		cargos = Cargo.objects.all()
 		rubros = Rubro.objects.all()
-		ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos,'rubros':rubros}
+		carreras_escolares = Titulo.objects.filter(tipo='t')
+		carreras_superiores = Titulo.objects.exclude(tipo='t')
+		instituciones_escolares = Institucion.objects.filter(colegio=True)
+		instituciones_superiores = Institucion.objects.filter(colegio=False)
+		ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos,'rubros':rubros,
+			  'carreras_escolares':carreras_escolares, 'carreras_superiores':carreras_superiores,
+			  'instituciones_escolares':instituciones_escolares, 'instituciones_superiores':instituciones_superiores}
 		return render_to_response('MP/busqueda.html',ctx,context_instance=RequestContext(request))
 
 def enviar_mensaje_view(request):

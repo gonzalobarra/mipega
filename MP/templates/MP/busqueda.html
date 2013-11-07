@@ -116,23 +116,35 @@
                     <div class="form-group">
                         <p class="help-block">Estudios Escolares:</p>
                         <select name="carrera1" class="form-control">
-                            <option value="0">Carrera</option>
+                            <option value="-">--------</option>
+                            {% for carrera in carreras_escolares %}
+                            <option value="{{carrera.id}}">{{carrera.nombre}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <select name="institucion1" class="form-control">
-                            <option value="0">Institucion</option>
+                            <option value="-">--------</option>
+                            {% for inst in instituciones_escolares %}
+                            <option value="{{inst.id}}">{{inst.nombre}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <p class="help-block">Estudios Superiores:</p>
-                        <select name="carrera1" class="form-control">
-                            <option value="0">Carrera</option>
+                        <select name="carrera2" class="form-control">
+                            <option value="-">--------</option>
+                            {% for carrera in carreras_superiores %}
+                            <option value="{{carrera.id}}">{{carrera.nombre}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
-                        <select name="institucion1" class="form-control">
-                            <option value="0">Institucion</option>
+                        <select name="institucion2" class="form-control">
+                            <option value="-">--------</option>
+                            {% for inst in instituciones_superiores %}
+                            <option value="{{inst.id}}">{{inst.nombre}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </fieldset>
