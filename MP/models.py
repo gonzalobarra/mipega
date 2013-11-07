@@ -183,7 +183,7 @@ class Institucion(models.Model):
 	colegio = models.BooleanField('Colegio') 
 
 	def __unicode__(self):
-		return u'%s~%s' % (self.colegio,self.nombre)
+		return u'%s' % (self.nombre)
 
 class Estudios(models.Model):
 	id          = models.AutoField('ID', primary_key=True)

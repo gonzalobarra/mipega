@@ -109,8 +109,13 @@
                     <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_442_earphone.png"/>
                 </a>
             </li>
+            
             <li>
-                <a href="#otro" data-toggle="tab">
+                {% if socio.web %}
+                <a href="#web" data-toggle="tab">
+                {% else %}
+                <a disabled>
+                {% endif %}
                     <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_050_link.png"/>
                 </a>
             </li>
@@ -140,17 +145,10 @@
                 </form>
             </div>
             {% endif %}
-            {% if 0 %}
-            <!--<div id="otro" class="tab-pane fade">
-                <form class="contact_form" id="id_form" onsubmit="return false;">
-                    <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
-                    <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
-                    <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
-                    <input type="hidden" name="id_user" value="{{socio.id}}">
-                <br />
-                <a href="#" id="enviarPM" >Enviar ></a>
-                </form>
-            </div>-->
+            {% if socio.web %}
+            <div id="web" class="tab-pane fade">
+                <a href="http://{{socio.web}}"><img src="http://picoshot.com/t.php?picurl={{socio.web}}"></a>
+            </div>
             {% endif %}
         </div>
         
