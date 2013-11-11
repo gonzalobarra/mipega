@@ -445,11 +445,15 @@
         </form>   
     <!--</div>
 </div>-->
-    <script>
-    $(document).ready(function() {
     
-        $(".footer").css("margin-top","0px");
-    });
-    </script>
+    {% block SCRIPT %}
+        <script>
+        $(document).ready(function() {
+        
+            $(".footer").css("margin-top","20px");
+        });
+        </script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/registro.js"></script>
+    {% endblock %}
 
 {% endblock %}
