@@ -40,7 +40,6 @@ class UserForm(forms.ModelForm):
         }
     
 class SocioForm(forms.ModelForm):
-    comentario_est = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'5'}))
     class Meta:
         model = Socio
         fields = ('nombre','telefono', 'web', 'edad', 'correovisible','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
@@ -54,7 +53,8 @@ class SocioForm(forms.ModelForm):
             'pretencion_renta': forms.Select(attrs={'class':'form-control'}),
             'tipo_contrato': forms.Select(attrs={'class':'form-control'}),
             'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
-            'nacionalidad': forms.Select(attrs={'class':'form-control'}),
+            'nacionalidad': forms.Select(attrs={'class':'form-control chosen-select-deselect'}),
+            'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
         }
 
 class EstudioForm(forms.ModelForm):
@@ -68,7 +68,6 @@ class EstudioForm(forms.ModelForm):
         }
 
 class ExperienciaLaboralForm(forms.ModelForm):
-    comentario = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'5'}))
     class Meta:
         model = ExperienciaLaboral
         fields = ('desde', 'hasta', 'cargo', 'rubro','comentario')
@@ -76,7 +75,8 @@ class ExperienciaLaboralForm(forms.ModelForm):
             'desde': forms.TextInput(attrs={'class':'form-control'}),
             'hasta': forms.TextInput(attrs={'class':'form-control'}),
             'cargo': forms.Select(attrs={'class':'form-control'}),
-            'rubro': forms.Select(attrs={'class':'form-control'}),        
+            'rubro': forms.Select(attrs={'class':'form-control'}),
+            'comentario':forms.Textarea(attrs={'class':'form-control', 'rows':'5'})
         }
 
 class OtrasHabilidadesForm(forms.ModelForm):
