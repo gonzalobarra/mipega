@@ -394,7 +394,7 @@ def registro_view(request):
 								asig_localidad = LocalidadConSocio(socio=socio_inst,localidad=localidad_socio)
 								asig_localidad.save() 
 						
-						#Experiencia laboral
+						#Estudios
 						if form_estudio.is_valid():
 							estudio1 = Estudios(estado=form_estudio.cleaned_data['estado'], titulo=form_estudio.cleaned_data['titulo'], institucion=form_estudio.cleaned_data['institucion'], socio=socio_inst)
 							estudio1.save()
@@ -405,19 +405,19 @@ def registro_view(request):
 							estudio3 = Estudios(estado=form_estudio3.cleaned_data['estado'], titulo=form_estudio3.cleaned_data['titulo'], institucion=form_estudio3.cleaned_data['institucion'], socio=socio_inst)
 							estudio3.save()
 						
-						#Estudios
+						#Experiencia laboral
 						#Cuando es todo vacio no se está cumpliendo, hacer mejor un .request.POST
 						if form_explab.is_valid():
-							explab = ExperienciaLaboral(anos_trabajados=form_explab.cleaned_data['anos_trabajados'], comentario=form_explab.cleaned_data['comentario'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
+							explab = ExperienciaLaboral(desde=form_explab.cleaned_data['desde'], hasta=form_explab.cleaned_data['hasta'], comentario=form_explab.cleaned_data['comentario'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
 							explab.save()
 						if form_explab2.is_valid():
-							explab2= ExperienciaLaboral(anos_trabajados=form_explab2.cleaned_data['anos_trabajados'], comentario=form_explab2.cleaned_data['comentario'], cargo=form_explab2.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab2.cleaned_data['rubro'])
+							explab2= ExperienciaLaboral(desde=form_explab2.cleaned_data['desde'], hasta=form_explab.cleaned_data['hasta'], comentario=form_explab2.cleaned_data['comentario'], cargo=form_explab2.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab2.cleaned_data['rubro'])
 							explab2.save()
 						if form_explab3.is_valid():
-							explab3 = ExperienciaLaboral(anos_trabajados=form_explab3.cleaned_data['anos_trabajados'], comentario=form_explab3.cleaned_data['comentario'], cargo=form_explab3.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab3.cleaned_data['rubro'])
+							explab3 = ExperienciaLaboral(desde=form_explab3.cleaned_data['desde'], hasta=form_explab.cleaned_data['hasta'], comentario=form_explab3.cleaned_data['comentario'], cargo=form_explab3.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab3.cleaned_data['rubro'])
 							explab3.save()
 						if form_explab4.is_valid():
-							explab4 = ExperienciaLaboral(anos_trabajados=form_explab4.cleaned_data['anos_trabajados'], comentario=form_explab4.cleaned_data['comentario'], cargo=form_explab4.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab4.cleaned_data['rubro'])
+							explab4 = ExperienciaLaboral(desde=form_explab4.cleaned_data['desde'], hasta=form_explab.cleaned_data['hasta'], comentario=form_explab4.cleaned_data['comentario'], cargo=form_explab4.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab4.cleaned_data['rubro'])
 							explab4.save()
 						
 						#Otras habilidades

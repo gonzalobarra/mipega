@@ -16,6 +16,7 @@ estadoCivil=(
 	('sol','Soltero'),
 	('cas','Casado'),
 	('div','Divorciado'),
+	('anu','Anulado'),
 )
 tipoContrato=(
 	('inde','Indefinido'),
@@ -163,7 +164,8 @@ class EmpleoBuscado(models.Model):
 
 class ExperienciaLaboral(models.Model):
 	id              = models.AutoField('ID', primary_key=True)
-	anos_trabajados = models.IntegerField("Años trabajados", null=True, blank=True)
+	desde           = models.IntegerField("Desde", null=True, blank=True)
+	hasta           = models.IntegerField("Hasta", null=True, blank=True)
 	comentario      = models.CharField('Comentario', max_length=512,null=True, blank=True)
 
 	# Llaves foraneas
