@@ -43,7 +43,7 @@ class SocioForm(forms.ModelForm):
     comentario_est = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'5'}))
     class Meta:
         model = Socio
-        fields = ('nombre','telefono', 'web', 'edad', 'comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('nombre','telefono', 'web', 'edad', 'correovisible','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),

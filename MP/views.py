@@ -67,92 +67,6 @@ def resultados_view(request):
 	else:
 		return HttpResponseRedirect("/busqueda/avanzada")
 
-def resultados_completos(request):
-	if request.method == "GET":
-		socios = Socio.objects.all()
-		if "cargo" in request.GET:
-
-			ids_cargos = request.GET.getlist('cargo')
-			id_socios_en_cargo = EmpleoBuscado.objects.filter(cargo_id__in=ids_cargos).values_list('socio_id',flat=True).distinct()
-			socios = socios.filter(id__in=id_socios_en_cargo)
-		if "localidad" in request.GET:
-			ids_localidades = request.GET.getlist('localidad')
-			id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
-			socios = socios.filter(id__in=id_socios_en_localidad)
-		if "estado-civil" in request.GET:
-			if request.GET['estado-civil']!="0":
-				socios = socios.filter(estado_civil=str(request.GET['estado-civil']))
-		if "hijos" in request.GET:
-			if request.GET['hijos']!="0":
-				socios = socios.filter(tiene_hijos=str(request.GET['hijos']))
-		if "contrato" in request.GET:
-			if request.GET['contrato']!="0":
-				socios = socios.filter(tipo_contrato=str(request.GET['contrato']))
-
-		if "renta" in request.GET:
-			if request.GET['renta']!="-":
-				socios = socios.filter(pretencion_renta=str(request.GET['renta']))
-		if "rubro" in request.GET:
-			ids_rubros = request.GET.getlist('rubro')
-			id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
-			socios = socios.filter(id__in=id_socios_en_rubro)
-
-
-		if ('carrera1' in request.GET) and ('institucion1' in request.GET):
-			if request.GET['carrera1']!="-":
-				if request.GET['institucion1']== "-":
-					id_carrera = str(request.GET["carrera1"])
-					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
-					socios = socios.filter(id__in=id_socios_en_carrera)
-				else:
-					id_carrera = str(request.GET["carrera1"])
-					id_institucion = str(request.GET["institucion1"])
-					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
-					socios = socios.filter(id__in=id_socios_en_carrera)
-			else:
-				if request.GET['institucion1']!="-":
-					id_institucion = str(request.GET["institucion1"])
-					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
-					socios = socios.filter(id__in=id_socios_en_institucion)	
-		if 'carrera2' in request.GET and 'institucion2' in request.GET:
-			if request.GET['carrera2']!="-":
-				if request.GET['institucion2']=="-":
-					id_carrera = str(request.GET["carrera2"])
-					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
-					socios = socios.filter(id__in=id_socios_en_carrera)
-				else:
-					id_carrera = str(request.GET["carrera2"])
-					id_institucion = str(request.GET["institucion2"])
-					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
-					socios = socios.filter(id__in=id_socios_en_carrera)
-			else:
-				if request.GET['institucion2']!="-":
-					id_institucion = str(request.GET["institucion2"])
-					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
-					socios = socios.filter(id__in=id_socios_en_institucion)	
-		if 'edad' in request.GET:
-			edad  = request.GET['edad']
-			menor = int(edad.split(',')[0])
-			mayor = int(edad.split(',')[1])
-			socios = socios.exclude(edad__lt=menor)
-			socios = socios.exclude(edad__gt=mayor)
-		if 'optionsRadios' in request.GET:
-			sexo  = request.GET['optionsRadios']
-			if sexo != "i":
-				socios = socios.filter(sexo=sexo)
-		#FIN DE LOS FILTROS
-
-		cantidad_resultados= len(socios)
-		resultados_busqueda = []
-		for socio in socios:
-			str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad) + " estado civil:~"+ str(socio.estado_civil)+"~"
-			element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
-			resultados_busqueda.append(element)
-		messages.success(request, str(len(resultados_busqueda)))
-		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados}
-		return render_to_response('MP/resultados_completos.html',ctx,context_instance=RequestContext(request))
-
-
 def busqueda_view(request):
 	mensaje = "addas"
 	if request.method == "POST":
@@ -307,6 +221,94 @@ def busqueda_rapida_view(request):
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 
+
+def resultados_completos(request):
+	if request.method == "GET":
+		socios = Socio.objects.all()
+		if "cargo" in request.GET:
+
+			ids_cargos = request.GET.getlist('cargo')
+			id_socios_en_cargo = EmpleoBuscado.objects.filter(cargo_id__in=ids_cargos).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_cargo)
+		if "localidad" in request.GET:
+			ids_localidades = request.GET.getlist('localidad')
+			id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_localidad)
+		if "estado-civil" in request.GET:
+			if request.GET['estado-civil']!="0":
+				socios = socios.filter(estado_civil=str(request.GET['estado-civil']))
+		if "hijos" in request.GET:
+			if request.GET['hijos']!="0":
+				socios = socios.filter(tiene_hijos=str(request.GET['hijos']))
+		if "contrato" in request.GET:
+			if request.GET['contrato']!="0":
+				socios = socios.filter(tipo_contrato=str(request.GET['contrato']))
+
+		if "renta" in request.GET:
+			if request.GET['renta']!="-":
+				socios = socios.filter(pretencion_renta=str(request.GET['renta']))
+		if "rubro" in request.GET:
+			ids_rubros = request.GET.getlist('rubro')
+			id_socios_en_rubro = ExperienciaLaboral.objects.filter(rubro_id__in=ids_rubros).values_list('socio_id',flat=True).distinct()
+			socios = socios.filter(id__in=id_socios_en_rubro)
+
+
+		if ('carrera1' in request.GET) and ('institucion1' in request.GET):
+			if request.GET['carrera1']!="-":
+				if request.GET['institucion1']== "-":
+					id_carrera = str(request.GET["carrera1"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+				else:
+					id_carrera = str(request.GET["carrera1"])
+					id_institucion = str(request.GET["institucion1"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+			else:
+				if request.GET['institucion1']!="-":
+					id_institucion = str(request.GET["institucion1"])
+					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_institucion)	
+		if 'carrera2' in request.GET and 'institucion2' in request.GET:
+			if request.GET['carrera2']!="-":
+				if request.GET['institucion2']=="-":
+					id_carrera = str(request.GET["carrera2"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+				else:
+					id_carrera = str(request.GET["carrera2"])
+					id_institucion = str(request.GET["institucion2"])
+					id_socios_en_carrera = Estudios.objects.filter(titulo_id=id_carrera).filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_carrera)
+			else:
+				if request.GET['institucion2']!="-":
+					id_institucion = str(request.GET["institucion2"])
+					id_socios_en_institucion = Estudios.objects.filter(institucion_id=id_institucion).values_list('socio_id',flat=True).distinct()
+					socios = socios.filter(id__in=id_socios_en_institucion)	
+		if 'edad' in request.GET:
+			edad  = request.GET['edad']
+			menor = int(edad.split(',')[0])
+			mayor = int(edad.split(',')[1])
+			socios = socios.exclude(edad__lt=menor)
+			socios = socios.exclude(edad__gt=mayor)
+		if 'optionsRadios' in request.GET:
+			sexo  = request.GET['optionsRadios']
+			if sexo != "i":
+				socios = socios.filter(sexo=sexo)
+		#FIN DE LOS FILTROS
+
+		cantidad_resultados= len(socios)
+		resultados_busqueda = []
+		for socio in socios:
+			str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad) + " estado civil:~"+ str(socio.estado_civil)+"~"
+			element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
+			resultados_busqueda.append(element)
+		messages.success(request, str(len(resultados_busqueda)))
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados}
+		return render_to_response('MP/resultados_completos.html',ctx,context_instance=RequestContext(request))
+
+
+
 def pruebita(request):
 	user = request.user.username
 	socio = Socio.objects.get(user__username = user)
@@ -363,16 +365,18 @@ def registro_view(request):
 					try:
 						foliox = (hex(usuario_inst.id + 10555665)).split('0x')[1]
 						if form_socio.cleaned_data['nombre'] != "":
-							socio = Socio(user=usuario_inst, nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
+							socio = Socio(user=usuario_inst, correovisible=form_socio.cleaned_data['correovisible'],nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
 							socio.save()
 						else:
 							messages.warning(request,"El nombre de usuario no puede ser vacio")
 							return HttpResponseRedirect('/registro')	
 					except:
+						#Revisar acá esta condición que no se está cumpliendo en ocaciones
 						messages.warning(request, "Error al crear el socio")
 						usuario_inst.delete()
 						return HttpResponseRedirect('/registro')
 					#De aca para abajo van los forms que no necesitan comprobaciones.
+					#Ojo con los cargos y localidades si no se ingresa nada, revisar despues.
 					else:
 						socio_inst = Socio.objects.get(user=usuario_inst)
 						#Cargos buscados
@@ -402,6 +406,7 @@ def registro_view(request):
 							estudio3.save()
 						
 						#Estudios
+						#Cuando es todo vacio no se está cumpliendo, hacer mejor un .request.POST
 						if form_explab.is_valid():
 							explab = ExperienciaLaboral(anos_trabajados=form_explab.cleaned_data['anos_trabajados'], comentario=form_explab.cleaned_data['comentario'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
 							explab.save()
@@ -519,6 +524,7 @@ def eliminarmensaje_view(request,pk):
 
 def editarperfil_view(request):
 	
+	#Ojo aqui con el nombre del user
 	user = request.user.username
 	socio = Socio.objects.get(user__username = user)
 	estudios = Estudios.objects.filter(socio__id = socio.id)

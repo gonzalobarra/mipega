@@ -22,8 +22,8 @@
                 {{form_socio.nombre}}
             </div>            
             <div class="inline-group">
-                <label for="id_ano_nacimiento">Año de nacimiento:</label>
-                {{form_socio.ano_nacimiento}}
+                <label for="id_ano_nacimiento">Edad:</label>
+                {{form_socio.edad}}
             </div>            
             <div class="inline-group">
                 <label for="id_nacionalidad">Nacionalidad:</label>
@@ -49,7 +49,10 @@
             <div class="inline-group">
                 <label for="id_web">Web:</label>
                 {{form_socio.web}}
-            </div>   
+            </div>
+            <div class="inline-group">
+                <label for="id_correo">Activar notificaciones por correo: {{form_socio.correovisible}}</label>
+            </div>               
         </div>
         <legend>Caracteristicas del trabajo buscado</legend>
         <div class="block-form-pane">
