@@ -113,7 +113,20 @@
 <script type="text/javascript">
 $('#sl2').slider();
 
-
+var busquedaH = $(".busqueda").css("height");    
+    busquedaH = parseInt(busquedaH.substring(0, busquedaH.length - 2));
+    
+    var jumbotronH = $(".jumbotron").css("height");
+    jumbotronH = parseInt(jumbotronH.substring(0, jumbotronH.length - 2));
+    
+    var jumbotronM = $(".jumbotron").css("margin-bottom");
+    jumbotronM = parseInt(jumbotronM.substring(0, jumbotronM.length - 2));
+    
+    var busquedaRapidaH = busquedaH - (jumbotronH + jumbotronM + 160);
+    
+    $(".fast-search-container").css("height", busquedaRapidaH);
+    
+    
 function busquedaavanzada(){
     var parametros = $('#id_form').serialize();
     $("#id_form").attr("action", "{% url 'busqueda_avanzada' %}");

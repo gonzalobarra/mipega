@@ -75,7 +75,7 @@ $(document).ready(function() {
     });
     
     /*      index.html      */
-    
+    /*
     var busquedaH = $(".busqueda").css("height");    
     busquedaH = parseInt(busquedaH.substring(0, busquedaH.length - 2));
     
@@ -87,7 +87,7 @@ $(document).ready(function() {
     
     var busquedaRapidaH = busquedaH - (jumbotronH + jumbotronM);
     
-    $(".fast-search-container").css("height", busquedaRapidaH);
+    $(".fast-search-container").css("height", busquedaRapidaH);*/
 });
 
 
