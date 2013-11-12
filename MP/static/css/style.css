@@ -124,6 +124,19 @@ body {
   margin-top: 0px;
   margin-bottom: 20px;
 }
+.fast-search-container {
+  margin-left: 20px;
+}
+.fast-search-container .fast-search {
+  margin-bottom: 10px;
+  border: solid 5px #999999;
+  padding: 20px;
+  -o-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  height: inherit;
+}
 .index-select + .chosen-container {
   width: 100% !important;
 }
@@ -329,19 +342,6 @@ input[value="Registrar"] {
 }
 #controls a {
   margin: 5px;
-}
-.fast-search-container {
-  margin-right: 5.7%;
-  width: 35.9%;
-}
-.fast-search-container .fast-search {
-  margin-bottom: 10px;
-  border: solid 5px #999999;
-  padding: 20px;
-  -o-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
 }
 #session_pane .inline_group,
 #study_pane .inline_group,

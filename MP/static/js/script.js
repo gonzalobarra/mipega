@@ -74,7 +74,20 @@ $(document).ready(function() {
         'max-width': "100%"
     });
     
-            
+    /*      index.html      */
+    
+    var busquedaH = $(".busqueda").css("height");    
+    busquedaH = parseInt(busquedaH.substring(0, busquedaH.length - 2));
+    
+    var jumbotronH = $(".jumbotron").css("height");
+    jumbotronH = parseInt(jumbotronH.substring(0, jumbotronH.length - 2));
+    
+    var jumbotronM = $(".jumbotron").css("margin-bottom");
+    jumbotronM = parseInt(jumbotronM.substring(0, jumbotronM.length - 2));
+    
+    var busquedaRapidaH = busquedaH - (jumbotronH + jumbotronM);
+    
+    $(".fast-search-container").css("height", busquedaRapidaH);
 });
 
 

@@ -3,19 +3,7 @@
 {% block contenido %}
 <div class="body row">
         
-        <div class="col-lg-4 fast-search-container pull-right">
-            <div class="fast-search">
-            
-            <p style="text-align:justify">¿Conoces el número de folio de quien te intereza? ¡Utiliza este buscador!</p>
-            <p>
-                <form role="form" action="{% url 'vista_detalle_socio_folio' %}" method="post">
-                    {% csrf_token %}
-                    <input type="text" class="form-control" name="folio" placeholder="folio...">
-                    <input type="submit" value="Ver" class="btn btn-primary">
-                </form>
-            </p>
-            </div>
-        </div>
+        
         
         <div class="col-lg-7">
             <div class="jumbotron">
@@ -23,7 +11,20 @@
             <p style="text-align:justify">Esta es su oportunidad, basta de buscar trabajo... deja que el trabajo te busque a ti!
                 Estaras disponible para ser contactado con absoluta privacidad por toda la oferta de empleo del pais. Conocenos y no te arrepentiras.</p>
             <p><a class="btn btn-primary btn-large" href="{% url 'vista_registro' %}">¡Unetenos!</a></p>
-            </div>
+            </div><!-- /jumbotron-->
+            <div class="fast-search-container">
+                <div class="fast-search">
+                
+                <p style="text-align:justify">¿Conoces el número de folio de quien te intereza? ¡Utiliza este buscador!</p>
+                <p>
+                    <form role="form" action="{% url 'vista_detalle_socio_folio' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" name="folio" placeholder="folio...">
+                        <input type="submit" value="Ver" class="btn btn-primary">
+                    </form>
+                </p>
+                </div><!-- /fast-search-->
+            </div><!-- /fast-search-container-->
         </div>
         <div class="col-lg-4 busqueda">
             {% csrf_token %}
