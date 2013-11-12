@@ -337,9 +337,11 @@ def registro_view(request):
 	form_explab3 = ExperienciaLaboralForm(request.POST or None, prefix='esp3')
 	form_explab4 = ExperienciaLaboralForm(request.POST or None, prefix='esp4')
 	form_hab = OtrasHabilidadesForm(request.POST or None, prefix='hab1')
+	form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Deporte')
 	form_hab2 = OtrasHabilidadesForm(request.POST or None, prefix='hab2')
+	form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
 	form_hab3 = OtrasHabilidadesForm(request.POST or None, prefix='hab3')
-	form_hab4 = OtrasHabilidadesForm(request.POST or None, prefix='hab4')
+	form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Computación')
 
 	cargos = Cargo.objects.all()
 	localidades = Localidad.objects.all()
@@ -433,10 +435,11 @@ def registro_view(request):
 						if form_hab3.is_valid():
 							habilidades3 = OtrasHabilidades(nivel=form_hab3.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab3.cleaned_data['habilidad'])		
 							habilidades3.save()
+						'''	
 						if form_hab4.is_valid():
 							habilidades4 = OtrasHabilidades(nivel=form_hab4.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab4.cleaned_data['habilidad'])		
 							habilidades4.save()
-						
+						'''
 						messages.success(request,"El registro se ha realizado exitosamente")
 						return HttpResponseRedirect('/')
 		#Else final
@@ -444,7 +447,7 @@ def registro_view(request):
 			messages.warning(request,"Error en los datos ingresados")
 			return HttpResponseRedirect('/registro')							
 	else:	
-		ctx = {'form_user': form_user,'form_socio':form_socio,'cargos':cargos, 'localidades':localidades, 'form_estudio':form_estudio,'form_estudio2':form_estudio2,'form_estudio3':form_estudio3, 'form_explab':form_explab, 'form_explab2':form_explab2,'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab, 'form_hab2':form_hab2, 'form_hab3':form_hab3, 'form_hab4':form_hab4}
+		ctx = {'form_user': form_user,'form_socio':form_socio,'cargos':cargos, 'localidades':localidades, 'form_estudio':form_estudio,'form_estudio2':form_estudio2,'form_estudio3':form_estudio3, 'form_explab':form_explab, 'form_explab2':form_explab2,'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab, 'form_hab2':form_hab2, 'form_hab3':form_hab3}
 		return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))
 
 def login_view(request):
