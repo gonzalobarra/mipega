@@ -65,6 +65,8 @@ class Nacionalidad(models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
+	class Meta:
+		ordering = ["nombre"]
 
 
 class Socio(models.Model):
@@ -89,6 +91,7 @@ class Socio(models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.usuario)
+	
 
 class RegistroPago(models.Model):
 	id           = models.AutoField('ID', primary_key=True)
@@ -102,6 +105,8 @@ class RegistroPago(models.Model):
 
 	def __unicode__(self):
 		return u'%s %s' % (self.socio.usuario, self.fecha_inicio)
+	class Meta:
+		ordering = ["fecha_inicio"]
 
 
 class Mensaje(models.Model):
@@ -128,7 +133,9 @@ class Habilidad(models.Model):
 	tipoHabilidad = models.ForeignKey(TipoHabilidad, verbose_name="Tipo")
 
 	def __unicode__(self):
-		return u'%s' % (self.nombre)	
+		return u'%s' % (self.nombre)
+	class Meta:
+		ordering = ["nombre"]
 
 class OtrasHabilidades(models.Model):
 	id        = models.AutoField('ID', primary_key=True)
@@ -181,6 +188,8 @@ class Titulo(models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
+	class Meta:
+		ordering = ["nombre"]
 
 class Institucion(models.Model):
 	id      = models.AutoField('ID', primary_key=True)
@@ -189,6 +198,8 @@ class Institucion(models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
+	class Meta:
+		ordering = ["nombre"]
 
 class Estudios(models.Model):
 	id          = models.AutoField('ID', primary_key=True)
@@ -219,6 +230,8 @@ class Localidad(models.Model):
 	
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
+	class Meta:
+		ordering = ["nombre"]
 
 class LocalidadConSocio(models.Model):
 #tabla resultante de una relacion n-n

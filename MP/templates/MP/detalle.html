@@ -11,7 +11,7 @@
         </div>
         <ul id="user_detail">
             <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_278_birthday_cake.png"/><p id="age">{{edad}} años</p></li>
-            <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_004_girl.png"/><p id="childs">{{socio.tiene_hijos}} hijos</p></li>
+            <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_004_girl.png"/><p id="childs">{{socio.get_tiene_hijos_display}} hijos</p></li>
             <li id="sex">{{ socio.sexo }}</li>
             <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_271_ring.png"/><p id="state">{{socio.get_estado_civil_display}}</p></li>
             <li id="nacionalidad">{{socio.nacionalidad}}</li>
