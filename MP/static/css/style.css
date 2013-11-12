@@ -854,7 +854,7 @@ div#other_pane #habilidades Select.form-control {
 }
 #detail_content #user_header h1#user_name {
   font-family: agilis;
-  font-size: 100px;
+  font-size: 80px;
   display: inline-block;
 }
 #detail_content #user_header .sex_image {
@@ -871,8 +871,11 @@ div#other_pane #habilidades Select.form-control {
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   font-size: 18px;
   padding: 0px;
-  max-width: 250px;
   display: inline-block;
+}
+#detail_content ul#user_detail li {
+  display: inline;
+  margin: 10px;
 }
 #detail_content ul#user_detail  + #descripcion {
   width: 70%;

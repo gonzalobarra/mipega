@@ -7,16 +7,24 @@
 
     <!--<div id="wrapper">-->
         <div id="user_header">
-            <h1 id="user_name">{{socio.nombre}}</h1>
+            <h1 id="user_name">{{socio.nombre}}({{socio.folio}})</h1>
         </div>
         <ul id="user_detail">
-            <li>Edad : <p id="age">{{edad}}</p></li>
-            <li>Hijos : <p id="childs">{{socio.tiene_hijos}}</p></li>
+            <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_278_birthday_cake.png"/><p id="age">{{edad}} años</p></li>
+            <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_004_girl.png"/><p id="childs">{{socio.tiene_hijos}} hijos</p></li>
             <li id="sex">{{ socio.sexo }}</li>
-            <li>Estado Civil : <p id="state">{{socio.get_estado_civil_display}}</p></li>
+            <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_271_ring.png"/><p id="state">{{socio.get_estado_civil_display}}</p></li>
             <li id="nacionalidad">{{socio.nacionalidad}}</li>
+            <li>
+            {% if socio.web %}            
+                <a href="http://{{socio.web}}">
+                    <img src="http://picoshot.com/t.php?picurl={{socio.web}}" style="border: 1px solid #ccc;border-radius:7px"> 
+                    <span style="margin-left:15px;">{{socio.web}}</span>
+                </a>            
+            {% endif %}
+            </li>
         </ul>
-        <div id="descripcion"></div>
+        
     <!--</div>-->
     <div style="height:17px;"></div>
     <!--<div id="wrapper">-->
@@ -145,14 +153,7 @@
                 </form>
             </div>
             {% endif %}
-            {% if socio.web %}
-            <div id="web" class="tab-pane fade">
-                <a href="http://{{socio.web}}">
-                    <img src="http://picoshot.com/t.php?picurl={{socio.web}}" style="border: 1px solid #ccc;border-radius:7px"> 
-                    <span style="margin-left:15px;">{{socio.web}}</span>
-                </a>
-            </div>
-            {% endif %}
+            
         </div>
         
         <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
