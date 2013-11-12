@@ -53,7 +53,7 @@ class SocioForm(forms.ModelForm):
             'pretencion_renta': forms.Select(attrs={'class':'form-control'}),
             'tipo_contrato': forms.Select(attrs={'class':'form-control'}),
             'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
-            'nacionalidad': forms.Select(attrs={'class':'form-control chosen-select-deselect'}),
+            'nacionalidad': forms.Select(attrs={'class':'form-control chosen-select'}),
             'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
         }
 
@@ -63,8 +63,8 @@ class EstudioForm(forms.ModelForm):
         fields = ('estado', 'titulo', 'institucion')
         widgets = {
             'estado': forms.Select(attrs={'class':'form-control'}),
-            'titulo': forms.Select(attrs={'class':'form-control'}),
-            'institucion': forms.Select(attrs={'class':'form-control'}),        
+            'titulo': forms.Select(attrs={'class':'form-control chosen-select'}),
+            'institucion': forms.Select(attrs={'class':'form-control chosen-select'}),        
         }
 
 class ExperienciaLaboralForm(forms.ModelForm):
@@ -74,8 +74,8 @@ class ExperienciaLaboralForm(forms.ModelForm):
         widgets = {
             'desde': forms.TextInput(attrs={'class':'form-control'}),
             'hasta': forms.TextInput(attrs={'class':'form-control'}),
-            'cargo': forms.Select(attrs={'class':'form-control'}),
-            'rubro': forms.Select(attrs={'class':'form-control'}),
+            'cargo': forms.Select(attrs={'class':'form-control chosen-select'}),
+            'rubro': forms.Select(attrs={'class':'form-control chosen-select'}),
             'comentario':forms.Textarea(attrs={'class':'form-control', 'rows':'5'})
         }
 
@@ -85,7 +85,7 @@ class OtrasHabilidadesForm(forms.ModelForm):
         fields = ('nivel', 'habilidad',) 
         widgets = {
             'nivel': forms.Select(attrs={'class':'form-control'}),
-            'habilidad': forms.Select(attrs={'class':'form-control'}),        
+            'habilidad': forms.Select(attrs={'class':'form-control chosen-select'}),
         }
                         
 #Al parecer no se usa nunca jamás                       
