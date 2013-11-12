@@ -177,7 +177,21 @@
                                 <option value="{{rubro.id}}">{{rubro.nombre}}</option>
                             {% endfor %}
                         </select>
-                    </div>                    
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block">Otras Caracteristicas:</p>
+                        <select name="cargo" class="form-control chosen-select" id="inputCargo" data-placeholder="Idiomas, deportes, computación..." multiple tabindex="6">
+                            {% for tipo in tipoHabilidades %}
+                                <optgroup label="{{tipo.nombre}}">
+                                {% for hab in habilidades %}
+                                    {% ifequal hab.tipoHabilidad.id tipo.id %}
+                                    <option value="{{hab.id}}">{{hab.nombre}}</option>
+                                    {% endifequal %}
+                                {% endfor %}
+                                </optgroup>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </fieldset>
                 <button class="btn btn-default" id="search"><strong>Buscar</strong></button>
             </form>

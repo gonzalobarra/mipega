@@ -68,7 +68,7 @@ def resultados_view(request):
 		return HttpResponseRedirect("/busqueda/avanzada")
 
 def busqueda_view(request):
-	mensaje = "addas"
+	mensaje = ""
 	if request.method == "POST":
 		socios = Socio.objects.all()
 		if "cargo" in request.POST:
@@ -158,9 +158,12 @@ def busqueda_view(request):
 		carreras_superiores = Titulo.objects.exclude(tipo='t')
 		instituciones_escolares = Institucion.objects.filter(colegio=True)
 		instituciones_superiores = Institucion.objects.filter(colegio=False)
+		tipoHabilidades = TipoHabilidad.objects.all()
+		habilidades = Habilidad.objects.all()
 		ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos,'rubros':rubros,
 			  'carreras_escolares':carreras_escolares, 'carreras_superiores':carreras_superiores,
-			  'instituciones_escolares':instituciones_escolares, 'instituciones_superiores':instituciones_superiores}
+			  'instituciones_escolares':instituciones_escolares, 'instituciones_superiores':instituciones_superiores,
+			  'tipoHabilidades':tipoHabilidades, 'habilidades':habilidades}
 		return render_to_response('MP/busqueda.html',ctx,context_instance=RequestContext(request))
 
 def enviar_mensaje_view(request):
