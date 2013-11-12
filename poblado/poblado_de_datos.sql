@@ -2042,7 +2042,7 @@ INSERT INTO "MP_habilidad"(
 (57, 'Motonautica ',1),
 (58, 'Mhuai Thay ',1),
 (59, 'Natacion ',1),
-(62, 'Paracaidismo ',1),
+(62, 'Paracaismo ',1),
 (63, 'Parapente ',1),
 (64, 'Parkour ',1),
 (65, 'Patinaje ',1),
@@ -2164,4 +2164,4 @@ INSERT INTO "MP_habilidad"(
 (183, 'Urdu',2),
 (184, 'Uzbekistano',2),
 (185, 'Vasco',2),
-(186, 'Vietnamés',2),
+(186, 'Vietnamés',2);

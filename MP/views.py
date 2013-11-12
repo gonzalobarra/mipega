@@ -546,7 +546,6 @@ def editarperfil_view(request):
 	hab1 = habilidades[0]
 	hab2 = habilidades[1]
 	hab3 = habilidades[2]
-	hab4 = habilidades[3]
 
 	if request.method == 'POST':
 		form_socio = SocioForm(request.POST,request.FILES, instance=socio)
@@ -563,7 +562,6 @@ def editarperfil_view(request):
 		form_hab = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab1, prefix='hab1')
 		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab2, prefix='hab2')
 		form_hab3 = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab3, prefix='hab3')
-		form_hab4 = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab4, prefix='hab4')
 		if form_socio.is_valid():
 			form_socio.save()
 		if form_estudio.is_valid():
@@ -586,8 +584,6 @@ def editarperfil_view(request):
 			form_hab2.save() 
 		if form_hab3.is_valid():
 			form_hab3.save()
-		if form_hab4.is_valid():
-			form_hab4.save()
 				
 		return HttpResponseRedirect('/editarperfil/')
 	else:
@@ -602,9 +598,8 @@ def editarperfil_view(request):
 		form_hab = OtrasHabilidadesForm(instance=hab1, prefix='hab1')
 		form_hab2 = OtrasHabilidadesForm(instance=hab2, prefix='hab2')
 		form_hab3 = OtrasHabilidadesForm(instance=hab3, prefix='hab3')
-		form_hab4 = OtrasHabilidadesForm(instance=hab4, prefix='hab4')
 
-	ctx = {'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2 , 'form_hab3':form_hab3, 'form_hab4':form_hab4}	
+	ctx = {'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2 , 'form_hab3':form_hab3}	
 	
 	return render_to_response('MP/editarperfil.html', ctx, context_instance=RequestContext(request))		 
 
