@@ -192,7 +192,9 @@ $(document).ready(function() {
         
         $(".panel").fadeIn();
     });
+    $.scrollTo(".header",300);
     $("#surprise-message").parent().css("overflow","hidden");
+    
     //ocultar mensaje
     $(".panel-body > a").click(function(event){
 

@@ -461,8 +461,8 @@
         </form>   
     <!--</div>
 </div>-->
-    
-    {% block SCRIPT %}
+{% endblock %}
+{% block SCRIPT %}
         <script>
         $(document).ready(function() {
         
@@ -471,5 +471,3 @@
         </script>
         <script type="text/javascript" src="{{STATIC_URL}}js/registro.js"></script>
     {% endblock %}
-
-{% endblock %}
