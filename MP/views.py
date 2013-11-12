@@ -79,7 +79,6 @@ def busqueda_view(request):
 			otrasHab = request.POST.getlist('otras-habilidades')
 			id_socios_en_otrasHab = OtrasHabilidades.objects.filter(habilidad_id__in=otrasHab).values_list('socio_id',flat=True).distinct()
 			socios = socios.filter(id__in=id_socios_en_otrasHab)
-		otras-habilidades
 		if "localidad" in request.POST:
 			ids_localidades = request.POST.getlist('localidad')
 			id_socios_en_localidad = LocalidadConSocio.objects.filter(localidad_id__in=ids_localidades).values_list('socio_id',flat=True).distinct()
