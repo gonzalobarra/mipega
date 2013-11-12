@@ -166,7 +166,7 @@ class ExperienciaLaboral(models.Model):
 	id              = models.AutoField('ID', primary_key=True)
 	desde           = models.IntegerField("Desde", null=True, blank=True)
 	hasta           = models.IntegerField("Hasta", null=True, blank=True)
-	comentario      = models.CharField('Comentario', max_length=512,null=True, blank=True)
+	comentario      = models.CharField('Comentario', max_length=512, blank=True)
 
 	# Llaves foraneas
 	cargo       = models.ForeignKey(Cargo, verbose_name="Cargo", null=True, blank=True)

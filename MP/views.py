@@ -325,10 +325,13 @@ def registro_view(request):
 	form_socio = SocioForm(request.POST or None) #Agregada
 	form_estudio = EstudioForm(request.POST or None, prefix='est1') #Escolar
 	form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=True)
+	form_estudio.fields["titulo"].queryset = Titulo.objects.filter(tipo="t")
 	form_estudio2 = EstudioForm(request.POST or None, prefix='est2') #Superior
 	form_estudio2.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
+	form_estudio2.fields["titulo"].queryset = Titulo.objects.exclude(tipo='t')
 	form_estudio3 = EstudioForm(request.POST or None, prefix='est3') #Superior
 	form_estudio3.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
+	form_estudio3.fields["titulo"].queryset = Titulo.objects.exclude(tipo='t')
 	form_explab = ExperienciaLaboralForm(request.POST or None, prefix='esp1')
 	form_explab2 = ExperienciaLaboralForm(request.POST or None, prefix='esp2')
 	form_explab3 = ExperienciaLaboralForm(request.POST or None, prefix='esp3')
