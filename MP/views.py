@@ -184,7 +184,6 @@ def enviar_mensaje_view(request):
 		asunto = "Mipega - Nuevo mensaje de " + nombre
 		contenido = "Correo de contacto:" + contacto + "\nMensaje:" + mensaje
 		#email = EmailMessage(asunto, contenido,['contacto.workapps@gmail.com'])
-		#email.send()
 		#Actualmente se encuentra con esta configuracion a modo de prueba
 		send_mail(asunto, contenido, 'contacto.workapps@gmail.com',['contacto.workapps@gmail.com'], fail_silently=False)
 		#Envia mensaje a la bandeja de la aplicacion
@@ -377,7 +376,7 @@ def registro_view(request):
 					try:
 						foliox = (hex(usuario_inst.id + 10555665)).split('0x')[1]
 						if form_socio.cleaned_data['nombre'] != "":
-							socio = Socio(user=usuario_inst, correovisible=form_socio.cleaned_data['correovisible'],nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
+							socio = Socio(user=usuario_inst,nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
 							socio.save()
 						else:
 							messages.warning(request,"El nombre de usuario no puede ser vacio")
@@ -555,7 +554,7 @@ def editarperfil_view(request):
 	hab3 = habilidades[2]
 
 	if request.method == 'POST':
-		form_socio = SocioForm(request.POST,request.FILES, instance=socio)
+		form_socio = SocioForm2(request.POST,request.FILES, instance=socio)
 		form_estudio = EstudioForm(request.POST, request.FILES, instance=est1, prefix='est1')
 		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=True)
 		form_estudiodos = EstudioForm(request.POST, request.FILES, instance=est2, prefix='est2')
@@ -594,7 +593,7 @@ def editarperfil_view(request):
 				
 		return HttpResponseRedirect('/editarperfil/')
 	else:
-		form_socio = SocioForm(instance=socio)
+		form_socio = SocioForm2(instance=socio)
 		form_estudio = EstudioForm(instance=est1, prefix='est1')
 		form_estudiodos = EstudioForm(instance=est2, prefix='est2')
 		form_estudiotres = EstudioForm(instance=est3, prefix='est3')
@@ -609,30 +608,3 @@ def editarperfil_view(request):
 	ctx = {'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2 , 'form_hab3':form_hab3}	
 	
 	return render_to_response('MP/editarperfil.html', ctx, context_instance=RequestContext(request))		 
-
-#lineas para poblado parcial de localidades
-# def poblarlocalidadcargo(request):
-# 	nuevo11 = Localidad(nombre="Angol",tipo="c")
-# 	nuevo21 = Localidad(nombre="Antofagasta",tipo="c")
-# 	nuevo31 = Localidad(nombre="Antuco",tipo="c")
-# 	nuevo51 = Localidad(nombre="Arica",tipo="c")
-# 	nuevo11.save()
-# 	nuevo21.save()
-# 	nuevo31.save()
-# 	nuevo51.save()
-# 	nuevo1 = Localidad(nombre="PRIMERA REGIÓN DE TARAPACÁ",tipo="r")
-# 	nuevo2 = Localidad(nombre="SEGUNDA REGIÓN DE ANTOFAGASTA",tipo="r")
-# 	nuevo3 = Localidad(nombre="TERCERA REGIÓN DE ATACAMA",tipo="r")
-# 	nuevo5 = Localidad(nombre="METROPOLITANA",tipo="r")
-# 	nuevo1.save()
-# 	nuevo2.save()
-# 	nuevo3.save()
-# 	nuevo5.save()
-# 	nuevo = Cargo(nombre="Gruero")
-# 	nuevo.save()
-# 	nuevo1 = Cargo(nombre="Supervisor")
-# 	nuevo1.save()
-# 	nuevo3 = Cargo(nombre="Jornal")
-# 	nuevo3.save()
-# 	nuevo4 = Cargo(nombre="Programador")
-# 	nuevo4.save()

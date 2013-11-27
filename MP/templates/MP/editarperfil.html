@@ -16,11 +16,7 @@
         {% csrf_token %}
         <legend>Información personal</legend>
         <div class="block-form-pane">
-            <h1>Información personal</h1>
-            <div class="inline-group">
-                <label for="id_nombre">Nombre:</label>
-                {{form_socio.nombre}}
-            </div>            
+            <h1>Información personal</h1>     
             <div class="inline-group">
                 <label for="id_ano_nacimiento">Edad:</label>
                 {{form_socio.edad}}
@@ -49,10 +45,7 @@
             <div class="inline-group">
                 <label for="id_web">Web:</label>
                 {{form_socio.web}}
-            </div>
-            <div class="inline-group">
-                <label for="id_correo">Activar notificaciones por correo: {{form_socio.correovisible}}</label>
-            </div>               
+            </div>             
         </div>
         <legend>Caracteristicas del trabajo buscado</legend>
         <div class="block-form-pane">

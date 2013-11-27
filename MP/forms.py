@@ -42,9 +42,26 @@ class UserForm(forms.ModelForm):
 class SocioForm(forms.ModelForm):
     class Meta:
         model = Socio
-        fields = ('nombre','telefono', 'web', 'edad', 'correovisible','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('nombre','telefono', 'web', 'edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control'}),
+            'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
+            'web': forms.TextInput(attrs={'class':'form-control plain-field'}),
+            'edad': forms.TextInput(attrs={'class':'form-control'}),
+            'sexo': forms.Select(attrs={'class':'form-control'}),
+            'estado_civil': forms.Select(attrs={'class':'form-control'}),
+            'pretencion_renta': forms.Select(attrs={'class':'form-control'}),
+            'tipo_contrato': forms.Select(attrs={'class':'form-control'}),
+            'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
+            'nacionalidad': forms.Select(attrs={'class':'form-control chosen-select'}),
+            'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
+        }
+
+class SocioForm2(forms.ModelForm):
+    class Meta:
+        model = Socio
+        fields = ('telefono', 'web', 'edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        widgets = {
             'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
             'web': forms.TextInput(attrs={'class':'form-control plain-field'}),
             'edad': forms.TextInput(attrs={'class':'form-control'}),

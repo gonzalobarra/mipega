@@ -52,11 +52,16 @@ hijos=(
 	('n','No'),
 )
 renta=(
-	('0','< 200'),
-	('1','200-350'),
-	('2','350-500'),
-	('3','500-650'),
-	('4','650 o +'),
+	('0','< 200.000'),
+	('1','200.000-450.000'),
+	('2','450.000-650.000'),
+	('3','650.000-850.000'),
+	('4','850.000-1.000.000'),
+	('5','1.250.000-1.500.000'),
+	('6','1.500.000-1.750.000'),
+	('7','2.000.000-2.500.000'),
+	('8','2.500.000-3.000.000'),
+	('9','3.000.000 o +'),
 )
 
 class Nacionalidad(models.Model):
@@ -84,7 +89,6 @@ class Socio(models.Model):
 	folio			  = models.CharField('Folio', max_length=10, null=False, blank=False, unique=True)
 	magister		  = models.BooleanField('Magister')
 	doctorado 		  = models.BooleanField('Doctorado')
-	correovisible 	  = models.BooleanField('Correo visible', default=False)
 	
 	nacionalidad  =models.ForeignKey(Nacionalidad, verbose_name="Nacionalidad", null=True, blank=True)
 	user = models.OneToOneField(User)
