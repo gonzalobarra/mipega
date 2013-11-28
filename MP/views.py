@@ -154,6 +154,11 @@ def busqueda_view(request):
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 	else:
+		ant_cargos = request.GET.getlist('cargo')
+		ant_edad = request.GET['edad']
+		ant_option = request.GET['optionsRadios']
+		ant_localidades = request.GET.getlist('localidad')
+
 		form = BuscaRapidaForm(request.POST or None)
 		localidades = Localidad.objects.all()
 		cargos = Cargo.objects.all()
@@ -167,7 +172,8 @@ def busqueda_view(request):
 		ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos,'rubros':rubros,
 			  'carreras_escolares':carreras_escolares, 'carreras_superiores':carreras_superiores,
 			  'instituciones_escolares':instituciones_escolares, 'instituciones_superiores':instituciones_superiores,
-			  'tipoHabilidades':tipoHabilidades, 'habilidades':habilidades}
+			  'tipoHabilidades':tipoHabilidades, 'habilidades':habilidades,'ant_localidades':ant_localidades,
+			  'ant_cargos':ant_cargos,'ant_edad':ant_edad, 'ant_option':ant_option}
 		return render_to_response('MP/busqueda.html',ctx,context_instance=RequestContext(request))
 
 def enviar_mensaje_view(request):
