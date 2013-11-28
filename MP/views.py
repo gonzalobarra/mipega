@@ -154,11 +154,30 @@ def busqueda_view(request):
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 	else:
-		ant_cargos = request.GET.getlist('cargo')
-		ant_edad = request.GET['edad']
-		ant_option = request.GET['optionsRadios']
-		ant_localidades = request.GET.getlist('localidad')
-
+		if 'cargo' in request.GET:
+			ant_cargos = request.GET.getlist('cargo')
+			aux = ant_cargos
+			ant_cargos = []
+			for x in aux:
+				ant_cargos.append(int(x))
+		else: 
+			ant_cargos = []
+		if 'edad' in request.GET:
+			ant_edad = request.GET['edad']
+		else:
+			ant_edad = "18,100"
+		if 'optionsRadios' in request.GET:
+			ant_option = request.GET['optionsRadios']
+		else:
+			ant_option = "-"
+		if 'localidad' in request.GET:
+			ant_localidades = request.GET.getlist('localidad')
+			aux = ant_localidades
+			ant_localidades = []
+			for x in aux:
+				ant_localidades.append(int(x))
+		else:
+			ant_localidades = []
 		form = BuscaRapidaForm(request.POST or None)
 		localidades = Localidad.objects.all()
 		cargos = Cargo.objects.all()
