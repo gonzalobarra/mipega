@@ -1,6 +1,0 @@
-#edit-profile-form{
-
-    height: 440px;
-    overflow-y: scroll;
-    width: 104%;
-}
