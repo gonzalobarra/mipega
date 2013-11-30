@@ -15,7 +15,9 @@ from MP.models import *
 from MP.urls import *
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
-import datetime
+from datetime import *
+from dateutil.relativedelta import *
+from django.core.urlresolvers import reverse
 
 def index_view(request):
 	form = BuscaRapidaForm(request.POST or None)
@@ -442,7 +444,6 @@ def registro_view(request):
 							estudio3.save()
 						
 						#Experiencia laboral
-						#Cuando es todo vacio no se está cumpliendo, hacer mejor un .request.POST
 						if form_explab.is_valid():
 							explab = ExperienciaLaboral(desde=form_explab.cleaned_data['desde'], hasta=form_explab.cleaned_data['hasta'], comentario=form_explab.cleaned_data['comentario'], cargo=form_explab.cleaned_data['cargo'], socio=socio_inst , rubro=form_explab.cleaned_data['rubro'])
 							explab.save()
@@ -466,13 +467,9 @@ def registro_view(request):
 						if form_hab3.is_valid():
 							habilidades3 = OtrasHabilidades(nivel=form_hab3.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab3.cleaned_data['habilidad'])		
 							habilidades3.save()
-						'''	
-						if form_hab4.is_valid():
-							habilidades4 = OtrasHabilidades(nivel=form_hab4.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab4.cleaned_data['habilidad'])		
-							habilidades4.save()
-						'''
 						messages.success(request,"El registro se ha realizado exitosamente")
-						return HttpResponseRedirect('/')
+						#url = reverse('vista_pagoregistro', kwargs={ 'id_socio': socio_inst.id })
+						return HttpResponseRedirect("/")
 		#Else final
 		else:
 			messages.warning(request,"Error en los datos ingresados")
@@ -480,6 +477,17 @@ def registro_view(request):
 	else:	
 		ctx = {'form_user': form_user,'form_socio':form_socio,'cargos':cargos, 'localidades':localidades, 'form_estudio':form_estudio,'form_estudio2':form_estudio2,'form_estudio3':form_estudio3, 'form_explab':form_explab, 'form_explab2':form_explab2,'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab, 'form_hab2':form_hab2, 'form_hab3':form_hab3}
 		return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))
+
+#Pendiente
+def pagoregistro_view(request, id_socio):
+
+	pago_form = PagoForm(request.POST or None)
+
+
+	ctx = {'pago_form': pago_form}
+
+	return render_to_response('MP/pagoexitoso.html',ctx, context_instance=RequestContext(request))
+
 
 def login_view(request):
     """
@@ -538,6 +546,48 @@ def nuevaclave_view(request):
 		user_form = cambiarClave()
 	ctx = {'user_form':user_form}
 	return render_to_response('MP/nuevaclave.html',ctx, context_instance=RequestContext(request))
+
+def pagoperfil_view(request):
+	if request.method == 'POST':
+		pago_form = PagoForm(request.POST)
+		if pago_form.is_valid():
+			fecha = datetime.now()
+			socio = Socio.objects.get(user=request.user.id)
+			if pago_form.cleaned_data['plan'] == '1':
+				fecha = fecha + relativedelta(months=+6)
+				pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+				socio.activo = '0'
+				socio.save()
+				pago.save()
+				messages.success(request, 'Pago exitoso')
+				return HttpResponseRedirect('/')
+			if pago_form.cleaned_data['plan'] == '2':
+				fecha = fecha + relativedelta(months=+8)
+				pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+				pago.save()
+				socio.activo = '0'
+				socio.save()
+				messages.success(request, 'Pago exitoso')
+				return HttpResponseRedirect('/')
+			if pago_form.cleaned_data['plan'] == '3':
+				fecha = fecha + relativedelta(months=+12)
+				pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+				pago.save()
+				socio.activo = '0'
+				socio.save()
+				messages.success(request, 'Pago exitoso')
+				return HttpResponseRedirect('/')
+
+	pago_form = PagoForm()
+	ctx = {'pago_form': pago_form}
+	return render_to_response('MP/pagarperfil.html', ctx, context_instance=RequestContext(request))	
+
+def listado_view(request):
+	socios = Socio.objects.all()
+	pagos = RegistroPago.objects.all()
+	ctx= {'socios': socios, 'pagos': pagos}
+	messages.success(request, socios.count())
+	return render_to_response('MP/listapagos.html', ctx, context_instance=RequestContext(request))	
 
 def bandejaentrada_view(request):
 	usuario = User.objects.get(username = request.user.username)

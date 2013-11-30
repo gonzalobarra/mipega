@@ -1,0 +1,52 @@
+{% extends 'template.html' %}
+{% block title %} Lista de estado clientes | MiPega.cl {% endblock %}
+{% block contenido %}
+<div class="profile-content">
+	<table class="table table-condensed">
+		<tr>
+			<th>Socio</th>
+			<th>Estado</th>
+			<th>Plan</th>
+			<th>Fecha inicio subscripcion</th>
+			<th>Fecha termino</th>
+		<tr>
+		{% for socio in socios %}
+			{% for pago in pagos %}
+				{% ifequal socio.id pago.socio.id %}
+					{% ifequal socio.activo '0' %}
+						<tr class="success">
+							<td>{{socio.nombre}}</td>
+							<td>{{socio.activo}}</td>
+							<td>{{pago.plan}}</td>
+							<td>{{pago.fecha_inicio}}</td>
+							<td>{{pago.fecha_fin}}</td>
+						</tr>
+					{% else %}
+						<tr class="warning">
+							<td>{{socio.nombre}}</td>
+							<td>{{socio.activo}}</td>
+							<td>{{pago.plan}}</td>
+							<td>{{pago.fecha_inicio}}</td>
+							<td>{{pago.fecha_fin}}</td>
+						</tr>
+					{% endifequal %}		
+				{% endifequal %}
+			{% endfor %}
+		{% endfor %}
+		{% for socio in socios %}
+			{% for pago in pagos %}
+				{% ifequal socio.activo '1' %}
+					<tr class="danger">
+						<td>{{socio.nombre}}</td>
+						<td>{{socio.activo}}</td>
+						<td>No registra</td>
+						<td>No registra</td>
+						<td>No registra</td>
+					</tr>
+				{% endifequal %}
+			{% endfor %}		
+		{% endfor %}	
+	</table>	
+</div>
+{% endblock %}
+

@@ -19,5 +19,7 @@ urlpatterns = patterns('MP.views',
 	url(r'^todosresultados/$','resultados_completos',name='vista_resultados_completos'),
 	url(r'^mensaje/(\d+)/$','mensaje_view',name='vista_mensaje'),
 	url(r'^eliminar/mensaje/(\d+)/$','eliminarmensaje_view',name='vista_eliminarmensaje'),
+	url(r'^pago/perfil/$','pagoperfil_view',name='vista_pagoperfil'),
+	url(r'^listadopagos/$','listado_view',name='vista_listado'),
 )    
 

@@ -1,5 +1,5 @@
 {% extends 'template.html' %}
-{% block title %} Cambio de clave | MiPega.cl {% endblock %}
+{% block title %} Pago de susbcripcion | MiPega.cl {% endblock %}
 {% block contenido %}
 <div id="login-form_">
 		<!--<h3 style="text-align:center;">Perfil</h3>-->
@@ -14,20 +14,10 @@
 	<form  action="" method="post">
         {% csrf_token %}
         <div class="block-form-pane">
-            <div class="inline-group">
-                <label for="id_ClaveAntigua">Clave actual:</label>
-                {{user_form.ClaveAntigua}}
-            </div>
-            <div class="inline-group">
-                <label for="id_ClaveNueva">Nueva clave:</label>
-                {{user_form.ClaveNueva}}
-            </div>
-            <div class="inline-group">
-                <label for="id_ClaveRepetida">Repita su clave:</label>
-                {{user_form.ClaveRepetida}}
-            </div>
+        	{{pago_form}}
         </div>
-        <input class="pull-right btn btn-primary" type="submit" value="Cambiar clave">
+        <input class="pull-right btn btn-primary" type="submit" value="Pagar subscripción">
     </form>   
 </div>
+
 {% endblock %}

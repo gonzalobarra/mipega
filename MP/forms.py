@@ -124,4 +124,10 @@ class cambiarClave(forms.Form):
     ClaveNueva = forms.CharField(max_length=20,  widget= forms.PasswordInput(attrs={'class':'form-control'}),label='Clave nueva:')
     ClaveRepetida = forms.CharField(max_length=20, widget= forms.PasswordInput(attrs={'class':'form-control'}),label='Clave nueva (confirmación):')   
 
-    
+class PagoForm(forms.ModelForm):
+    class Meta:
+        model = RegistroPago
+        fields = ('plan',)
+        widget = {
+            'plan': forms.Select(attrs={'class':'form-control'}),
+        }    

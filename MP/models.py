@@ -24,9 +24,9 @@ tipoContrato=(
 	('otr','Otro'),
 )
 planes=(
-	('1','Plan 1'),
-	('2','Plan 2'),
-	('3','Plan 3'),
+	('1','Plan 1: $6000 - 6 meses'),
+	('2','Plan 2: $8000 - 8 meses'),
+	('3','Plan 3: $11000 - 12 meses'),
 )
 nivelHabilidad=(
 	('u','Usuario'),
@@ -63,6 +63,11 @@ renta=(
 	('8','2.500.000-3.000.000'),
 	('9','3.000.000 o +'),
 )
+estados=(
+	('0', 'Activo'),
+	('1', 'Inactivo'),
+	)
+
 
 class Nacionalidad(models.Model):
 	id 				  = models.AutoField('ID', primary_key=True)
@@ -89,6 +94,7 @@ class Socio(models.Model):
 	folio			  = models.CharField('Folio', max_length=10, null=False, blank=False, unique=True)
 	magister		  = models.BooleanField('Magister')
 	doctorado 		  = models.BooleanField('Doctorado')
+	activo 			  = models.CharField('Estado', max_length=2, choices=estados, default="1")
 	
 	nacionalidad  =models.ForeignKey(Nacionalidad, verbose_name="Nacionalidad", null=True, blank=True)
 	user = models.OneToOneField(User)
@@ -99,9 +105,8 @@ class Socio(models.Model):
 
 class RegistroPago(models.Model):
 	id           = models.AutoField('ID', primary_key=True)
-	fecha_inicio = models.DateTimeField('Fecha Inicio',editable=False)
+	fecha_inicio = models.DateTimeField('Fecha Inicio',editable=False, auto_now=True)
 	fecha_fin    = models.DateTimeField('Fecha Fin',editable=False)
-	monto        = models.IntegerField("Monto de Pago", null=False)
 	plan         = models.CharField('Plan', max_length=7,choices=planes, default="1")
 
 	# Llaves foraneas
