@@ -129,7 +129,10 @@ body {
 }
 .fast-search-container .fast-search {
   margin-bottom: 10px;
-  border: solid 5px #999999;
+  -o-box-shadow: 0px 1px 8px 0px rgba(115, 115, 115, 0.9);
+  -moz-box-shadow: 0px 1px 8px 0px rgba(115, 115, 115, 0.9);
+  -webkit-box-shadow: 0px 1px 8px 0px rgba(115, 115, 115, 0.9);
+  box-shadow: 0px 1px 8px 0px rgba(115, 115, 115, 0.9);
   padding: 20px;
   -o-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -867,17 +870,39 @@ div#other_pane #habilidades Select.form-control {
   width: 35px;
   height: 35px;
 }
-#detail_content ul#user_detail {
+#detail_content ul.user_detail {
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
   font-size: 18px;
   padding: 0px;
+  margin-bottom: 35px;
+  width: 30%;
   display: inline-block;
+  margin-right: 3%;
 }
-#detail_content ul#user_detail li {
-  display: inline;
+#detail_content ul.user_detail#detalle1 {
+  /*width: 70%;
+            margin-left: 15%;*/
+
+}
+#detail_content ul.user_detail#detalle1 li {
+  text-align: right;
+  font-weight: bold;
+  color: #2a6496;
+}
+#detail_content ul.user_detail#detalle2 {
+  /*
+            width: 60%;
+            margin-left: 20%;*/
+
+}
+#detail_content ul.user_detail#detalle2 li {
+  text-align: left;
+}
+#detail_content ul.user_detail li {
+  width: 100%;
   margin: 10px;
 }
-#detail_content ul#user_detail  + #descripcion {
+#detail_content ul.user_detail  + #descripcion {
   width: 70%;
   min-height: 100px;
   display: inline-block;
@@ -888,17 +913,17 @@ div#other_pane #habilidades Select.form-control {
   border-radius: 5px;
   margin-left: 30px;
 }
-#detail_content ul#user_detail  + #descripcion h3 {
+#detail_content ul.user_detail  + #descripcion h3 {
   font-family: agilis;
 }
-#detail_content ul#user_detail p {
+#detail_content ul.user_detail p {
   display: inline;
 }
-#detail_content ul#user_detail p#age, #detail_content ul#user_detail p#childs {
+#detail_content ul.user_detail p#age, #detail_content ul.user_detail p#childs {
   text-indent: 5px;
   margin-left: 55px;
 }
-#detail_content ul#user_detail p#state {
+#detail_content ul.user_detail p#state {
   text-indent: 5px;
   margin-left: 4px;
 }
@@ -917,6 +942,62 @@ div#other_pane #habilidades Select.form-control {
   margin-left: 170px;
   font-size: 15px;
   text-align: justify;
+}
+#detail_content .panel-escolar {
+  min-height: 230px;
+}
+#detail_content .panel-escolar img {
+  width: 10%;
+}
+#detail_content .panel-escolar p, #detail_content .panel-escolar div {
+  display: inline-block;
+  width: 85%;
+  float: right;
+}
+#detail_content .panel-escolar p#estado-escolar, #detail_content .panel-escolar div#estado-escolar {
+  display: inline-block;
+  font-size: 40px;
+  width: 80%;
+}
+#detail_content .panel-escolar p p, #detail_content .panel-escolar div p {
+  float: left;
+  font-size: 20px;
+  width: 50%;
+}
+#detail_content .panel-superior {
+  min-height: 230px;
+}
+#detail_content .panel-superior img {
+  width: 10%;
+}
+#detail_content .panel-superior p, #detail_content .panel-superior div {
+  display: inline-block;
+  width: 85%;
+  float: right;
+}
+#detail_content .panel-superior p #comentario-estudios, #detail_content .panel-superior div #comentario-estudios {
+  width: 100%;
+  font-size: 20px;
+}
+#detail_content .panel-superior p #comentario-estudios:before, #detail_content .panel-superior div #comentario-estudios:before {
+  content: url(../img/comillas1.png);
+}
+#detail_content .panel-superior p #comentario-estudios:after, #detail_content .panel-superior div #comentario-estudios:after {
+  content: url(../img/comillas2.png);
+}
+#detail_content .panel-superior p p, #detail_content .panel-superior div p {
+  float: left;
+  font-size: 15px;
+  width: 50%;
+}
+#detail_content .panel-superior p p.titulo, #detail_content .panel-superior div p.titulo {
+  font-weight: bold;
+  font-size: 20px;
+  color: #2a6496;
+}
+#detail_content .panel-superior p p.titulo small, #detail_content .panel-superior div p.titulo small {
+  color: #444444;
+  font-weight: normal;
 }
 #detail_content .contact-icons {
   display: inline-block;

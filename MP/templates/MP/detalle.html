@@ -6,34 +6,51 @@
 <div id="detail_content">
 
     <!--<div id="wrapper">-->
-        <div id="user_header">
-            <h1 id="user_name">{{socio.nombre}}({{socio.folio}})</h1>
-        </div>
-        <ul id="user_detail">
-            <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_278_birthday_cake.png"/><p id="age">{{edad}} años</p></li>
-            <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_004_girl.png"/><p id="childs">{{socio.get_tiene_hijos_display}} hijos</p></li>
-            <li id="sex">{{ socio.sexo }}</li>
-            <li><img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_271_ring.png"/><p id="state">{{socio.get_estado_civil_display}}</p></li>
-            <li id="nacionalidad">{{socio.nacionalidad}}</li>
-            <li>
-            {% if socio.web %}            
-                <a href="http://{{socio.web}}">
-                    <img src="http://picoshot.com/t.php?picurl={{socio.web}}" style="border: 1px solid #ccc;border-radius:7px"> 
-                    <span style="margin-left:15px;">{{socio.web}}</span>
-                </a>            
-            {% endif %}
-            </li>
-        </ul>
+    <div id="user_header">
+        <h1 id="user_name">{{socio.nombre}}({{socio.folio}})</h1>
+    </div>
+            <!--<div class="user_detail">-->
+                <ul class="user_detail" id="detalle1">
+                    <li>Edad:</li>
+                    <li>¿Tiene hijos?</li>
+                    <li id="sex">{{ socio.sexo }}</li>
+                    <li>Estado civil:</li>
+                    <li>Nacionalidad:</li>
+                </ul>
+            <!--</div>
+            <div class="user_detail">-->
+                <ul class="user_detail" id="detalle2">
+                    <li>{{edad}} años</li>
+                    <li>{{socio.get_tiene_hijos_display}}</li>
+                    <li id="sex">{{ socio.sexo }}</li>
+                    <li>{{socio.get_estado_civil_display}}</li>
+                    <li id="nacionalidad">{{socio.nacionalidad}}</li>
+                </ul>
+            
+            <!--</div>
+            
+            <div class="user_detail"> -->               
+                <ul class="user_detail">
+                    <li>
+                    {% if socio.web %}            
+                        <a href="http://{{socio.web}}">
+                            <img src="http://picoshot.com/t.php?picurl={{socio.web}}" style="border: 1px solid #ccc;border-radius:7px"> 
+                            <span style="margin-left:15px;">{{socio.web}}</span>
+                        </a>            
+                    {% endif %}
+                    </li>
+                </ul>
+            <!--</div>-->
         
     <!--</div>-->
     <div style="height:17px;"></div>
     <!--<div id="wrapper">-->
-        <h3>Disponibilidad</h3>
+        <h3>Intereses</h3>
         <hr>
         <ul id="disponibilidad">
             <!-- Cargo buscado -->
             <li>
-                <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_450_factory.png"/>
+                <img src="{{STATIC_URL}}fonts/glyphicons_free/glyphicons/png/glyphicons_450_factory.png"/>
                 <h2>Cargos buscados</h2>
                 {% for cargo in cargos %}
                 <ul>
@@ -44,7 +61,7 @@
             
             <!-- Donde quiere trabajar -->
             <li>
-                <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_370_globe_af.png"/>
+                <img src="{{STATIC_URL}}fonts/glyphicons_free/glyphicons/png/glyphicons_370_globe_af.png"/>
                 <h2>Localidades buscadas</h2>
                 {% for loc in localidades %}
                 <ul>
@@ -55,7 +72,7 @@
             
             <!-- Contrato buscado -->
             <li>
-                <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_458_money.png"/>
+                <img src="{{STATIC_URL}}fonts/glyphicons_free/glyphicons/png/glyphicons_458_money.png"/>
                 <h2>Tipo de contrato</h2>
                 <ul>
                     <li><span>{{socio.get_tipo_contrato_display}}.</span></li>
@@ -67,23 +84,38 @@
     <div style="height:17px;"></div>
     {% if estudios  %}
     <!--<div id="wrapper">-->
-        <h3>Estudios</h3>
+        <h3>Educación</h3>
         <hr>
         {% if estudios_escolares %}
-            <h4>Estudios escolares</h4>
-            {% for est in estudios_escolares %}
-                {{est.titulo.nombre}} en {{est.institucion.nombre}} [{{est.get_estado_display}}]<br />
-            {% endfor %}
+            <div class="panel-escolar">
+                <img src="{{STATIC_URL}}img/escolares.png">
+                <div>
+                    {% for est in estudios_escolares %}
+                        <p id="estado-escolar">{{est.get_estado_display}}</p>
+                        
+                            <p>{{est.titulo.nombre}}</p>  <p>{{est.institucion.nombre}}</p>
+                         <br />
+                    {% endfor %}
+                </div>
+            </div>
         {% endif %}
         {% if estudios_superiores %}
-            <h4>Estudios Superiores</h4>
-            {% for est in estudios_superiores %}
-                {{est.titulo.nombre}} en {{est.institucion.nombre}} [{{est.get_estado_display}}]<br />
-            {% endfor %}
+            <div class="panel-superior">
+                <img src="{{STATIC_URL}}img/superiores.png">
+                <div>
+                    <p id="comentario-estudios">{{socio.comentario_est}}</p>
+                    {% for est in estudios_escolares %}
+                        <p class="titulo">{{est.titulo.nombre}}<small>{{est.get_estado_display}}</small></p>  <p>{{est.institucion.nombre}}</p>
+                        
+                        <br />
+                    {% endfor %}
+                </div>
+            </div>        
+        {% endif %}
     {% endif %}
     <!--</div>-->
     <div style="height:17px;"></div>
-    {% endif %}
+    
     <!--<div id="wrapper">-->
         <h3>Experiencia</h3>
         <hr>
@@ -98,39 +130,13 @@
     <!--</div>-->
     <div style="height:17px;"></div>
     <!--<div id="wrapper">-->
-        <h3>Datos de Contacto</h3>
+        <h3>Enviar un mensaje a {{socio.nombre}}</h3>
         <hr>
         <br />
-        <ul class="nav nav-tabs contact-icons">
-            <li>
-                {% if socio.correovisible %}
-                <a href="#mail" data-toggle="tab" >
-                {% else %}
-                <a disabled>
-                {% endif %}
-
-                    <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_010_envelope.png"/>
-                </a>
-            </li>
-            <li>
-                <a href="#fono" data-toggle="tab">
-                    <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_442_earphone.png"/>
-                </a>
-            </li>
-            
-            <li>
-                {% if socio.web %}
-                <a href="#web" data-toggle="tab">
-                {% else %}
-                <a disabled>
-                {% endif %}
-                    <img src="../../../static/fonts/glyphicons_free/glyphicons/png/glyphicons_050_link.png"/>
-                </a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            {% if socio.correovisible %}
-            <div id="mail" class="tab-pane fade">
+        
+        
+            {% if socio.telefono %}
+            <div id="mail">
                 <form class="contact_form" id="id_form" onsubmit="return false;">
                     <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
                     <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
@@ -141,6 +147,7 @@
                 </form>
             </div>
             {% endif %}
+            <!--
             {% if socio.telefono %}
             <div id="fono" class="tab-pane fade">
                 <form class="contact_form" id="id_form" onsubmit="return false;">
@@ -152,9 +159,8 @@
                 <a href="#" id="enviarPM" >Enviar ></a>
                 </form>
             </div>
-            {% endif %}
-            
-        </div>
+            {% endif %}  
+            -->     
         
         <!--<a data-toggle="modal" href="#myModal" class="btn btn-primary btn-large">Launch demo modal</a>-->
     <!--</div>-->
@@ -188,7 +194,7 @@
             }
         }).fail(function(){
             $('#myModal').modal('hide');
-            $.ambiance({message: "Error al enviar el mensaje, intentelo denuevo mas tarde.", title:"Error",
+            $.ambiance({message: "Error al enviar el mensaje, intentelo denuevo más tarde.", title:"Error",
                         type: "error",timeout:4,width:200,});
         }); 
     });

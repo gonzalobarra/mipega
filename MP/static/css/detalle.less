@@ -41,15 +41,36 @@
         height: 35px;
     }
     
-    ul#user_detail{
+    ul.user_detail{
         font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
         font-size: 18px;
         padding: 0px;
-        
+        margin-bottom: 35px;
+        width: 30%;
         display: inline-block;
+        margin-right: 3%;
+        
+        &#detalle1{
+            /*width: 70%;
+            margin-left: 15%;*/
+            li{
+                text-align: right;
+                font-weight: bold;
+                color: darken(#428bca, 15%);
+            }
+        }
+        
+        &#detalle2{
+            li{
+                text-align: left;
+            }
+        /*
+            width: 60%;
+            margin-left: 20%;*/
+        }
         
         li{
-            display: inline;
+            width: 100%;
             margin: 10px;
         }
         
@@ -101,6 +122,65 @@
                 font-size: 15px;
                 text-align: justify;
             }     
+        }
+    }
+    
+    .panel-escolar{
+        min-height: 230px;
+        img {
+            width: 10%;
+        }
+        p, div{
+            display: inline-block;
+            width: 85%;
+            float: right;
+            &#estado-escolar{
+                display: inline-block;                
+                font-size: 40px;
+                width: 80%
+            }
+            p {
+                float: left;
+                font-size: 20px;
+                width: 50%;
+            }
+        }
+    }
+    
+    .panel-superior{
+        min-height: 230px;
+        img {
+            width: 10%;
+        }
+        p, div{
+            display: inline-block;
+            width: 85%;
+            float: right;
+            #comentario-estudios{
+                width: 100%;
+                font-size: 20px;
+                &:before{
+                    content: url(../img/comillas1.png);
+                }
+                &:after{
+                    content: url(../img/comillas2.png);
+                }
+            }            
+            p {
+                float: left;
+                font-size: 15px;
+                width: 50%;
+                
+                &.titulo{
+                    font-weight: bold;
+                    font-size: 20px;
+                    color: darken(#428bca, 15%);
+                    small{
+                        color: rgb(68, 68, 68);
+                        font-weight: normal;
+                    }
+                }
+            }
         }
     }
     
