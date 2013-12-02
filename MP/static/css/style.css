@@ -467,7 +467,7 @@ input[value="Registrar"] {
   border-radius: 3px;
   border-color: #717680;
   border-width: 5px;
-  overflow: auto;
+  overflow: hidden !important;
   width: 50%;
   display: inline-block;
   margin: 30px;
@@ -773,6 +773,7 @@ div#study_pane #experiencias textarea.form-control,
 div#other_pane #experiencias textarea.form-control,
 div#other_pane2 #experiencias textarea.form-control {
   margin-left: 15%;
+  max-width: 550px !important;
 }
 div#study_pane #escolar Select.form-control,
 div#other_pane #escolar Select.form-control,

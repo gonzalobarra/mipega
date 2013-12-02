@@ -1,5 +1,8 @@
 $(document).ready(function() {    
     
+    //Se muestran los chosen singles, como inputs de bootstrap
+    $("a.chosen-single").addClass("form-control");
+    
     //Funcionalidad del boton plus
     $(".plus-button").click(function(event){
     
