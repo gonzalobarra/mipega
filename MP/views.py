@@ -256,7 +256,12 @@ def busqueda_rapida_view(request):
 
 
 def resultados_completos(request):
+	tam_pagina = 2
 	if request.method == "GET":
+		if 'page' in request.GET:
+			pagina = int(request.GET['page'])
+		else:
+			pagina = 1
 		socios = Socio.objects.all()
 		if "cargo" in request.GET:
 
@@ -329,15 +334,28 @@ def resultados_completos(request):
 			if sexo != "i":
 				socios = socios.filter(sexo=sexo)
 		#FIN DE LOS FILTROS
-
+		ult = int(len(socios)/tam_pagina)
+		if ult*tam_pagina < len(socios):
+			ult = 1+ult
+		if pagina > ult:
+			pagina = 1
+		ant = pagina-1
+		sig = pagina+1
+		if sig > ult:
+			sig = ult
 		cantidad_resultados= len(socios)
+		#socios = socios[0:tam_pagina]
+
 		resultados_busqueda = []
+		i = 0
 		for socio in socios:
 			str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad) + " estado civil:~"+ str(socio.estado_civil)+"~"
 			element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
-			resultados_busqueda.append(element)
-		messages.success(request, str(len(resultados_busqueda)))
-		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados}
+			if i >= (pagina-1)*tam_pagina:
+				if len(resultados_busqueda) < tam_pagina:
+					resultados_busqueda.append(element)
+			i=i+1
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'sig':sig,'ant':ant, 'actual':pagina, 'ult':ult}
 		return render_to_response('MP/resultados_completos.html',ctx,context_instance=RequestContext(request))
 
 
