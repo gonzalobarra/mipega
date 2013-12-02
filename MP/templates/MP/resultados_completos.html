@@ -36,7 +36,11 @@ $('.nav').on('click',function(event){
     if(index != -1){
       str1 = str.substring(0, index+5);
       indx2=str.substring(index+5,str.lenght).indexOf("&");
-      str2 = str.substring(index+5+indx2,str.lenght);
+      if(indx2 == -1){
+        str2 = "";
+      }else{
+        str2 = str.substring(index+5+indx2,str.lenght);
+      }
       var aux = $(this).attr('href');
       $(this).attr('href',str1+aux+str2);
     }else{
