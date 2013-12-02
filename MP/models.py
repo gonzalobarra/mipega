@@ -75,9 +75,6 @@ class Nacionalidad(models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
-	class Meta:
-		ordering = ["nombre"]
-
 
 class Socio(models.Model):
 	id                = models.AutoField('ID', primary_key=True)
@@ -161,6 +158,8 @@ class Rubro(models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
+	class Meta:
+		ordering = ["nombre"]	
 
 class Cargo(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
@@ -168,6 +167,8 @@ class Cargo(models.Model):
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)
+	class Meta:	
+		ordering = ["nombre"]
 
 class EmpleoBuscado(models.Model):
 	id    = models.AutoField('ID', primary_key=True)
