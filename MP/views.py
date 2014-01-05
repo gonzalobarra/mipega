@@ -18,6 +18,7 @@ from django.contrib import messages
 from datetime import *
 from dateutil.relativedelta import *
 from django.core.urlresolvers import reverse
+import json
 
 def index_view(request):
 	form = BuscaRapidaForm(request.POST or None)
@@ -68,6 +69,9 @@ def resultados_view(request):
 		return render_to_response('MP/resultados_todos.html',ctx,context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect("/busqueda/avanzada")
+
+def infopago_view(request):
+	return render_to_response('MP/infopago.html',context_instance=RequestContext(request))
 
 def busqueda_view(request):
 	mensaje = ""
@@ -256,7 +260,7 @@ def busqueda_rapida_view(request):
 
 
 def resultados_completos(request):
-	tam_pagina = 2
+	tam_pagina = 10
 	if request.method == "GET":
 		if 'page' in request.GET:
 			pagina = int(request.GET['page'])
@@ -487,7 +491,7 @@ def registro_view(request):
 							habilidades3.save()
 						messages.success(request,"El registro se ha realizado exitosamente")
 						#url = reverse('vista_pagoregistro', kwargs={ 'id_socio': socio_inst.id })
-						return HttpResponseRedirect("/")
+						return HttpResponseRedirect("/infopago/")
 		#Else final
 		else:
 			messages.warning(request,"Error en los datos ingresados")
@@ -571,30 +575,79 @@ def pagoperfil_view(request):
 		if pago_form.is_valid():
 			fecha = datetime.now()
 			socio = Socio.objects.get(user=request.user.id)
-			if pago_form.cleaned_data['plan'] == '1':
-				fecha = fecha + relativedelta(months=+6)
-				pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
-				socio.activo = '0'
-				socio.save()
-				pago.save()
-				messages.success(request, 'Pago exitoso')
-				return HttpResponseRedirect('/')
-			if pago_form.cleaned_data['plan'] == '2':
-				fecha = fecha + relativedelta(months=+8)
-				pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
-				pago.save()
-				socio.activo = '0'
-				socio.save()
-				messages.success(request, 'Pago exitoso')
-				return HttpResponseRedirect('/')
-			if pago_form.cleaned_data['plan'] == '3':
-				fecha = fecha + relativedelta(months=+12)
-				pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
-				pago.save()
-				socio.activo = '0'
-				socio.save()
-				messages.success(request, 'Pago exitoso')
-				return HttpResponseRedirect('/')
+			registros = RegistroPago.objects.filter(socio=socio.id)
+			#Si el socio registro.fechano tiene un pago registrado
+			if(len(registros)==0):
+				if pago_form.cleaned_data['plan'] == '1':
+					fecha = fecha + relativedelta(months=+6)
+					pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+					socio.activo = '0'
+					socio.save()
+					pago.save()
+					messages.success(request, 'Pago exitoso')
+					return HttpResponseRedirect('/')
+				if pago_form.cleaned_data['plan'] == '2':
+					fecha = fecha + relativedelta(months=+8)
+					pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+					pago.save()
+					socio.activo = '0'
+					socio.save()
+					messages.success(request, 'Pago exitoso')
+					return HttpResponseRedirect('/')
+				if pago_form.cleaned_data['plan'] == '3':
+					fecha = fecha + relativedelta(months=+12)
+					pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+					pago.save()
+					socio.activo = '0'
+					socio.save()
+					messages.success(request, 'Pago exitoso')
+					return HttpResponseRedirect('/')
+			#Si el socio tiene pago registrado
+			
+			if(len(registros)>0):
+				registro = registros[len(registros)-1]
+				messages.success(request, registro.fecha_fin)
+				
+				#messages.success(request, fecha_final)
+				
+				#Si el pago esta vencido, se crea uno nuevo
+					
+				'''	
+					if pago_form.cleaned_data['plan'] == '1':
+						fecha = fecha + relativedelta(months=+6)
+						pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+						socio.activo = '0'
+						socio.save()
+						pago.save()
+						messages.success(request, 'Pago exitoso')
+						return HttpResponseRedirect('/')
+					if pago_form.cleaned_data['plan'] == '2':
+						fecha = fecha + relativedelta(months=+8)
+						pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+						pago.save()
+						socio.activo = '0'
+						socio.save()
+						messages.success(request, 'Pago exitoso')
+						return HttpResponseRedirect('/')
+					if pago_form.cleaned_data['plan'] == '3':
+						fecha = fecha + relativedelta(months=+12)
+						pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
+						pago.save()
+						socio.activo = '0'
+						socio.save()
+						messages.success(request, 'Pago exitoso')
+						return HttpResponseRedirect('/')
+				#Si el pago esta aun vigente, se le suma tiempo
+				
+				else:
+					if pago_form.cleaned_data['plan'] == '1':
+						nueva_fecha = registro.fecha_fin + relativedelta(months=+6)
+						socio.activo = '0'
+						registro.save()
+						socio.save()	
+						messages.success(request, 'Se ha actualizado su tiempo de subscripción')
+						return HttpResponseRedirect('/')
+			'''
 
 	pago_form = PagoForm()
 	ctx = {'pago_form': pago_form}
