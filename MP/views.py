@@ -603,16 +603,14 @@ def pagoperfil_view(request):
 					messages.success(request, 'Pago exitoso')
 					return HttpResponseRedirect('/')
 			#Si el socio tiene pago registrado
-			
 			if(len(registros)>0):
 				registro = registros[len(registros)-1]
 				messages.success(request, registro.fecha_fin)
-				
+				registros2 = RegistroPago.objects.filter(fecha_fin__gt=fecha).filter(socio=socio.id)
 				#messages.success(request, fecha_final)
 				
 				#Si el pago esta vencido, se crea uno nuevo
-					
-				'''	
+				if(len(registros2)==0):	
 					if pago_form.cleaned_data['plan'] == '1':
 						fecha = fecha + relativedelta(months=+6)
 						pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
@@ -638,7 +636,7 @@ def pagoperfil_view(request):
 						messages.success(request, 'Pago exitoso')
 						return HttpResponseRedirect('/')
 				#Si el pago esta aun vigente, se le suma tiempo
-				
+				'''
 				else:
 					if pago_form.cleaned_data['plan'] == '1':
 						nueva_fecha = registro.fecha_fin + relativedelta(months=+6)
@@ -647,7 +645,7 @@ def pagoperfil_view(request):
 						socio.save()	
 						messages.success(request, 'Se ha actualizado su tiempo de subscripción')
 						return HttpResponseRedirect('/')
-			'''
+				'''
 
 	pago_form = PagoForm()
 	ctx = {'pago_form': pago_form}
