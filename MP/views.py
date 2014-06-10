@@ -424,7 +424,7 @@ def registro_view(request):
 					try:
 						foliox = (hex(usuario_inst.id + 10555665)).split('0x')[1]
 						if form_socio.cleaned_data['nombre'] != "":
-							socio = Socio(user=usuario_inst,nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],doctorado=form_socio.cleaned_data['doctorado'])
+							socio = Socio(user=usuario_inst,nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],disponibilidad=form_socio.cleaned_data['disponibilidad'],disponibilidadV=form_socio.cleaned_data['disponibilidadV'],cargo_extra=form_socio.cleaned_data['cargo_extra'],doctorado=form_socio.cleaned_data['doctorado'])
 							socio.save()
 						else:
 							messages.warning(request,"El nombre de usuario no puede ser vacio")

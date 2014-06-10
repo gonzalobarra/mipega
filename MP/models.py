@@ -91,6 +91,9 @@ class Socio(models.Model):
 	folio			  = models.CharField('Folio', max_length=10, null=False, blank=False, unique=True)
 	magister		  = models.BooleanField('Magister')
 	doctorado 		  = models.BooleanField('Doctorado')
+	disponibilidad    = models.BooleanField('Disponibilidad inmediata')
+	disponibilidadV	  = models.BooleanField('Dispopnibilidad de vehiculo')
+	cargo_extra 	  = models.CharField('Cargos extra' ,max_length=512, null=True, blank=True)
 	activo 			  = models.CharField('Estado', max_length=2, choices=estados, default="1")
 	
 	nacionalidad  =models.ForeignKey(Nacionalidad, verbose_name="Nacionalidad", null=True, blank=True)

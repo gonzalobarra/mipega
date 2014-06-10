@@ -41,7 +41,7 @@ class UserForm(forms.ModelForm):
 class SocioForm(forms.ModelForm):
     class Meta:
         model = Socio
-        fields = ('nombre','telefono', 'web', 'edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('nombre','telefono','disponibilidad','disponibilidadV','cargo_extra', 'web', 'edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
@@ -54,6 +54,7 @@ class SocioForm(forms.ModelForm):
             'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
             'nacionalidad': forms.Select(attrs={'class':'form-control chosen-select'}),
             'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
+            'cargo_extra':forms.TextInput(attrs={'class':'form-control plain-field'}),
         }
 
 class SocioForm2(forms.ModelForm):
