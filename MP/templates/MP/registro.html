@@ -2,35 +2,269 @@
 {% block title %} Registro de usuario | MiPega.cl {% endblock %}
 {% block contenido %}
 
-<div id="surprise-message">
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h2 class="panel-title">Busca trabajo?</h2>
-        </div>
-        <div class="panel-body">
-            <p>
-            Esta es su oportunidad, un lugar distinto donde usted no postula, "a usted lo buscan", basta de postular e ingresar a sitios donde nunca lo llamanm hagase socio de mipega y estara presete en un sitio de internet donde todas las personas que necesitan contratar contratar o requieren un servicio lo pueden hacer, usted con solo $6.000.- por 6 meses estara disponible para ser contactado con absoluta privacidad por toda la oferta de empleo que existe en el pais. conocenos y no te arrepentiras.
-            </p>            
-            <a class="btn btn-primary pull-right" href="#" style="margin-top: 120px;">Continuar</a>
-        </div>
-    </div>
-</div>
-<div class="alert alert-block alert-info fade in" id="slide-alert">        
-    <h4>Ayuda para la página!</h4>
-    <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
-    <p>
-        <a class="btn btn-primary" id="help" href="#">Ayuda</a> <a class="btn btn-info" id="hide-alert" href="#">Ocultar</a>
-    </p>
-</div>
 <!--<div id="content">
     <div id="wrapper">-->
         {% load bootstrap_toolkit %}
-        <form id="formElem" name="formElem" action="" method="post">
-            {% csrf_token %}
-            <div class="row form-pane active-pane" id="session_pane"> <!-- PANEL DE PERFIL -->
+        <div id="nav">
+            <nav id="navbar" class="navbar navbar-inverse navbar-static-top" role="navigation">
+                <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img src="{{STATIC_URL}}img/logo-mipega.png" alt=""></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#" data-toggle="modal" data-target="#modal-login">Inicia sesión</a></li>
+                            <li><a href="registro.php">Registrarse</a></li>
+                            <li><a href="#">¿Dudas?</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+        <!--
+        <form id="formElem" name="formElem" action="" method="post">-->
+        <div id="registro" class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 panel panel-default">
+                        <div class="panel-body">
+                          {% csrf_token %}
+                            <form id="myWizard" type="get" action="" class="form-horizontal">
+                                    <section class="step" data-step="1" data-step-title="Perfil">
+                                        <div class="bs-callout bs-callout-info">
+                                            <h3>Perfil</h3>
+                                            <p>A continuación debe completar con sus datos de cuenta, personales y de contacto en el formulario expuesto a continuación. Los campos marcados con un * son obligatorios. </p>
+                                        </div>
+                                        <h3 class="page-header">Cuenta</h3>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Nombre</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">RUT</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Contraseña</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Repita su contraseña</label>
+                                            <div class="col-sm-10">
+                                                <input type="password" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <h3 class="page-header">Personal</h3>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Género</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control">
+                                                    <option>Seleccione su opción</option>
+                                                    <option>Masculino</option>
+                                                    <option>Femenino</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Hijos</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control">
+                                                    <option>Seleccione su opción</option>
+                                                    <option>Sí</option>
+                                                    <option>No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <h3 class="page-header">Contacto</h3>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">E-Mail de contacto</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Teléfono de contacto</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Página web</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="step" data-step="2" data-step-title="Aspiraciones">
+                                        <div class="bs-callout bs-callout-info">
+                                            <h3>Aspiraciones</h3>
+                                            <p>En la presente página debe seleccionar los diferentes cargos en los que desea encontrar trabajo, además, de donde le gustaría desempeñarlos, sus pretenciones de rentay el tipo de contrato buscado</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Cargo buscado</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                <span class="help-block">Seleccione de la lista los cargos que sean de su interez</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Dónde desea trabajar</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                <span class="help-block">Seleccione de la lista los lugares donde desea trabajar</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Pretenciones de renta</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="id_pretencion_renta" name="pretencion_renta">
+                                                    <option value="" selected="selected">---------</option>
+                                                    <option value="0">&lt; 200.000</option>
+                                                    <option value="1">200.000-450.000</option>
+                                                    <option value="2">450.000-650.000</option>
+                                                    <option value="3">650.000-850.000</option>
+                                                    <option value="4">850.000-1.000.000</option>
+                                                    <option value="5">1.250.000-1.500.000</option>
+                                                    <option value="6">1.500.000-1.750.000</option>
+                                                    <option value="7">2.000.000-2.500.000</option>
+                                                    <option value="8">2.500.000-3.000.000</option>
+                                                    <option value="9">3.000.000 o +</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <section class="step" data-step="3" data-step-title="Estudios">
+                                        <div class="bs-callout bs-callout-info">
+                                            <h3>Estudios</h3>
+                                            <p>Dentro del formulario expuesto a continuación debe indicar si lo desea, el estado de su enseñanza escolar media, en el caso de que haya estudiado en un colegio técnicose le da la opción de ingresar la institución donde lo hizo y el título que obtuvo una vez finalizada estado</p>
+                                        </div>
+                                        <h3 class="page-header">Enseñanza Escolar</h3>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label" for="exampleInputEmail1">Estado</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="id_est1-estado" name="est1-estado">
+                                                    <option value="" selected="selected">---------</option>
+                                                    <option value="i">Incompleto</option>
+                                                    <option value="c">Cursando</option>
+                                                    <option value="co">Completo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="alert alert-info">En caso de poseer un titulo técnico de liceo, indiquelo en las casillas siguientes</div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Título</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Institución</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <h3 class="page-header">Enseñanza Superior</h3>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-1 control-label">Estado</label>
+                                            <div class="col-sm-3">
+                                                <select class="form-control" id="id_est1-estado" name="est1-estado">
+                                                    <option value="" selected="selected">---------</option>
+                                                    <option value="i">Incompleto</option>
+                                                    <option value="c">Cursando</option>
+                                                    <option value="co">Completo</option>
+                                                </select>
+                                            </div>
+                                            <label for="inputPassword" class="col-sm-1 control-label">Título</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                            <label for="inputPassword" class="col-sm-1 control-label">Institución</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info pull-right">Agregar título <span class="glyphicon glyphicon-plus"></span></button>
+                                    </section>
+                                    <section class="step" data-step="4" data-step-title="Experiencia Laboral">
+                                        <div class="bs-callout bs-callout-info">
+                                            <h3>Experiencia Laboral</h3>
+                                            <p>Finalmente, debe ingresar los datos referentes a su experiencia laboral y ya está! </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-1 control-label">Desde</label>
+                                            <div class="col-sm-2">
+                                                <select class="form-control" id="id_est1-estado" name="est1-estado">
+                                                    <option value="" selected="selected">---------</option>
+                                                    <option value="i">Incompleto</option>
+                                                    <option value="c">Cursando</option>
+                                                    <option value="co">Completo</option>
+                                                </select>
+                                            </div>
+                                            <label for="inputPassword" class="col-sm-1 control-label">Hasta</label>
+                                            <div class="col-sm-2">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                            <label for="inputPassword" class="col-sm-1 control-label">Rubro</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-1 control-label">Cargo</label>
+                                             <div class="col-sm-11">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info pull-right">Agregar cargo <span class="glyphicon glyphicon-plus"></span></button>
+                                    </section>
+                                    <section class="step" data-step="5" data-step-title="Otras habilidades">
+                                        <div class="bs-callout bs-callout-info">
+                                            <h3>Otras habilidades</h3>
+                                            <p>Ingrese otras caracteristicas que desee que aparescan en su perfil </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-1 control-label">Nivel</label>
+                                             <div class="col-sm-3">
+                                                <select class="form-control" id="id_est1-estado" name="est1-estado">
+                                                    <option value="" selected="selected">---------</option>
+                                                    <option value="i">Usuario</option>
+                                                    <option value="c">Medio</option>
+                                                    <option value="co">Avanzado</option>
+                                                </select>
+                                            </div>
+                                            <label for="inputPassword" class="col-sm-1 control-label">Habilidad</label>
+                                             <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info pull-right">Agregar cargo <span class="glyphicon glyphicon-plus"></span></button>
+                                    </section>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            <!--<div class="row form-pane active-pane" id="session_pane">--> <!-- PANEL DE PERFIL -->
                 <!--<div class="col-md-6 col-md-offset-2">-->
-                    <h1 id="seccion_cuenta">Cuenta</h1><!-- CUENTA DE MIPEGA -->
-                    <div class="special-form-pane"  id="session">
+                    <!--<h1 id="seccion_cuenta">Cuenta</h1>--><!-- CUENTA DE MIPEGA -->
+                    <!--<div class="special-form-pane"  id="session">
                         <div style="width: 240px;" class="inline_group">
                             <label style="margin-left: 23%;" for="id_username">RUT:</label>
                             {{form_user.username}}
@@ -56,8 +290,8 @@
                             <li><b>Repita su clave*:</b> Ingrese su clave nuevamente</li>
                         </ul>
                     </div>
-                    <h1 id="seccion_personal">Personal</h1><!-- INFORMACIÓN PERSONAL -->
-                    <div id="personal-help"style="height: 238px;top: 640px;left: 190px;" class="left-block form-help-block">
+                    <h1 id="seccion_personal">Personal</h1>--><!-- INFORMACIÓN PERSONAL -->
+                    <!--<div id="personal-help"style="height: 238px;top: 640px;left: 190px;" class="left-block form-help-block">
                         <ul>
                             <li><b>Hijos:</b></li>
                             <li><b>Estado civil:</b></li>
@@ -92,8 +326,8 @@
                             </div>
                         </div>                        
                     </div>                    
-                    <h1 style="top: 900px;" id="seccion_contacto">Contacto</h1><!-- INFORMACIÓN DE CONTACTO -->
-                    <div class="special-form-pane" id="contact">
+                    <h1 style="top: 900px;" id="seccion_contacto">Contacto</h1>--><!-- INFORMACIÓN DE CONTACTO -->
+                    <!--<div class="special-form-pane" id="contact">
                       
                             <div class="line">
                                 <p> Me gustaría recibir mis mensajes al mail</p> 
@@ -116,28 +350,28 @@
                             <li><b>Página web:</b> Si posee una web y le gustaría ser contactado a través de ella, indíquela a continuación </li>
                         </ul>
                     </div>
-
+                  -->
                     
                 <!--</div>-->
-            </div>
+            <!--</div>
             <div class="row form-pane" id="preference_pane">
                 <div class="col-md-6 col-md-offset-2" id="last">
                     
-                    <h1>¿Qué busca?</h1><!-- ASPIRACIONES -->
-                    <div id="aspiraciones" class="special-form-pane">
+                    <h1>¿Qué busca?</h1>--><!-- ASPIRACIONES -->
+                    <!--<div id="aspiraciones" class="special-form-pane">-->
                         <!--Espacio de los cargos-->
-                        <div class="inline_group">
+                        <!--<div class="inline_group">
                             <label for="id_pretencion_renta">Cargo buscado:</label>
                             <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
                                 {% for cargo in cargos %}
                                     <option value="{{cargo.id}}">{{cargo.nombre}}</option>
                                 {% endfor %}
                             </select>
-                        </div>
+                        </div>-->
                         <!--Fin de modificacion-->
 
                         <!--Modificacion de localidad-->
-                        <div class="inline_group">
+                        <!--<div class="inline_group">
                             <label for="id_pretencion_renta">Dónde desea trabajar:</label>
                             <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
                                 <optgroup label="REGIONES">
@@ -155,9 +389,9 @@
                                     {% endfor %}
                                 </optgroup>
                             </select>
-                        </div>
+                        </div>-->
                         <!--Fin de modificacion-->
-                        <div class="inline_group">
+                        <!--<div class="inline_group">
                             <label for="id_pretencion_renta">Pretenciones de renta:</label>
                             {{form_socio.pretencion_renta}}
                         </div>
@@ -186,10 +420,10 @@
                                 <label for="id_estado">Estado:</label>
                                 {{form_estudio.estado}}
                             </div>
-                            <p>En caso de poseer un titulo tecnico de liceo, indiquelo en las casillas siguientes...</p>
+                            <p>En caso de poseer un titulo tecnico de liceo, indiquelo en las casillas siguientes...</p>-->
                         <!--</div>
                         <div id="escolar2">-->
-                            <div class="form_group">
+                            <!--<div class="form_group">
                                 <label for="id_titulo">Título:</label>
                                 {{form_estudio.titulo}}
                             </div>
@@ -227,10 +461,10 @@
                             <div class="form_group" id="lefty">
                                 <label for="id_estado2">Estado:</label>
                                 {{form_estudio2.estado}}
-                            </div>
+                            </div>-->
                         <!--</div>
                         <div id="escolar2">-->
-                            <div class="form_group">
+                            <!--<div class="form_group">
                                 <label for="id_titulo2">Título:</label>
                                 {{form_estudio2.titulo}}
                             </div>
@@ -238,16 +472,16 @@
                                 <label for="id_institucion2">Institución:</label>
                                 {{form_estudio2.institucion}}
                             </div>
-                        </div>
+                        </div>-->
                         <!--el otro form que debe estar escondido-->
-                        <div class="hidden-form" id="escolar1">
+                        <!--<div class="hidden-form" id="escolar1">
                             <div class="form_group" id="lefty">
                                 <label for="id_estado3">Estado:</label>
                                 {{form_estudio3.estado}}
-                            </div>
+                            </div>-->
                         <!--</div>
                         <div id="escolar2">-->
-                            <div class="form_group">
+                            <!--<div class="form_group">
                                 <label for="id_titulo3">Título:</label>
                                 {{form_estudio3.titulo}}
                             </div>
@@ -303,9 +537,9 @@
                                     {{form_explab.comentario}}
                                 </div>                              
                             </div>
-                        </div>
+                        </div>-->
                         <!--el otro form-->
-                        <div class="hidden-form">
+                        <!--<div class="hidden-form">
                             <div id="_escolar1">
                                 <div class="inline_group" id="ingreso">
                                     <label for="id_desde">Desde:</label>
@@ -330,9 +564,9 @@
                                     {{form_explab2.comentario}}
                                 </div>                            
                             </div>
-                        </div>
+                        </div>-->
                         <!--el otro form-->
-                        <div class="hidden-form">
+                        <!--<div class="hidden-form">
                             <div id="_escolar1">
                                 <div class="inline_group" id="ingreso">
                                     <label for="id_desde">Desde:</label>
@@ -358,9 +592,9 @@
                                     {{form_explab3.comentario}}
                                 </div>                            
                             </div>
-                        </div>
+                        </div>-->
                         <!--el otro form-->
-                        <div class="hidden-form">
+                        <!--<div class="hidden-form">
                             <div id="_escolar1">
                                 <div class="inline_group" id="ingreso">
                                     <label for="id_desde">Desde:</label>
@@ -445,16 +679,27 @@
                 <a id="next" class="btn btn-success" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 <input id="final" class="btn btn-primary" type="submit" value="Registrar">
             </div>               
-        </form>   
+        </form>   -->
     <!--</div>
 </div>-->
 {% endblock %}
 {% block SCRIPT %}
-        <script>
-        $(document).ready(function() {
-        
-            $(".footer").css("margin-top","20px");
-        });
-        </script>
-        <script type="text/javascript" src="{{STATIC_URL}}js/registro.js"></script>
-    {% endblock %}
+    <script type="text/javascript" src="{{STATIC_URL}}js/vendor/jquery.easyWizard.js"></script>
+    <script>
+     $('a.hash').bind('click', function(e) {
+                   e.preventDefault();
+                   $('html, body').animate({ scrollTop: $(this.hash).offset().top - 45}, 700);
+                });
+
+            $('#navbar').waypoint('sticky');
+
+            
+            $('#myWizard').easyWizard({
+                submitButtonClass: 'btn btn-success',
+                prevButton: 'Atrás',
+                nextButton: 'Siguiente',
+                submitButtonText: 'Enviar'
+            });
+    </script> 
+
+{% endblock %}
