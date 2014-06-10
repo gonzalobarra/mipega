@@ -7,7 +7,6 @@ from django.forms.fields import ChoiceField
 from django.forms.widgets import RadioSelect
 from MP.models import *
 from django.contrib.auth.models import User
-from django.contrib.localflavor.cl.forms import CLRutField, CLRegionSelect
 
 
 RANGO = (

@@ -395,8 +395,7 @@ def registro_view(request):
 	form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Deporte')
 	form_hab2 = OtrasHabilidadesForm(request.POST or None, prefix='hab2')
 	form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
-	form_hab3 = OtrasHabilidadesForm(request.POST or None, prefix='hab3')
-	form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Computación')
+	
 
 	cargos = Cargo.objects.all()
 	localidades = Localidad.objects.all()
@@ -486,9 +485,6 @@ def registro_view(request):
 						if form_hab2.is_valid():
 							habilidades2 = OtrasHabilidades(nivel=form_hab2.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab2.cleaned_data['habilidad'])		
 							habilidades2.save()
-						if form_hab3.is_valid():
-							habilidades3 = OtrasHabilidades(nivel=form_hab3.cleaned_data['nivel'], socio=socio_inst, habilidad=form_hab3.cleaned_data['habilidad'])		
-							habilidades3.save()
 						messages.success(request,"El registro se ha realizado exitosamente")
 						#url = reverse('vista_pagoregistro', kwargs={ 'id_socio': socio_inst.id })
 						return HttpResponseRedirect("/infopago/")
@@ -497,7 +493,7 @@ def registro_view(request):
 			messages.warning(request,"Error en los datos ingresados")
 			return HttpResponseRedirect('/registro')							
 	else:	
-		ctx = {'form_user': form_user,'form_socio':form_socio,'cargos':cargos, 'localidades':localidades, 'form_estudio':form_estudio,'form_estudio2':form_estudio2,'form_estudio3':form_estudio3, 'form_explab':form_explab, 'form_explab2':form_explab2,'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab, 'form_hab2':form_hab2, 'form_hab3':form_hab3}
+		ctx = {'form_user': form_user,'form_socio':form_socio,'cargos':cargos, 'localidades':localidades, 'form_estudio':form_estudio,'form_estudio2':form_estudio2,'form_estudio3':form_estudio3, 'form_explab':form_explab, 'form_explab2':form_explab2,'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab, 'form_hab2':form_hab2}
 		return render_to_response('MP/registro.html', ctx, context_instance=RequestContext(request))
 
 #Pendiente
