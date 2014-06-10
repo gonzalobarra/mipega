@@ -6232,3 +6232,7 @@ body .no-sticky #navbar {
 .badge-warning {
   background-color: #f0ad4e;
 }
+
+.chosen-container{
+  width: 100% !important;
+}

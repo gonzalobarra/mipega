@@ -48,59 +48,89 @@
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Nombre</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                <!--<input type="text" class="form-control" id="inputPassword" placeholder="">-->
+                                                {{form_socio.nombre}}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">RUT</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                <!--<input type="text" class="form-control" id="inputPassword" placeholder="">-->
+                                                {{form_user.username}}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Contraseña</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="inputPassword" placeholder="">
+                                                <!--<input type="password" class="form-control" id="inputPassword" placeholder="">-->
+                                                {{form_user.password}}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Repita su contraseña</label>
                                             <div class="col-sm-10">
-                                                <input type="password" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_user.ClaveRepetida}}
                                             </div>
                                         </div>
                                         <h3 class="page-header">Personal</h3>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Género</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control">
+                                                <!--<select class="form-control">
                                                     <option>Seleccione su opción</option>
                                                     <option>Masculino</option>
                                                     <option>Femenino</option>
-                                                </select>
+                                                </select>-->
+                                                {{form_socio.sexo}}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Hijos</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control">
-                                                    <option>Seleccione su opción</option>
-                                                    <option>Sí</option>
-                                                    <option>No</option>
-                                                </select>
+                                                {{form_socio.tiene_hijos}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Estado Civil</label>
+                                            <div class="col-sm-10">
+                                                {{form_socio.estado_civil}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Edad</label>
+                                            <div class="col-sm-10">
+                                                {{form_socio.edad}} 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Nacionalidad</label>
+                                            <div class="col-sm-10">
+                                                {{form_socio.nacionalidad}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Disponibilidad inmediata?</label>
+                                            <div class="col-sm-10">
+                                                {{form_socio.disponibilidad}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Disponibilidad de vehiculo?</label>
+                                            <div class="col-sm-10">
+                                                {{form_socio.disponibilidadV}}
                                             </div>
                                         </div>
                                         <h3 class="page-header">Contacto</h3>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">E-Mail de contacto</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_user.email}}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Teléfono de contacto</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_socio.telefono}}
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -113,40 +143,60 @@
                                     <section class="step" data-step="2" data-step-title="Aspiraciones">
                                         <div class="bs-callout bs-callout-info">
                                             <h3>Aspiraciones</h3>
-                                            <p>En la presente página debe seleccionar los diferentes cargos en los que desea encontrar trabajo, además, de donde le gustaría desempeñarlos, sus pretenciones de rentay el tipo de contrato buscado</p>
+                                            <p>En la presente página debe seleccionar los diferentes cargos en los que desea encontrar trabajo, además, de donde le gustaría desempeñarlos, sus pretenciones de renta y el tipo de contrato buscado</p>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Cargo buscado</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
+                                                  {% for cargo in cargos %}
+                                                      <option value="{{cargo.id}}">{{cargo.nombre}}</option>
+                                                  {% endfor %}
+                                              </select>
                                                 <span class="help-block">Seleccione de la lista los cargos que sean de su interez</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Dónde desea trabajar</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
+                                                  <optgroup label="REGIONES">
+                                                      {% for localidad in localidades %}
+                                                      {% ifequal localidad.tipo "r" %}
+                                                          <option value="{{localidad.id}}">{{localidad.nombre}}</option>
+                                                      {% endifequal %}
+                                                      {% endfor %}
+                                                  </optgroup>
+                                                  <optgroup label="COMUNAS">
+                                                      {% for localidad in localidades %}
+                                                      {% ifequal localidad.tipo "c" %}
+                                                          <option value="{{localidad.id}}">{{localidad.nombre}}</option>
+                                                      {% endifequal %}
+                                                      {% endfor %}
+                                                  </optgroup>
+                                              </select>
                                                 <span class="help-block">Seleccione de la lista los lugares donde desea trabajar</span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Pretenciones de renta</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control" id="id_pretencion_renta" name="pretencion_renta">
-                                                    <option value="" selected="selected">---------</option>
-                                                    <option value="0">&lt; 200.000</option>
-                                                    <option value="1">200.000-450.000</option>
-                                                    <option value="2">450.000-650.000</option>
-                                                    <option value="3">650.000-850.000</option>
-                                                    <option value="4">850.000-1.000.000</option>
-                                                    <option value="5">1.250.000-1.500.000</option>
-                                                    <option value="6">1.500.000-1.750.000</option>
-                                                    <option value="7">2.000.000-2.500.000</option>
-                                                    <option value="8">2.500.000-3.000.000</option>
-                                                    <option value="9">3.000.000 o +</option>
-                                                </select>
+                                                {{form_socio.pretencion_renta}}
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Tipo de contrato</label>
+                                            <div class="col-sm-10">
+                                                {{form_socio.tipo_contrato}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-2 control-label">Cargo extra?</label>
+                                            <div class="col-sm-10">
+                                                {{form_socio.cargo_extra}}
+                                            </div>
+                                        </div>
+                                        
                                     </section>
                                     <section class="step" data-step="3" data-step-title="Estudios">
                                         <div class="bs-callout bs-callout-info">
@@ -157,45 +207,35 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" for="exampleInputEmail1">Estado</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control" id="id_est1-estado" name="est1-estado">
-                                                    <option value="" selected="selected">---------</option>
-                                                    <option value="i">Incompleto</option>
-                                                    <option value="c">Cursando</option>
-                                                    <option value="co">Completo</option>
-                                                </select>
+                                                {{form_estudio.estado}}
                                             </div>
                                         </div>
                                         <div class="alert alert-info">En caso de poseer un titulo técnico de liceo, indiquelo en las casillas siguientes</div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Título</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_estudio.titulo}}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-2 control-label">Institución</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_estudio.institucion}}
                                             </div>
                                         </div>
                                         <h3 class="page-header">Enseñanza Superior</h3>
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-1 control-label">Estado</label>
                                             <div class="col-sm-3">
-                                                <select class="form-control" id="id_est1-estado" name="est1-estado">
-                                                    <option value="" selected="selected">---------</option>
-                                                    <option value="i">Incompleto</option>
-                                                    <option value="c">Cursando</option>
-                                                    <option value="co">Completo</option>
-                                                </select>
+                                                {{form_estudio2.estado}}
                                             </div>
                                             <label for="inputPassword" class="col-sm-1 control-label">Título</label>
                                             <div class="col-sm-3">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_estudio2.titulo}}
                                             </div>
                                             <label for="inputPassword" class="col-sm-1 control-label">Institución</label>
                                             <div class="col-sm-3">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_estudio2.institucion}}
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-info pull-right">Agregar título <span class="glyphicon glyphicon-plus"></span></button>
@@ -208,20 +248,15 @@
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-1 control-label">Desde</label>
                                             <div class="col-sm-2">
-                                                <select class="form-control" id="id_est1-estado" name="est1-estado">
-                                                    <option value="" selected="selected">---------</option>
-                                                    <option value="i">Incompleto</option>
-                                                    <option value="c">Cursando</option>
-                                                    <option value="co">Completo</option>
-                                                </select>
+                                                {{form_explab.desde}}
                                             </div>
                                             <label for="inputPassword" class="col-sm-1 control-label">Hasta</label>
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_explab.hasta}}
                                             </div>
                                             <label for="inputPassword" class="col-sm-1 control-label">Rubro</label>
                                             <div class="col-sm-5">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_explab.rubro}}
                                             </div>
                                         </div>
                                         <div class="form-group">

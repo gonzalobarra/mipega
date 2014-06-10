@@ -67,12 +67,7 @@ $(document).ready(function() {
     
         
     
-    $("#id_estado_civil").css({
     
-        width: "72%",
-        'margin-left': "8%",
-        'max-width': "100%"
-    });
     
     /*      index.html      */
     /*
