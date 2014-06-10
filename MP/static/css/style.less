@@ -1,37 +1,279 @@
+@import url('less/bootstrap-theme/bootstrap-theme.less');
+@import url('less/widow/widow.less');
 
-/*          MIXINS          */
-@import "mixins";
+html,body{
+	height: 100%;
+	background-color: @jumbotron-bg;
+	.no-sticky #navbar{
+		background-color: #1c94c6; //#00B8E6;
+	}
+}
+.section{
+	padding: 50px 0;
+}
+.section-title{
+	padding-bottom: 40px;
+}
+.sub-section{
+	margin-top: 15px;
+}
+.separador{
+	background: url("img/divider.png") no-repeat bottom center;
+	padding-bottom: 12px;
+	display: block;
+	height: 10px;
+	content: ",";
+	text-indent: -9999px;
+	text-align: center;
+	margin: auto auto 24px;
+}
+#navbar{
+	-webkit-transition: background-color 100ms ease-in 100ms; /* property duration timing-function delay */
+    -moz-transition: background-color 100ms ease-in 100ms;
+    -o-transition: background-color 100ms ease-in 100ms;
+    transition: background-color 100ms ease-in 100ms;
+	&.stuck{
+		position: fixed;
+		top: 0;
+		//box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+		left: 0;
+		right: 0;
+		z-index: 999;
+		background-color: #1c94c6; //#00B8E6;
+	}
+}
+.navbar-brand{
+	padding: 0px 0px 0px 15px !important;
+}
+.navbar-nav.navbar-right:last-child {
+	margin-right: 0 !important;
+}
 
-/*          FONTS           */
-@import "fonts";
+.nav-tabs a {
+   height: 62px;  
+}
 
-/*          TEMPLATE        */
-@import "template";
+#landing{
+	background-color: red;
+	position: relative;
+	// height: 800px;
+	margin-bottom: -65px;
+	height:100%;
+	overflow: hidden;
+	color: #fff;
+	overflow-wrap: normal;
+	text-wrap: none;
+	h1{
+		font-size: 60px;
+		font-family: 'Open Sans',sans-serif;
+		// font-weight: 300;
+	}
+	h2{
+		font-family: 'Open Sans',sans-serif;
+		font-size: 40px;	
+	}
+	h3{
+		font-weight: 300;
+		font-size: 30px;
+	}
+	a{
+		color: #fff;
+	}
+}
 
-/*          LOGIN           */
-@import "login";
+#landing-video{
+	position: absolute;
+	top:0;
+	right:0;
+	bottom: 0;
+	left:0;
+	z-index:1;
+}
 
-/*          PERFIL          */
-@import "perfil";
+#landing-content{
+	height: 100%;
+	position: relative;
+	z-index: 2;
+	top:0;
+	right:0;
+	bottom: 0;
+	left:0;
+	z-index:2;	
+	background-color: rgba(0, 32, 43, 0.7); //rgba(10, 54, 28, 0.5); //rgba(0, 84, 209, 0.5); //rgba(0, 255, 224, 0.5);
+	padding-top: 60px;
+}
 
-/*          REGISTRO        */
-@import "registro";
+#buscador{
+	//background: url('img/bg-buscar.png') top right no-repeat;
+}
 
-/*          DETALLE         */
-@import "detalle";
+#footer{
+	padding: 20px 0 10px;
+	background: #2f2f2f;
+	color: #ccc;
+	font-weight: 300;
+}
 
-/*          BUSQUEDA        */
-@import "busqueda";
+.hi-icon {
+	display: inline-block;
+	font-size: 48px;
+	line-height: 90px;
+	cursor: pointer;
+	margin: 15px 30px;
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+	color: #fff;
+	background: rgba(255,255,255,0.1);
+	-webkit-transition: -webkit-transform ease-out 0.1s, background 0.2s;
+	-moz-transition: -moz-transform ease-out 0.1s, background 0.2s;
+	transition: transform ease-out 0.1s, background 0.2s;
+	& span{
+		padding-top: 20px !important;
+	}
+	&:before{
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		display: block;
+		-webkit-font-smoothing: antialiased;
+	}
+	&:after {
+		top: 0;
+		left: 0;
+		padding: 0;
+		z-index: -1;
+		box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+		opacity: 0;
+		-webkit-transform: scale(0.9);
+		-moz-transform: scale(0.9);
+		-ms-transform: scale(0.9);
+		transform: scale(0.9);
+		pointer-events: none;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		content: '';
+		-webkit-box-sizing: content-box;
+		-moz-box-sizing: content-box;
+		box-sizing: content-box;
+	}
+	&:hover{
+		background: rgba(255,255,255,0.05);
+		-webkit-transform: scale(0.93);
+		-moz-transform: scale(0.93);
+		-ms-transform: scale(0.93);
+		transform: scale(0.93);
+		color: #fff;
+		&:after{
+			-webkit-animation: sonarEffect 1.3s ease-out 75ms;
+			-moz-animation: sonarEffect 1.3s ease-out 75ms;
+			animation: sonarEffect 1.3s ease-out 75ms;
+		}
+	}
+}
 
-/*          EDITAR PERFIL   */
-@import "editarperfil";
+@-webkit-keyframes sonarEffect {
+	0% {
+		opacity: 0.3;
+	}
+	40% {
+		opacity: 0.5;
+		box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px rgb(255, 255, 255), 0 0 0 10px rgba(255,255,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px rgb(255, 255, 255), 0 0 0 10px rgba(255,255,255,0.5);
+		-webkit-transform: scale(1.5);
+		opacity: 0;
+	}
+}
+@-moz-keyframes sonarEffect {
+	0% {
+		opacity: 0.3;
+	}
+	40% {
+		opacity: 0.5;
+		box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px rgb(255, 255, 255), 0 0 0 10px rgba(255,255,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px rgb(255, 255, 255), 0 0 0 10px rgba(255,255,255,0.5);
+		-moz-transform: scale(1.5);
+		opacity: 0;
+	}
+}
+@keyframes sonarEffect {
+	0% {
+		opacity: 0.3;
+	}
+	40% {
+		opacity: 0.5;
+		box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px rgb(255, 255, 255), 0 0 0 10px rgba(255,255,255,0.5);
+	}
+	100% {
+		box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 0 10px 10px rgb(255, 255, 255), 0 0 0 10px rgba(255,255,255,0.5);
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+.easyWizardWrapper{
+	.step{
+		padding: 0px 0 20px;
+		.form-group{
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+		}
+	}
+}
+.easyWizardButtons{
+	text-align: right;
+	padding-top: 15px;
+	.btn{
+		margin-left: 5px;
+	}
+}
+.bs-callout {
+	margin: 20px 0;
+	padding: 20px;
+	border-left: 3px solid #eee;
+}
+.bs-callout-info {
+	background-color: #f4f8fa;
+	border-color: #5bc0de;
+	h3 {
+		color: #5bc0de;
+	}
+}
 
-/*          BANDEJA DE ENTRADA   */
-@import "bandeja";
+.tab-pane{
+	background-color: @nav-tabs-active-link-hover-bg;
+	border-left: 1px solid @nav-tabs-border-color;
+	border-bottom: 1px solid @nav-tabs-border-color;
+	border-right: 1px solid @nav-tabs-border-color;
+	border-bottom-right-radius: @panel-border-radius;
+	border-bottom-left-radius: @panel-border-radius;
+	padding: 30px;
+}
 
-/*          CAMBIO DE CLAVE      */
-@import "cambiarclave";
+.sub-title{
+	padding: 10px 30px;
+	color: #fff;
+	//margin-right: 100px;
+	margin-left: -30px;
+	margin-bottom: 30px;
+	&.primary{ background-color: @brand-primary }
+	&.info{ background-color: @brand-info }
+	&.success{ background-color: @brand-success }
+	&.warning{ background-color: @brand-warning }
+}
+.nav-img-profile{
+	margin-top: 5px;
+}
 
-
-
+.badge-warning{background-color:@brand-warning;}
 

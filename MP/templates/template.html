@@ -10,17 +10,17 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
 
     <!-- Le styles -->
-    <link href="{{STATIC_URL}}bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <!--<link href="{{STATIC_URL}}bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen"/>-->
     <link href="{{STATIC_URL}}css/style.css" rel="stylesheet"/>
-    <link href="{{STATIC_URL}}img/mipegalogo.png" rel="shortcut icon"/>
-    <link href="{{STATIC_URL}}css/slider.css" rel="stylesheet"/>
+    <link href="{{STATIC_URL}}img/logo-mipega.png" rel="shortcut icon"/>
+    <!--<link href="{{STATIC_URL}}css/slider.css" rel="stylesheet"/>-->
     <!--<link href="{{STATIC_URL}}bootstrap/dist/css/bootstrap-responsive.min.css" rel="stylesheet"/>-->
     <link href="{{STATIC_URL}}css/bootstrap-glyphicons.css" rel="stylesheet"/>
     <!--<link href="{{STATIC_URL}}css/style.less" rel="stylesheet/less" type="text/css"/>--> 
-    <link href="{{STATIC_URL}}css/slidingForm.css" rel="stylesheet" type="text/css" media="screen"/>
+    <!--<link href="{{STATIC_URL}}css/slidingForm.css" rel="stylesheet" type="text/css" media="screen"/>
     <link href="{{STATIC_URL}}css/hopscotch-0.1.1.min.css" rel="stylesheet" type="text/css" media="screen"/> 
     <link href="{{STATIC_URL}}css/jquery.ambiance.css" rel="stylesheet" type="text/css" media="screen"/> 
-    <link href="{{STATIC_URL}}css/chosen.css" rel="stylesheet" type="text/css" media="screen"/> 
+    <link href="{{STATIC_URL}}css/chosen.css" rel="stylesheet" type="text/css" media="screen"/> --> 
     
 </head>
 
@@ -52,7 +52,7 @@
         {% endif %}
     </div>--><!-- #fixed_msg-->
         
-
+    <!--
     <div class="header">
         <img src="{{STATIC_URL}}img/mipegalogo.png" id="logo">
         <h1><a href="/">Mi Pega.cl</a></h1>
@@ -66,7 +66,8 @@
             {% endif %}
             
         </div>
-    </div><!-- #header -->
+    </div>--><!-- #header -->
+
 
     
             {% block contenido %}
@@ -74,31 +75,11 @@
             
     <!-- #content -->
 
-    <div class="footer row">        
-        <div class="col-lg-6 first">
-            <ul>
-                <li><a href="#">Perfil de cuenta</a></li>
-                <li>&#124;</li>
-                <li><a href="#">Busqueda</a></li>
-                <li>&#124;</li>
-                <li><a href="#">Feedback</a></li>
-            </ul>
-        </div>
-        
-        <div class="col-lg-6 contacto">
-            <ul>
-                <li><span class="glyphicon glyphicon-envelope"><p><b>contacto@mail.cl</b></p></span></li>
-                <li><span class="glyphicon glyphicon-phone"></span><p><b>(+56) 9 1234567</b></p></li>
-                <li><span class="glyphicon glyphicon-map-marker"></span><p><b>Alameda #123</b></p></li>
-            </ul>
-        </div>
-    </div><!-- #footer -->    
-
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{{STATIC_URL}}js/jquery.js"></script>
-    <script src="{{STATIC_URL}}bootstrap/dist/js/bootstrap.min.js"></script>
+    
     <script type="text/javascript" src="{{STATIC_URL}}js/plugins.js"></script>    
     <script type="text/javascript" src="{{STATIC_URL}}js/tour.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.scrollTo-1.4.3.1-min.js"></script>
@@ -107,6 +88,12 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/hopscotch-0.1.1.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/sliding.form.js"></script>
     <!--<script src="{{STATIC_URL}}js/more.js"></script>-->
+    <script type="text/javascript" src="{{STATIC_URL}}js/vendor/holder.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/vendor/jquery.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/vendor/waypoints.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/vendor/waypoints-sticky.js"></script>
+
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.noty.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery.ambiance.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/chosen.jquery.js"></script>
