@@ -1984,7 +1984,7 @@ INSERT INTO "MP_rubro"(
 --Habilidades--
 INSERT INTO "MP_tipohabilidad"(
             id, nombre)
-VALUES (1, 'Deporte'),(2,'Idioma'),(3,'Computación');
+VALUES (1, 'Deporte'),(2,'Idioma');
 
 --Deporte--
 INSERT INTO "MP_habilidad"(
@@ -2164,16 +2164,3 @@ INSERT INTO "MP_habilidad"(
 (184, 'Uzbekistano',2),
 (185, 'Vasco',2),
 (186, 'Vietnamés',2);
-
---Habilidades computacionales--
-INSERT INTO "MP_habilidad"(
-            id, nombre, "tipoHabilidad_id")
-	VALUES 
-(187, 'Microsoft Word',3),
-(188, 'Microsoft Exel',3),
-(189, 'Ofimática de Microsoft',3),
-(190, 'SO Windows',3),
-(191, 'SO Unix',3),
-(192, 'Lenguaje C',3),
-(193, 'Lenguaje C++',3),
-(194, 'Lenguaje C#',3);
