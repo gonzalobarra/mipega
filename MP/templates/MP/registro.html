@@ -3,7 +3,7 @@
 {% block contenido %}
 
 <!--<div id="content">
-    <div id="wrapper">-->
+    <div id="wrapper">--> 
         {% load bootstrap_toolkit %}
         <div id="nav">
             <nav id="navbar" class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -262,9 +262,16 @@
                                         <div class="form-group">
                                             <label for="inputPassword" class="col-sm-1 control-label">Cargo</label>
                                              <div class="col-sm-11">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_explab.cargo}}
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword" class="col-sm-1 control-label">Comentario</label>
+                                             <div class="col-sm-11">
+                                                {{form_explab.comentario}}
+                                            </div>
+                                        </div>
+                                        
                                         <button type="button" class="btn btn-info pull-right">Agregar cargo <span class="glyphicon glyphicon-plus"></span></button>
                                     </section>
                                     <section class="step" data-step="5" data-step-title="Otras habilidades">
@@ -273,19 +280,14 @@
                                             <p>Ingrese otras caracteristicas que desee que aparescan en su perfil </p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputPassword" class="col-sm-1 control-label">Nivel</label>
-                                             <div class="col-sm-3">
-                                                <select class="form-control" id="id_est1-estado" name="est1-estado">
-                                                    <option value="" selected="selected">---------</option>
-                                                    <option value="i">Usuario</option>
-                                                    <option value="c">Medio</option>
-                                                    <option value="co">Avanzado</option>
-                                                </select>
-                                            </div>
                                             <label for="inputPassword" class="col-sm-1 control-label">Habilidad</label>
                                              <div class="col-sm-7">
-                                                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                                                {{form_hab.habilidad}}
                                             </div>
+                                            <label for="inputPassword" class="col-sm-1 control-label">Nivel</label>
+                                             <div class="col-sm-3">
+                                                {{form_hab.nivel}} 
+                                            </div>                                            
                                         </div>
                                         <button type="button" class="btn btn-info pull-right">Agregar cargo <span class="glyphicon glyphicon-plus"></span></button>
                                     </section>
@@ -677,7 +679,7 @@
                         <div style="margin-bottom: 10px;">
                             <div class="inline_group">
                                 <label for="id_nivel">Nivel:</label>
-                                {{form_hab.nivel}}
+                                {{form_hab.nivel}} {{form_hab.habilidad}}
                             </div>
                             <div class="inline_group">
                                 <label for="id_habilidad">Habilidad:</label>
