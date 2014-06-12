@@ -1,0 +1,27 @@
+<div id="landing">
+  <div id="landing-video">
+    <video autoplay="" loop="" preload="true" width="100%">
+      <source src="{{STATIC_URL}}video/timelapse.mp4" type="video/mp4">
+    </video>    
+  </div>
+  <div id="landing-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+            <h1>¡Hola!</h1>
+        </div>
+        <div class="col-sm-6 ">
+          <h2>Esta es tu oportunidad, basta de buscar trabajo. ¡Deja que el trabajo te busque a ti!</h2>
+          <p class="lead"> Estarás disponible para ser contactado con absoluta privacidad por toda la oferta de empleo del país.</p>
+          <p class="lead"> Conócenos, no te arrepentirás ;)</p>
+          <a href="{% url 'vista_registro' %}" class="btn btn-primary btn-lg">Regístrate</a>
+        </div>
+        <div class="col-sm-6 text-center">
+          <h2>¿Buscas personal?</h2>
+          <p class="lead">Tenemos la persona ideal</p>
+          <a href="#buscador" class="hi-icon hash"><span class="glyphicon glyphicon-search"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,190 +3,62 @@
 {% block contenido %}
 
 <!--
-<div class="body row">     
-        
-        
-        <div class="col-lg-7">
-            <div class="jumbotron">
-            <h1>¡Participa en mipega.cl!</h1>
-            <p style="text-align:justify">Esta es su oportunidad, basta de buscar trabajo... deja que el trabajo te busque a ti!
-                Estaras disponible para ser contactado con absoluta privacidad por toda la oferta de empleo del pais. Conocenos y no te arrepentiras.</p>
-            <p><a class="btn btn-primary btn-large" href="{% url 'vista_registro' %}">¡Unetenos!</a></p>
-            </div>
-            <div class="fast-search-container">
-                <div class="fast-search">
-                
-                <p style="text-align:justify">¿Conoces el número de folio de quien te intereza? ¡Utiliza este buscador!</p>
-                <p>
-                    <form role="form" action="{% url 'vista_detalle_socio_folio' %}" method="post">
-                        {% csrf_token %}
-                        <input type="text" class="form-control" name="folio" placeholder="folio...">
-                        <input type="submit" value="Ver" class="btn btn-primary">
-                    </form>
-                </p>
-                </div>
-            </div>
-        </div>-->
-        <div id="landing">
-            <div id="landing-video">
-                <video autoplay="" loop="" preload="true" width="100%">
-                   <source src="{{STATIC_URL}}video/timelapse.mp4" type="video/mp4">
-                </video>    
-            </div>
-            <div id="landing-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h1>¡Hola!</h1>
-                        </div>
-                        <div class="col-sm-6 ">
-                            <h2>Esta es tu oportunidad, basta de buscar trabajo. ¡Deja que el trabajo te busque a ti!</h2>
-                            <p class="lead"> Estarás disponible para ser contactado con absoluta privacidad por toda la oferta de empleo del país.</p>
-                            <p class="lead"> Conócenos, no te arrepentirás ;)</p>
-                            <a href="{% url 'vista_registro' %}" class="btn btn-primary btn-lg">Regístrate</a>
-                        </div>
-                        <div class="col-sm-6 text-center">
-                            <h2>¿Buscas personal?</h2>
-                            <p class="lead">Tenemos la persona ideal</p>
-                            <a href="#buscador" class="hi-icon hash"><span class="glyphicon glyphicon-search"></span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="body row">         
+  <div class="col-lg-7">
+    <div class="jumbotron">
+    <h1>¡Participa en mipega.cl!</h1>
+      <p style="text-align:justify">Esta es su oportunidad, basta de buscar trabajo... deja que el trabajo te busque a ti! Estaras disponible para ser contactado con absoluta privacidad por toda la oferta de empleo del pais. Conocenos y no te arrepentiras.</p>
+      <p><a class="btn btn-primary btn-large" href="{% url 'vista_registro' %}">¡Unetenos!</a></p>
+    </div>
+    <div class="fast-search-container">
+      <div class="fast-search">
+      
+      <p style="text-align:justify">¿Conoces el número de folio de quien te intereza? ¡Utiliza este buscador!</p>
+      <p>
+        <form role="form" action="{% url 'vista_detalle_socio_folio' %}" method="post">
+          {% csrf_token %}
+          <input type="text" class="form-control" name="folio" placeholder="folio...">
+          <input type="submit" value="Ver" class="btn btn-primary">
+        </form>
+      </p>
+      </div>
+    </div>
+  </div>-->
+{% include "include_templates/portada.html" %}
+
+{% include "include_templates/navbar.html" %}
+
+{% include "include_templates/modal-login.html" %}
+
+<div id="buscador" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            {% csrf_token %}
+            {% include "include_templates/busqueda_rapida.html" %}
+          </div>
         </div>
 
-        <div id="nav">
-            <nav id="navbar" class="navbar navbar-inverse navbar-static-top" role="navigation">
-                <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#"><img src="{{STATIC_URL}}img/logo-mipega.png" alt=""></a>
-                    </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" data-toggle="modal" data-target="#modal-login">Inicia sesión</a></li>
-                            <li><a href="{% url 'vista_registro' %}">Registrarse</a></li>
-                            <li><a href="#">¿Dudas?</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div>
-            </nav>
-        </div>
-
-   <!-- <div class="modal fade bs-modal-sm" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <form action="">
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Recordarme
-                </label>
-              </div>
-              <button type="button" class="btn btn-primary pull-right"> Iniciar Sesión</button>
-            </div>
-          </form>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>¿Conoces el número de folio de quien te interesa? ¡Utiliza este buscador!</p>
+            {% include "include_templates/busqueda_folio.html" %}
+          </div>
         </div>
       </div>
-    </div> -->
-
-    {% include "modal-login.html" %}
-
-    <div id="buscador" class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                              {% csrf_token %}
-                                <form action="." method="" role="form" class="form">
-                                    <div class="form-group">
-                                        <label for="inputProfesion">Profesión/Oficio</label>
-                                        <input type="text" class="form-control" id="inputProfesion" placeholder="Por ejemplo: Ingeniero Eléctrico">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEdades">Seleccione rango de edades</label>
-                                        <input type="text" class="form-control" id="inputEdades" placeholder="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputEdades">Seleccione rango de edades</label>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="masculino" >
-                                                Masculino
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="femenino">
-                                                Femenino
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="indiferente" checked>
-                                                Indiferente
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputLocalidad">Localidad</label>
-                                        <input type="text" class="form-control" id="inputLocalidad" placeholder="Por ejemplo: Calama">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Buscar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <p>¿Conoces el número de folio de quien te interesa? ¡Utiliza este buscador!</p>
-                                <form  class="form-inline"  saction="." method="" id="folio" role="form">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="inputFolio" placeholder="Ingrese folio">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="jumbotron">
-                            <h1>Busca a la persona ideal</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, fugiat qui neque tempora quis expedita dolorem exercitationem aut! Rerum, provident nemo quas quis explicabo. Culpa, similique sequi fugiat inventore veritatis.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="col-sm-8">
+        <div class="jumbotron">
+          <h1>Busca a la persona ideal</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, fugiat qui neque tempora quis expedita dolorem exercitationem aut! Rerum, provident nemo quas quis explicabo. Culpa, similique sequi fugiat inventore veritatis.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga repellat cum facere aspernatur totam? In, aliquid, magnam, veniam soluta ipsa iusto eveniet at deleniti ad ut officia incidunt laudantium illum!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% include "include_templates/footer.html" %}
         <!-- 
         <div class="col-lg-4 busqueda">
             {% csrf_token %}
@@ -262,20 +134,41 @@
             </form>
         </div>
         
-    </div>
-
-    
-    <div class="result">
-        
+    </div>   
+    <div class="result">        
     </div>-->
 {% endblock %}
 {% block SCRIPT %}
 <script type="text/javascript">
-  $('a.hash').bind('click', function(e) {
-                   e.preventDefault();
-                   $('html, body').animate({ scrollTop: $(this.hash).offset().top - 45}, 700);
-                });
+  function busquedaavanzada(){
+     var parametros = $('#id_form').serialize();
+     $("#id_form").attr("action", "{% url 'busqueda_avanzada' %}");
+     $('#id_form').submit();
+  }
 
-            $('#navbar').waypoint('sticky');
+  $('#search').click(function(e){
+    e.preventDefault(); 
+    var parametros = $('#id_form').serialize();
+    $.ajax({
+      url: "{% url 'busqueda_rapida' %}",
+      data: parametros,
+      datatype: 'json',           
+      type: 'post'
+    }).done(function(data){
+      if(data!=""){
+        $('.result').html(data);
+      }
+    }).fail(function(){
+      $.ambiance({message: "Error al hacer la busqueda", title:"Error",
+                  type: "error",timeout:4,width:200,});
+    }); 
+  });
+
+  $('a.hash').bind('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $(this.hash).offset().top - 45}, 700);
+  });
+
+  $('#navbar').waypoint('sticky');
 </script>
 {% endblock %}

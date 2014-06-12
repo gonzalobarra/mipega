@@ -1,0 +1,7 @@
+<form  class="form-inline"  saction="." method="" id="folio" role="form" action="{% url 'vista_detalle_socio_folio' %}">
+  {% csrf_token %}
+  <div class="form-group">
+    <input type="text" class="form-control" id="inputFolio" placeholder="Ingrese folio">
+  </div>
+  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+</form>
