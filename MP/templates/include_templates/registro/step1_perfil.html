@@ -1,0 +1,101 @@
+<section class="step" data-step="1" data-step-title="Perfil">
+    <div class="bs-callout bs-callout-info">
+        <h3>Perfil</h3>
+        <p>A continuación debe completar con sus datos de cuenta, personales y de contacto en el formulario expuesto a continuación. Los campos marcados con un * son obligatorios. </p>
+    </div>
+    <h3 class="page-header">Cuenta</h3>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Nombre</label>
+        <div class="col-sm-10">
+            <!--<input type="text" class="form-control" id="inputPassword" placeholder="">-->
+            {{form_socio.nombre}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">RUT</label>
+        <div class="col-sm-10">
+            <!--<input type="text" class="form-control" id="inputPassword" placeholder="">-->
+            {{form_user.username}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Contraseña</label>
+        <div class="col-sm-10">
+            <!--<input type="password" class="form-control" id="inputPassword" placeholder="">-->
+            {{form_user.password}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Repita su contraseña</label>
+        <div class="col-sm-10">
+            {{form_user.ClaveRepetida}}
+        </div>
+    </div>
+    <h3 class="page-header">Personal</h3>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Género</label>
+        <div class="col-sm-10">
+            <!--<select class="form-control">
+                <option>Seleccione su opción</option>
+                <option>Masculino</option>
+                <option>Femenino</option>
+            </select>-->
+            {{form_socio.sexo}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Hijos</label>
+        <div class="col-sm-10">
+            {{form_socio.tiene_hijos}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Estado Civil</label>
+        <div class="col-sm-10">
+            {{form_socio.estado_civil}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Edad</label>
+        <div class="col-sm-10">
+            {{form_socio.edad}} 
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Nacionalidad</label>
+        <div class="col-sm-10">
+            {{form_socio.nacionalidad}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Disponibilidad inmediata?</label>
+        <div class="col-sm-10">
+            {{form_socio.disponibilidad}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Disponibilidad de vehiculo?</label>
+        <div class="col-sm-10">
+            {{form_socio.disponibilidadV}}
+        </div>
+    </div>
+    <h3 class="page-header">Contacto</h3>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">E-Mail de contacto</label>
+        <div class="col-sm-10">
+            {{form_user.email}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Teléfono de contacto</label>
+        <div class="col-sm-10">
+            {{form_socio.telefono}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Página web</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputPassword" placeholder="">
+        </div>
+    </div>
+</section>

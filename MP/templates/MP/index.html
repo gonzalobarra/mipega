@@ -24,11 +24,11 @@
       </div>
     </div>
   </div>-->
-{% include "include_templates/portada.html" %}
+{% include "include_templates/inicio/portada.html" %}
 
-{% include "include_templates/navbar.html" %}
+{% include "include_templates/comun/navbar.html" %}
 
-{% include "include_templates/modal-login.html" %}
+{% include "include_templates/comun/modal-login.html" %}
 
 <div id="buscador" class="section">
   <div class="container">
@@ -37,14 +37,14 @@
         <div class="panel panel-default">
           <div class="panel-body">
             {% csrf_token %}
-            {% include "include_templates/busqueda_rapida.html" %}
+            {% include "include_templates/inicio/busqueda_rapida.html" %}
           </div>
         </div>
 
         <div class="panel panel-default">
           <div class="panel-body">
             <p>¿Conoces el número de folio de quien te interesa? ¡Utiliza este buscador!</p>
-            {% include "include_templates/busqueda_folio.html" %}
+            {% include "include_templates/inicio/busqueda_folio.html" %}
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
   </div>
 </div>
 
-{% include "include_templates/footer.html" %}
+{% include "include_templates/comun/footer.html" %}
         <!-- 
         <div class="col-lg-4 busqueda">
             {% csrf_token %}
