@@ -24,7 +24,6 @@ def index_view(request):
 	form = BuscaRapidaForm(request.POST or None)
 	localidades = Localidad.objects.all()
 	cargos = Cargo.objects.all()
-	#messages.warning(request, "DEBUG")
 	ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos}
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
