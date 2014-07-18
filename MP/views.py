@@ -22,10 +22,43 @@ import json
 
 def index_view(request):
 	form = BuscaRapidaForm(request.POST or None)
+	formLogin = LoginForm(request.POST or None)
 	localidades = Localidad.objects.all()
 	cargos = Cargo.objects.all()
-	ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos}
+	ctx ={'form_busqueda_rapida':form,'formLogin':formLogin, 'localidades':localidades, 'cargos':cargos}
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
+
+def login_view(request):
+	"""
+	Vista encargada autenticar un usuario para ingresar al sistema
+	"""
+	if not request.user.is_anonymous():
+	    return HttpResponseRedirect('/')
+	if request.method == 'POST':
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			if user.is_active:
+				login(request, user)
+				# redireccionar al inicio
+				messages.success(request, 'Bienvenido ' + user.username)
+				return HttpResponseRedirect('/')
+			else:
+				# Mensaje warning
+				messages.warning(request, 'Tu cuenta ha sido desactivada.')
+				return HttpResponseRedirect('/')
+		else:
+			# Mensaje de errorreturn HttpResponseRedirect('/')
+			messages.error(request, 'Nombre de usuario o password erronea.')
+			form = BuscaRapidaForm(request.POST or None)
+			formLogin = LoginForm(request.POST or None)
+			localidades = Localidad.objects.all()
+			cargos = Cargo.objects.all()
+			ctx ={'form_busqueda_rapida':form,'formLogin':formLogin, 'localidades':localidades, 'cargos':cargos}
+			return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/')
 
 def detalle_socio_folio_view(request):
 	if request.method == "POST":
@@ -506,35 +539,6 @@ def pagoregistro_view(request, id_socio):
 	return render_to_response('MP/pagoexitoso.html',ctx, context_instance=RequestContext(request))
 
 
-def login_view(request):
-    """
-    Vista encargada autenticar un usuario para ingresar al sistema
-    """
-    if not request.user.is_anonymous():
-        return HttpResponseRedirect('/')
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                # redireccionar al inicio
-                messages.success(request, 'Bienvenido ' + user.username)
-                return HttpResponseRedirect('/editarperfil/')
-            else:
-                # Mensaje warning
-                messages.warning(request, 'Tu cuenta ha sido desactivada.')
-                return HttpResponseRedirect('/login/')
-        else:
-            # Mensaje de errorreturn HttpResponseRedirect('/')
-            messages.error(request, 'Nombre de usuario o password erronea.')
-            return HttpResponseRedirect('/login/')
-    else:
-        form = LoginForm()
-        ctx = {'form':form}
-        return render_to_response('MP/login.html',ctx,context_instance=RequestContext(request))
- 
 #@login_required(login_url='/')
 def logout_view(request):
     """

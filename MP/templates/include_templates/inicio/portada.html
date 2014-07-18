@@ -14,7 +14,12 @@
           <h2>Esta es tu oportunidad, basta de buscar trabajo. ¡Deja que el trabajo te busque a ti!</h2>
           <p class="lead"> Estarás disponible para ser contactado con absoluta privacidad por toda la oferta de empleo del país.</p>
           <p class="lead"> Conócenos, no te arrepentirás ;)</p>
-          <a href="{% url 'vista_registro' %}" class="btn btn-primary btn-lg">Regístrate</a>
+          {% if user.is_authenticated and user.is_active%}
+              <a href="{% url 'vista_editarperfil' %}" class="btn btn-primary btn-lg">Tu Perfil</a>
+          {% else %}
+              <a href="{% url 'vista_registro' %}" class="btn btn-primary btn-lg">Regístrate</a>
+          {% endif %}
+          
         </div>
         <div class="col-sm-6 text-center">
           <h2>¿Buscas personal?</h2>

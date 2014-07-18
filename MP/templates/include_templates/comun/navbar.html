@@ -12,11 +12,19 @@
         <a class="navbar-brand" href="#"><img src="{{STATIC_URL}}img/logo-mipega.png" alt=""></a>
       </div>
 
+
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-toggle="modal" data-target="#modal-login">Inicia sesión</a></li>
-          <li><a href="{% url 'vista_registro' %}">Registrarse</a></li>
+        <ul class="nav navbar-nav navbar-right"> 
+          {% if user.is_authenticated and user.is_active%}
+              <li><a onclick="function(e){e.preventDefault();}">Bienvenido <strong>{{user.username}}</strong>!</a></li>
+              <li><a href="{% url 'vista_editarperfil' %}">Perfil</a></li>
+              <li><a href="{% url 'vista_logout' %}">Cerrar Sesión</a></li>
+          {% else %}
+              <li><a href="#" data-toggle="modal" data-target="#modal-login">Inicia sesión</a></li>
+              <li><a href="{% url 'vista_registro' %}">Registrarse</a></li> 
+          {% endif %}
+          </a></li>
           <li><a href="#">¿Dudas?</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->

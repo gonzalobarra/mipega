@@ -1,5 +1,11 @@
 {% extends 'template.html' %}
 {% block title %} Inicio | MiPega.cl {% endblock %}
+
+{% block portada %}
+{% include "include_templates/inicio/portada.html" %}
+{% endblock %}
+
+
 {% block contenido %}
 
 <!--
@@ -24,11 +30,7 @@
       </div>
     </div>
   </div>-->
-{% include "include_templates/inicio/portada.html" %}
 
-{% include "include_templates/comun/navbar.html" %}
-
-{% include "include_templates/comun/modal-login.html" %}
 
 <div id="buscador" class="section">
   <div class="container">

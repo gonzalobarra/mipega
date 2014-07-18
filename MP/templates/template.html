@@ -44,6 +44,9 @@
             </p>
         </noscript>
     </div><!-- #warning -->
+
+    
+
     <!--<div id="msg">
         {% if messages %}
             {% for message in messages %}
@@ -67,8 +70,11 @@
             
         </div>
     </div>--><!-- #header -->
+            {% block portada %}
+            {% endblock %}
 
-
+            {% include "include_templates/comun/modal-login.html" %}
+            {% include "include_templates/comun/navbar.html" %}
             
             {% block contenido %}
             {% endblock %}
