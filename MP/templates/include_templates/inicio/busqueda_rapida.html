@@ -1,33 +1,37 @@
 <form action="." method="" role="form" class="form" id="id_form">
-  {{form_busqueda_rapida}}
+{% csrf_token %}
   <div class="form-group">
     <label for="inputProfesion">Profesión/Oficio</label>
+    <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
     {% for cargo in cargos %}
       <option value="{{cargo.id}}">{{cargo.nombre}}</option>
     {% endfor %}
+    </select>
   </div>
   <div class="form-group">
     <label for="inputEdades">Seleccione rango de edades</label>
-    <input type="text" class="form-control" id="inputEdades" placeholder="">
+    <br />
+    <b>18</b><input class="span7" type="text" name="edad" value="18,100" data-slider-min="18" data-slider-max="100" data-slider-step="1" data-slider-value="[18,100]" id="sl2">
+    <b>100</b>
   </div>
   <div class="form-group">
-    <label for="inputEdades">Seleccione rango de edades</label>
+    <label for="inputEdades">Sexo</label>
     <div class="radio">
       <label>
-        <input type="radio" name="optionsRadios" id="optionsRadios1" value="masculino" >
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="i" checked>
+        Indiferente
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="m" >
         Masculino
       </label>
     </div>
     <div class="radio">
       <label>
-        <input type="radio" name="optionsRadios" id="optionsRadios2" value="femenino">
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="f">
         Femenino
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optionsRadios" id="optionsRadios2" value="indiferente" checked>
-        Indiferente
       </label>
     </div>
   </div>
@@ -51,7 +55,7 @@
     </select>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-primary">Buscar</button>
+    <button type="submit" id="search" class="btn btn-primary">Buscar</button>
     <a class="pull-right" style="cursor:pointer" onclick="busquedaavanzada()">Busqueda avanzada</a>
   </div>
 </form>

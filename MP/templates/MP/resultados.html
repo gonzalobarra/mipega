@@ -1,14 +1,20 @@
 {% ifequal cant_resultados 0 %}
+<div class="col-sm-8 result">
+  <div class="jumbotron">
+    <h1>Resultados</h1>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+</div>
 <script type="text/javascript">
       $.ambiance({message: "No hay resultados para los valores buscados.", title:"Alerta",
                   type: "warning",timeout:4,width:300,});
       /*$('.result').html(data);*/
-      $(".media").hide();
+      /*$(".media").hide();
       $(".result").animate({
           height: "0px",
           padding: "0px"
       }, 500);
-      $("#indice").hide();
+      $("#indice").hide();*/
 </script>
 {% else %}
 <a id="indice" href="#" style="display: inline;font-size:20px;margin-top:-10px;">Resultados totales ({{cant_resultados}})</a>
