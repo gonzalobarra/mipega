@@ -5,7 +5,6 @@
 <!--<div id="content">
     <div id="wrapper">--> 
         {% load bootstrap_toolkit %}
-        {% include "include_templates/comun/navbar.html" %}
         <!--
         <form id="formElem" name="formElem" action="" method="post">-->
         <div id="registro" class="section">
@@ -13,8 +12,9 @@
                 <div class="row">
                     <div class="col-sm-12 panel panel-default">
                         <div class="panel-body">
-                          {% csrf_token %}
-                            <form id="myWizard" type="get" action="" class="form-horizontal">
+                          
+                            <form id="myWizard" type="post" method="post" action="{% url 'vista_registro' %}" class="form-horizontal">
+                                {% csrf_token %}
                                     {% include "include_templates/registro/step1_perfil.html" %}
                                     
                                     {% include "include_templates/registro/step2_aspiraciones.html" %}
