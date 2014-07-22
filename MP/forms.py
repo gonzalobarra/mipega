@@ -60,7 +60,7 @@ class SocioForm(forms.ModelForm):
 class SocioForm2(forms.ModelForm):
     class Meta:
         model = Socio
-        fields = ('telefono', 'web', 'disponibilidad','disponibilidadV','cargo_extra','edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('telefono', 'web', 'activo','disponibilidad','disponibilidadV','cargo_extra','edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
             'web': forms.TextInput(attrs={'class':'form-control plain-field'}),

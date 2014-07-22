@@ -11,13 +11,18 @@
 		</ul>
 </div>
 <div class="profile-content">
+{% ifequal info.validador 1 %}
+	<p>Su cuenta aun se encuentra activa</p>
+	<p>hasta: {{info.fecha_fin}}</p>
+{% else %}
 	<form  action="" method="post">
         {% csrf_token %}
         <div class="block-form-pane">
         	{{pago_form}}
         </div>
         <input class="pull-right btn btn-primary" type="submit" value="Pagar subscripción">
-    </form>   
+    </form>
+{% endifequal %}       
 </div>
 
 {% endblock %}

@@ -448,7 +448,7 @@ def registro_view(request):
 					messages.warning(request,"Las claves ingresadas no coinciden")
 					return HttpResponseRedirect('/registro')		
 			except:
-				messages.warning(request,"Error al crear el usuario")
+				messages.error(request,"Error al crear el usuario")
 				return HttpResponseRedirect('/registro')
 			else:
 				if form_socio.is_valid() and form_user.is_valid():
@@ -561,13 +561,17 @@ def nuevaclave_view(request):
 				if pass_nueva==pass_rep:
 					User.set_password(request.user,pass_nueva)
 					request.user.save()
-			return HttpResponseRedirect('/')
+					messages.success(request, "Su clave ha sido actualizada satisfactoriamente")
+				else:
+					messages.error(request, "Sus claves no coinciden")	
+			return HttpResponseRedirect('/perfil/')
 
 	else:
 		user_form = cambiarClave()
 	ctx = {'user_form':user_form}
 	return render_to_response('MP/nuevaclave.html',ctx, context_instance=RequestContext(request))
 
+#Agregar una funcion que pase los cargos ingresados en cargos extra a la base de datos una vez que se paga exitosamente.
 def pagoperfil_view(request):
 	if request.method == 'POST':
 		pago_form = PagoForm(request.POST)
@@ -575,7 +579,7 @@ def pagoperfil_view(request):
 			fecha = datetime.now()
 			socio = Socio.objects.get(user=request.user.id)
 			registros = RegistroPago.objects.filter(socio=socio.id)
-			#Si el socio registro.fechano tiene un pago registrado
+			#Si el socio no tiene un pago registrado
 			if(len(registros)==0):
 				if pago_form.cleaned_data['plan'] == '1':
 					fecha = fecha + relativedelta(months=+6)
@@ -603,9 +607,8 @@ def pagoperfil_view(request):
 					return HttpResponseRedirect('/')
 			#Si el socio tiene pago registrado
 			if(len(registros)>0):
-				registro = registros[len(registros)-1]
-				messages.success(request, registro.fecha_fin)
 				registros2 = RegistroPago.objects.filter(fecha_fin__gt=fecha).filter(socio=socio.id)
+				messages.success(request, registros2[0].fecha_fin)
 				#messages.success(request, fecha_final)
 				
 				#Si el pago esta vencido, se crea uno nuevo
@@ -634,20 +637,18 @@ def pagoperfil_view(request):
 						socio.save()
 						messages.success(request, 'Pago exitoso')
 						return HttpResponseRedirect('/')
-				#Si el pago esta aun vigente, se le suma tiempo
-				'''
 				else:
-					if pago_form.cleaned_data['plan'] == '1':
-						nueva_fecha = registro.fecha_fin + relativedelta(months=+6)
-						socio.activo = '0'
-						registro.save()
-						socio.save()	
-						messages.success(request, 'Se ha actualizado su tiempo de subscripción')
-						return HttpResponseRedirect('/')
-				'''
-
+					messages.success(request, 'Su inscripción aun se encuentra activa')
+	
+	info = {}
+	fecha = datetime.now()
+	socio = Socio.objects.get(user=request.user.id)
+	registros_test = RegistroPago.objects.filter(fecha_fin__gt=fecha).filter(socio=socio.id)
+	if len(registros_test) > 0:
+		info['validador'] = 1
+		info['fecha_fin'] = registros_test[0].fecha_fin
 	pago_form = PagoForm()
-	ctx = {'pago_form': pago_form}
+	ctx = {'pago_form': pago_form, 'info': info}
 	return render_to_response('MP/pagarperfil.html', ctx, context_instance=RequestContext(request))	
 
 def listado_view(request):
@@ -670,7 +671,6 @@ def mensaje_view(request, pk):
 	mensaje.save()
 	ctx = {'mensaje':mensaje}
 	return render_to_response('MP/mensaje.html', ctx, context_instance=RequestContext(request))	
-
 
 def eliminarmensaje_view(request,pk):
 	mensaje = Mensaje.objects.get(id = pk)
@@ -730,7 +730,8 @@ def editarperfil_view(request):
 			form_hab.save() 
 		if form_hab2.is_valid():
 			form_hab2.save() 
-				
+		
+		messages.success(request, "Su perfil ha sido modificado exitosamente")	
 		return HttpResponseRedirect('/editarperfil/')
 	else:
 		form_socio = SocioForm2(instance=socio)
