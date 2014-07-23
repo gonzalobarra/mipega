@@ -40,16 +40,44 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/vendor/jquery.easyWizard.js"></script>
     <script>
     $(document).ready(function(){
-
-      //if ($(".prev").is(":visible")){
+      
         $(".next").click(function(e){
 
           if( !Rut($("#id_username").val()) ){            
             location.reload();
           }
-        })
+        });
+
+        //Muestra mas estudios
+        $("#mas_titulos").click(function(){
+          if( !$("#estudio2").is(":visible") ){
+            $("#estudio2").show("slow");
+          }else if( !$("#estudio3").is(":visible") ){
+            $("#estudio3").show("slow");
+            $(this).hide();
+          }
+        });
         
-      //}
+        //Muestra mas experiencias
+        $("#mas_experiencias").click(function(){
+          if( !$(".experiencia2").is(":visible") ){
+            $(".experiencia2").show("slow");
+          }else if( !$(".experiencia3").is(":visible") ){
+            $(".experiencia3").show("slow");
+            $(this).hide();
+          }
+        });
+
+        //Muestra mas habilidades
+        $("#mas_habilidades").click(function(){
+          if( !$("#habilidades2").is(":visible") ){
+            $("#habilidades2").show("slow");
+          }else if( !$("#habilidades3").is(":visible") ){
+            $("#habilidades3").show("slow");
+            $(this).hide();
+          }
+        });
+      
     });
      $('a.hash').bind('click', function(e) {
                    e.preventDefault();

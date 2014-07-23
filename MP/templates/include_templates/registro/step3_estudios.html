@@ -1,54 +1,87 @@
 <section class="step" data-step="3" data-step-title="Estudios">
-                                        <div class="bs-callout bs-callout-info">
-                                            <h3>Estudios</h3>
-                                            <p>Dentro del formulario expuesto a continuación debe indicar si lo desea, el estado de su enseñanza escolar media, en el caso de que haya estudiado en un colegio técnico se le da la opción de ingresar la institución donde lo hizo y el título que obtuvo una vez finalizada.</p>
-                                        </div>
-                                        <h3 class="page-header">Enseñanza Escolar</h3>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="exampleInputEmail1">Estado</label>
-                                            <div class="col-sm-10">
-                                                {{form_estudio.estado}}
-                                            </div>
-                                        </div>
-                                        <div class="alert alert-info">En caso de poseer un titulo técnico de liceo, indiquelo en las casillas siguientes</div>
-                                        <div class="form-group">
-                                            <label for="inputPassword" class="col-sm-2 control-label">Título</label>
-                                            <div class="col-sm-10">
-                                                {{form_estudio.titulo}}
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword" class="col-sm-2 control-label">Institución</label>
-                                            <div class="col-sm-10">
-                                                {{form_estudio.institucion}}
-                                            </div>
-                                        </div>
-                                        <h3 class="page-header">Enseñanza Superior</h3>
-                                        <div class="form-group">
-                                            <label for="inputPassword" class="col-sm-1 control-label">Estado</label>
-                                            <div class="col-sm-3">
-                                                {{form_estudio2.estado}}
-                                            </div>
-                                            <label for="inputPassword" class="col-sm-1 control-label">Título</label>
-                                            <div class="col-sm-3">
-                                                {{form_estudio2.titulo}}
-                                            </div>
-                                            <label for="inputPassword" class="col-sm-1 control-label">Institución</label>
-                                            <div class="col-sm-3">
-                                                {{form_estudio2.institucion}}
-                                            </div>
-                                        </div>
-                                        <button type="button" class="btn btn-info pull-right">Agregar título <span class="glyphicon glyphicon-plus"></span></button>
-                                        <div class="form-group">
-                                            <label for="inputPassword" class="col-sm-2 control-label">¿Posee magister?</label>
-                                            <div class="col-sm-10">
-                                            {{form_socio.magister}}
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputPassword" class="col-sm-2 control-label">¿Posee doctorado?</label>
-                                            <div class="col-sm-10">
-                                            {{form_socio.doctorado}}
-                                            </div>
-                                        </div>
-                                    </section>
+    <div class="bs-callout bs-callout-info">
+        <h3>Estudios</h3>
+        <p>Dentro del formulario expuesto a continuación debe indicar si lo desea, el estado de su enseñanza escolar media, en el caso de que haya estudiado en un colegio técnico se le da la opción de ingresar la institución donde lo hizo y el título que obtuvo una vez finalizada.</p>
+    </div>
+    <h3 class="page-header">Enseñanza Escolar</h3>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="exampleInputEmail1">Estado</label>
+        <div class="col-sm-10">
+            {{form_estudio.estado}}
+        </div>
+    </div>
+    <div class="alert alert-info">En caso de poseer un titulo técnico de liceo, indiquelo en las casillas siguientes</div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Título</label>
+        <div class="col-sm-10">
+            {{form_estudio.titulo}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Institución</label>
+        <div class="col-sm-10">
+            {{form_estudio.institucion}}
+        </div>
+    </div>
+    <h3 class="page-header">Enseñanza Superior</h3>
+
+    <!-- estudion visible -->
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-1 control-label">Estado</label>
+        <div class="col-sm-3">
+            {{form_estudio2.estado}}
+        </div>
+        <label for="inputPassword" class="col-sm-1 control-label">Título</label>
+        <div class="col-sm-3">
+            {{form_estudio2.titulo}}
+        </div>
+        <label for="inputPassword" class="col-sm-1 control-label">Institución</label>
+        <div class="col-sm-3">
+            {{form_estudio2.institucion}}
+        </div>
+    </div>
+    <!-- estudio2 -->
+    <div class="form-group" id="estudio2" style="display:none;">
+        <label for="inputPassword" class="col-sm-1 control-label">Estado</label>
+        <div class="col-sm-3">
+            {{form_estudio2.estado}}
+        </div>
+        <label for="inputPassword" class="col-sm-1 control-label">Título</label>
+        <div class="col-sm-3">
+            {{form_estudio2.titulo}}
+        </div>
+        <label for="inputPassword" class="col-sm-1 control-label">Institución</label>
+        <div class="col-sm-3">
+            {{form_estudio2.institucion}}
+        </div>
+    </div>
+    <!-- estudio3 -->
+    <div class="form-group" id="estudio3" style="display:none;">
+        <label for="inputPassword" class="col-sm-1 control-label">Estado</label>
+        <div class="col-sm-3">
+            {{form_estudio2.estado}}
+        </div>
+        <label for="inputPassword" class="col-sm-1 control-label">Título</label>
+        <div class="col-sm-3">
+            {{form_estudio2.titulo}}
+        </div>
+        <label for="inputPassword" class="col-sm-1 control-label">Institución</label>
+        <div class="col-sm-3">
+            {{form_estudio2.institucion}}
+        </div>
+    </div>
+
+    <button type="button" id="mas_titulos" class="btn btn-info pull-right">Agregar título <span class="glyphicon glyphicon-plus"></span></button>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">¿Posee magister?</label>
+        <div class="col-sm-10">
+        {{form_socio.magister}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">¿Posee doctorado?</label>
+        <div class="col-sm-10">
+        {{form_socio.doctorado}}
+        </div>
+    </div>
+</section>
