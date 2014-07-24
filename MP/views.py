@@ -18,6 +18,7 @@ from django.contrib import messages
 from datetime import *
 from dateutil.relativedelta import *
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 import json
 
 
@@ -33,23 +34,29 @@ def cleaner(string):
 			listo = listo.strip() + " " + elemento
 		return listo
 	else:
-		return lista[0].capitalize()	
+		if len(lista) == 1:
+			return lista[0].capitalize()
+		if len(lista) == 0:
+			return None		
 
 
 def traspasoCargoE(socio):
 	if socio.cargo_extra != None:
 		cargos_nuevos = socio.cargo_extra
 		lista_cargos = cargos_nuevos.split(',')
-		for cargo in lista_cargos:
-			test = Cargo.objects.filter(nombre=cleaner(cargo))
-			if len(test) == 0:
-				#Se crea el cargo nuevo y luego se hace la relación con el socio, finalmente se debe eliminar cargo_extra de socio
-				cargo_nuevo = Cargo(nombre=cleaner(cargo))
-				cargo_nuevo.save()
-				empleo_nuevo = EmpleoBuscado(socio=socio, cargo=cargo_nuevo)
-				empleo_nuevo.save()
-		socio.cargo_extra = None
-		socio.save()				
+		if len(lista_cargos) > 0:
+			for cargo in lista_cargos:
+				limpio = cleaner(cargo)
+				if limpio != None:
+					test = Cargo.objects.filter(nombre=limpio)
+					if len(test) == 0:
+						#Se crea el cargo nuevo y luego se hace la relación con el socio, finalmente se debe eliminar cargo_extra de socio
+						cargo_nuevo = Cargo(nombre=limpio)
+						cargo_nuevo.save()
+						empleo_nuevo = EmpleoBuscado(socio=socio, cargo=cargo_nuevo)
+						empleo_nuevo.save()
+			socio.cargo_extra = None
+			socio.save()				
 
 def index_view(request):
 	form = BuscaRapidaForm(request.POST or None)
@@ -608,6 +615,7 @@ def pagoperfil_view(request):
 		pago_form = PagoForm(request.POST)
 		if pago_form.is_valid():
 			fecha = datetime.now()
+			fecha2 = timezone.now()
 			socio = Socio.objects.get(user=request.user.id)
 			registros = RegistroPago.objects.filter(socio=socio.id)
 			#Si el socio no tiene un pago registrado
@@ -641,7 +649,7 @@ def pagoperfil_view(request):
 					return HttpResponseRedirect('/')
 			#Si el socio tiene pago registrado
 			if(len(registros)>0):
-				registros2 = RegistroPago.objects.filter(fecha_fin__gt=fecha).filter(socio=socio.id)
+				registros2 = RegistroPago.objects.filter(fecha_fin__gt=fecha2).filter(socio=socio.id)
 				messages.success(request, registros2[0].fecha_fin)
 				#messages.success(request, fecha_final)
 				
@@ -717,6 +725,9 @@ def eliminarmensaje_view(request,pk):
 def editarperfil_view(request):
 	
 	#Ojo aqui con el nombre del user
+	hoy = timezone.now()
+	value = 0
+	mod = 0
 	user = request.user.username
 	socio = Socio.objects.get(user__username = user)
 	estudios = Estudios.objects.filter(socio__id = socio.id)
@@ -732,6 +743,12 @@ def editarperfil_view(request):
 	hab1 = habilidades[0]
 	hab2 = habilidades[1]
 	
+	#Ver si el socio tiene un pago activo, si es así se llama al funcion encargada de hacer la carga de los nuevos cargos
+	registros_pago = RegistroPago.objects.filter(socio=socio.id).filter(fecha_fin__gt=hoy)
+	if len(registros_pago) > 0:
+			value = 1
+			mod = 1
+			messages.success(request, 'hola')
 
 	if request.method == 'POST':
 		form_socio = SocioForm2(request.POST,request.FILES, instance=socio)
@@ -749,6 +766,9 @@ def editarperfil_view(request):
 		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab2, prefix='hab2')
 		if form_socio.is_valid():
 			form_socio.save()
+			if value == 1:
+				socio = Socio.objects.get(user=request.user.id)
+				traspasoCargoE(socio)
 		if form_estudio.is_valid():
 			form_estudio.save()
 		if form_estudiodos.is_valid():
@@ -782,6 +802,6 @@ def editarperfil_view(request):
 		form_hab = OtrasHabilidadesForm(instance=hab1, prefix='hab1')
 		form_hab2 = OtrasHabilidadesForm(instance=hab2, prefix='hab2')
 
-	ctx = {'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2}	
+	ctx = {'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2, 'mod': mod}	
 	
 	return render_to_response('MP/editarperfil.html', ctx, context_instance=RequestContext(request))		 
