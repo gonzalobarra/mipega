@@ -20,6 +20,37 @@ from dateutil.relativedelta import *
 from django.core.urlresolvers import reverse
 import json
 
+
+def cleaner(string):
+	#Se eliminan los espacios iniciales y finales del string en caso de tenerlos
+	sin_espacios = string.strip()
+	#Se corta el string para obtener la primera palabra y luego se capitaliza
+	lista = sin_espacios.split()
+	if len(lista) > 1:
+		listo = ""
+		lista[0] = lista[0].capitalize()
+		for elemento in lista:
+			listo = listo.strip() + " " + elemento
+		return listo
+	else:
+		return lista[0].capitalize()	
+
+
+def traspasoCargoE(socio):
+	if socio.cargo_extra != None:
+		cargos_nuevos = socio.cargo_extra
+		lista_cargos = cargos_nuevos.split(',')
+		for cargo in lista_cargos:
+			test = Cargo.objects.filter(nombre=cleaner(cargo))
+			if len(test) == 0:
+				#Se crea el cargo nuevo y luego se hace la relación con el socio, finalmente se debe eliminar cargo_extra de socio
+				cargo_nuevo = Cargo(nombre=cleaner(cargo))
+				cargo_nuevo.save()
+				empleo_nuevo = EmpleoBuscado(socio=socio, cargo=cargo_nuevo)
+				empleo_nuevo.save()
+		socio.cargo_extra = None
+		socio.save()				
+
 def index_view(request):
 	form = BuscaRapidaForm(request.POST or None)
 	formLogin = LoginForm(request.POST or None)
@@ -586,6 +617,7 @@ def pagoperfil_view(request):
 					pago = RegistroPago(socio=socio, fecha_fin=fecha, plan=pago_form.cleaned_data['plan'])
 					socio.activo = '0'
 					socio.save()
+					traspasoCargoE(socio)
 					pago.save()
 					messages.success(request, 'Pago exitoso')
 					return HttpResponseRedirect('/')
@@ -595,6 +627,7 @@ def pagoperfil_view(request):
 					pago.save()
 					socio.activo = '0'
 					socio.save()
+					traspasoCargoE(socio)
 					messages.success(request, 'Pago exitoso')
 					return HttpResponseRedirect('/')
 				if pago_form.cleaned_data['plan'] == '3':
@@ -603,6 +636,7 @@ def pagoperfil_view(request):
 					pago.save()
 					socio.activo = '0'
 					socio.save()
+					traspasoCargoE(socio)
 					messages.success(request, 'Pago exitoso')
 					return HttpResponseRedirect('/')
 			#Si el socio tiene pago registrado
@@ -619,6 +653,7 @@ def pagoperfil_view(request):
 						socio.activo = '0'
 						socio.save()
 						pago.save()
+						traspasoCargoE(socio)
 						messages.success(request, 'Pago exitoso')
 						return HttpResponseRedirect('/')
 					if pago_form.cleaned_data['plan'] == '2':
@@ -627,6 +662,7 @@ def pagoperfil_view(request):
 						pago.save()
 						socio.activo = '0'
 						socio.save()
+						traspasoCargoE(socio)
 						messages.success(request, 'Pago exitoso')
 						return HttpResponseRedirect('/')
 					if pago_form.cleaned_data['plan'] == '3':
@@ -635,6 +671,7 @@ def pagoperfil_view(request):
 						pago.save()
 						socio.activo = '0'
 						socio.save()
+						traspasoCargoE(socio)
 						messages.success(request, 'Pago exitoso')
 						return HttpResponseRedirect('/')
 				else:
