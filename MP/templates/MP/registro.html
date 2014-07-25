@@ -56,6 +56,11 @@
             if( $("#id_ClaveRepetida").val()=="" )
               $(".next").attr("disabled", "disabled"); 
             else
+              $(".next").removeAttr("disabled");
+
+            if( $("#id_email").val()=="" )
+              $(".next").attr("disabled", "disabled");
+            else
               $(".next").removeAttr("disabled");      
              
           } else {
@@ -69,11 +74,49 @@
             $(".next").attr("disabled", "disabled");
           else
             $(".next").removeAttr("disabled");
+
+          if( $("#id_ClaveRepetida").val()=="" )
+              $(".next").attr("disabled", "disabled"); 
+            else
+              $(".next").removeAttr("disabled");
+
+          if( $("#id_email").val()=="" )
+            $(".next").attr("disabled", "disabled");
+          else
+            $(".next").removeAttr("disabled"); 
         });
 
         $("#id_ClaveRepetida").change(function(){
 
+          if( $("#id_password").val()=="" )
+            $(".next").attr("disabled", "disabled");
+          else
+            $(".next").removeAttr("disabled");
+
           if( $("#id_ClaveRepetida").val()=="" )
+              $(".next").attr("disabled", "disabled"); 
+            else
+              $(".next").removeAttr("disabled");
+
+          if( $("#id_email").val()=="" )
+            $(".next").attr("disabled", "disabled");
+          else
+            $(".next").removeAttr("disabled");
+        });
+
+        $("#id_email").change(function(){
+
+          if( $("#id_password").val()=="" )
+            $(".next").attr("disabled", "disabled");
+          else
+            $(".next").removeAttr("disabled");
+
+          if( $("#id_ClaveRepetida").val()=="" )
+              $(".next").attr("disabled", "disabled"); 
+            else
+              $(".next").removeAttr("disabled");
+
+          if( $("#id_email").val()=="" )
             $(".next").attr("disabled", "disabled");
           else
             $(".next").removeAttr("disabled");
@@ -82,9 +125,7 @@
         //Muestra mas estudios
         $("#mas_titulos").click(function(){
           if( !$("#estudio2").is(":visible") ){
-            $("#estudio2").show("slow");
-          }else if( !$("#estudio3").is(":visible") ){
-            $("#estudio3").show("slow");
+            $("#estudio2").show("slow");            
             $(this).hide();
           }
         });
