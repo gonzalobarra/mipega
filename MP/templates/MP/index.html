@@ -145,6 +145,7 @@
   function busquedaavanzada(){
      var parametros = $('#id_form').serialize();
      $("#id_form").attr("action", "{% url 'busqueda_avanzada' %}");
+     $("input[name=csrfmiddlewaretoken]").remove();
      $('#id_form').submit();
   }
 
