@@ -78,7 +78,7 @@
                           <tbody>
                             {% for r in resultados_busqueda %}
                               <tr>
-                                  <td><a href="#">{{r.folio}}</a></td>
+                                  <td><a href="{% url 'vista_detalle_socio' r.id %}">{{r.folio}}</a></td>
                                   <td>{{r.nombre}}</td>
                                   <td>{{r.descripcion}}</td>
                               </tr>

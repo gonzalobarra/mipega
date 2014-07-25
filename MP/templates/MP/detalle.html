@@ -2,151 +2,219 @@
 {% block title %} Detalle Usuario | MiPega.cl {% endblock %}
 {% block contenido %}
 {% load bootstrap_toolkit %}
-<div style="height:170px;"></div>
-<div id="detail_content">
 
-    <!--<div id="wrapper">-->
-    <div id="user_header">
-        <h1 id="user_name">{{socio.nombre}}({{socio.folio}})</h1>
+
+<div class="section ficha" >
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h2>
+                                    {{socio.nombre}}
+                                </h2>
+                                <p class="lead">Folio: <strong>{{socio.folio}}</strong></p>
+                                <p class="lead" align='justify'>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, cum. Quibusdam ad perferendis recusandae eaque veritatis error commodi totam, officiis obcaecati doloremque natus cumque distinctio vel veniam unde atque suscipit.
+                                </p>  
+                                <!--<img src="http://picoshot.com/t.php?picurl={{socio.web}}" style="border: 1px solid #ccc;border-radius:7px">  -->   
+                            </div>
+                            <div class="col-sm-8">
+
+                                <h3 class="page-header">Información básica</h3>
+                                <dl class="dl-horizontal">
+                                  <dt>Edad</dt>
+                                  <dd>{{edad}} años</dd>
+
+                                  <dt>Nacionalidad</dt>
+                                  <dd>{{socio.nacionalidad}}</dd>
+
+                                  <dt>Hijos</dt>
+                                  <dd>{{socio.get_tiene_hijos_display}}</dd>
+
+                                  <dt>Estado Civil</dt>
+                                  <dd>{{socio.get_estado_civil_display}}</dd>
+
+                                  <dt>Sexo</dt>
+                                  <dd>{{ socio.get_sexo_display }}</dd>
+                                </dl>
+
+                                <h3 class="page-header">Intereses</h3>
+                                <dl class="dl-horizontal">
+                                    <dt><span class="glyphicon glyphicon-briefcase"></span> Cargos buscados</dt>
+                                    {% for cargo in cargos %}
+                                        <dd>{{cargo.nombre}}</dd>
+                                    {% endfor %}
+                                    <br>
+
+                                    <dt><span class="glyphicon glyphicon-globe"></span> Localidades</dt>
+                                    {% for loc in localidades %}
+                                        <dd>{{loc.get_tipo_display}} {{loc.nombre}}</dd>
+                                    {% endfor %}
+                                    <br>
+
+                                    <dt><span class="glyphicon glyphicon-list-alt"></span> Contrato</dt>
+                                    <dd>{{socio.get_tipo_contrato_display}}</dd>
+                                </dl>
+
+                                
+                                {% if estudios  %}
+                                <h3 class="page-header">Educación</h3>
+                                <p>{{socio.comentario_est}}</p>
+                                    {% if estudios_escolares %}
+                                    <div class="panel panel-primary">
+                                        
+                                        <div class="panel-heading">
+                                            Estudios Escolares
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table full">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Estado</th>
+                                                            <th>Grado/Título</th>
+                                                            <th>Institución</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for est in estudios_escolares %}
+                                                        <tr>
+                                                            <td>{{est.get_estado_display}}</td>
+                                                            <td>{{est.titulo.nombre}}</td>
+                                                            <td>{{est.institucion.nombre}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if estudios_superiores %}
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Estudios Superiores
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table full">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Estado</th>
+                                                            <th>Grado/Título</th>
+                                                            <th>Institución</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for est in estudios_superiores %}
+                                                        <tr>
+                                                            <td>{{est.get_estado_display}}</td>
+                                                            <td>{{est.titulo.nombre}}</td>
+                                                            <td>{{est.institucion.nombre}}</td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endif %}
+
+                                <h3 class="page-header">Experiencia</h3>
+                                <h4>Experiencia laboral</h4>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table full">
+                                                <thead>
+                                                      <tr>
+                                                        <th>Periodo</th>
+                                                        <th>Rubro</th>
+                                                        <th>Cargo</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for exp in experiencia %}
+                                                        <td>{{exp.desde}}-{{exp.hasta}}</td>
+                                                        <td>{{exp.rubro.nombre}}</td>
+                                                        <td>{{exp.cargo.nombre}}</td>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if habilidades %}
+                                <h4>Otras habilidades</h4>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table full">
+                                                <thead>
+                                                      <tr>
+                                                        <th>Tipo</th>
+                                                        <th>Habilidad</th>
+                                                        <th>Nivel</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for hab in habilidades %}
+                                                        <td>{{hab.habilidad.tipoHabilidad.nombre}}</td>
+                                                        <td>{{hab.habilidad.nombre}}</td>
+                                                        <td>{{hab.get_nivel_display}}</td>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
+                                <br>
+
+                                <div class="panel panel-success hidden-print">
+                                    <div class="panel-heading">
+                                        <h4>Envía un mensaje a {{socio.nombre}}</h4>        
+                                    </div>
+                                    <div id="mail" class="panel-body">
+                                        <form class="form-horizontal" id="id_form" role="form" onsubmit="return false;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="id_user" value="{{socio.id}}">
+                                          <div class="form-group form-group-lg">
+                                            <div class="col-sm-6">
+                                              <input name="nombre" id="input-nombre"  class="form-control" type="text" placeholder="Nombre">
+                                            </div>
+                                            <div class="col-sm-6">
+                                              <input name="contacto" id="input-contacto"  class="form-control" type="text" placeholder="Teléfono o E-Mail">
+                                            </div>
+                                          </div>
+                                          <div class="form-group form-group-sm">
+                                            <div class="col-sm-12">
+                                              <textarea name="mensaje" id="text-mensaje" class="form-control" rows="3" placeholder="Mensaje"></textarea>
+                                            </div>
+                                          </div>
+                                        </form>
+                                    </div>
+                                    <div class="panel-footer text-right">
+                                        <a href="#" id="enviarPM" class="btn btn-success">Enviar mensaje</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>      
+                    </div>
+                    <div class="panel-footer text-right hidden-print">
+                        <a href="{% url 'busqueda_avanzada' %}" class="btn btn-primary">Volver a buscar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-            <!--<div class="user_detail">-->
-                <ul class="user_detail" id="detalle1">
-                    <li>Edad:</li>
-                    <li>¿Tiene hijos?</li>
-                    <li id="sex">{{ socio.sexo }}</li>
-                    <li>Estado civil:</li>
-                    <li>Nacionalidad:</li>
-                </ul>
-            <!--</div>
-            <div class="user_detail">-->
-                <ul class="user_detail" id="detalle2">
-                    <li>{{edad}} años</li>
-                    <li>{{socio.get_tiene_hijos_display}}</li>
-                    <li id="sex">{{ socio.sexo }}</li>
-                    <li>{{socio.get_estado_civil_display}}</li>
-                    <li id="nacionalidad">{{socio.nacionalidad}}</li>
-                </ul>
-            
-            <!--</div>
-            
-            <div class="user_detail"> -->               
-                <ul class="user_detail">
-                    <li>
-                    {% if socio.web %}            
-                        <a href="http://{{socio.web}}">
-                            <img src="http://picoshot.com/t.php?picurl={{socio.web}}" style="border: 1px solid #ccc;border-radius:7px"> 
-                            <span style="margin-left:15px;">{{socio.web}}</span>
-                        </a>            
-                    {% endif %}
-                    </li>
-                </ul>
-            <!--</div>-->
-        
-    <!--</div>-->
-    <div style="height:17px;"></div>
-    <!--<div id="wrapper">-->
-        <h3>Intereses</h3>
-        <hr>
-        <ul id="disponibilidad">
-            <!-- Cargo buscado -->
-            <li>
-                <img src="{{STATIC_URL}}fonts/glyphicons_free/glyphicons/png/glyphicons_450_factory.png"/>
-                <h2>Cargos buscados</h2>
-                {% for cargo in cargos %}
-                <ul>
-                    <li><span>{{cargo.nombre}}</span></li>
-                </ul>
-                {% endfor %}
-            </li>
-            
-            <!-- Donde quiere trabajar -->
-            <li>
-                <img src="{{STATIC_URL}}fonts/glyphicons_free/glyphicons/png/glyphicons_370_globe_af.png"/>
-                <h2>Localidades buscadas</h2>
-                {% for loc in localidades %}
-                <ul>
-                    <li><span>{{loc.nombre}}, </span></li>
-                </ul>
-                {% endfor %}
-            </li>
-            
-            <!-- Contrato buscado -->
-            <li>
-                <img src="{{STATIC_URL}}fonts/glyphicons_free/glyphicons/png/glyphicons_458_money.png"/>
-                <h2>Tipo de contrato</h2>
-                <ul>
-                    <li><span>{{socio.get_tipo_contrato_display}}.</span></li>
-                </ul>
-            </li>
-            
-        </ul>
-    <!--</div>-->
-    <div style="height:17px;"></div>
-    {% if estudios  %}
-    <!--<div id="wrapper">-->
-        <h3>Educación</h3>
-        <hr>
-        {% if estudios_escolares %}
-            <div class="panel-escolar">
-                <img src="{{STATIC_URL}}img/escolares.png">
-                <div>
-                    {% for est in estudios_escolares %}
-                        <p id="estado-escolar">{{est.get_estado_display}}</p>
-                        
-                            <p>{{est.titulo.nombre}}</p>  <p>{{est.institucion.nombre}}</p>
-                         <br />
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-        {% if estudios_superiores %}
-            <div class="panel-superior">
-                <img src="{{STATIC_URL}}img/superiores.png">
-                <div>
-                    <p id="comentario-estudios">{{socio.comentario_est}}</p>
-                    {% for est in estudios_escolares %}
-                        <p class="titulo">{{est.titulo.nombre}}<small>{{est.get_estado_display}}</small></p>  <p>{{est.institucion.nombre}}</p>
-                        
-                        <br />
-                    {% endfor %}
-                </div>
-            </div>        
-        {% endif %}
-    {% endif %}
-    <!--</div>-->
-    <div style="height:17px;"></div>
-    
-    <!--<div id="wrapper">-->
-        <h3>Experiencia</h3>
-        <hr>
-        <h4>Experiencia Laboral</h4>
-        {% for exp in experiencia %}
-            Trabajo como {{exp.cargo.nombre}} en {{exp.rubro.nombre}} [{{exp.ano_ingreso}}-{{exp.ano_egreso}}]<br />
-        {% endfor %}
-        <h4>Otras Habilidades</h4>
-        {% for hab in habilidades %}
-            <span class="glyphicon glyphicon-ok"></span> [{{hab.habilidad.tipoHabilidad.nombre}}] {{hab.habilidad.nombre}} Nivel: {{hab.habilidad.get_nivel_display}}<br />
-        {% endfor %}
-    <!--</div>-->
-    <div style="height:17px;"></div>
-    <!--<div id="wrapper">-->
-        <h3>Enviar un mensaje a {{socio.nombre}}</h3>
-        <hr>
-        <br />
-        
-        
-            {% if socio.telefono %}
-            <div id="mail">
-                <form class="contact_form" id="id_form" onsubmit="return false;">
-                    <input name="nombre" id="input-nombre" type="text" placeholder="Nombre"><br />
-                    <input type="text" name="contacto" id="input-contacto" placeholder="Dato de contacto"><br />
-                    <textarea name="mensaje" id="text-mensaje" placeholder="Escriba su mensaje..." style="resize:none;"></textarea>
-                    <input type="hidden" name="id_user" value="{{socio.id}}">
-                <br />
-                <a href="#" id="enviarPM" >Enviar ></a>
-                </form>
-            </div>
-            {% endif %}
+</div>
             <!--
             {% if socio.telefono %}
             <div id="fono" class="tab-pane fade">
@@ -175,6 +243,7 @@
     });
     $('#enviarPM').click(function(event){
         event.preventDefault();
+        $('#enviarPM').attr("disabled", "disabled");
         var parametros = $('#id_form').serialize();
         $.ajax({
             url: "{% url 'enviar_mensaje_personal' %}",
@@ -189,13 +258,15 @@
                 $.ambiance({message: "Mensaje enviado con exito.", title:"",
                         type: "success",timeout:4,width:200,});
             }else{
-                $.ambiance({message: data, title:"Error",
-                        type: "error",timeout:4,width:200,});
+                $.ambiance({message: data, title:"Información",
+                        type: "info",timeout:4,width:200,});
             }
+            $('#enviarPM').removeAttr("disabled");
         }).fail(function(){
             $('#myModal').modal('hide');
             $.ambiance({message: "Error al enviar el mensaje, intentelo denuevo más tarde.", title:"Error",
                         type: "error",timeout:4,width:200,});
+            $('#enviarPM').removeAttr("disabled");
         }); 
     });
 </script>

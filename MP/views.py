@@ -119,20 +119,16 @@ def detalle_socio_folio_view(request):
 	return HttpResponseRedirect("/")
 
 def detalle_socio_view(request, id_socio):
-	messages.success(request, "debug")
-	messages.warning(request, "debug")
-	messages.info(request, "debug")
-	messages.error(request, "debug")
 	socio = Socio.objects.get(pk =id_socio)
 	edad = socio.edad
 	#datetime.datetime.today().year - int(socio.ano_nacimiento)
 	localidades = Localidad.objects.filter(id__in = LocalidadConSocio.objects.filter(socio = socio).values_list('localidad',flat=True))
 	cargos = Cargo.objects.filter(id__in=EmpleoBuscado.objects.filter(socio = socio).values_list('cargo',flat=True))
-	estudios_escolares = Estudios.objects.filter(socio = socio).filter(titulo__tipo = "t")
-	estudios_superiores = Estudios.objects.filter(socio = socio).exclude(titulo__tipo = "t")
-	habilidades = OtrasHabilidades.objects.filter(socio=socio)
-	experiencia = ExperienciaLaboral.objects.filter(socio=socio)
-	if estudios_escolares or estudios_superiores:
+	estudios_escolares = Estudios.objects.filter(socio = socio).filter(titulo__tipo = "t").exclude(estado=None)
+	estudios_superiores = Estudios.objects.filter(socio = socio).exclude(titulo__tipo = "t").exclude(estado=None)
+	habilidades = OtrasHabilidades.objects.filter(socio=socio).exclude(habilidad=None)
+	experiencia = ExperienciaLaboral.objects.filter(socio=socio).exclude(cargo=None).exclude(rubro=None).exclude(desde=None)
+	if estudios_escolares or estudios_superiores or socio.comentario_est :
 		estudios = True
 	else:
 		estudios = False
@@ -285,16 +281,17 @@ def enviar_mensaje_view(request):
 	contacto = request.POST['contacto']
 	mensaje = request.POST['mensaje']
 	socio = Socio.objects.get(pk=request.POST['id_user'])
+	correo = socio.user.email
 	#Esto no está funcionando por que no se conoce el correo del usuario que esta en la tabla user
 	#usuario = User.objects.get(id=request.POST['id_user']+1)
-	now = datetime.datetime.now()
+	now = datetime.now()
 	if nombre!="" and contacto!="" and mensaje!="":
 		#Envia correo electronico
 		asunto = "Mipega - Nuevo mensaje de " + nombre
 		contenido = "Correo de contacto:" + contacto + "\nMensaje:" + mensaje
 		#email = EmailMessage(asunto, contenido,['contacto.workapps@gmail.com'])
 		#Actualmente se encuentra con esta configuracion a modo de prueba
-		send_mail(asunto, contenido, 'contacto.workapps@gmail.com',['contacto.workapps@gmail.com'], fail_silently=False)
+		send_mail(asunto, contenido, 'contacto.workapps@gmail.com',[correo], fail_silently=False)
 		#Envia mensaje a la bandeja de la aplicacion
 		mensaje = Mensaje(fecha=now,contenido=mensaje, nombre_contacto=nombre,medio_contacto=contacto, socio= socio)
 		mensaje.save()
