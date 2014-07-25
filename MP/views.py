@@ -21,6 +21,14 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 import json
 
+def digito_verificador(rut):
+	separado = rut.split('-')
+	value = 11 - sum([ int(a)*int(b)  for a,b in zip(str(separado[0]).zfill(8), '32765432')])%11
+	digito = {10: 'K', 10: 'k', 11: '0'}.get(value, str(value))
+	if separado[1] == digito:
+		return True
+	else:
+		return False	
 
 def cleaner(string):
 	#Se eliminan los espacios iniciales y finales del string en caso de tenerlos
@@ -476,7 +484,7 @@ def registro_view(request):
 			clave2 = form_user.cleaned_data['ClaveRepetida']
 			if clave == clave2:
 				# Agregar la condicion de que el correo no puede ser vacio
-				if form_user.cleaned_data['username'] == '' or form_user.cleaned_data['username'] == None or clave == '' or clave == None or form_user.cleaned_data['email'] == '' or form_user.cleaned_data['email'] == None:
+				if form_user.cleaned_data['username'] == '' or form_user.cleaned_data['username'] == None or clave == '' or clave == None or form_user.cleaned_data['email'] == '' or form_user.cleaned_data['email'] == None or digito_verificador(form_user.cleaned_data['username']) == False:
 					messages.warning(request, "El nombre de usuario, clave y email no pueden ser nulos")
 					HttpResponseRedirect('/registro')
 				else:
