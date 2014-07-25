@@ -1,28 +1,24 @@
 {% extends 'template.html' %}
 {% block title %} Pago de susbcripcion | MiPega.cl {% endblock %}
 {% block contenido %}
-<div id="login-form_">
-		<!--<h3 style="text-align:center;">Perfil</h3>-->
-		<ul class="profile-nav">		    
-		    <li><a href="{% url 'vista_editarperfil' %}" class="btn btn-primary btn-lg">Editar perfil</a></li>
-		    <li><a href="{% url 'vista_nuevaclave' %}" class="btn btn-primary btn-lg">Cambiar clave</a></li>
-		    <li><a href="{% url 'vista_bandejaentrada' %}" class="btn btn-primary btn-lg">Bandeja de entrada</a></li>
-		    <li><a id="selected-option" href="{% url 'vista_pagoperfil' %}" class="btn btn-primary btn-lg">Pagar subscripción</a></li>
-		</ul>
-</div>
-<div class="profile-content">
-{% ifequal info.validador 1 %}
-	<p>Su cuenta aun se encuentra activa</p>
-	<p>hasta: {{info.fecha_fin}}</p>
-{% else %}
-	<form  action="" method="post">
-        {% csrf_token %}
-        <div class="block-form-pane">
-        	{{pago_form}}
-        </div>
-        <input class="pull-right btn btn-primary" type="submit" value="Pagar subscripción">
-    </form>
-{% endifequal %}       
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2" style="margin-top:10%;margin-bottom:10%;">
+			{% ifequal info.validador 1 %}
+				<p>Su cuenta aun se encuentra activa</p>
+				<p>hasta: {{info.fecha_fin}}</p>
+			{% else %}
+				<form  action="" method="post">
+			        {% csrf_token %}
+			        <div class="block-form-pane">
+			        	{{pago_form}}
+			        </div>
+			        <input class="pull-right btn btn-primary" type="submit" value="Pagar subscripción">
+			    </form>
+			{% endifequal %}  
+		</div>  
+	</div>   
 </div>
 
 {% endblock %}
