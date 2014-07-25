@@ -386,3 +386,7 @@
 	$.fn.slider.Constructor = Slider;
 
 }( window.jQuery );
+
+
+$('#sl2').slider();
+

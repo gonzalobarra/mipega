@@ -35,8 +35,8 @@
       </label>
     </div>
   </div>
-  <div class="form-group">
-    <label for="inputLocalidad">Localidad</label>
+  <div id="div_localidades_index" class="form-group">
+    <label for="inputLocalidad">Localidad</label><br />
     <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
       <optgroup label="REGIONES">
         {% for localidad in localidades %}
@@ -62,5 +62,10 @@
 
 
 <script type="text/javascript">
-$('#sl2').slider();
+
+
 </script>
+
+
+
+

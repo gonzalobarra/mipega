@@ -227,9 +227,9 @@ def busqueda_view(request):
 		cantidad_resultados= len(socios)
 		resultados_busqueda = []
 		for socio in socios:
-			if len(resultados_busqueda) <5:
+			if len(resultados_busqueda) <10:
 				str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad) + " estado civil:~"+ str(socio.estado_civil)+"~"
-				element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
+				element = {'id':socio.id, 'folio':socio.folio, 'nombre':socio.nombre,'descripcion':str_coment}
 				resultados_busqueda.append(element)
 		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
@@ -325,12 +325,13 @@ def busqueda_rapida_view(request):
 			if sexo != "i":
 				socios = socios.filter(sexo=sexo)
 		resultados_busqueda = []
-		for socio in socios:
+		cant_resultados = len(socios)
+		for socio in socios[:10]:
 			str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad)
 			#+ str(edad)
 			element = {'id':socio.id, 'folio':socio.folio, 'nombre':socio.nombre,'descripcion':str_coment}
 			resultados_busqueda.append(element)
-		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':len(resultados_busqueda),'mensaje':mensaje}
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cant_resultados,'mensaje':mensaje}
 		return render_to_response('MP/resultados.html',ctx,context_instance=RequestContext(request))
 
 

@@ -142,6 +142,14 @@
 {% endblock %}
 {% block SCRIPT %}
 <script type="text/javascript">
+$(document).ready(function(){
+    $('#div_localidades_index div.chosen-container-multi').css("width", "100%");
+});
+
+</script>
+
+
+<script type="text/javascript">
   function busquedaavanzada(){
      var parametros = $('#id_form').serialize();
      $("#id_form").attr("action", "{% url 'busqueda_avanzada' %}");
