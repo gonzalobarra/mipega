@@ -476,7 +476,7 @@ def registro_view(request):
 				clave2 = form_user.cleaned_data['ClaveRepetida']
 				if clave == clave2:
 					# Agregar la condicion de que el correo no puede ser vacio
-					if form_user.cleaned_data['username'] == '' or clave == '' or form_user.cleaned_data['email'] == '':
+					if form_user.cleaned_data['username'] == '' or form_user.cleaned_data['username'] == None or clave == '' or clave == None or form_user.cleaned_data['email'] == '' or form_user.cleaned_data['email'] == None:
 						messages.warning(request, "El nombre de usuario, clave y email no pueden ser nulos")
 						HttpResponseRedirect('/registro')
 					else:
