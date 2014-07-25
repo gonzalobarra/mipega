@@ -33,9 +33,9 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'password','email',)
         widgets = {
-            'username': forms.TextInput(attrs={'class':'form-control'}),  
+            'username': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: 1234567-5'}),  
             'password': forms.PasswordInput(attrs={'class':'form-control'}),
-            'email': forms.TextInput(attrs={'class':'form-control plain-field'}),        
+            'email': forms.TextInput(attrs={'class':'form-control plain-field', 'placeholder': 'ej: mario.palma@mipega.cl'}),        
         }
     
 class SocioForm(forms.ModelForm):
@@ -43,10 +43,10 @@ class SocioForm(forms.ModelForm):
         model = Socio
         fields = ('nombre','telefono','disponibilidad','disponibilidadV','cargo_extra', 'web', 'edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
-            'nombre': forms.TextInput(attrs={'class':'form-control'}),
-            'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
-            'web': forms.TextInput(attrs={'class':'form-control plain-field'}),
-            'edad': forms.TextInput(attrs={'class':'form-control'}),
+            'nombre': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: Mario Palma'}),
+            'telefono': forms.TextInput(attrs={'class':'form-control plain-field','placeholder': 'ej: 091234567'}),
+            'web': forms.TextInput(attrs={'class':'form-control plain-field', 'placeholder': 'ej: www.mipega.cl'}),
+            'edad': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: 25'}),
             'sexo': forms.Select(attrs={'class':'form-control'}),
             'estado_civil': forms.Select(attrs={'class':'form-control'}),
             'pretencion_renta': forms.Select(attrs={'class':'form-control'}),
@@ -54,7 +54,7 @@ class SocioForm(forms.ModelForm):
             'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
             'nacionalidad': forms.Select(attrs={'class':'form-control'}),
             'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
-            'cargo_extra':forms.TextInput(attrs={'class':'form-control plain-field'}),
+            'cargo_extra':forms.TextInput(attrs={'class':'form-control plain-field','placeholder': 'ej: Profesor, Diseñador'}),
         }
 
 class SocioForm2(forms.ModelForm):
@@ -90,8 +90,8 @@ class ExperienciaLaboralForm(forms.ModelForm):
         model = ExperienciaLaboral
         fields = ('desde', 'hasta', 'cargo', 'rubro','comentario')
         widgets = {
-            'desde': forms.TextInput(attrs={'class':'form-control'}),
-            'hasta': forms.TextInput(attrs={'class':'form-control'}),
+            'desde': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: 1989'}),
+            'hasta': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: 2014'}),
             'cargo': forms.Select(attrs={'class':'form-control '}),
             'rubro': forms.Select(attrs={'class':'form-control '}),
             'comentario':forms.Textarea(attrs={'class':'form-control', 'rows':'5'})
