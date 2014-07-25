@@ -166,7 +166,7 @@ class Rubro(models.Model):
 
 class Cargo(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
-	nombre = models.CharField('Nombre', max_length=128,null=False, blank=False)
+	nombre = models.CharField('Nombre', max_length=250,null=False, blank=False)
 
 	def __unicode__(self):
 		return u'%s' % (self.nombre)

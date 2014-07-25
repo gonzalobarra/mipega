@@ -41,11 +41,42 @@
     <script>
     $(document).ready(function(){
       
-        $(".next").click(function(e){
+        $(".next").attr("disabled", "disabled");
 
-          if( !Rut($("#id_username").val()) ){            
-            location.reload();
+        $("#id_username").change(function(e){
+
+          if( Rut($("#id_username").val()) ){                       
+            $(".next").removeAttr("disabled");  
+
+            if( $("#id_password").val()=="" )
+              $(".next").attr("disabled", "disabled"); 
+            else
+              $(".next").removeAttr("disabled");  
+
+            if( $("#id_ClaveRepetida").val()=="" )
+              $(".next").attr("disabled", "disabled"); 
+            else
+              $(".next").removeAttr("disabled");      
+             
+          } else {
+            $(".next").attr("disabled", "disabled");
           }
+        });
+
+        $("#id_password").change(function(){
+
+          if( $("#id_password").val()=="" )
+            $(".next").attr("disabled", "disabled");
+          else
+            $(".next").removeAttr("disabled");
+        });
+
+        $("#id_ClaveRepetida").change(function(){
+
+          if( $("#id_ClaveRepetida").val()=="" )
+            $(".next").attr("disabled", "disabled");
+          else
+            $(".next").removeAttr("disabled");
         });
 
         //Muestra mas estudios
