@@ -562,7 +562,9 @@ def registro_view(request):
 						habilidades2.save()
 					messages.success(request,"El registro se ha realizado exitosamente")
 					#url = reverse('vista_pagoregistro', kwargs={ 'id_socio': socio_inst.id })
-					return HttpResponseRedirect("/infopago/")
+					usuario_inst = authenticate(username=form_user.cleaned_data['username'],password=form_user.cleaned_data['password'])
+					login(request, usuario_inst)
+					return HttpResponseRedirect('/')
 		#Else final
 		else:
 			messages.warning(request,"Error en los datos ingresados")
