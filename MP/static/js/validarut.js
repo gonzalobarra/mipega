@@ -69,6 +69,21 @@ function revisarDigito2( crut )
 function Rut(texto)
 {	
 	var tmpstr = "";	
+	for ( i=0; i < texto.length ; i++ )
+		if ( texto.charAt(i)== '.'){
+			alert("El RUT debe ser ingresado sin puntos y con guión");
+			$("#id_username").focus();		
+			$("#id_username").select();		
+			return false;
+		}
+
+	if ( texto.charAt(texto.length - 2)!='-' ){
+		alert("El RUT debe ser ingresado sin puntos y con guión");
+		$("#id_username").focus();		
+		$("#id_username").select();		
+		return false;
+	}
+
 	for ( i=0; i < texto.length ; i++ )		
 		if ( texto.charAt(i) != ' ' && texto.charAt(i) != '.' && texto.charAt(i) != '-' )
 			tmpstr = tmpstr + texto.charAt(i);	

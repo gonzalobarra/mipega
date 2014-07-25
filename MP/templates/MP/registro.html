@@ -41,10 +41,16 @@
     <script>
     $(document).ready(function(){
       
-        $(".next").click(function(e){
+        $(".next").attr("disabled", "disabled");
 
-          if( !Rut($("#id_username").val()) ){            
-            location.reload();
+        $("#id_username").change(function(e){
+
+          if( Rut($("#id_username").val()) ){                       
+            $(".next").removeAttr("disabled");
+            $(".next").removeAttr("disabled");
+            alert("change"); 
+          } else {
+            $(".next").attr("disabled", "disabled");
           }
         });
 
