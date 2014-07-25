@@ -103,7 +103,7 @@ class OtrasHabilidadesForm(forms.ModelForm):
         fields = ('nivel', 'habilidad',) 
         widgets = {
             'nivel': forms.Select(attrs={'class':'form-control'}),
-            'habilidad': forms.Select(attrs={'class':'form-control chosen-select'}),
+            'habilidad': forms.Select(attrs={'class':'form-control'}),
         }
                         
 #Al parecer no se usa nunca jamás                       

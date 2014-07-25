@@ -1,8 +1,8 @@
 <section class="step" data-step="1" data-step-title="Perfil">
     <div class="bs-callout bs-callout-info">
         <h3>Perfil</h3>
-        <p>Caja de mensaje de perfil: A continuación debe completar los siguientes formularios con sus datos de cuenta, personales y de contacto. Los campos marcados con un * son obligatorios.
-        Su  RUT no será visible por quienes usen la aplicación y solo se usará como su usuario para ingresar a su perfil.</p>
+        <p>A continuación debe completar los siguientes formularios con sus datos de cuenta, personales y de contacto. Los campos marcados con un * son obligatorios.</br>
+        Su  RUT no será visible por quienes usen la aplicación y solo se usará como su usuario para ingresar a su cuenta.</p>
     </div>
     <h3 class="page-header">Cuenta</h3>
     <div class="form-group">
@@ -13,21 +13,21 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">RUT</label>
+        <label for="inputPassword" class="col-sm-2 control-label">RUT*</label>
         <div class="col-sm-10">
             <!--<input type="text" class="form-control" id="inputPassword" placeholder="">-->
             {{form_user.username}}
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">Contraseña</label>
+        <label for="inputPassword" class="col-sm-2 control-label">Contraseña*</label>
         <div class="col-sm-10">
             <!--<input type="password" class="form-control" id="inputPassword" placeholder="">-->
             {{form_user.password}}
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">Repita su contraseña</label>
+        <label for="inputPassword" class="col-sm-2 control-label">Repita su contraseña*</label>
         <div class="col-sm-10">
             {{form_user.ClaveRepetida}}
         </div>
@@ -36,11 +36,6 @@
     <div class="form-group">
         <label for="inputPassword" class="col-sm-2 control-label">Género</label>
         <div class="col-sm-10">
-            <!--<select class="form-control">
-                <option>Seleccione su opción</option>
-                <option>Masculino</option>
-                <option>Femenino</option>
-            </select>-->
             {{form_socio.sexo}}
         </div>
     </div>
@@ -75,14 +70,14 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">¿Disponibilidad de vehiculo?</label>
+        <label for="inputPassword" class="col-sm-2 control-label">¿Disponibilidad de vehículo?</label>
         <div class="col-sm-10">
             {{form_socio.disponibilidadV}}
         </div>
     </div>
     <h3 class="page-header">Contacto</h3>
     <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">E-Mail de contacto</label>
+        <label for="inputPassword" class="col-sm-2 control-label">E-Mail de contacto*</label>
         <div class="col-sm-10">
             {{form_user.email}}
         </div>
