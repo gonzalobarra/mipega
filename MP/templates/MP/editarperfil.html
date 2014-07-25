@@ -1,16 +1,262 @@
 {% extends 'template.html' %}
 {% block title %} Editar perfil | MiPega.cl {% endblock %}
 {% block contenido %}
-<div id="login-form_">
-        <!--<h3 style="text-align:center;">Perfil</h3>-->
-        <ul class="profile-nav">            
-            <li><a id="selected-option" href="{% url 'vista_editarperfil' %}" class="btn btn-primary btn-lg">Editar perfil</a></li>
-            <li><a href="{% url 'vista_nuevaclave' %}" class="btn btn-primary btn-lg">Cambiar clave</a></li>
-            <li><a href="{% url 'vista_bandejaentrada' %}" class="btn btn-primary btn-lg">Bandeja de entrada</a></li>
-            <li><a href="{% url 'vista_pagoperfil' %}" class="btn btn-primary btn-lg">Pagar subscripción</a></li>
-        </ul>
+
+<div id="perfil" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-body text-center">
+                        <!-- <img data-src="holder.js/120x120" alt="" class="img-circle"> -->
+                        
+                        <h2>{{socio.nombre}}</h2>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, eius, vitae molestiae.</p>
+                        <h3><small>Folio: {{socio.folio}}</small></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <h2>Editar Perfil</h2>
+                <form type="get" method="post" action="" class="form-horizontal">
+                    {% csrf_token %}
+                    <ul class="nav nav-tabs sub-section nav-justified">
+                        <li class="active"><a href="#info" data-toggle="tab">Información personal</a></li>
+                        <li><a href="#trabajo" data-toggle="tab">Características del trabajo buscado</a></li>
+                        <li><a href="#estudios" data-toggle="tab">Estudios</a></li>
+                        <li><a href="#experiencia" data-toggle="tab">Experiencia laboral</a></li>
+                        <li><a href="#otros" data-toggle="tab">Otras habilidades</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="info">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 class="sub-title info">Personal</h3>
+                                    <div class="form-group">
+                                        <label for="id_nacionalidad" class="col-sm-3 control-label">Nacionalidad</label>
+                                        <div class="col-sm-8">
+                                            {{form_socio.nacionalidad}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_ano_nacimiento" class="col-sm-2 control-label">Edad</label>
+                                        <div class="col-sm-2">
+                                            {{form_socio.edad}}
+                                        </div>
+                                        <label for="id_sexo" class="col-sm-2 control-label">Sexo</label>
+                                        <div class="col-sm-5">
+                                            {{form_socio.sexo}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_tiene_hijos" class="col-sm-2 control-label">Hijos</label>
+                                        <div class="col-sm-2">
+                                            {{form_socio.tiene_hijos}}
+                                        </div>
+                                        <label for="id_estado_civil" class="col-sm-2 control-label">Estado</label>
+                                        <div class="col-sm-5">
+                                            {{form_socio.estado_civil}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h3 class="sub-title warning">Contacto</h3>
+                                    <div class="form-group">
+                                        <label for="id_telefono" class="col-sm-3 control-label">Teléfono</label>
+                                        <div class="col-sm-8">
+                                            {{form_socio.telefono}}
+                                        </div>    
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_web" class="col-sm-3 control-label">Web</label>
+                                        <div class="col-sm-8">
+                                            {{form_socio.web}}
+                                        </div>    
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_disponibilidad">Disponibilidad inmediata:</label>
+                                        {{form_socio.disponibilidad}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_disponibilidadV">Disponibilidad de movilización:</label>
+                                        {{form_socio.disponibilidadV}}
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="trabajo">
+                            <div class="form-group">
+                                <label for="id_pretencion_renta" class="col-sm-4 control-label">Pretenciones de renta</label>
+                                <div class="col-sm-7">
+                                    {{form_socio.pretencion_renta}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_tipo_contrato" class="col-sm-4 control-label">Tipo de contrato buscado:</label>
+                                <div class="col-sm-7">
+                                    {{form_socio.tipo_contrato}}  
+                                </div>
+                            </div>
+                            <div class="inline-group">
+                              <label for="id_cargo_extra" class="col-sm-4 control-label">Cargo extra:</label>
+                              <div class="col-sm-7">
+                                  {{form_socio.cargo_extra}}
+                              </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane" id="estudios">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3 class="sub-title info">Secundarios</h3>
+                                    <div class="inline-group">
+                                        <label for="id_estado">Estado:</label>
+                                        {{form_estudio.estado}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_titulo">Titulo:</label>
+                                        {{form_estudio.titulo}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_institucion">Institucion:</label>
+                                        {{form_estudio.institucion}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <h3 class="sub-title primary">Superiores</h3>
+                                    <div class="inline-group">
+                                        <label for="id_estado">Estado:</label>
+                                        {{form_estudio2.estado}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_titulo">Titulo:</label>
+                                        {{form_estudio2.titulo}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_institucion">Institucion:</label>
+                                        {{form_estudio2.institucion}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_estado">Estado:</label>
+                                        {{form_estudio3.estado}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_titulo">Titulo:</label>
+                                        {{form_estudio3.titulo}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_institucion">Institucion:</label>
+                                        {{form_estudio3.institucion}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_magister">Magister:</label>
+                                        {{form_socio.magister}}
+                                    </div>
+                                    <div class="inline-group">
+                                        <label for="id_doctorado">Doctorado:</label>
+                                        {{form_socio.doctorado}}
+                                    </div>
+                                    <div class="inline-group comment">
+                                        <label for="id_comentario_est">Comentario:</label>
+                                        {{form_socio.comentario_est}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="experiencia">
+                            <div class="inline-group">
+                                <label for="id_anos_trabajados">Años trabajados:</label>
+                                {{form_explab.anos_trabajados}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_cargo">Cargo:</label>
+                                {{form_explab.cargo}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_cargo">Rubro:</label>
+                                {{form_explab.rubro}}
+                            </div>
+                            <div class="inline-group comment">
+                                <label for="id_cargo">Comentario:</label>
+                                {{form_explab.comentario}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_anos_trabajados">Años trabajados:</label>
+                                {{form_explab2.anos_trabajados}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_cargo">Cargo:</label>
+                                {{form_explab2.cargo}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_cargo">Rubro:</label>
+                                {{form_explab2.rubro}}
+                            </div>
+                            <div class="inline-group comment">
+                                <label for="id_cargo">Comentario:</label>
+                                {{form_explab2.comentario}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_anos_trabajados">Años trabajados:</label>
+                                {{form_explab3.anos_trabajados}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_cargo">Cargo:</label>
+                                {{form_explab3.cargo}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_cargo">Rubro:</label>
+                                {{form_explab3.rubro}}
+                            </div>
+                            <div class="inline-group comment">
+                                <label for="id_cargo">Comentario:</label>
+                                {{form_explab3.comentario}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_anos_trabajados">Años trabajados:</label>
+                                {{form_explab4.anos_trabajados}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_cargo">Cargo:</label>
+                                {{form_explab4.cargo}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_cargo">Rubro:</label>
+                                {{form_explab4.rubro}}
+                            </div>
+                            <div class="inline-group comment">
+                                <label for="id_cargo">Comentario:</label>
+                                {{form_explab4.comentario}}
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="otros">
+                            <div class="inline-group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab.habilidad}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab.nivel}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_habilidad">Habilidad:</label>
+                                {{form_hab2.habilidad}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_nivel">Nivel:</label>
+                                {{form_hab2.nivel}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right sub-section">
+                        <button type="submit" class="submit btn btn-success btn-lg" value="Guardar cambios">Guardar</button>    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="profile-content">
+        <!-- ######################################################################################-->
+<!--<div class="profile-content">
 	<form action="" method="post" id="edit-profile-form">
 		
         {% csrf_token %}
@@ -218,5 +464,5 @@
         
         <input class="pull-right btn btn-primary" style="margin:30px;"type="submit" value="Guardar cambios">
     </form>   
-</div>
+</div>-->
 {% endblock %}

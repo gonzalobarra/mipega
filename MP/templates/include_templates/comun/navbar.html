@@ -15,18 +15,35 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
-        <ul class="nav navbar-nav navbar-right"> 
+         
           {% if user.is_authenticated and user.is_active%}
-              <li><a onclick="function(e){e.preventDefault();}">Bienvenido <strong>{{user.username}}</strong>!</a></li>
-              <li><a href="{% url 'vista_editarperfil' %}">Perfil</a></li>
-              <li><a href="{% url 'vista_logout' %}">Cerrar Sesión</a></li>
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="{% url 'vista_pagoperfil' %}"><span class="glyphicon glyphicon-usd"></span> Pagar Suscripción</a></li>
+                <li><a href="{% url 'vista_bandejaentrada' %}"><span class="glyphicon glyphicon-envelope"></span> Mensajes <span class="badge badge-warning">42</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">¡Hola {{user.username}}! <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'vista_editarperfil' %}">Editar perfil</a></li>
+                        <li><a href="{% url 'vista_nuevaclave' %}">Cambiar contraseña</a></li>
+                        <li><a href="{% url 'vista_pagoperfil' %}">Pagar suscripción</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'vista_logout' %}">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+
+                <!-- <li><img class="img-circle nav-img-profile" data-src="holder.js/55x55" alt=""></li> -->
+                
+            </ul>              
           {% else %}
+            <ul class="nav navbar-nav navbar-right">
               <li><a href="#" data-toggle="modal" data-target="#modal-login">Inicia sesión</a></li>
               <li><a href="{% url 'vista_registro' %}">Registrarse</a></li> 
-          {% endif %}
-          </a></li>
-          <li><a href="#">¿Dudas?</a></li>
-        </ul>
+              <li><a href="#">¿Dudas?</a></li>
+            </ul>
+          {% endif %}                    
+        
       </div><!-- /.navbar-collapse -->
     </div>
   </nav>
