@@ -1,6 +1,122 @@
 {% extends 'template.html' %}
 {% block title %} Busqueda avanzada | MiPega.cl {% endblock %}
 {% block contenido %}
+
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h2>Búsqueda avanzada</h2>
+                                <form class="form-horizontal">
+                                    <h4 class="page-header">Sección de preferencias</h4>
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-sm-6">
+                                            <label>Cargo</label>
+                                            <input class="form-control" type="text" placeholder="Cargo">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Localidad</label>
+                                            <input class="form-control" type="text" placeholder="Localidad">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-sm-6">
+                                            <label>Estado civil</label>
+                                            <input class="form-control" type="text" placeholder="Estado civil">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Edad</label>
+                                            <input type="text" class="form-control" placeholder="INSERTAR SLIDER DE EDADES AQUI">
+                                        </div>
+                                    </div>
+                                    <h4 class="page-header">Sección de datos personales</h4>
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-lg-6">
+                                            <label for="">Sexo</label>
+                                            <br>
+                                            <label class="checkbox-inline">
+                                              <input type="checkbox"> Masculino
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input type="checkbox"> Femenino
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input type="checkbox"> Indiferente
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="">Hijos</label>
+                                            <br>
+                                            <label class="checkbox-inline">
+                                              <input type="checkbox"> Si
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input type="checkbox"> No
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input type="checkbox"> Indiferente
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="page-header">Sección de estudios</h4>
+                                    <label for="">Estudios Escolares</label>
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" placeholder="Institución">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" placeholder="Especialidad">
+                                        </div>
+                                    </div>
+                                    <label for="">Estudios Superiores</label>
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" placeholder="Institución">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" placeholder="Especialidad">
+                                        </div>
+                                    </div>
+                                    <h4 class="page-header">Sección de exigencias</h4>
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-sm-6">
+                                            <label>Pretención de renta</label>
+                                            <input class="form-control" type="text" >
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Tipo de contrato</label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-sm-6">
+                                            <label>Experiencia en el rubro</label>
+                                            <input class="form-control" type="text">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Otros</label>
+                                            <input type="text" class="form-control" placeholder="Idiomas, deportes, etc.">
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-right">
+                                        <button type="submit" class="btn btn-success">Buscar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="panel-footer text-right">
+                                <a href="#" class="btn btn-primary">Volver a portada</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 <div class="body row"  style="width:98%">
         
         <div class="col-lg-9 col-lg-offset-3 busqueda avanzada">

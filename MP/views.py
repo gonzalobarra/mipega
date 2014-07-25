@@ -338,7 +338,7 @@ def busqueda_rapida_view(request):
 
 
 def resultados_completos(request):
-	tam_pagina = 1
+	tam_pagina = 3
 	if request.method == "GET":
 		if 'page' in request.GET:
 			pagina = int(request.GET['page'])
@@ -437,7 +437,10 @@ def resultados_completos(request):
 				if len(resultados_busqueda) < tam_pagina:
 					resultados_busqueda.append(element)
 			i=i+1
-		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'desde':pagina*tam_pagina,'hasta':pagina*tam_pagina+tam_pagina,'sig':sig,'ant':ant, 'actual':pagina, 'ult':ult, 'rango':range(ult+1)}
+		hasta = pagina*tam_pagina
+		if hasta > cantidad_resultados:
+			hasta = cantidad_resultados
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'desde':(pagina-1)*tam_pagina+1,'hasta':hasta,'sig':sig,'ant':ant, 'actual':pagina, 'ult':ult, 'rango':range(ult+1)}
 		return render_to_response('MP/resultados_completos.html',ctx,context_instance=RequestContext(request))
 
 
