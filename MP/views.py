@@ -338,7 +338,7 @@ def busqueda_rapida_view(request):
 
 
 def resultados_completos(request):
-	tam_pagina = 10
+	tam_pagina = 1
 	if request.method == "GET":
 		if 'page' in request.GET:
 			pagina = int(request.GET['page'])
@@ -432,12 +432,12 @@ def resultados_completos(request):
 		i = 0
 		for socio in socios:
 			str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad) + " estado civil:~"+ str(socio.estado_civil)+"~"
-			element = {'id':socio.id, 'titulo':socio.folio, 'descripcion':str_coment}
+			element = {'id':socio.id, 'folio':socio.folio, 'nombre':socio.nombre,'descripcion':str_coment}
 			if i >= (pagina-1)*tam_pagina:
 				if len(resultados_busqueda) < tam_pagina:
 					resultados_busqueda.append(element)
 			i=i+1
-		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'sig':sig,'ant':ant, 'actual':pagina, 'ult':ult}
+		ctx = {'resultados_busqueda': resultados_busqueda, 'cant_resultados':cantidad_resultados,'desde':pagina*tam_pagina,'hasta':pagina*tam_pagina+tam_pagina,'sig':sig,'ant':ant, 'actual':pagina, 'ult':ult, 'rango':range(ult+1)}
 		return render_to_response('MP/resultados_completos.html',ctx,context_instance=RequestContext(request))
 
 

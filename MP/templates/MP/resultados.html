@@ -29,18 +29,20 @@
               
           </tbody>
       </table>
-      <a href="#" class="btn btn-primary pull-right">Ver más resultados ({{cant_resultados}})</a>
+      <a href="#" id="indice" class="btn btn-primary pull-right">Ver más resultados ({{cant_resultados}})</a>
   </div>
 </div>
 
 <script type="text/javascript">
-    /*$('#indice').on('click',function(e){
+    $('#indice').on('click',function(e){
       e.preventDefault();
-      $("#id_form").attr("action", "{% url 'vista_resultados_completos' %}"); 
+      $("#id_form").attr("action", "{% url 'vista_resultados_completos' %}");
+      $("input[name=csrfmiddlewaretoken]").remove();
       $("#id_form").attr("method", 'GET');
       $("#id_form").submit();
 
     });
+    /*
 
     $.ambiance({message: "Se han encontrado {{cant_resultados}} resultados para esta busqueda.",type:"success",timeout:4,width:300,});
     $(".media").show();
