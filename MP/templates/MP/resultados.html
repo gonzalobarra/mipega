@@ -1,38 +1,40 @@
 {% ifequal cant_resultados 0 %}
-<div class="col-sm-8 result">
-  <div class="jumbotron">
-    <h1>Resultados</h1>
-    <p>Lorem ipsum dolor sit amet.</p>
+<div class="panel panel-default">
+  <div class="panel-body">
+      <h2>Resultados rápidos</h2>
+      <p><i>No se encontraron resultados para los paremetros de busqueda seleccionados.</i></p>
   </div>
 </div>
-<script type="text/javascript">
-      $.ambiance({message: "No hay resultados para los valores buscados.", title:"Alerta",
-                  type: "warning",timeout:4,width:300,});
-      /*$('.result').html(data);*/
-      /*$(".media").hide();
-      $(".result").animate({
-          height: "0px",
-          padding: "0px"
-      }, 500);
-      $("#indice").hide();*/
-</script>
 {% else %}
-<a id="indice" href="#" style="display: inline;font-size:20px;margin-top:-10px;">Resultados totales ({{cant_resultados}})</a>
-<div class="media">
-  {% for r in resultados_busqueda %}
-    <!--<a class="pull-left" href="#">
-      <img class="media-object" src="{{STATIC_URL}}img/avatar/avatar.png">
-    </a>-->
-    <div class="media-body">
-        <h4 class="media-heading"><a href="{% url 'vista_detalle_socio' r.id %}">{{r.titulo}}</a></h4>
-        {{r.descripcion}}
-    </div>
-    <br />
-  {% endfor %}
+
+<div class="panel panel-default">
+  <div class="panel-body">
+      <h2>Resultados rápidos</h2>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Folio</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for r in resultados_busqueda %}
+              <tr>
+                  <td><a href="{% url 'vista_detalle_socio' r.id %}">{{r.folio}}</a></td>
+                  <td>{{r.nombre}}</td>
+                  <td>{{r.descripcion}}</td>
+              </tr>
+            {% endfor %}
+              
+          </tbody>
+      </table>
+      <a href="#" class="btn btn-primary pull-right">Ver más resultados ({{cant_resultados}})</a>
+  </div>
 </div>
 
 <script type="text/javascript">
-    $('#indice').on('click',function(e){
+    /*$('#indice').on('click',function(e){
       e.preventDefault();
       $("#id_form").attr("action", "{% url 'vista_resultados_completos' %}"); 
       $("#id_form").attr("method", 'GET');
@@ -43,7 +45,7 @@
     $.ambiance({message: "Se han encontrado {{cant_resultados}} resultados para esta busqueda.",type:"success",timeout:4,width:300,});
     $(".media").show();
     $(".result").animate({
-        height: "180px",
+        height: "560px",
         padding: "15px"
     }, 500);
     $("#indice").show();
@@ -51,6 +53,6 @@
     if (mensaje != ""){
       $.ambiance({message: mensaje, title:"Debug",
                   type: "info",timeout:4,width:200,});
-    }
+    }*/
 </script>
 {% endifequal %}

@@ -106,6 +106,7 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/validarut.js"></script>
     <!--<script type="text/javascript" src="{{STATIC_URL}}js/jquery.ui.draggable.js"></script>-->
     <script type="text/javascript">
+     $('#navbar').waypoint('sticky');
         {% if messages %}
             $(document).ready(function(){
                 {% for message in messages %}
