@@ -73,6 +73,7 @@ class SocioForm2(forms.ModelForm):
             'nacionalidad': forms.Select(attrs={'class':'form-control chosen-select'}),
             'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
             'cargo_extra':forms.TextInput(attrs={'class':'form-control plain-field'}),
+            'activo': forms.Select(attrs={'class':'form-control'}),
         }
 
 class EstudioForm(forms.ModelForm):

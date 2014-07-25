@@ -57,6 +57,12 @@
                                         <div class="col-sm-5">
                                             {{form_socio.estado_civil}}
                                         </div>
+                                        {% ifequal mod 1%}
+						            	<label for="id_estado_civil" class="col-sm-2 control-label">¿Activo?</label>
+                                        <div class="col-sm-5">
+						                	{{form_socio.activo}}
+						            	</div> 
+						            	{% endifequal %}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -123,6 +129,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <h3 class="sub-title primary">Superiores</h3>
+                                    <h3 class="page-header">Estudio superior número 1</h3>
                                     <div class="inline-group">
                                         <label for="id_estado">Estado:</label>
                                         {{form_estudio2.estado}}
@@ -135,6 +142,7 @@
                                         <label for="id_institucion">Institucion:</label>
                                         {{form_estudio2.institucion}}
                                     </div>
+                                    <h3 class="page-header">Estudio superior número 2</h3>
                                     <div class="inline-group">
                                         <label for="id_estado">Estado:</label>
                                         {{form_estudio3.estado}}
@@ -147,12 +155,13 @@
                                         <label for="id_institucion">Institucion:</label>
                                         {{form_estudio3.institucion}}
                                     </div>
+                                    <h3 class="page-header">Información adicional</h3>
                                     <div class="inline-group">
-                                        <label for="id_magister">Magister:</label>
+                                        <label for="id_magister">¿Posee Magister?</label>
                                         {{form_socio.magister}}
                                     </div>
                                     <div class="inline-group">
-                                        <label for="id_doctorado">Doctorado:</label>
+                                        <label for="id_doctorado">¿Posee Doctorado?</label>
                                         {{form_socio.doctorado}}
                                     </div>
                                     <div class="inline-group comment">
@@ -163,9 +172,14 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="experiencia">
+                        	<h3 class="page-header">Experiencia laboral número 1</h3>
                             <div class="inline-group">
-                                <label for="id_anos_trabajados">Años trabajados:</label>
-                                {{form_explab.anos_trabajados}}
+                                <label for="id_anos_trabajados">Desde:</label>
+                                {{form_explab.desde}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_anos_trabajados">Hasta:</label>
+                                {{form_explab.hasta}}
                             </div>
                             <div class="inline-group">
                                 <label for="id_cargo">Cargo:</label>
@@ -180,8 +194,13 @@
                                 {{form_explab.comentario}}
                             </div>
                             <div class="inline-group">
-                                <label for="id_anos_trabajados">Años trabajados:</label>
-                                {{form_explab2.anos_trabajados}}
+                            <h3 class="page-header">Experiencia laboral número 2</h3>
+                                <label for="id_anos_trabajados">Desde:</label>
+                                {{form_explab2.desde}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_anos_trabajados">Hasta:</label>
+                                {{form_explab2.hasta}}
                             </div>
                             <div class="inline-group">
                                 <label for="id_cargo">Cargo:</label>
@@ -196,8 +215,13 @@
                                 {{form_explab2.comentario}}
                             </div>
                             <div class="inline-group">
-                                <label for="id_anos_trabajados">Años trabajados:</label>
-                                {{form_explab3.anos_trabajados}}
+                            <h3 class="page-header">Experiencia laboral número 3</h3>
+                                <label for="id_anos_trabajados">Desde:</label>
+                                {{form_explab3.desde}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_anos_trabajados">Hasta:</label>
+                                {{form_explab3.hasta}}
                             </div>
                             <div class="inline-group">
                                 <label for="id_cargo">Cargo:</label>
@@ -212,8 +236,13 @@
                                 {{form_explab3.comentario}}
                             </div>
                             <div class="inline-group">
-                                <label for="id_anos_trabajados">Años trabajados:</label>
-                                {{form_explab4.anos_trabajados}}
+                            <h3 class="page-header">Experiencia laboral número 4</h3>
+                                <label for="id_anos_trabajados">Desde:</label>
+                                {{form_explab4.desde}}
+                            </div>
+                            <div class="inline-group">
+                                <label for="id_anos_trabajados">Hasta:</label>
+                                {{form_explab4.hasta}}
                             </div>
                             <div class="inline-group">
                                 <label for="id_cargo">Cargo:</label>
@@ -230,6 +259,7 @@
                         </div>
                         <div class="tab-pane" id="otros">
                             <div class="inline-group">
+                            <h3 class="page-header">Idioma</h3>
                                 <label for="id_habilidad">Habilidad:</label>
                                 {{form_hab.habilidad}}
                             </div>
@@ -238,6 +268,7 @@
                                 {{form_hab.nivel}}
                             </div>
                             <div class="inline-group">
+                            <h3 class="page-header">Deporte</h3>
                                 <label for="id_habilidad">Habilidad:</label>
                                 {{form_hab2.habilidad}}
                             </div>
