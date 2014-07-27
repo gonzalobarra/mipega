@@ -11,7 +11,7 @@
                         <!-- <img data-src="holder.js/120x120" alt="" class="img-circle"> -->
                         
                         <h2>{{socio.nombre}}</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, eius, vitae molestiae.</p>
+                        <p class="lead">{{socio.comentario_est}}</p>
                         <h3><small>Folio: {{socio.folio}}</small></h3>
                     </div>
                 </div>
@@ -56,13 +56,15 @@
                                         <label for="id_estado_civil" class="col-sm-2 control-label">Estado</label>
                                         <div class="col-sm-5">
                                             {{form_socio.estado_civil}}
-                                        </div>
-                                        {% ifequal mod 1%}
-						            	<label for="id_estado_civil" class="col-sm-2 control-label">¿Activo?</label>
-                                        <div class="col-sm-5">
-						                	{{form_socio.activo}}
-						            	</div> 
-						            	{% endifequal %}
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group">
+                                      {% ifequal mod 1%}
+                                      <label for="id_estado_civil" class="col-sm-2 control-label">¿Activo?</label>
+                                                    <div class="col-sm-5">
+                                          {{form_socio.activo}}
+                                      </div> 
+                                      {% endifequal %}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -103,12 +105,12 @@
                                     {{form_socio.tipo_contrato}}  
                                 </div>
                             </div>
-                            <div class="inline-group">
+                            <div class="form-group">
                               <label for="id_cargo_extra" class="col-sm-4 control-label">Cargo extra:</label>
                               <div class="col-sm-7">
                                   {{form_socio.cargo_extra}}
                               </div>
-                          </div>
+                            </div>
                         </div>
                         <div class="tab-pane" id="estudios">
                             <div class="row">
