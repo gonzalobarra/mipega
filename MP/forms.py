@@ -70,7 +70,7 @@ class SocioForm2(forms.ModelForm):
             'pretencion_renta': forms.Select(attrs={'class':'form-control'}),
             'tipo_contrato': forms.Select(attrs={'class':'form-control'}),
             'tiene_hijos': forms.Select(attrs={'class':'form-control'}),
-            'nacionalidad': forms.Select(attrs={'class':'form-control chosen-select'}),
+            'nacionalidad': forms.Select(attrs={'class':'form-control '}),
             'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
             'cargo_extra':forms.TextInput(attrs={'class':'form-control plain-field'}),
             'activo': forms.Select(attrs={'class':'form-control'}),
