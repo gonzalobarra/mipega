@@ -159,11 +159,16 @@
                                         <label>Pretención de renta</label>
                                         <select name="renta" class="form-control">
                                             <option value="-">Indiferente</option>
-                                            <option value="0"> &lt; 200</option>
-                                            <option value="1">200-350</option>
-                                            <option value="2">350-500</option>
-                                            <option value="3">500-650</option>
-                                            <option value="4">650 o +</option>
+                                            <option value="0">< 200.000</option>
+                                            <option value="1">200.000-450.000</option>
+                                            <option value="2">450.000-650.000</option>
+                                            <option value="3">650.000-850.000</option>
+                                            <option value="4">850.000-1.000.000</option>
+                                            <option value="5">1.250.000-1.500.000</option>
+                                            <option value="6">1.500.000-1.750.000</option>
+                                            <option value="7">2.000.000-2.500.000</option>
+                                            <option value="8">2.500.000-3.000.000</option>
+                                            <option value="9">3.000.000 o +</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
@@ -179,7 +184,7 @@
                                 <div class="form-group form-group-lg">
                                     <div class="col-sm-6">
                                         <label>Experiencia en el rubro</label>
-                                        <select name="rubro" class="form-control chosen-select" id="inputRubro" data-placeholder="" multiple tabindex="6">
+                                        <select name="rubro" class="form-control chosen-select" id="inputRubro" multiple tabindex="6" data-placeholder="Seleccione un rubro...">
                                             {% for rubro in rubros %}
                                                 <option value="{{rubro.id}}">{{rubro.nombre}}</option>
                                             {% endfor %}
@@ -235,8 +240,8 @@ $(document).ready(function(){
     
 
     $('#search').click(function(e){
+        $('.result').slideUp();
         e.preventDefault();
-        
         $("#id_form").attr("action", "{% url 'busqueda_avanzada' %}"); 
         $("#id_form").attr("method", 'POST');
         var parametros = $('#id_form').serialize();
@@ -248,7 +253,6 @@ $(document).ready(function(){
             
         }).done(function(data){
             if(data!=""){
-                $('.result').slideUp();
                 $('.result').html(data);
                 $('.result').slideDown();
             }

@@ -219,6 +219,8 @@ def busqueda_view(request):
 			mayor = int(edad.split(',')[1])
 			socios = socios.exclude(edad__lt=menor)
 			socios = socios.exclude(edad__gt=mayor)
+			if menor!=18 or mayor != 100:
+				socios = socios.exclude(edad = None)
 		if 'optionsRadios' in request.POST:
 			sexo  = request.POST['optionsRadios']
 			if sexo != "i":
@@ -266,7 +268,7 @@ def busqueda_view(request):
 		carreras_superiores = Titulo.objects.exclude(tipo='t')
 		instituciones_escolares = Institucion.objects.filter(colegio=True)
 		instituciones_superiores = Institucion.objects.filter(colegio=False)
-		tipoHabilidades = TipoHabilidad.objects.all()
+		tipoHabilidades = TipoHabilidad.objects.all().order_by('-nombre')
 		habilidades = Habilidad.objects.all()
 		ctx ={'form_busqueda_rapida':form, 'localidades':localidades, 'cargos':cargos,'rubros':rubros,
 			  'carreras_escolares':carreras_escolares, 'carreras_superiores':carreras_superiores,
@@ -320,6 +322,8 @@ def busqueda_rapida_view(request):
 			
 			socios = socios.exclude(edad__lt=menor)
 			socios = socios.exclude(edad__gt=mayor)
+			if menor!=18 or mayor != 100:
+				socios = socios.exclude(edad = None)
 		if 'optionsRadios' in request.POST:
 			sexo  = request.POST['optionsRadios']
 			if sexo != "i":
@@ -327,7 +331,7 @@ def busqueda_rapida_view(request):
 		resultados_busqueda = []
 		cant_resultados = len(socios)
 		for socio in socios[:10]:
-			str_coment = str(socio.nombre)+ ": año nacimiento - " + str(socio.edad)
+			str_coment = str(socio.nombre)+ ": No se ha detallado la informacion a mostrar- " + str(socio.edad)
 			#+ str(edad)
 			element = {'id':socio.id, 'folio':socio.folio, 'nombre':socio.nombre,'descripcion':str_coment}
 			resultados_busqueda.append(element)
