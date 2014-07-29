@@ -100,7 +100,7 @@ class Socio(models.Model):
 	user = models.OneToOneField(User)
 
 	def __unicode__(self):
-		return u'%s' % (self.usuario)
+		return u'%s' % (self.nombre)
 	
 
 class RegistroPago(models.Model):
@@ -117,6 +117,9 @@ class RegistroPago(models.Model):
 	class Meta:
 		ordering = ["fecha_inicio"]
 
+	def __unicode__(self):
+		return u'%s [%s-%s]' % (self.socio, self.fecha_inicio, self.fecha_fin)
+
 
 class Mensaje(models.Model):
 	id              = models.AutoField('ID', primary_key=True)
@@ -128,10 +131,15 @@ class Mensaje(models.Model):
 
 	# Llaves foraneas
 	socio           = models.ForeignKey(Socio, verbose_name="Socio")
+	def __unicode__(self):
+		return u'(%s) %s' % (self.fecha, self.socio)
 
 class TipoHabilidad(models.Model):
 	id     = models.AutoField('ID', primary_key=True)
 	nombre = models.CharField('Nombre', max_length=128,null=False, blank=False)
+
+	def __unicode__(self):
+		return u'%s' % (self.nombre)
 
 
 class Habilidad(models.Model):
@@ -153,6 +161,7 @@ class OtrasHabilidades(models.Model):
 	# Llaves foraneas
 	socio     = models.ForeignKey(Socio, verbose_name="Socio")
 	habilidad = models.ForeignKey(Habilidad, verbose_name="Habilidad", null=True, blank=True)
+
 
 
 class Rubro(models.Model):
