@@ -50,10 +50,12 @@ USE_L10N = True
 USE_TZ = True
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
-STATIC_ROOT = os.path.join(PROJECT_PATH,'static'),
+STATIC_ROOT = os.path.join(PROJECT_PATH,'static')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(PROJECT_PATH,'media'),
+MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 MEDIA_URL = '/media/'
+
+
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -90,7 +92,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'MP.urls'
+ROOT_URLCONF = 'mipega.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'mipega.wsgi.application'
