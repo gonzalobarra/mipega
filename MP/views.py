@@ -71,7 +71,7 @@ def index_view(request):
 	formLogin = LoginForm(request.POST or None)
 	localidades = Localidad.objects.all()
 	cargos = Cargo.objects.all()
-	ctx ={'form_busqueda_rapida':form,'formLogin':formLogin, 'localidades':localidades, 'cargos':cargos}
+	ctx ={'form_busqueda_rapida':form,'formLogin':formLogin, 'localidades':localidades, 'cargos':cargos, "wololo":RequestContext(request)}
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
 def login_view(request):
@@ -88,7 +88,8 @@ def login_view(request):
 			if user.is_active:
 				login(request, user)
 				# redireccionar al inicio
-				messages.success(request, 'Bienvenido ' + user.username)
+				socio = Socio.objects.get(user = user)
+				messages.success(request, 'Bienvenido ' + socio.nombre)
 				return HttpResponseRedirect('/')
 			else:
 				# Mensaje warning

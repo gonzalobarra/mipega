@@ -19,11 +19,11 @@
           {% if user.is_authenticated and user.is_active%}
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="{% url 'vista_pagoperfil' %}"><span class="glyphicon glyphicon-usd"></span> Pagar Suscripción</a></li>
-                <li><a href="{% url 'vista_bandejaentrada' %}"><span class="glyphicon glyphicon-envelope"></span> Mensajes <span class="badge badge-warning">42</span></a></li>
+                <li><a href="{% url 'vista_bandejaentrada' %}"><span class="glyphicon glyphicon-envelope"></span> Mensajes <span class="badge badge-warning">{{CANTIDAD_MENSAJES}}</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">¡Hola {{user.username}}! <b class="caret"></b></a>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">¡Hola {{NOMBRE_USUARIO}}! <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'vista_editarperfil' %}">Editar perfil</a></li>
                         <li><a href="{% url 'vista_nuevaclave' %}">Cambiar contraseña</a></li>
