@@ -525,7 +525,7 @@
       }
       container_props = {
         'class': container_classes.join(' '),
-        'style': "width: " + (this.container_width()) + ";",
+        'style': "width: 100%;",// + (this.container_width()) + ";",
         'title': this.form_field.title
       };
       if (this.form_field.id.length) {
@@ -1156,7 +1156,8 @@
           w = f_width - 10;
         }
         return this.search_field.css({
-          'width': w + 'px'
+          //'width': w + 'px'
+          'width': '100%'
         });
       }
     };

@@ -2,7 +2,7 @@
 {% csrf_token %}
   <div class="form-group">
     <label for="inputProfesion">Profesión/Oficio</label>
-    <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
+    <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico, etc." multiple tabindex="6">
     {% for cargo in cargos %}
       <option value="{{cargo.id}}">{{cargo.nombre}}</option>
     {% endfor %}
@@ -37,7 +37,7 @@
   </div>
   <div id="div_localidades_index" class="form-group">
     <label for="inputLocalidad">Localidad</label><br />
-    <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
+    <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Renca, Región de Aisen, etc.">
       <optgroup label="REGIONES">
         {% for localidad in localidades %}
         {% ifequal localidad.tipo "r" %}
