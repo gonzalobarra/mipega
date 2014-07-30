@@ -22,7 +22,7 @@
                 <li><a href="{% url 'vista_bandejaentrada' %}"><span class="glyphicon glyphicon-envelope"></span> Mensajes {% if not CANTIDAD_MENSAJES == 0 %}<span class="badge badge-warning">{{CANTIDAD_MENSAJES}}</span>{% endif %}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
+                <li class="dropdown dropup">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown">¡Hola {{NOMBRE_USUARIO}}! <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'vista_editarperfil' %}">Editar perfil</a></li>
