@@ -83,7 +83,7 @@ class Nacionalidad(models.Model):
 
 class Socio(models.Model):
 	id                = models.AutoField('ID', primary_key=True)
-	nombre            = models.CharField('Nombre', max_length=64,null=False, blank=False)
+	nombre            = models.CharField('Nombre', max_length=64,null=True, blank=True)
 	telefono          = models.IntegerField("Teléfono", null=True, blank=True)
 	web               = models.CharField('Web' ,max_length=128, null=True, blank=True)
 	edad              = models.IntegerField('Edad', null=True, blank=True)
@@ -103,9 +103,6 @@ class Socio(models.Model):
 	
 	nacionalidad  =models.ForeignKey(Nacionalidad, verbose_name="Nacionalidad", null=True, blank=True)
 	user = models.OneToOneField(User)
-
-	def __unicode__(self):
-		return u'%s' % (self.nombre)
 	
 
 class RegistroPago(models.Model):

@@ -33,6 +33,12 @@
                                 <div class="col-sm-6">
                                     <h3 class="sub-title info">Personal</h3>
                                     <div class="form-group">
+                                        <label for="id_nacionalidad" class="col-sm-3 control-label">Nombre</label>
+                                        <div class="col-sm-8">
+                                            {{form_socio.nombre}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="id_nacionalidad" class="col-sm-3 control-label">Nacionalidad</label>
                                         <div class="col-sm-8">
                                             {{form_socio.nacionalidad}}
@@ -75,15 +81,11 @@
                                             {{form_socio.telefono}}
                                         </div>    
                                     </div>
-                                    <div class="form-group">
-                                        <label for="id_web" class="col-sm-3 control-label">Web</label>
-                                        <div class="col-sm-8">
-                                            {{form_socio.web}}
-                                        </div>    
-                                    </div>
                                     <div class="inline-group">
+                                        <div class="col-sm-8">
                                         <label for="id_disponibilidad">Disponibilidad inmediata:</label>
                                         {{form_socio.disponibilidad}}
+                                        </div>
                                     </div>
                                     <div class="inline-group">
                                         <label for="id_disponibilidadV">Disponibilidad de movilización:</label>
@@ -261,7 +263,7 @@
                         </div>
                         <div class="tab-pane" id="otros">
                             <div class="inline-group">
-                            <h3 class="page-header">Idioma</h3>
+                            <h3 class="page-header">Deporte</h3>
                                 <label for="id_habilidad">Habilidad:</label>
                                 {{form_hab.habilidad}}
                             </div>
@@ -270,7 +272,7 @@
                                 {{form_hab.nivel}}
                             </div>
                             <div class="inline-group">
-                            <h3 class="page-header">Deporte</h3>
+                            <h3 class="page-header">Idioma</h3>
                                 <label for="id_habilidad">Habilidad:</label>
                                 {{form_hab2.habilidad}}
                             </div>

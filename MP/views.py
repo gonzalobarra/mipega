@@ -458,8 +458,11 @@ def pruebita(request):
 	estudios = Estudios.objects.filter(socio__id = socio.id)
 	habilidades = OtrasHabilidades.objects.filter(socio__id = socio.id)
 	experiencialab = ExperienciaLaboral.objects.filter(socio__id=socio.id)
+	lista = []
+	for estudio in estudios:
+		lista.append(estudio)
 
-	ctx = {'estudios':estudios, 'habilidades':habilidades, 'experiencialab': experiencialab, 'est1':estudios[0], 'est2':estudios[1], 'est3':estudios[2]} 
+	ctx = {'estudios':estudios, 'lista':lista, 'experiencialab': experiencialab, 'est1':estudios[0], 'est2':estudios[1], 'est3':estudios[2]} 
 	return render_to_response('MP/pruebita.html',ctx,context_instance=RequestContext(request))
 
 def registro_view(request):
@@ -482,7 +485,7 @@ def registro_view(request):
 	form_hab = OtrasHabilidadesForm(request.POST or None, prefix='hab1')
 	form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Deporte')
 	form_hab2 = OtrasHabilidadesForm(request.POST or None, prefix='hab2')
-	form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
+	form_hab2.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
 	
 
 	cargos = Cargo.objects.all()
@@ -741,47 +744,54 @@ def eliminarmensaje_view(request,pk):
 
 def editarperfil_view(request):
 	
-	#Ojo aqui con el nombre del user
+	user = request.user
+	listas = []
+	socios = Socio.objects.filter(user = user)
+	for socio in socios:
+		listas.append(socio)
+	estudios = Estudios.objects.filter(socio = listas[0])
+	habilidades = OtrasHabilidades.objects.filter(socio= listas[0])
+	experienciaslab = ExperienciaLaboral.objects.filter(socio=listas[0])
+	listae = []
+	listah = []
+	listaex = []
+	for habilidad in habilidades:
+		listah.append(habilidad)
+	for estudio in estudios:
+		listae.append(estudio)
+	for experiencialab in experienciaslab:
+		listaex.append(experiencialab)	
+	
+	messages.success(request, listas[0].id)
+	#Ver si el socio tiene un pago activo, si es así se llama al funcion encargada de hacer la carga de los nuevos cargos
 	hoy = timezone.now()
 	value = 0
 	mod = 0
-	user = request.user.username
-	socio = Socio.objects.get(user__username = user)
-	estudios = Estudios.objects.filter(socio__id = socio.id)
-	habilidades = OtrasHabilidades.objects.filter(socio__id = socio.id)
-	experiencialab = ExperienciaLaboral.objects.filter(socio__id=socio.id)
-	est1 = estudios[0]
-	est2 = estudios[1]
-	est3 = estudios[2]
-	exp1 = experiencialab[0]
-	exp2 = experiencialab[1]
-	exp3 = experiencialab[2]
-	exp4 = experiencialab[3]
-	hab1 = habilidades[0]
-	hab2 = habilidades[1]
-	
-	#Ver si el socio tiene un pago activo, si es así se llama al funcion encargada de hacer la carga de los nuevos cargos
-	registros_pago = RegistroPago.objects.filter(socio=socio.id).filter(fecha_fin__gt=hoy)
+	registros_pago = RegistroPago.objects.filter(socio=listas[0]).filter(fecha_fin__gt=hoy)
 	if len(registros_pago) > 0:
 			value = 1
 			mod = 1
 			messages.success(request, 'hola')
 
 	if request.method == 'POST':
-		form_socio = SocioForm2(request.POST,request.FILES, instance=socio)
-		form_estudio = EstudioForm(request.POST, request.FILES, instance=est1, prefix='est1')
+		form_socio = SocioForm2(request.POST, request.FILES, instance=listas[0], prefix='soc')
+		form_estudio = EstudioForm(request.POST, request.FILES, instance=listae[0], prefix='est1')
 		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=True)
-		form_estudiodos = EstudioForm(request.POST, request.FILES, instance=est2, prefix='est2')
-		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
-		form_estudiotres = EstudioForm(request.POST, request.FILES, instance=est3, prefix='est3')
-		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
-		form_explab = ExperienciaLaboralForm(request.POST, request.FILES, instance=exp1, prefix='exp1')
-		form_explab2 = ExperienciaLaboralForm(request.POST, request.FILES, instance=exp2, prefix='exp2')
-		form_explab3 = ExperienciaLaboralForm(request.POST, request.FILES, instance=exp3, prefix='exp3')
-		form_explab4 = ExperienciaLaboralForm(request.POST, request.FILES, instance=exp4, prefix='exp4')
-		form_hab = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab1, prefix='hab1')
-		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=hab2, prefix='hab2')
+		form_estudiodos = EstudioForm(request.POST, request.FILES, instance=listae[1], prefix='est2')
+		form_estudiodos.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
+		form_estudiotres = EstudioForm(request.POST, request.FILES, instance=listae[2], prefix='est3')
+		form_estudiotres.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
+		form_explab = ExperienciaLaboralForm(request.POST, request.FILES, instance=listaex[0], prefix='exp1')
+		form_explab2 = ExperienciaLaboralForm(request.POST, request.FILES, instance=listaex[1], prefix='exp2')
+		form_explab3 = ExperienciaLaboralForm(request.POST, request.FILES, instance=listaex[2], prefix='exp3')
+		form_explab4 = ExperienciaLaboralForm(request.POST, request.FILES, instance=listaex[3], prefix='exp4')
+		form_hab = OtrasHabilidadesForm(request.POST, request.FILES, instance=listah[0], prefix='hab1')
+		form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Deporte')
+		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=listah[1], prefix='hab2')
+		form_hab2.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
+
 		if form_socio.is_valid():
+			messages.success(request, 'que pasa aca')
 			form_socio.save()
 			if value == 1:
 				socio = Socio.objects.get(user=request.user.id)
@@ -808,16 +818,18 @@ def editarperfil_view(request):
 		messages.success(request, "Su perfil ha sido modificado exitosamente")	
 		return HttpResponseRedirect('/editarperfil/')
 	else:
-		form_socio = SocioForm2(instance=socio)
-		form_estudio = EstudioForm(instance=est1, prefix='est1')
-		form_estudiodos = EstudioForm(instance=est2, prefix='est2')
-		form_estudiotres = EstudioForm(instance=est3, prefix='est3')
-		form_explab = ExperienciaLaboralForm(instance=exp1, prefix='exp1')
-		form_explab2 = ExperienciaLaboralForm(instance=exp2, prefix='exp2')
-		form_explab3 = ExperienciaLaboralForm(instance=exp3, prefix='exp3')
-		form_explab4 = ExperienciaLaboralForm(instance=exp4, prefix='exp4')
-		form_hab = OtrasHabilidadesForm(instance=hab1, prefix='hab1')
-		form_hab2 = OtrasHabilidadesForm(instance=hab2, prefix='hab2')
+		form_socio = SocioForm2(instance=listas[0], prefix='soc')
+		form_estudio = EstudioForm(instance=listae[0], prefix='est1')
+		form_estudiodos = EstudioForm(instance=listae[1], prefix='est2')
+		form_estudiotres = EstudioForm(instance=listae[2], prefix='est3')
+		form_explab = ExperienciaLaboralForm(instance=listaex[0], prefix='exp1')
+		form_explab2 = ExperienciaLaboralForm(instance=listaex[1], prefix='exp2')
+		form_explab3 = ExperienciaLaboralForm(instance=listaex[2], prefix='exp3')
+		form_explab4 = ExperienciaLaboralForm(instance=listaex[3], prefix='exp4')
+		form_hab = OtrasHabilidadesForm(instance=listah[0], prefix='hab1')
+		form_hab.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Deporte')
+		form_hab2 = OtrasHabilidadesForm(instance=listah[1], prefix='hab2')
+		form_hab2.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
 
 	ctx = {'socio':socio,'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2, 'mod': mod}	
 	
