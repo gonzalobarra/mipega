@@ -9,7 +9,7 @@
     <div class="form-group">
         <label for="inputPassword" class="col-sm-2 control-label">Cargo buscado</label>
         <div class="col-sm-10">
-            <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
+            <select name="cargo" class="form-control chosen-select index-select" id="inputCargo" data-placeholder=" " multiple tabindex="6">
               {% for cargo in cargos %}
                   <option value="{{cargo.id}}">{{cargo.nombre}}</option>
               {% endfor %}
