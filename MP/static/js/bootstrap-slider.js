@@ -62,7 +62,12 @@
 				this.stylePos = 'left';
 				this.mousePos = 'pageX';
 				this.sizePos = 'offsetWidth';
-				this.tooltip.addClass('top')[0].style.top = -this.tooltip.outerHeight() - 14 + 'px';
+				if($('#sl2').attr('data-tooltip')=="bottom"){
+					this.tooltip.addClass('bottom in')[0].style.top = -this.tooltip.outerHeight() + 30 + 'px';
+				}else{
+					this.tooltip.addClass('top in')[0].style.top = -this.tooltip.outerHeight() - 10 + 'px';
+				};
+				
 				break;
 		}
 
@@ -161,7 +166,7 @@
 		
 		hideTooltip: function(){
 			if (this.inDrag === false) {
-				this.tooltip.removeClass('in');
+				//this.tooltip.removeClass('in');
 			}
 			this.over = false;
 		},
@@ -375,7 +380,7 @@
 		step: 1,
 		orientation: 'horizontal',
 		value: 5,
-		selection: 'before',
+		selection: 'after',
 		tooltip: 'show',
 		handle: 'round',
 		formater: function(value) {
