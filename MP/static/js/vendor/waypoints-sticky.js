@@ -35,8 +35,12 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
         var $sticky, shouldBeStuck;
 
         $sticky = $(this).children(':first');
+        //se selecciona el dropdown
+        $dropdoun = $sticky.children(':first').children(':last').children(':last').children(':first');
         shouldBeStuck = direction === 'down' || direction === 'right';
         $sticky.toggleClass(options.stuckClass, shouldBeStuck);
+        //se cambia por dropdown o dropup
+        $dropdoun.toggleClass('dropup', !shouldBeStuck);
         $wrap.height(shouldBeStuck ? $sticky.outerHeight() : '');
         if (originalHandler != null) {
           return originalHandler.call(this, direction);
