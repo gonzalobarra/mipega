@@ -130,7 +130,7 @@ def detalle_socio_view(request, id_socio):
 	localidades = Localidad.objects.filter(id__in = LocalidadConSocio.objects.filter(socio = socio).values_list('localidad',flat=True))
 	cargos = Cargo.objects.filter(id__in=EmpleoBuscado.objects.filter(socio = socio).values_list('cargo',flat=True))
 	estudios_escolares = Estudios.objects.filter(socio = socio).filter(titulo__tipo = "t").exclude(estado=None)
-	estudios_superiores = Estudios.objects.filter(socio = socio).exclude(titulo__tipo = "t").exclude(estado=None)
+	estudios_superiores = Estudios.objects.filter(socio = socio).exclude(titulo__tipo = "t").exclude(estado=None).exclude(titulo=None)
 	habilidades = OtrasHabilidades.objects.filter(socio=socio).exclude(habilidad=None)
 	experiencia = ExperienciaLaboral.objects.filter(socio=socio).exclude(cargo=None).exclude(rubro=None).exclude(desde=None)
 	if estudios_escolares or estudios_superiores or socio.comentario_est :

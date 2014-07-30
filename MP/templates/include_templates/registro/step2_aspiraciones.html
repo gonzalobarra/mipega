@@ -5,6 +5,7 @@
         Los cargos extra serán ingresados al sistema una vez que sea socio.
         </p>
     </div>
+
     <div class="alert alert-warning">Puede agregar tantos cargos y lugares como desee</div>
     <div class="form-group">
         <label for="inputPassword" class="col-sm-2 control-label">Cargo buscado</label>
@@ -17,10 +18,19 @@
             <span class="help-block">Seleccione de la lista los cargos que sean de su interez</span>
         </div>
     </div>
+    <div class="alert alert-info">Aquí puede ingresar los cargos que no se encuentren en la lista de cargos buscados</div>
+    <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Cargos extra</label>
+        <div class="col-sm-10">
+            {{form_socio.cargo_extra}}
+        </div>
+    </div>
+    <h3 class="page-header"></h3>
+    
     <div class="form-group">
         <label for="inputPassword" class="col-sm-2 control-label">Dónde desea trabajar</label>
         <div class="col-sm-10">
-            <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
+            <select name="localidad" class="chosen-select index-select" multiple tabindex="6" data-placeholder="Renca, Región de Aisen, etc.">
               <optgroup label="REGIONES">
                   {% for localidad in localidades %}
                   {% ifequal localidad.tipo "r" %}
@@ -51,12 +61,4 @@
             {{form_socio.tipo_contrato}}
         </div>
     </div>
-    <div class="alert alert-info">Aquí puede ingresar los cargos que no se encuentren en la lista de cargos buscados</div>
-    <div class="form-group">
-        <label for="inputPassword" class="col-sm-2 control-label">Cargos extra</label>
-        <div class="col-sm-10">
-            {{form_socio.cargo_extra}}
-        </div>
-    </div>
-    
 </section>

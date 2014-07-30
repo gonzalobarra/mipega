@@ -15,7 +15,7 @@
                     </div> -->
                     <div class="form-group">
                         <p class="help-block">Cargo:</p>
-                        <select name="cargo" class="form-control chosen-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico alambrista..." multiple tabindex="6">
+                        <select name="cargo" class="form-control chosen-select" id="inputCargo" data-placeholder="Ingeniero, Tecnico, etc." multiple tabindex="6">
                             {% for cargo in cargos %}
                                 <option value="{{cargo.id}}">{{cargo.nombre}}</option>
                             {% endfor %}
@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <p class="help-block">Localidad:</p>
                         <!-- <input type="text" class="form-control" id="inputLocalidad" placeholder="La florida, Region de Atacama..."> -->
-                        <select name="localidad" class="chosen-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama...">
+                        <select name="localidad" class="chosen-select" multiple tabindex="6" data-placeholder="Renca, Región de Aisen, etc.">
                             <optgroup label="REGIONES">
                                 {% for localidad in localidades %}
                                 {% ifequal localidad.tipo "r" %}

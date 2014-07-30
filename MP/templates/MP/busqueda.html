@@ -17,7 +17,7 @@
 
                                     <div class="col-sm-6">
                                         <label>Cargo</label>
-                                        <select name="cargo" class="form-control chosen-select" id="inputCargo" data-placeholder="Cargo: Ingeniero, Tecnico alambrista..." multiple tabindex="6">
+                                        <select name="cargo" class="form-control chosen-select" id="inputCargo" data-placeholder="Ingeniero, Técnico, etc." multiple tabindex="6">
                                             {% for cargo in cargos %}
                                                 
                                                 {% if cargo.id in ant_cargos %}
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-sm-6" id="div_localidades">
                                         <label>Localidad</label><br />
-                                        <select name="localidad" class="chosen-select" multiple tabindex="6" data-placeholder="Ej: La florida, Region de Atacama..." multiple>
+                                        <select name="localidad" class="chosen-select" multiple tabindex="6" data-placeholder="Renca, Región de Aisen, etc." multiple>
                                             <optgroup label="REGIONES">
                                                 {% for localidad in localidades %}
                                                 {% ifequal localidad.tipo "r" %}
@@ -192,7 +192,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Otros</label>
-                                        <select name="otras-habilidades" class="form-control chosen-select" id="otras-habilidades" data-placeholder="Idiomas, deportes, computación..." multiple tabindex="6">
+                                        <select name="otras-habilidades" class="form-control chosen-select" id="otras-habilidades" data-placeholder="Idioma,deporte,computación" multiple tabindex="6">
                                             {% for tipo in tipoHabilidades %}
                                                 <optgroup label="{{tipo.nombre}}">
                                                 {% for hab in habilidades %}
