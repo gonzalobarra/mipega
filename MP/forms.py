@@ -55,6 +55,7 @@ class SocioForm(forms.ModelForm):
             'nacionalidad': forms.Select(attrs={'class':'form-control'}),
             'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
             'cargo_extra':forms.TextInput(attrs={'class':'form-control plain-field','placeholder': 'ej: Profesor, Diseñador'}),
+            'disponibilidad': forms.Select(attrs={'class':'form-control'}),
         }
 
 class SocioForm2(forms.ModelForm):
@@ -74,6 +75,7 @@ class SocioForm2(forms.ModelForm):
             'comentario_est': forms.Textarea(attrs={'class':'form-control', 'rows':'5'}),
             'cargo_extra':forms.TextInput(attrs={'class':'form-control plain-field'}),
             'activo': forms.Select(attrs={'class':'form-control'}),
+            'disponibilidad': forms.Select(attrs={'class':'form-control'}),
         }
 
 class EstudioForm(forms.ModelForm):

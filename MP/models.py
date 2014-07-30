@@ -67,7 +67,12 @@ estados=(
 	('0', 'Activo'),
 	('1', 'Inactivo'),
 	)
-
+disp=(
+	('0', 'Inmediata'),
+	('1', '30 días'),
+	('2', '60 días'),
+	('3', '90 días'),
+	)
 
 class Nacionalidad(models.Model):
 	id 				  = models.AutoField('ID', primary_key=True)
@@ -91,7 +96,7 @@ class Socio(models.Model):
 	folio			  = models.CharField('Folio', max_length=10, null=False, blank=False, unique=True)
 	magister		  = models.BooleanField('Magister')
 	doctorado 		  = models.BooleanField('Doctorado')
-	disponibilidad    = models.BooleanField('Disponibilidad inmediata')
+	disponibilidad    = models.CharField('Disponibilidad', max_length=10, choices=disp, null=True, blank=True)
 	disponibilidadV	  = models.BooleanField('Dispopnibilidad de vehiculo')
 	cargo_extra 	  = models.CharField('Cargos extra' ,max_length=512, null=True, blank=True)
 	activo 			  = models.CharField('Estado', max_length=2, choices=estados, default="1")
