@@ -88,8 +88,12 @@ def login_view(request):
 			if user.is_active:
 				login(request, user)
 				# redireccionar al inicio
-				socio = Socio.objects.get(user = user)
-				messages.success(request, 'Bienvenido ' + socio.nombre)
+				socio = Socio.objects.filter(user = user)
+				if len(socio)==1:
+					messages.success(request, 'Bienvenido ' + socio[0].nombre)
+				else:
+					messages.success(request, 'Bienvenido Admin')
+
 				return HttpResponseRedirect('/')
 			else:
 				# Mensaje warning
