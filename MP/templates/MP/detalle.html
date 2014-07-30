@@ -47,18 +47,17 @@
                                     {% for cargo in cargos %}
                                         <dd>{{cargo.nombre}}</dd>
                                     {% endfor %}
-                                    <br>
-
+                                    <br />
+                                    <br />
                                     <dt><span class="glyphicon glyphicon-globe"></span> Localidades</dt>
                                     {% for loc in localidades %}
                                         <dd>{{loc.get_tipo_display}} {{loc.nombre}}</dd>
                                     {% endfor %}
-                                    <br>
-
+                                    <br />
+                                    <br />
                                     <dt><span class="glyphicon glyphicon-list-alt"></span> Contrato</dt>
                                     <dd>{{socio.get_tipo_contrato_display}}</dd>
                                     <br />
-
                                     <dt><span class="glyphicon glyphicon-usd"></span> Pretención de Renta</dt>
                                     <dd>{{socio.get_pretencion_renta_display}}</dd>
                                 </dl>
@@ -130,6 +129,7 @@
                                 {% endif %}
 
                                 <h3 class="page-header">Experiencia</h3>
+                                {% if experiencia %}
                                 <h4>Experiencia laboral</h4>
                                 <div class="panel panel-default">
                                     <div class="panel-body">
@@ -145,16 +145,19 @@
                                                 </thead>
                                                 <tbody>
                                                     {% for exp in experiencia %}
+                                                    <tr>
                                                         <td>{{exp.desde}}-{{exp.hasta}}</td>
                                                         <td>{{exp.rubro.nombre}}</td>
                                                         <td>{{exp.cargo.nombre}}</td>
                                                         <td>{{exp.comentario}}</td>
+                                                    </tr>
                                                     {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+                                {% endif %}
                                 {% if habilidades %}
                                 <h4>Otras habilidades</h4>
                                 <div class="panel panel-default">
