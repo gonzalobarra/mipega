@@ -380,7 +380,7 @@
 		step: 1,
 		orientation: 'horizontal',
 		value: 5,
-		selection: 'after',
+		selection: 'before',
 		tooltip: 'show',
 		handle: 'round',
 		formater: function(value) {
