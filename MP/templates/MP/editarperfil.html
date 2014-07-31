@@ -65,11 +65,10 @@
                                         </div>                                        
                                     </div>
                                     <div class="form-group">
-                                      <label class="col-sm-2 control-label">¿Activo?</label>
-                                      <div class="col-sm-5">
-                                          {{form_socio.activo}}
-                                      </div> 
-                                      
+                                        <label class="col-sm-2 control-label">¿Activo?</label>
+                                        <div class="col-sm-5">
+                                            {{form_socio.activo}}
+                                        </div> 
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -501,17 +500,3 @@
     </form>   
 </div>-->
 {% endblock %}
-
-
-{% block SCRIPT %}
-
-{% ifequal mod 1 %}
-
-{% else %}
-<script type="text/javascript">
-    $('#id_soc-activo').attr("disabled", "disabled")
-</script> 
-{% endifequal %}
-
-{% endblock %}
-
