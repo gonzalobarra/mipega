@@ -512,7 +512,7 @@ def registro_view(request):
 				try:
 					foliox = (hex(usuario_inst.id + 10555665)).split('0x')[1]
 					if form_socio.cleaned_data['nombre'] != "":
-						socio = Socio(user=usuario_inst,nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=form_socio.cleaned_data['telefono'],web=form_socio.cleaned_data['web'],edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],disponibilidad=form_socio.cleaned_data['disponibilidad'],disponibilidadV=form_socio.cleaned_data['disponibilidadV'],cargo_extra=form_socio.cleaned_data['cargo_extra'],doctorado=form_socio.cleaned_data['doctorado'])
+						socio = Socio(user=usuario_inst,nacionalidad=form_socio.cleaned_data['nacionalidad'],nombre=form_socio.cleaned_data['nombre'],telefono=None,web=None,edad=form_socio.cleaned_data['edad'],sexo=form_socio.cleaned_data['sexo'],tiene_hijos=form_socio.cleaned_data['tiene_hijos'],estado_civil=form_socio.cleaned_data['estado_civil'], pretencion_renta=form_socio.cleaned_data['pretencion_renta'], tipo_contrato=form_socio.cleaned_data['tipo_contrato'], comentario_est=form_socio.cleaned_data['comentario_est'],folio=foliox,magister=form_socio.cleaned_data['magister'],disponibilidad=form_socio.cleaned_data['disponibilidad'],disponibilidadV=form_socio.cleaned_data['disponibilidadV'],cargo_extra=form_socio.cleaned_data['cargo_extra'],doctorado=form_socio.cleaned_data['doctorado'])
 						socio.save()
 					else:
 						messages.warning(request,"El nombre de usuario no puede ser vacio")
@@ -745,13 +745,10 @@ def eliminarmensaje_view(request,pk):
 def editarperfil_view(request):
 	
 	user = request.user
-	listas = []
-	socios = Socio.objects.filter(user = user)
-	for socio in socios:
-		listas.append(socio)
-	estudios = Estudios.objects.filter(socio = listas[0])
-	habilidades = OtrasHabilidades.objects.filter(socio= listas[0])
-	experienciaslab = ExperienciaLaboral.objects.filter(socio=listas[0])
+	socio = Socio.objects.get(user = user)
+	estudios = Estudios.objects.filter(socio = socio)
+	habilidades = OtrasHabilidades.objects.filter(socio= socio)
+	experienciaslab = ExperienciaLaboral.objects.filter(socio=socio)
 	listae = []
 	listah = []
 	listaex = []
@@ -762,19 +759,20 @@ def editarperfil_view(request):
 	for experiencialab in experienciaslab:
 		listaex.append(experiencialab)	
 	
-	messages.success(request, listas[0].id)
+	#messages.success(request, listas[0].id)
 	#Ver si el socio tiene un pago activo, si es así se llama al funcion encargada de hacer la carga de los nuevos cargos
 	hoy = timezone.now()
 	value = 0
 	mod = 0
-	registros_pago = RegistroPago.objects.filter(socio=listas[0]).filter(fecha_fin__gt=hoy)
+
+	registros_pago = RegistroPago.objects.filter(socio=socio).filter(fecha_fin__gt=hoy)
 	if len(registros_pago) > 0:
-			value = 1
+	 		value = 1
 			mod = 1
 			messages.success(request, 'hola')
 
 	if request.method == 'POST':
-		form_socio = SocioForm2(request.POST, request.FILES, instance=listas[0], prefix='soc')
+		form_socio = SocioForm2(request.POST, request.FILES, instance=socio, prefix='soc')
 		form_estudio = EstudioForm(request.POST, request.FILES, instance=listae[0], prefix='est1')
 		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=True)
 		form_estudiodos = EstudioForm(request.POST, request.FILES, instance=listae[1], prefix='est2')
@@ -790,12 +788,15 @@ def editarperfil_view(request):
 		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=listah[1], prefix='hab2')
 		form_hab2.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
 
+		nombre = 'nombre' in request.POST
+		messages.error(request, str(nombre))
+
 		if form_socio.is_valid():
 			messages.success(request, 'que pasa aca')
 			form_socio.save()
 			if value == 1:
-				socio = Socio.objects.get(user=request.user.id)
-				traspasoCargoE(socio)
+			 	socio = Socio.objects.get(user=request.user.id)
+			 	traspasoCargoE(socio)
 		if form_estudio.is_valid():
 			form_estudio.save()
 		if form_estudiodos.is_valid():
@@ -818,10 +819,13 @@ def editarperfil_view(request):
 		messages.success(request, "Su perfil ha sido modificado exitosamente")	
 		return HttpResponseRedirect('/editarperfil/')
 	else:
-		form_socio = SocioForm2(instance=listas[0], prefix='soc')
+		form_socio = SocioForm2(instance=socio, prefix='soc')
 		form_estudio = EstudioForm(instance=listae[0], prefix='est1')
+		form_estudio.fields["institucion"].queryset = Institucion.objects.filter(colegio=True)
 		form_estudiodos = EstudioForm(instance=listae[1], prefix='est2')
+		form_estudiodos.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
 		form_estudiotres = EstudioForm(instance=listae[2], prefix='est3')
+		form_estudiotres.fields["institucion"].queryset = Institucion.objects.filter(colegio=False)
 		form_explab = ExperienciaLaboralForm(instance=listaex[0], prefix='exp1')
 		form_explab2 = ExperienciaLaboralForm(instance=listaex[1], prefix='exp2')
 		form_explab3 = ExperienciaLaboralForm(instance=listaex[2], prefix='exp3')

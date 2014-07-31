@@ -33,62 +33,68 @@
                                 <div class="col-sm-6">
                                     <h3 class="sub-title info">Personal</h3>
                                     <div class="form-group">
-                                        <label for="id_nacionalidad" class="col-sm-3 control-label">Nombre</label>
+                                        <label class="col-sm-3 control-label">Nombre</label>
                                         <div class="col-sm-8">
                                             {{form_socio.nombre}}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="id_nacionalidad" class="col-sm-3 control-label">Nacionalidad</label>
+                                        <label class="col-sm-3 control-label">Nacionalidad</label>
                                         <div class="col-sm-8">
                                             {{form_socio.nacionalidad}}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="id_ano_nacimiento" class="col-sm-2 control-label">Edad</label>
+                                        <label class="col-sm-2 control-label">Edad</label>
                                         <div class="col-sm-2">
                                             {{form_socio.edad}}
                                         </div>
-                                        <label for="id_sexo" class="col-sm-2 control-label">Sexo</label>
+                                        <label class="col-sm-2 control-label">Sexo</label>
                                         <div class="col-sm-5">
                                             {{form_socio.sexo}}
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="id_tiene_hijos" class="col-sm-2 control-label">Hijos</label>
+                                        <label class="col-sm-2 control-label">Hijos</label>
                                         <div class="col-sm-2">
                                             {{form_socio.tiene_hijos}}
                                         </div>
-                                        <label for="id_estado_civil" class="col-sm-2 control-label">Estado</label>
+                                        <label class="col-sm-2 control-label">Estado</label>
                                         <div class="col-sm-5">
                                             {{form_socio.estado_civil}}
                                         </div>                                        
                                     </div>
                                     <div class="form-group">
                                       {% ifequal mod 1%}
-                                      <label for="id_estado_civil" class="col-sm-2 control-label">¿Activo?</label>
-                                                    <div class="col-sm-5">
+                                      <label class="col-sm-2 control-label">¿Activo?</label>
+                                      <div class="col-sm-5">
                                           {{form_socio.activo}}
+                                      </div> 
+                                      {% else %}
+                                      <label class="col-sm-2 control-label">¿Activo?</label>
+                                      <div class="col-sm-5" disabled="disabled">
+                                          <input disabled="disabled">{{form_socio.activo}}
                                       </div> 
                                       {% endifequal %}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <h3 class="sub-title warning">Contacto</h3>
+                                    <!--
                                     <div class="form-group">
                                         <label for="id_telefono" class="col-sm-3 control-label">Teléfono</label>
                                         <div class="col-sm-8">
                                             {{form_socio.telefono}}
                                         </div>    
-                                    </div>
+                                    </div>-->
                                     <div class="inline-group">
                                         <div class="col-sm-8">
-                                        <label for="id_disponibilidad">Disponibilidad inmediata:</label>
+                                        <label>Disponibilidad:</label>
                                         {{form_socio.disponibilidad}}
                                         </div>
                                     </div>
                                     <div class="inline-group">
-                                        <label for="id_disponibilidadV">Disponibilidad de movilización:</label>
+                                        <label>Disponibilidad de movilización:</label>
                                         {{form_socio.disponibilidadV}}
                                     </div>   
                                 </div>
@@ -96,19 +102,19 @@
                         </div>
                         <div class="tab-pane" id="trabajo">
                             <div class="form-group">
-                                <label for="id_pretencion_renta" class="col-sm-4 control-label">Pretenciones de renta</label>
+                                <label class="col-sm-4 control-label">Pretenciones de renta</label>
                                 <div class="col-sm-7">
                                     {{form_socio.pretencion_renta}}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="id_tipo_contrato" class="col-sm-4 control-label">Tipo de contrato buscado:</label>
+                                <label class="col-sm-4 control-label">Tipo de contrato buscado:</label>
                                 <div class="col-sm-7">
                                     {{form_socio.tipo_contrato}}  
                                 </div>
                             </div>
                             <div class="form-group">
-                              <label for="id_cargo_extra" class="col-sm-4 control-label">Cargo extra:</label>
+                              <label class="col-sm-4 control-label">Cargo extra:</label>
                               <div class="col-sm-7">
                                   {{form_socio.cargo_extra}}
                               </div>
@@ -161,15 +167,15 @@
                                     </div>
                                     <h3 class="page-header">Información adicional</h3>
                                     <div class="inline-group">
-                                        <label for="id_magister">¿Posee Magister?</label>
+                                        <label>¿Posee Magister?</label>
                                         {{form_socio.magister}}
                                     </div>
                                     <div class="inline-group">
-                                        <label for="id_doctorado">¿Posee Doctorado?</label>
+                                        <label>¿Posee Doctorado?</label>
                                         {{form_socio.doctorado}}
                                     </div>
                                     <div class="inline-group comment">
-                                        <label for="id_comentario_est">Comentario:</label>
+                                        <label>Comentario:</label>
                                         {{form_socio.comentario_est}}
                                     </div>
                                 </div>

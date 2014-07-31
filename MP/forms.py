@@ -41,10 +41,9 @@ class UserForm(forms.ModelForm):
 class SocioForm(forms.ModelForm):
     class Meta:
         model = Socio
-        fields = ('nombre','telefono','disponibilidad','disponibilidadV','cargo_extra', 'edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('nombre','disponibilidad','disponibilidadV','cargo_extra', 'edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: Mario Palma'}),
-            'telefono': forms.TextInput(attrs={'class':'form-control plain-field','placeholder': 'ej: 091234567'}),
             'edad': forms.TextInput(attrs={'class':'form-control','placeholder': 'ej: 25'}),
             'sexo': forms.Select(attrs={'class':'form-control'}),
             'estado_civil': forms.Select(attrs={'class':'form-control'}),
@@ -60,10 +59,9 @@ class SocioForm(forms.ModelForm):
 class SocioForm2(forms.ModelForm):
     class Meta:
         model = Socio
-        fields = ('nombre','telefono', 'activo','disponibilidad','disponibilidadV','cargo_extra','edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
+        fields = ('nombre', 'activo','disponibilidad','disponibilidadV','cargo_extra','edad','comentario_est','nacionalidad','magister','doctorado','sexo','tiene_hijos', 'estado_civil', 'pretencion_renta', 'tipo_contrato',)
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control plain-field'}),
-            'telefono': forms.TextInput(attrs={'class':'form-control plain-field'}),
             'edad': forms.TextInput(attrs={'class':'form-control'}),
             'sexo': forms.Select(attrs={'class':'form-control'}),
             'estado_civil': forms.Select(attrs={'class':'form-control'}),
