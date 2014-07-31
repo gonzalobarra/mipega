@@ -153,7 +153,7 @@ def infopago_view(request):
 def busqueda_view(request):
 	mensaje = ""
 	if request.method == "POST":
-		socios = Socio.objects.all()
+		socios = Socio.objects.filter(activo=0)
 		if "cargo" in request.POST:
 			ids_cargos = request.POST.getlist('cargo')
 			id_socios_en_cargo = EmpleoBuscado.objects.filter(cargo_id__in=ids_cargos).values_list('socio_id',flat=True).distinct()
@@ -309,7 +309,7 @@ def busqueda_rapida_view(request):
 	mensaje = ""
 	#falta implementar aqui la busqueda rapida, ya llegan los valores del form
 	if request.method == "POST":
-		socios = Socio.objects.all()
+		socios = Socio.objects.filter(activo=0)
 		if "cargo" in request.POST:
 			ids_cargos = request.POST.getlist('cargo')
 			id_socios_en_cargo = EmpleoBuscado.objects.filter(cargo_id__in=ids_cargos).values_list('socio_id',flat=True).distinct()
@@ -349,7 +349,7 @@ def resultados_completos(request):
 			pagina = int(request.GET['page'])
 		else:
 			pagina = 1
-		socios = Socio.objects.all()
+		socios = Socio.objects.filter(activo=0)
 		if "cargo" in request.GET:
 
 			ids_cargos = request.GET.getlist('cargo')
