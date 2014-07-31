@@ -763,12 +763,10 @@ def editarperfil_view(request):
 	#Ver si el socio tiene un pago activo, si es así se llama al funcion encargada de hacer la carga de los nuevos cargos
 	hoy = timezone.now()
 	value = 0
-	mod = 0
 
 	registros_pago = RegistroPago.objects.filter(socio=socio).filter(fecha_fin__gt=hoy)
 	if len(registros_pago) > 0:
 	 		value = 1
-			mod = 1
 			messages.success(request, 'hola')
 
 	if request.method == 'POST':
@@ -835,6 +833,6 @@ def editarperfil_view(request):
 		form_hab2 = OtrasHabilidadesForm(instance=listah[1], prefix='hab2')
 		form_hab2.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
 
-	ctx = {'socio':socio,'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2, 'mod': mod}	
+	ctx = {'socio':socio,'form_socio':form_socio, 'form_estudio':form_estudio, 'form_estudio2':form_estudiodos, 'form_estudio3':form_estudiotres, 'form_explab':form_explab, 'form_explab2':form_explab2, 'form_explab3':form_explab3, 'form_explab4':form_explab4, 'form_hab':form_hab , 'form_hab2':form_hab2}	
 	
 	return render_to_response('MP/editarperfil.html', ctx, context_instance=RequestContext(request))		 
