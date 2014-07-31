@@ -68,10 +68,9 @@ def traspasoCargoE(socio):
 
 def index_view(request):
 	form = BuscaRapidaForm(request.POST or None)
-	formLogin = LoginForm(request.POST or None)
 	localidades = Localidad.objects.all()
 	cargos = Cargo.objects.all()
-	ctx ={'form_busqueda_rapida':form,'formLogin':formLogin, 'localidades':localidades, 'cargos':cargos, "wololo":RequestContext(request)}
+	ctx ={'form_busqueda_rapida':form,'localidades':localidades, 'cargos':cargos, "wololo":RequestContext(request)}
 	return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 
 def login_view(request):
@@ -103,10 +102,9 @@ def login_view(request):
 			# Mensaje de errorreturn HttpResponseRedirect('/')
 			messages.error(request, 'Nombre de usuario o password erronea.')
 			form = BuscaRapidaForm(request.POST or None)
-			formLogin = LoginForm(request.POST or None)
 			localidades = Localidad.objects.all()
 			cargos = Cargo.objects.all()
-			ctx ={'form_busqueda_rapida':form,'formLogin':formLogin, 'localidades':localidades, 'cargos':cargos}
+			ctx ={'form_busqueda_rapida':form,'localidades':localidades, 'cargos':cargos}
 			return render_to_response('MP/index.html',ctx,context_instance=RequestContext(request))
 	else:
 		return HttpResponseRedirect('/')

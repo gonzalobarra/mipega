@@ -4,10 +4,7 @@
           <form action="{% url 'vista_login' %}" method="post" id="login-form">
             <div class="modal-body">
               {% csrf_token %}
-              <label for="id_username">Username:</label>
-              <input class="form-control" id="id_username" name="username" type="text">
-              <label for="id_password">Password:</label>
-              <input class="form-control" id="id_password" name="password" type="password">
+              {{FORM_LOGIN}}
               {{fo_rmLogin}}
               <div class="checkbox">
                 <label>
