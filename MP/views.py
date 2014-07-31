@@ -767,7 +767,6 @@ def editarperfil_view(request):
 	registros_pago = RegistroPago.objects.filter(socio=socio).filter(fecha_fin__gt=hoy)
 	if len(registros_pago) > 0:
 	 		value = 1
-			messages.success(request, 'hola')
 
 	if request.method == 'POST':
 		form_socio = SocioForm2(request.POST, request.FILES, instance=socio, prefix='soc')
@@ -786,11 +785,7 @@ def editarperfil_view(request):
 		form_hab2 = OtrasHabilidadesForm(request.POST, request.FILES, instance=listah[1], prefix='hab2')
 		form_hab2.fields["habilidad"].queryset = Habilidad.objects.filter(tipoHabilidad__nombre='Idioma')
 
-		nombre = 'nombre' in request.POST
-		messages.error(request, str(nombre))
-
 		if form_socio.is_valid():
-			messages.success(request, 'que pasa aca')
 			form_socio.save()
 			if value == 1:
 			 	socio = Socio.objects.get(user=request.user.id)
